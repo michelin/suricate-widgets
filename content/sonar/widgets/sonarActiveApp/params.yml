@@ -1,0 +1,39 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: STRING
+    defaultValue: 'Sonar Active Apps'
+    required: true
+  -
+    name: 'SURI_MONTH'
+    description: 'Period of activity in month'
+    type: INTEGER
+    defaultValue: '12'
+    required: true
+  -
+    name: 'SURI_ORDER_BY'
+    description: 'Order apps by'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: 'ANALYSE'
+        value: 'Analyse'
+      -
+        jsKey: 'DAYOFANALYSE'
+        value: 'Day of analyses'
+    required: true
+  -
+    name: 'SURI_TYPE_GRAPH'
+    description: 'Graph type'
+    type: 'COMBO'
+    possibleValuesMap:
+      -
+        jsKey: 'pie'
+        value: 'Pie'
+      -
+        jsKey: 'horizontalBar'
+        value: 'Horizontal Bar'
+      -
+        jsKey: 'bar'
+        value: 'Bar'

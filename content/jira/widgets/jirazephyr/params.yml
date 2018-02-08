@@ -1,0 +1,36 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: STRING
+    defaultValue: 'Zephyr status'
+    required: true
+  -
+    name: 'SURI_PROJECT'
+    description: 'JIRA project name'
+    type: STRING
+    required: true
+  -
+    name: 'SURI_VERSION'
+    description: 'Jira project version'
+    type: STRING
+    usageExample: '1.2'
+    required: true
+  -
+    name: 'SURI_REGEX'
+    description: 'Filter Regex'
+    type: STRING
+    usageExample: 'UnitTest.*'
+    required: false
+  -
+    name: 'SURI_DISPLAY_PERCENT_EXEC'
+    description: 'Display Percentage of Execution on Progress Bar'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: 'YES'
+        value: 'Yes'
+      -
+        jsKey: 'NO'
+        value: 'No'
+    required: true

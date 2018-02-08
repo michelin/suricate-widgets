@@ -1,0 +1,4 @@
+name: Image from Url
+description: Widget used to display an image from an url
+technicalName: imageUrl
+delay: 120

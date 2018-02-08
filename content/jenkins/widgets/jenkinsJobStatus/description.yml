@@ -1,0 +1,4 @@
+name: Job Status
+description: Widget used to display the build status of a specific job
+technicalName: jenkinsjobstatus
+delay: 30

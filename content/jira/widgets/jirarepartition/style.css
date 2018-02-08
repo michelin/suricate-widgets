@@ -1,0 +1,44 @@
+.widget.jirarepartition {
+    background-color:#0099ff;
+}
+
+.widget.jirarepartition .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.jirarepartition ul {
+    list-style: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.widget.jirarepartition ul li {
+    font-size: 16px;
+    text-align: left;
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+}
+.widget.jirarepartition ul li a {
+    display: block;
+    overflow: hidden;
+}
+
+.widget.jirarepartition ul li a span {
+    text-align: right;
+    float: left;
+    color: black;
+    padding: 5px;
+    border-radius: 6px;
+    margin-right: 7px;
+    font-size: 11px;
+}
+
+.widget.jirarepartition ul li a span.yellow {
+    background-color: #fbc82f;
+}
+.widget.jirarepartition ul li a span.blue-gray {
+    background-color: #b5d5f5;
+}
+.widget.jirarepartition ul li a span.green {
+    background-color: #13a130;
+}

@@ -1,0 +1,15 @@
+.widget.jiradistribution {
+    background-color:#607D8B;
+}
+
+.widget.jiradistribution .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.jiradistribution .value {
+    color: #fff;
+}
+
+.widget.jiradistribution .change-rate i {
+    margin-right:4px;
+}

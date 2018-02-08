@@ -1,0 +1,4 @@
+name: Slave status
+description: Widget used to display the number of slave up vs slave down on Jenkins
+technicalName: jenkinsslavestatus
+delay: 120

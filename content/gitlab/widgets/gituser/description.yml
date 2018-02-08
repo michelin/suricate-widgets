@@ -1,0 +1,4 @@
+name: Number of users
+description: Widget used to display the current number of user in gitlab
+technicalName: gituser
+delay: 500

@@ -1,0 +1,4 @@
+name: Metrics
+description: Widget used to display Sonar application key numbers
+technicalName: sonar
+delay: 500

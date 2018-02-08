@@ -1,0 +1,5 @@
+name: Active jobs
+description: Widget used to display the number of active jobs during last N "period type" on Jenkins.
+technicalName: jenkinsJobsRunningOnAPeriod
+delay: 720
+timeout: 600

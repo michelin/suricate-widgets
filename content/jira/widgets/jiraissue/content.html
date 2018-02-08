@@ -1,0 +1,15 @@
+<div class="grid-stack-item-content-inner">
+    <h1 class="title">{{SURI_TITLE}}</h1>
+    <ul>
+        {{#items}}
+        <li>
+           {{#displayId}}
+             <a href="https://jira.com/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{key}} - {{summary}}</a>
+    	   {{/displayId}}
+           {{^displayId}}
+             <a href="https://jira.com/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{summary}}</a>
+    	   {{/displayId}}
+        </li>
+        {{/items}}
+    </ul>
+</div>

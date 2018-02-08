@@ -1,0 +1,21 @@
+<a href="https://jenkins.com/jenkins/" target="_blank" class="link">
+    <div class="fullwidget {{#ok}}green{{/ok}}{{^ok}}red{{/ok}}">
+        <div class="grid-stack-item-content-inner">
+            <h1 class="title">{{SURI_TITLE}}</h1>
+            <div>
+                {{#ok}}
+                <h2>There is {{nbWaitingJobs}} jobs waiting in jenkins queue since more than {{limit}} minutes.</h2>
+                {{/ok}}
+                {{^ok}}
+                <h2>There is {{nbWaitingJobs}} jobs waiting in jenkins queue since more than {{limit}} minutes.</h2>
+                {{/ok}}
+            </div>
+        </div>
+        {{#ok}}
+        <i class="fa fa-check icon-background"></i>
+        {{/ok}}
+        {{^ok}}
+        <i class="fa fa-times icon-background"></i>
+        {{/ok}}
+    </div>
+</a>

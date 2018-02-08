@@ -1,0 +1,43 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: STRING
+    defaultValue: 'Jira distribution'
+    required: true
+  -
+    name: 'SURI_WEEK'
+    description: 'Period of activity in month'
+    type: INTEGER
+    defaultValue: '12'
+    required: true
+  -
+    name: 'SURI_ORDERBY'
+    description: 'Order extension by'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: 'ISSUES'
+        value: 'Issues'
+      -
+        jsKey: 'TIMETOCLOSE'
+        value: 'Average time to close issues'
+      -
+        jsKey: 'DAYOFISSUES'
+        value: 'Day of issues'
+    required: true
+  -
+    name: 'SURI_TYPE_GRAPH'
+    description: 'Graph type'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: 'pie'
+        value: 'Pie'
+      -
+        jsKey: 'horizontalBar'
+        value: 'Horizontal Bar'
+      -
+        jsKey: 'bar'
+        value: 'Bar'
+    required: true

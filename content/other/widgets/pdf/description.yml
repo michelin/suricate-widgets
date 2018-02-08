@@ -1,0 +1,7 @@
+name: Pdf viewer Widget
+description: Widget used to display a pdf
+technicalName: pdf
+delay: -1
+libraries:
+  - pdf.js
+  - pdf.worker.js

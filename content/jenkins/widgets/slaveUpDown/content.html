@@ -1,0 +1,36 @@
+<div class="fullwidget {{#ok}}green{{/ok}}{{^ok}}red{{/ok}}">
+    <div class="grid-stack-item-content-inner">
+        <h1 class="title">{{SURI_TITLE}}</h1>
+
+        <div>
+            {{#ok}}
+            <h2>{{nbUp}} slaves up</h2>
+            {{/ok}}
+            {{^ok}}
+            <h2>{{nbDown}} slaves offline</h2>
+            <ul class="hosts">
+                {{#slave}}
+                <a href="https://jenkins.com/jenkins/computer/{{name}}/" target="_blank">
+                <li class="hostname">
+                        <h3>{{name}}</h3>
+                </li>
+                {{^minimal}}
+                    <li class="service">
+                        <ul>
+                            {{offlineCause}}
+                        </ul>
+                    </li>
+                {{/minimal}}
+                 </a>
+                {{/slave}}
+            </ul>
+            {{/ok}}
+        </div>
+    </div>
+    {{#ok}}
+    <i class="fa fa-check icon-background"></i>
+    {{/ok}}
+    {{^ok}}
+    <i class="fa fa-times icon-background"></i>
+    {{/ok}}
+</div>

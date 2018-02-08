@@ -1,0 +1,5 @@
+name: Jenkins ative users
+description: Widget used the count of jenkins active users (1 job started during the period)
+technicalName: jenkinsactiveusers
+delay: 10800
+timeout: 300

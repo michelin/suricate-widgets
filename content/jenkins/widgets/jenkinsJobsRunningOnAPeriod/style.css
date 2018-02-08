@@ -1,0 +1,30 @@
+.widget.jenkinsJobsRunningOnAPeriod .infos {
+    font-size: 15px;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+
+.widget.jenkinsJobsRunningOnAPeriod .icon-background {
+    opacity: 0.05;
+}
+
+.widget.jenkinsJobsRunningOnAPeriod .value {
+    font-weight: 700;
+    font-size: 44px;
+}
+
+.widget.jenkinsJobsRunningOnAPeriod {
+    background-color:#607D8B;
+}
+
+.widget.jenkinsJobsRunningOnAPeriod .green {
+    background-color:#607D8B;
+}
+
+.widget.jenkinsJobsRunningOnAPeriod .red {
+    background-color: #e3394f;
+    -webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
+    -moz-animation:    status-danger-background 1s infinite; /* Fx 5+ */
+    -o-animation:      status-danger-background 1s infinite; /* Opera 12+ */
+    animation:         status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
+}

@@ -1,0 +1,7 @@
+name: Burndown
+description: Widget used to display the burndown chart of your jira release for the specified project
+info: To use this widget, you must first add the jira user '<b>mt_dev</b>' as viewer of your project
+technicalName: jiraBurndown
+delay: 1500
+libraries:
+  - chart.js

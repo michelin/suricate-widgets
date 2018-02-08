@@ -1,0 +1,8 @@
+name: JIRA Distribution activity
+description: Widget used to display the most active project in a jira during the last X weeks.
+technicalName: jiradistribution
+timeout: 360
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js

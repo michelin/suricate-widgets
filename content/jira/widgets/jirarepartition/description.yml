@@ -1,0 +1,8 @@
+name: Issues repartition
+description: Widget takes a JQL query and used to display unassigned, unresolved and resolved issues.
+info: To use this widget, you must first add the jira user '<b>mt_dev</b>' as viewer of your project
+technicalName: jirarepartition
+delay: 200
+libraries:
+  - chart.js
+  - chart.piecelabel.js

@@ -1,0 +1,19 @@
+widgetParams:
+  -
+    name: 'SURI_DELAI'
+    description: 'Span time to compare widget data in hours'
+    type: INTEGER
+    defaultValue: '24'
+    required: true
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: STRING
+    defaultValue: 'Active User'
+    required: false
+  -
+    name: 'SURI_DATE'
+    description: 'Beginning of the wanted period (format : DDMMYYYY)'
+    type: STRING
+    usageExample: '31122016'
+    required: true

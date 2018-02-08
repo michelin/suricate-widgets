@@ -1,0 +1,27 @@
+{{^building}}
+<div class="fullwidget {{#success}}green{{/success}} {{#failure}}red{{/failure}} {{#unstable}}orange{{/unstable}}">
+    <i class="fa-fix fa {{#success}}fa-thumbs-up{{/success}} {{#failure}}fa-thumbs-down{{/failure}} {{#unstable}}fa-exclamation-triangle{{/unstable}} icon-background"></i>
+    <a href="https://jenkins.com/jenkins/job/{{SURI_JOB}}/" class="link" target="_blank">
+        <div class="grid-stack-item-content-inner">
+            <h1 class="title">{{SURI_JOB}}</h1>
+            <div class="infos"><i class="fa fa-user" aria-hidden="true"></i> Last build by <span class="builtby value">{{builtBy}}</span></div>
+            <div class="infos"><i class="fa fa-tachometer" aria-hidden="true"></i> on <span class="builton value">{{builtOn}}</span></div>
+            <div class="infos"><i class="fa fa-clock-o" aria-hidden="true"></i> <span class="hour value">{{formattedTime}}</span> - <span class="date value">{{formattedDate}}</span></div>
+            <div class="infos"><i class="fa fa-hourglass" aria-hidden="true"></i>
+                {{#durationMinutes}}<span class="durationtime value">{{durationMinutes}}</span> minutes{{/durationMinutes}}
+                {{^durationMinutes}}<span class="durationtime value">{{durationSeconds}}</span> seconds{{/durationMinutes}}
+            </div>
+        </div>
+    </a>
+    <div class="jenkins"></div>
+</div>
+{{/building}}
+
+{{#building}}
+<div class="grid-stack-item-content-inner">
+    <div class="title">{{SURI_JOB}}</div>
+    <div class="progress blink">Build in progress...</div>
+</div>
+<div class="jenkins"></div>
+{{/building}}
+

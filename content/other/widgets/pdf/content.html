@@ -1,0 +1,75 @@
+<canvas id="pdf-canvas-{{SURI_INSTANCE_ID}}"></canvas>
+<script>
+    $(function(){
+
+        var delay = "{{SURI_DELAI}}";
+        if (delay.length == 0){
+            delay = "5000";
+        }
+
+        $(window).on('load', loadPdf{{SURI_INSTANCE_ID}});
+
+        function renderPage(pageNumber, pdf){
+            console.log('Load page '+pageNumber);
+            pdf.getPage(pageNumber).then(function (page) {
+                var scale = 1.5;
+                var viewport = page.getViewport(scale);
+
+                // Prepare canvas using PDF page dimensions
+                var canvas = document.getElementById('pdf-canvas-{{SURI_INSTANCE_ID}}');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.then(function () {
+                    setTimeout(function(){
+                        if (pageNumber >= pdf.numPages){
+                            pageNumber = 0;
+                        }
+                        renderPage(pageNumber + 1, pdf);
+                    }, parseInt(delay));
+                    console.log('Page rendered');
+                });
+            });
+        }
+
+        function loadPdf{{SURI_INSTANCE_ID}}() {
+            // atob() is used to convert base64 encoded PDF to binary-like data.
+            // (See also https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/
+            // Base64_encoding_and_decoding.)
+            var base64Data = "{{SURI_PDF}}";
+            var pdfData = atob(base64Data.substring(base64Data.lastIndexOf('base64,') + 7));
+
+            // Disable workers to avoid yet another cross-origin issue (workers need
+            // the URL of the script to be loaded, and dynamically loading a cross-origin
+            // script does not work).
+            PDFJS.disableWorker = true;
+
+            // Using DocumentInitParameters object to load binary data.
+            var loadingTask = PDFJS.getDocument({data: pdfData});
+            loadingTask.promise.then(function (pdf) {
+                console.log('PDF loaded');
+
+                // fetch the first page
+                renderPage(1, pdf);
+
+            }, function (reason) {
+                // PDF loading error
+                console.error(reason);
+            });
+        }
+
+        if (page_loaded){
+            loadPdf{{SURI_INSTANCE_ID}}();
+        }
+
+
+
+    });
+</script>

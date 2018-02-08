@@ -1,0 +1,7 @@
+name: Active sonar apps
+description: Widget used to display Sonar active applications
+technicalName: sonaractiveapps
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js

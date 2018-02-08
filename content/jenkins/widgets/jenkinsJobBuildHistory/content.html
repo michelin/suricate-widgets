@@ -1,0 +1,24 @@
+<div class="grid-stack-item-content-inner">
+	<a href='{{jenkinsJobUrl}}'><h1 class="title">{{SURI_JOB}} Last builds</h1></a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th># Build</th>
+				<th>Status</th>
+				<th>Launch Date</th>
+				<th>Duration</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#items}}
+				<tr class='{{result}}'>
+					<td class="name"><a href='{{url}}'>{{number}}</a></td>
+					<td>{{result}}</td>
+					<td>{{formattedDate}}</td>
+					<td>{{formattedDuration}}</td>
+				</tr>
+			{{/items}}
+		</tbody>
+	</table>
+</div>
+

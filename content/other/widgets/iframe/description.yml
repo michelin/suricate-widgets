@@ -1,0 +1,4 @@
+name: Iframe web content
+description: Widget used to display the content of a webpage (iframe)
+technicalName: iframe
+delay: -1

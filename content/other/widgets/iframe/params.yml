@@ -1,0 +1,7 @@
+widgetParams:
+  -
+    name: 'SURI_URL'
+    description: 'Page URL'
+    type: STRING
+    usageExample: 'http://xxxxxxxx'
+    required: true

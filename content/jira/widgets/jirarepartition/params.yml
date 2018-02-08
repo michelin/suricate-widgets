@@ -1,0 +1,18 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: STRING
+    defaultValue: 'Issues repartition'
+    required: true
+  -
+    name: 'SURI_JQL'
+    description: 'Jira JQL query'
+    type: STRING
+    usageExample: 'project=XXX and (component=jenkins or component=XXX)'
+    required: true
+  -
+    name: 'SURI_DISPLAY_LEGEND'
+    description: 'Display bottom legend'
+    type: BOOLEAN
+    required: false

@@ -1,0 +1,31 @@
+<a href="https://jira.com/jra/browse/{{SURI_PROJECT}}/?selectedTab=com.atlassian.jira.jira-projects-plugin:versions-panel" class="link" target="_blank">
+    <h1 class="title">{{SURI_TITLE}}</h1>
+
+    <div class="timeline" style="height: calc( 100% - 100px ); width: 100%"></div>
+    <script>
+    $(function(){
+        $(window).on('load', loadTimeline{{SURI_INSTANCE_ID}});
+
+        function loadTimeline{{SURI_INSTANCE_ID}}(){
+            var id = $(".widget-{{SURI_INSTANCE_ID}} .timeline")
+            var data = '{{{data}}}';
+            if (data.length !== 0) {
+                TimeKnots.draw(".widget-{{SURI_INSTANCE_ID}} .timeline", JSON.parse(data), {
+                    horizontalLayout: false,
+                    width: id.width(),
+                    height: id.height(),
+                    color: "#222222",
+                    background: "#4caf50",
+                    showLabels: true,
+                    labelFormat: "%H:%M"
+                });
+            }
+        }
+
+        if (page_loaded){
+            loadTimeline{{SURI_INSTANCE_ID}}();
+        }
+    });
+
+    </script>
+</a>
