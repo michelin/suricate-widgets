@@ -3,5 +3,5 @@ widgetParams:
     name: 'SURI_IMG'
     description: 'Choose your image'
     type: FILE
-    acceptFileRegex: '/(\.|\/)(gif|jpe?g|png)$/'
+    acceptFileRegex: '(\.|\/)(gif|jpe?g|png)$'
     required: true
