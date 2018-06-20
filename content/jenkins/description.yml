@@ -1,2 +1,9 @@
 name: Jenkins
 technicalName: jenkins
+configurations:
+  -
+    key: 'WIDGET_CONFIG_JENKINS_USER'
+    dataType: STRING
+  -
+    key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
+    dataType: PASSWORD

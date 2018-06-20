@@ -1,2 +1,6 @@
 name: Gitlab
 technicalName: gitlab
+configurations:
+  -
+    key: 'WIDGET_CONFIG_GITLAB_TOKEN'
+    dataType: STRING

@@ -1,2 +1,9 @@
 name: Jira
 technicalName: jira
+configurations:
+  -
+    key: 'WIDGET_CONFIG_JIRA_USER'
+    dataType: STRING
+  -
+    key: 'WIDGET_CONFIG_JIRA_PASSWORD'
+    dataType: PASSWORD
