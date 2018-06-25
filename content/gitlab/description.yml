@@ -4,3 +4,6 @@ configurations:
   -
     key: 'WIDGET_CONFIG_GITLAB_TOKEN'
     dataType: STRING
+  -
+    key: 'WIDGET_CONFIG_GITLAB_URL'
+    dataType: STRING

@@ -7,3 +7,6 @@ configurations:
   -
     key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
     dataType: PASSWORD
+  -
+    key: 'WIDGET_CONFIG_JENKINS_URL'
+    dataType: STRING

@@ -7,3 +7,6 @@ configurations:
   -
     key: 'WIDGET_CONFIG_JIRA_PASSWORD'
     dataType: PASSWORD
+  -
+    key: 'WIDGET_CONFIG_JIRA_URL'
+    dataType: STRING
