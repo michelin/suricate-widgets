@@ -13,11 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
 function run (){
     // previous data
     var data = JSON.parse(SURI_PREVIOUS);
-    var number = Packages.call("https://gitlab.com/api/v4/users", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "x-total");
+    if (data == null) {
+        data = {};
+    }
+
+    if (typeof SURI_REGEXP != 'undefined' && SURI_REGEXP != "" && SURI_REGEXP != null) {
+        var mat = [];
+        var p = 0;
+        var number = 0;
+        var reg = new RegExp("cn=("+SURI_REGEXP+")", "i");
+        var json = JSON.parse(Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page=" + p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null));
+        while (json != null && json.length > 0 ) {
+            for (var i = 0; i < 100; i++) {
+                var elm = json[i];
+                if (elm == null) {
+                    break;
+                }
+                if (elm.identities != null && elm.identities.length > 0) {
+                    if (elm.identities[0].extern_uid.match(reg)) {
+                        mat.push(reg.exec(elm.identities[0].extern_uid)[1]);
+                    }
+                }
+            }
+            p++;
+            json = JSON.parse(Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page="+p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null));
+        }
+        number = mat.filter( onlyUnique ).length;
+    } else {
+        var number = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "x-total");
+    }
+
     if (number == null) {
         if (data.currentValue == null){
             return data;

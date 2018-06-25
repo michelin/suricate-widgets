@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var jenkins_host = "https://jenkins.com/jenkins/";
+var jenkins_host = WIDGET_CONFIG_JENKINS_URL + "/jenkins/";
 var api_query = "api/json?tree=jobs[name,lastBuild[timestamp]],views[url]";
 var data = {};
 var bound = new Date();
@@ -69,7 +69,7 @@ function run (){
     }
     data.view = view;
     data.viewDisplay = view.replace(new RegExp("view/", 'g'),"").replace(new RegExp("/$", 'g'),"");
-    getContent("https://jenkins.com/jenkins/" + view + api_query);
+    getContent(WIDGET_CONFIG_JENKINS_URL + "/jenkins/" + view + api_query);
     data.ok = true;
     data.total = data.allJobs.length;
     if (typeToFilter) {

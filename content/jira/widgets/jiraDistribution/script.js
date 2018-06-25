@@ -66,7 +66,7 @@ if (!Array.prototype.fill) {
 function run (){
     var data = {};
 
-    var url = "https://jira.com/jra/rest/api/2/project/";
+    var url = WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/project/";
 
     var json = JSON.parse(Packages.call(url, "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
 
@@ -80,7 +80,7 @@ function run (){
             var totalALL = ps;
             var sa = 0;
             while (sa < totalALL) {
-                var jsonResponse = JSON.parse(Packages.call("https://jira.com/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+                var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
                 sa += ps;
                 totalALL = jsonResponse.total;
                 if (totalALL > 0 ) {
@@ -94,7 +94,7 @@ function run (){
             var totalALL = ps;
             var sa = 0;
             while (sa < totalALL) {
-                var jsonResponse = JSON.parse(Packages.call("https://jira.com/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND status = Closed AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=resolutiondate,created,updated", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+                var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND status = Closed AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=resolutiondate,created,updated", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
                 sa += ps;
                 totalALL = jsonResponse.total;
                 if (totalALL > 0 ) {
@@ -121,7 +121,7 @@ function run (){
                 total = sum / total.length;
             }
         } else {
-            var jsonResponse = JSON.parse(Packages.call("https://jira.com/jra/rest/api/2/search?jql=project = "+t.key+" AND created >= -"+SURI_WEEK+"w&maxResults=1&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+            var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=project = "+t.key+" AND created >= -"+SURI_WEEK+"w&maxResults=1&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
             total = jsonResponse.total;
         }
         res.push([t.key,total]);

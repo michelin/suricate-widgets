@@ -20,7 +20,7 @@ function run (){
     data.unassigned=0;
     data.resolved=0;
     data.total=0;
-    var jsonResponse = Packages.call("https://jira.com/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL)+"&fields=summary,status,assignee", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
+    var jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL)+"&fields=summary,status,assignee", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
     if (jsonResponse == null) {
         return null;
     }

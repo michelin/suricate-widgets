@@ -20,7 +20,7 @@ function run (){
     if (data == null) {
         data = {};
     }
-    var url = "https://jenkins.com/jenkins/asynchPeople/api/json?tree=users[lastChange]";
+    var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";
     var json = JSON.parse(Packages.call(url, null, null, null));
 
     var strdate = SURI_DATE.toString();

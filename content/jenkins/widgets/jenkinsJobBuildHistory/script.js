@@ -16,15 +16,14 @@
 
 function run() {
     var data = {};
-    data.jenkinsJobUrl = 'https://jenkins.com/jenkins/job/'+SURI_JOB;
+    data.jenkinsJobUrl = WIDGET_CONFIG_JENKINS_URL + '/jenkins/job/' + SURI_JOB;
     var jsonResponse = Packages.call(data.jenkinsJobUrl + "/api/json?tree=builds[url,number,status,timestamp,id,result,duration,building]", null, null, null);
-    // example https://jenkins.com/jenkins/job/NWR-UI-00-NightlyBuild_DEV/api/json?tree=builds[number,status,timestamp,duration,id,result,url,building]
 
     if (jsonResponse === null) {
         return null;
     }
     var jsonAsObject = JSON.parse(jsonResponse);
-    data.items = jsonAsObject.builds
+    data.items = jsonAsObject.builds;
     for (var i in data.items){
         
         // ****  Format date ***** //

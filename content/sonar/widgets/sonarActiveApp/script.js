@@ -68,7 +68,7 @@ function run (){
 
     var pagesize = 500;
 
-    var url = "https://sonar.com/sonar/api/components/search?qualifiers=TRK&ps="+pagesize;
+    var url = WIDGET_CONFIG_SONAR_URL + "/sonar/api/components/search?qualifiers=TRK&ps="+pagesize;
     var lastactiv = new Date();
     lastactiv.setMonth(lastactiv.getMonth() - SURI_MONTH);
     lastactiv = lastactiv.getUTCFullYear()+"-"+(lastactiv.getUTCMonth()+1)+"-"+lastactiv.getUTCDate();
@@ -159,7 +159,7 @@ function parseProject(key,lastactiv) {
     if(SURI_ORDER_BY == "DAYOFANALYSE" ) {
         pagesize = 500;
     }
-    var projectURL = "https://sonar.com/sonar/api/project_analyses/search?project="+key+"&from="+lastactiv+"&ps"+pagesize;
+    var projectURL = WIDGET_CONFIG_SONAR_URL + "/sonar/api/project_analyses/search?project="+key+"&from="+lastactiv+"&ps"+pagesize;
     var jsonProject = JSON.parse(Packages.call(projectURL, null, null, null));
     var ct = 0;
     if (SURI_ORDER_BY == "DAYOFANALYSE" ) {

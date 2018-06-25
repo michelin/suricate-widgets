@@ -17,7 +17,7 @@
 function run (){
     var data = {};
 
-    var sonarResults = Packages.call("https://sonar.com/sonar/api/measures/component?componentKey="+SURI_PROJECT+"&additionalFields=metrics&metricKeys="+SURI_METRICS, null, null, null);
+    var sonarResults = Packages.call(WIDGET_CONFIG_SONAR_URL + "/sonar/api/measures/component?componentKey="+SURI_PROJECT+"&additionalFields=metrics&metricKeys="+SURI_METRICS, null, null, null);
     if (sonarResults == null) {
         return null;
     }
