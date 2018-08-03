@@ -5,3 +5,8 @@ widgetParams:
     type: INTEGER
     defaultValue: '24'
     required: true
+  -
+    name: 'SURI_REGEXP'
+    description: 'Filter regex on User ID (case-insensitive matching)'
+    type: STRING
+    required: false
