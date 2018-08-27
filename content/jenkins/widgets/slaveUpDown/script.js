@@ -40,7 +40,7 @@ function run (){
             if (jsonObject.computer[i].offline || jsonObject.computer[i].temporarilyOffline){
                 var slave = {};
                 slave.name = jsonObject.computer[i].displayName;
-                if (jsonObject.computer[i].offlineCauseReason != undefined) {
+                if (jsonObject.computer[i].offlineCauseReason !== undefined) {
                     var cause = jsonObject.computer[i].offlineCauseReason.replace(/<(?:.|\n)*?>/gm, '');
                     slave.offlineCause = cause.split('\n')[0];
                 }
@@ -52,13 +52,13 @@ function run (){
         }
     }
 
-    if (data.nbUp == 0){
+    if (data.nbUp === 0){
         Packages.throwFatalError("Error no slave found for Regex :"+reg);
     }
 
     data.total = data.nbDown + data.nbUp;
-    data.ok = data.total == data.nbUp;
-    data.minimal = data.nbDown > 5
+    data.ok = data.total === data.nbUp;
+    data.minimal = data.nbDown > 5;
 
 
     return JSON.stringify(data);
