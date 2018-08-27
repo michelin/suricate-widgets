@@ -23,11 +23,11 @@ function run (){
     }
     var jsonObject = JSON.parse(jsonResponse);
 
-    if (data.old == undefined) {
+    if (data.old === undefined) {
         data.old = [];
     }
 
-    if (data.old.length != 0){
+    if (data.old.length !== 0){
         if (data.old[0].time < new Date().getTime() - SURI_DELAI * 3600000) {
             data.old.shift();
         }
@@ -49,7 +49,7 @@ function run (){
     }
 
     data.difference = diff.toFixed(1) + "%";
-    data.arrow = diff == 0 ? '' : (diff > 0 ? "up" : "down");
+    data.arrow = diff === 0 ? '' : (diff > 0 ? "up" : "down");
 
     return JSON.stringify(data);
 }
