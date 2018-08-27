@@ -45,9 +45,9 @@ function run() {
         // ****  Format duration ***** //
         var duration = data.items[i].duration;
         
-        var seconds = parseInt((duration/1000)%60)
-        , minutes = parseInt((duration/(1000*60))%60)
-        , hours = parseInt((duration/(1000*60*60))%24);
+        seconds = parseInt((duration/1000)%60);
+        minutes = parseInt((duration/(1000*60))%60);
+        hours = parseInt((duration/(1000*60*60))%24);
         
         hours = (hours < 10) ? "0" + hours : hours;
         minutes = (minutes < 10) ? "0" + minutes : minutes;
