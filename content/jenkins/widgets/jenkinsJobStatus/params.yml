@@ -5,3 +5,16 @@ widgetParams:
     type: STRING
     usageExample: '200-DeploySpringBoot-monitor_back'
     required: true
+  -
+    name: 'SURI_DISPLAY_MODE'
+    description: 'Display mode when project has been rebuilt'
+    type: COMBO
+    defaultValue: 'upstream'
+    possibleValuesMap:
+      -
+        jsKey: 'upstream'
+        value: 'Upstream'
+      -
+        jsKey: 'user'
+        value: 'User
+    required: false

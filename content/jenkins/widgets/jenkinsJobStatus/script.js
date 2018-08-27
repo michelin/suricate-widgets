@@ -21,8 +21,15 @@ function run() {
     if (jsonResponse === null) {
         return null;
     }
+    
+    var display_mode = "upstream";
+    if (typeof SURI_DISPLAY_MODE !== 'undefined' && SURI_DISPLAY_MODE !== ""){
+        display_mode = SURI_DISPLAY_MODE;
+    }
+    
     // Convert String to object
     var jsonObject = JSON.parse(jsonResponse);
+    var user = "";
 
     for (var i in jsonObject.actions) {
         if (jsonObject.actions[i].hasOwnProperty("causes")) {
@@ -30,8 +37,10 @@ function run() {
                 if (jsonObject.actions[i].causes[j].hasOwnProperty("shortDescription")) {
                     if (jsonObject.actions[i].causes[j].hasOwnProperty("userId")) {
                         data.builtBy = jsonObject.actions[i].causes[j].userId;
+                        user = data.builtBy;
                     } else if (jsonObject.actions[i].causes[j].hasOwnProperty("userName")) {
                         data.builtBy = jsonObject.actions[i].causes[j].userName;
+                        user = data.builtBy;
                     } else if (jsonObject.actions[i].causes[j].hasOwnProperty("upstreamProject")) {
                         data.builtBy = 'upstream ' + jsonObject.actions[i].causes[j].upstreamProject;
                     } else if (jsonObject.actions[i].causes[j].hasOwnProperty("addr")) {
@@ -51,6 +60,11 @@ function run() {
             }
         }
     }
+    
+    //if display mode is user, use it if it was found in json
+    if (display_mode === "user" && user !== "") {
+        data.builtBy = user;    
+    }
 
     if (data.builtBy === null) {
         data.builtBy = "N/A";
@@ -58,9 +72,9 @@ function run() {
 
     data.builtOn = jsonObject.builtOn;
     data.result = jsonObject.result;
-    data.success = jsonObject.result == "SUCCESS";
-    data.failure = jsonObject.result == "FAILURE";
-    data.unstable = jsonObject.result == "UNSTABLE";
+    data.success = jsonObject.result === "SUCCESS";
+    data.failure = jsonObject.result === "FAILURE";
+    data.unstable = jsonObject.result === "UNSTABLE";
 
     data.durationSeconds = Math.round(jsonObject.duration / 1000);
 
