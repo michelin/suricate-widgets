@@ -20,6 +20,7 @@ function run (){
     data.unassigned=0;
     data.resolved=0;
     data.total=0;
+
     var jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL)+"&fields=summary,status,assignee", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
     if (jsonResponse == null) {
         return null;
@@ -28,17 +29,19 @@ function run (){
 
     var array = [];
     data.total=jsonObject.issues.length;
+
     for (var i in jsonObject.issues){
         var ele = {};
-        ele.key = jsonObject.issues[i].key
+        ele.key = jsonObject.issues[i].key;
         ele.summary = jsonObject.issues[i].fields.summary;
         ele.status = jsonObject.issues[i].fields.status.name;
-        ele.color = jsonObject.issues[i].fields.status.statusCategory.colorName
-        ele.assignee = jsonObject.issues[i].fields.assignee
+        ele.color = jsonObject.issues[i].fields.status.statusCategory.colorName;
+        ele.assignee = jsonObject.issues[i].fields.assignee;
+
         if (ele.assignee === null) {
           data.unassigned++;
-        }
-        else {
+
+        } else {
             if (ele.status ===  "Closed" || ele.status === "Implemented" ) {
                 data.resolved++;
             }
