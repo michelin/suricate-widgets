@@ -20,18 +20,32 @@ function run (){
     if (data == null) {
         data = {};
     }
-    var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";
+    var userIsDefined = !(typeof SURI_USER == 'undefined' || SURI_USER == null || SURI_USER == "") ;
+    if (! userIsDefined) {
+        var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";
+    } else {
+        // without user[id] is a more quickly
+        var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[user[id],lastChange]"
+    }
     var json = JSON.parse(Packages.call(url, null, null, null));
 
     var strdate = SURI_DATE.toString();
     data.date = strdate.slice(4)+"-"+strdate.slice(2,4)+"-"+strdate.slice(0,2);
     var datum = Date.parse(data.date);
     var number = 0;
-    while (number < json.users.length && json.users[number].lastChange > datum ) {
-        number++;
+    var i = 0;
+    while (i < json.users.length && json.users[i].lastChange > datum ) {
+        if (userIsDefined && SURI_USER.toLowerCase() === json.users[i].user.id[0].toLowerCase()) {
+            number++;
+        }
+        i++;
     }
 
-    if (number == null) {
+    if (!userIsDefined) {
+        number = i;
+    }
+
+    if (number == null || number == 0) {
         if (data.currentValue == null){
             return data;
         }
