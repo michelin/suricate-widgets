@@ -33,18 +33,14 @@ if (!Array.prototype.fill) {
             var relativeStart = start >> 0;
 
             // Step 8.
-            var k = relativeStart < 0 ?
-                Math.max(len + relativeStart, 0) :
-                Math.min(relativeStart, len);
+            var k = relativeStart < 0 ? Math.max(len + relativeStart, 0) : Math.min(relativeStart, len);
 
             // Steps 9-10.
             var end = arguments[2];
             var relativeEnd = end === undefined ? len : end >> 0;
 
             // Step 11.
-            var final = relativeEnd < 0 ?
-                Math.max(len + relativeEnd, 0) :
-                Math.min(relativeEnd, len);
+            var final = relativeEnd < 0 ? Math.max(len + relativeEnd, 0) : Math.min(relativeEnd, len);
 
             // Step 12.
             while (k < final) {

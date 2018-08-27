@@ -37,19 +37,14 @@ if (!Array.prototype.fill) {
             var relativeStart = start >> 0;
 
             // Step 8.
-            var k = relativeStart < 0 ?
-                Math.max(len + relativeStart, 0) :
-                Math.min(relativeStart, len);
+            var k = relativeStart < 0 ? Math.max(len + relativeStart, 0) : Math.min(relativeStart, len);
 
             // Steps 9-10.
             var end = arguments[2];
-            var relativeEnd = end === undefined ?
-                len : end >> 0;
+            var relativeEnd = end === undefined ? len : end >> 0;
 
             // Step 11.
-            var final = relativeEnd < 0 ?
-                Math.max(len + relativeEnd, 0) :
-                Math.min(relativeEnd, len);
+            var final = relativeEnd < 0 ? Math.max(len + relativeEnd, 0) : Math.min(relativeEnd, len);
 
             // Step 12.
             while (k < final) {
@@ -65,11 +60,8 @@ if (!Array.prototype.fill) {
 
 function run (){
     var data = {};
-
-    var url = WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/project/";
-
-    var json = JSON.parse(Packages.call(url, "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
-
+    var baseUrl = WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2";
+    var json = JSON.parse(Packages.call(baseUrl + "/project", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
     var res = [];
 
     json.forEach(function (t) {
@@ -80,7 +72,7 @@ function run (){
             var totalALL = ps;
             var sa = 0;
             while (sa < totalALL) {
-                var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+                var jsonResponse = JSON.parse(Packages.call(baseUrl + "/search?jql="+encodeURIComponent("project = "+t.key+" AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
                 sa += ps;
                 totalALL = jsonResponse.total;
                 if (totalALL > 0 ) {
@@ -88,13 +80,14 @@ function run (){
                 }
             }
             total = total.filter(onlyUnique).length;
+
         } else if (SURI_ORDERBY === "TIMETOCLOSE") {
             total = [];
             var ps = 1000;
             var totalALL = ps;
             var sa = 0;
             while (sa < totalALL) {
-                var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent("project = "+t.key+" AND status = Closed AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=resolutiondate,created,updated", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+                var jsonResponse = JSON.parse(Packages.call(baseUrl + "/search?jql="+encodeURIComponent("project = "+t.key+" AND status = Closed AND created >= -"+SURI_WEEK+"w")+"&startAt="+sa+"&maxResults="+ps+"&fields=resolutiondate,created,updated", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
                 sa += ps;
                 totalALL = jsonResponse.total;
                 if (totalALL > 0 ) {
@@ -114,14 +107,14 @@ function run (){
                     })) ;
                 }
             }
-            if (total.length == 0) {
+            if (total.length === 0) {
                 total = 0
-            }else {
+            } else {
                 var sum = total.reduce(function(a, b) { return a + b; });
                 total = sum / total.length;
             }
         } else {
-            var jsonResponse = JSON.parse(Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=project = "+t.key+" AND created >= -"+SURI_WEEK+"w&maxResults=1&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
+            var jsonResponse = JSON.parse(Packages.call(baseUrl + "/search?jql=project = "+t.key+" AND created >= -"+SURI_WEEK+"w&maxResults=1&fields=created", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null));
             total = jsonResponse.total;
         }
         res.push([t.key,total]);
