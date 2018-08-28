@@ -3,5 +3,5 @@ widgetParams:
     name: 'SURI_IMG'
     description: 'Image URL'
     type: STRING
-    usageExample: 'https://xxx.suricate.com/xxxx'
+    usageExample: 'https://xxx.suricate.io/xxxx'
     required: true
