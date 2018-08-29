@@ -170,7 +170,6 @@ function parseProject(key,lastactiv) {
             ar = ar.concat(jsonProject.analyses.map(function (value) { return value.date.substring(0,10) }));
         }
         ct = ar;
-        // ct = ar.filter(onlyUnique).length;
     }else{
         ct = jsonProject.paging.total;
     }
