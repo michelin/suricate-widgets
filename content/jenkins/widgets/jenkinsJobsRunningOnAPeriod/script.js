@@ -21,6 +21,7 @@ var bound = new Date();
 var bound_timestamp;
 var typeToFilter = "";
 
+
 function run (){
     data.total = 0;
     data.active = 0;
@@ -28,48 +29,48 @@ function run (){
     data.allJobs = [];
     data.typeToFilter = "";
     //added to make it more generic
-    if (typeof SURI_PERIOD == 'undefined'){
+    if (typeof SURI_PERIOD === 'undefined'){
         SURI_PERIOD = "MONTH";
     }
-    if (typeof SURI_NB_PERIOD == 'undefined'){
+    if (typeof SURI_NB_PERIOD === 'undefined'){
         SURI_NB_PERIOD = 1;
     }
 
     if (SURI_PERIOD) {
-        if (SURI_PERIOD == "DAY") {
-            bound.setDate(bound.getDate() - 1*SURI_NB_PERIOD);
+        if (SURI_PERIOD === "DAY") {
+            bound.setDate(bound.getDate() - 1 * SURI_NB_PERIOD);
         }
-        else if (SURI_PERIOD == "WEEK") {
-            bound.setDate(bound.getDate() - 7*SURI_NB_PERIOD);
+        else if (SURI_PERIOD === "WEEK") {
+            bound.setDate(bound.getDate() - 7 * SURI_NB_PERIOD);
         }
-        else if (SURI_PERIOD == "MONTH") {
-            bound.setMonth(bound.getMonth() - 1*SURI_NB_PERIOD);
+        else if (SURI_PERIOD === "MONTH") {
+            bound.setMonth(bound.getMonth() - 1 * SURI_NB_PERIOD);
         }
-        else if (SURI_PERIOD == "YEAR") {
-            bound.setFullYear(bound.getFullYear() - 1*SURI_NB_PERIOD);
+        else if (SURI_PERIOD === "YEAR") {
+            bound.setFullYear(bound.getFullYear() - 1 * SURI_NB_PERIOD);
         }
     }
     //to manage filter on job type
     bound_timestamp = bound.getTime();
-    if (typeof SURI_JOB_TYPE == 'undefined'){
+    if (typeof SURI_JOB_TYPE === 'undefined'){
         SURI_JOB_TYPE = "All"
     }
-    if (SURI_JOB_TYPE == "Generic") {
+    if (SURI_JOB_TYPE === "Generic") {
         typeToFilter = "GEN"
     }
     var view = "";
     if ( SURI_VIEW != null ){
         view = SURI_VIEW.replace(jenkins_host,"").replace("//","/");
-        if (view.indexOf("/") == 0){
+        if (view.indexOf("/") === 0){
             view = view.substring(1,view.length - 1);
         }
-        if (view.lastIndexOf("/") != view.length -1 ){
+        if (view.lastIndexOf("/") !== view.length -1 ){
             view = view + "/"
         }
     }
     data.view = view;
     data.viewDisplay = view.replace(new RegExp("view/", 'g'),"").replace(new RegExp("/$", 'g'),"");
-    getContent(WIDGET_CONFIG_JENKINS_URL + "/jenkins/" + view + api_query);
+    getContent(jenkins_host + view + api_query);
     data.ok = true;
     data.total = data.allJobs.length;
     if (typeToFilter) {
@@ -90,7 +91,7 @@ function getContent(url){
         return null;
     }
     var jsonObject_jobs = JSON.parse(jsonResponse_jobs);
-    if(SURI_VIEW != null && jsonObject_jobs.views != undefined){
+    if(SURI_VIEW != null && jsonObject_jobs.views !== undefined){
         for (var i in jsonObject_jobs.views){
             getContent(jsonObject_jobs.views[i].url+api_query);
         }

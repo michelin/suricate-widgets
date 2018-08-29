@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-function compareRelease(a, b) {
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
-}
-
 if (!Array.prototype.fill) {
     Object.defineProperty(Array.prototype, 'fill', {
         value: function(value) {
@@ -37,19 +33,14 @@ if (!Array.prototype.fill) {
             var relativeStart = start >> 0;
 
             // Step 8.
-            var k = relativeStart < 0 ?
-                Math.max(len + relativeStart, 0) :
-                Math.min(relativeStart, len);
+            var k = relativeStart < 0 ? Math.max(len + relativeStart, 0) : Math.min(relativeStart, len);
 
             // Steps 9-10.
             var end = arguments[2];
-            var relativeEnd = end === undefined ?
-                len : end >> 0;
+            var relativeEnd = end === undefined ? len : end >> 0;
 
             // Step 11.
-            var final = relativeEnd < 0 ?
-                Math.max(len + relativeEnd, 0) :
-                Math.min(relativeEnd, len);
+            var final = relativeEnd < 0 ? Math.max(len + relativeEnd, 0) : Math.min(relativeEnd, len);
 
             // Step 12.
             while (k < final) {
@@ -92,12 +83,12 @@ function run (){
     var jsonObject = JSON.parse(jsonResponse);
 
     var data = {};
-    data.total = 0
+    data.total = 0;
     for (var i in jsonObject.issues){
         // Update start date
-        if (jsonObject.issues[i].fields.customfield_10611 == undefined){
-            if (data.releaseDate == undefined) {
-                var release = new Date(jsonObject.issues[i].fields.fixVersions[0].releaseDate)
+        if (jsonObject.issues[i].fields.customfield_10611 === undefined){
+            if (data.releaseDate === undefined) {
+                var release = new Date(jsonObject.issues[i].fields.fixVersions[0].releaseDate);
                 release.setUTCHours(0,0,0,0);
                 data.releaseDate = release.getTime();
             }
@@ -107,8 +98,8 @@ function run (){
             updateSprintDate(data,jsonObject.issues[i].fields.customfield_10611[0]);
         }
 
-        if (jsonObject.issues[i].fields.customfield_10382 != undefined){
-            data.total += jsonObject.issues[i].fields.customfield_10382
+        if (jsonObject.issues[i].fields.customfield_10382 !== undefined){
+            data.total += jsonObject.issues[i].fields.customfield_10382;
         } else {
             data.total ++;
         }
@@ -129,11 +120,11 @@ function run (){
     for (var i in jsonObject.issues){
         if (jsonObject.issues[i].fields.resolutiondate != null){
             var dec = 1
-            if (jsonObject.issues[i].fields.customfield_10382 != undefined && jsonObject.issues[i].fields.customfield_10382 != 0){
-                dec = jsonObject.issues[i].fields.customfield_10382
+            if (jsonObject.issues[i].fields.customfield_10382 !== undefined && jsonObject.issues[i].fields.customfield_10382 !== 0){
+                dec = jsonObject.issues[i].fields.customfield_10382;
             }
-            var resolutionDate = new Date(jsonObject.issues[i].fields.resolutiondate)
-            resolutionDate.setUTCHours(0,0,0,0)
+            var resolutionDate = new Date(jsonObject.issues[i].fields.resolutiondate);
+            resolutionDate.setUTCHours(0,0,0,0);
             for (var i = (resolutionDate.getTime() - data.startDate)/86400000; i < data.data.length; i++) {
                 data.data[i] -= dec;
             }

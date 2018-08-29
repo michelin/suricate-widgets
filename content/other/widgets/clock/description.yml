@@ -2,3 +2,5 @@ name: Clock Widget
 description: Widget used to display current date and time
 technicalName: clock
 delay: -1
+libraries:
+  - moment-with-locales.js

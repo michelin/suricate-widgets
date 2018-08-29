@@ -27,21 +27,12 @@ function run (){
 
     var jsonObjectClosed = JSON.parse(jsonResponseClosed);
     var jsonObjectAll = JSON.parse(jsonResponseAll);
+    var value = (jsonObjectClosed.total * 100) / jsonObjectAll.total;
 
     data.valueCountSelect = jsonObjectClosed.total;
     data.valueCountAll = jsonObjectAll.total;
-    data.value = (jsonObjectClosed.total * 100) / jsonObjectAll.total;
-    if (isNaN(data.value)){
-        data.value = 0;
-    } else {
-        data.value = data.value.toFixed(0);
-    }
-
-    if (typeof SURI_DISPLAY_COUNT == 'undefined' || SURI_DISPLAY_COUNT == "false"){
-        data.displayCount = false
-    } else {
-        data.displayCount = true;
-    }
+    data.value = isNaN(data.value) ? 0 : value.toFixed(0);
+    data.displayCount = !(typeof SURI_DISPLAY_COUNT === 'undefined' || SURI_DISPLAY_COUNT === "false");
 
     return JSON.stringify(data);
 }

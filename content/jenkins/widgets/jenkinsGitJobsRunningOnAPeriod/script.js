@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-var jenkins_host = WIDGET_CONFIG_JENKINS_URL+ "/jenkins/";
+var jenkins_host = WIDGET_CONFIG_JENKINS_URL + "/jenkins/";
 var api_query = "api/json?tree=jobs[name,lastBuild[timestamp],scm],views[url]";
 var data = {};
 var bound = new Date();
 var bound_timestamp;
 var typeToFilter = "";
+
 
 function run (){
     data.total = 0;
@@ -32,16 +33,16 @@ function run (){
     //added to make it more generic
     if (SURI_PERIOD) {
         if (SURI_PERIOD == "DAY") {
-            bound.setDate(bound.getDate() - 1*SURI_NB_PERIOD);
+            bound.setDate(bound.getDate() - 1 * SURI_NB_PERIOD);
         }
         else if (SURI_PERIOD == "WEEK") {
-            bound.setDate(bound.getDate() - 7*SURI_NB_PERIOD);
+            bound.setDate(bound.getDate() - 7 * SURI_NB_PERIOD);
         }
         else if (SURI_PERIOD == "MONTH") {
-            bound.setMonth(bound.getMonth() - 1*SURI_NB_PERIOD);
+            bound.setMonth(bound.getMonth() - 1 * SURI_NB_PERIOD);
         }
         else if (SURI_PERIOD == "YEAR") {
-            bound.setFullYear(bound.getFullYear() - 1*SURI_NB_PERIOD);
+            bound.setFullYear(bound.getFullYear() - 1 * SURI_NB_PERIOD);
         }
     }
     //to manage filter on job type
@@ -50,18 +51,18 @@ function run (){
         typeToFilter = null
     }
     var view = "";
-    if ( SURI_VIEW != null ){
+    if ( SURI_VIEW != null ) {
         view = SURI_VIEW.replace(jenkins_host,"").replace("//","/");
         if (view.indexOf("/") == 0){
             view = view.substring(1,view.length - 1);
         }
-        if (view.lastIndexOf("/") != view.length -1 ){
+        if (view.lastIndexOf("/") != view.length - 1) {
             view = view + "/"
         }
     }
     data.view = view;
     data.viewDisplay = view.replace(new RegExp("view/", 'g'),"").replace(new RegExp("/$", 'g'),"");
-    getContent("https://jenkins.com/jenkins/" + view + api_query);
+    getContent(jenkins_host + view + api_query);
     data.ok = true;
     data.total = data.allJobs.length;
     if (typeToFilter) {

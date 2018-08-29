@@ -47,7 +47,7 @@ function run (){
     }
 
     if (projectId === null){
-        Packages.throwFatalError("Project not found for name: "+SURI_PROJECT)
+        Packages.throwFatalError("Project not found for name: " + SURI_PROJECT)
     }
 
     // Find version id
@@ -90,11 +90,11 @@ function run (){
                     obj.executions.push(getExecution(jsonObject[key].executionSummaries.executionSummary[i],jsonObject[key]));
                 }
             }
-            obj.executionEmpty = obj.executions.length == 0;
+            obj.executionEmpty = obj.executions.length === 0;
             obj.executions.sort(sort);
 
             obj.percent = "";
-            if (SURI_DISPLAY_PERCENT_EXEC == "YES"){
+            if (SURI_DISPLAY_PERCENT_EXEC === "YES"){
                 if (jsonObject[key].totalExecutions > 0) {
                 	obj.percent = " - " + Math.round(1000 * jsonObject[key].totalExecuted / jsonObject[key].totalExecutions) / 10 + "%";
                 } else {

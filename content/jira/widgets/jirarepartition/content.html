@@ -1,10 +1,11 @@
-<a href="https://jira.com/jra/issues/?jql={{SURI_JQL}}" class="link" target="_blank">
+<a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL}}" class="link" target="_blank">
     <div class="grid-stack-item-content-inner">
         <h1 class="title">{{SURI_TITLE}}</h1>
         <div class="chart-container">
             <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
         </div>
     </div>
+
     <script>
         $(function(){
             $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
@@ -36,14 +37,14 @@
                     },
                     options: {
                         legend: {
-                            display: "{{{SURI_DISPLAY_LEGEND}}}" == "false" ? false : true,
+                            display: "{{{SURI_DISPLAY_LEGEND}}}" !== "false",
                             labels: {
                                 fontColor: "white"
                             },
                             position : 'bottom'
                         },
                         pieceLabel: {
-                            display: "{{{SURI_DISPLAY_LEGEND}}}" == "false" ? true : false,
+                            display: "{{{SURI_DISPLAY_LEGEND}}}" === "false",
                             render: 'label',
                             arc: true,
                             position: 'border',

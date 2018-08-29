@@ -34,11 +34,7 @@ function run (){
     }
 
     data.items = array;
-    if (typeof SURI_DISPLAY_JIRA_ID == 'undefined' || SURI_DISPLAY_JIRA_ID == "false"){
-        data.displayId = false
-    } else {
-        data.displayId =  true;
-    }
+    data.displayId = !(typeof SURI_DISPLAY_JIRA_ID === 'undefined' || SURI_DISPLAY_JIRA_ID === "false");
 
     return JSON.stringify(data);
 }

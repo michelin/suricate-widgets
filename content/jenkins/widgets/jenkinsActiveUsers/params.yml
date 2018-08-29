@@ -15,5 +15,10 @@ widgetParams:
     name: 'SURI_DATE'
     description: 'Beginning of the wanted period (format : DDMMYYYY)'
     type: STRING
-    usageExample: '31122016'
+    usageExample: '31122017'
     required: true
+  -
+    name: 'SURI_USER'
+    description: 'Filter on User id (Start with)'
+    type: STRING
+    required: false

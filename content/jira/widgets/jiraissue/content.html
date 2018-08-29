@@ -4,10 +4,10 @@
         {{#items}}
         <li>
            {{#displayId}}
-             <a href="https://jira.com/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{key}} - {{summary}}</a>
+             <a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{key}} - {{summary}}</a>
     	   {{/displayId}}
            {{^displayId}}
-             <a href="https://jira.com/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{summary}}</a>
+             <a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/browse/{{key}}" target="_blank"><span class="status {{color}}">{{status}}</span>{{summary}}</a>
     	   {{/displayId}}
         </li>
         {{/items}}
