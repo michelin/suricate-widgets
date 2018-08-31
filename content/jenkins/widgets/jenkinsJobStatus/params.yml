@@ -16,5 +16,5 @@ widgetParams:
         value: 'Upstream'
       -
         jsKey: 'user'
-        value: 'User
+        value: 'User'
     required: false
