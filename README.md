@@ -2,9 +2,9 @@
 
 This repository is used to store every widgets for Suricate monitoring applications.
 
-Check out our [wiki](https://github.com/suricate-io/widgets/wiki) for more informations about :
-* [Repository architecture](https://github.com/suricate-io/widgets/wiki/Repository-architecture)
-* [How to create a category](https://github.com/suricate-io/widgets/wiki/How-to-create-a-category)
-* [How to create a widget](https://github.com/suricate-io/widgets/wiki/How-to-create-a-Widget)
+Check out our [website](https://suricate-io.github.io/) for more informations about :
+* [Repository architecture](https://suricate-io.github.io/repository-architecture/))
+* [How to create a category](https://suricate-io.github.io/category-creation/)
+* [How to create a widget](https://suricate-io.github.io/widget-creation/)
 
 All widgets must be released as *Apache2 licence*
