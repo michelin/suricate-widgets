@@ -1,15 +1,15 @@
-.widget.gituser {
+.widget.gitlabOpenedMR {
     background-color: #ff6d00;
 }
 
-.widget.gituser .title {
+.widget.gitlabOpenedMR .title {
     color: rgba(207, 2, 43, 0.7);
 }
 
-.widget.gituser .value {
+.widget.gitlabOpenedMR .value {
     color: #fff;
 }
 
-.widget.gituser .change-rate i {
+.widget.gitlabOpenedMR .change-rate i {
     margin-right:4px;
 }
