@@ -1,0 +1,15 @@
+.widget.gitlabOpenedMR {
+    background-color: #ff6d00;
+}
+
+.widget.gitlabOpenedMR .title {
+    color: rgba(207, 2, 43, 0.7);
+}
+
+.widget.gitlabOpenedMR .value {
+    color: #fff;
+}
+
+.widget.gitlabOpenedMR .change-rate i {
+    margin-right:4px;
+}
