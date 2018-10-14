@@ -1,0 +1,4 @@
+name: Number of MR opened for a given project
+description: Widget used to display the current number of opened MR in gitlab for a project
+technicalName: gitlabOpenedMR
+delay: 500
