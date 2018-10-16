@@ -1,0 +1,4 @@
+name: Gitlab-CI pipeline status for a branch
+description: Widget used to display current status for gitlab-ci pipeline
+technicalName: gitlabPipelineStatus
+delay: 500
