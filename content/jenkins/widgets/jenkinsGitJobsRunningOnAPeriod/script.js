@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var jenkins_host = WIDGET_CONFIG_JENKINS_URL + "/jenkins/";
+var jenkins_host = WIDGET_CONFIG_JENKINS_URL + "/";
 var api_query = "api/json?tree=jobs[name,lastBuild[timestamp],scm],views[url]";
 var data = {};
 var bound = new Date();
