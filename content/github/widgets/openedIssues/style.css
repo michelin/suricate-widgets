@@ -1,0 +1,15 @@
+.widget.githubOpenedIssues {
+    background-color: #d1d3d1;
+}
+
+.widget.githubOpenedIssues .title {
+    color: rgba(0, 0, 0, 0.94);
+}
+
+.widget.githubOpenedIssues .value {
+    color: #fff;
+}
+
+.widget.githubOpenedIssues .change-rate i {
+    margin-right:4px;
+}
