@@ -1,0 +1,6 @@
+name: Github
+technicalName: github
+configurations:
+  -
+    key: 'WIDGET_CONFIG_GITHUB_TOKEN'
+    dataType: STRING

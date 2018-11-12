@@ -1,0 +1,4 @@
+name: Number of PR opened for a given project
+description: Widget used to display the current number of opened PR on github for a project
+technicalName: githubOpenedPR
+delay: 500
