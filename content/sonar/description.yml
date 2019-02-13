@@ -3,4 +3,4 @@ technicalName: Sonar
 configurations:
   -
     key: 'WIDGET_CONFIG_SONAR_URL'
-    dataType: STRING
+    dataType: TEXT

@@ -2,11 +2,11 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Timeline'
     required: true
   -
     name: 'SURI_PROJECT'
     description: 'Jira project name'
-    type: STRING
+    type: TEXT
     required: true

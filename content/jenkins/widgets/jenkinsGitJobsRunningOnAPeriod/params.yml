@@ -2,7 +2,7 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     usageExample: 'Number of job'
     required: false
   -
@@ -32,7 +32,7 @@ widgetParams:
   -
     name: 'SURI_VIEW'
     description: 'View or sub view url'
-    type: STRING
+    type: TEXT
     usageExample: 'https://jenkins.com/jenkins/view/SC/view/PCR/ or view/SC'
     required: false
   -

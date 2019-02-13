@@ -8,10 +8,10 @@ widgetParams:
   -
     name: 'GITLAB_PROJECT'
     description: 'Filter for a given project'
-    type: STRING
+    type: TEXT
     required: true
   -
       name: 'GITLAB_BRANCH'
       description: 'Filter for a given branch'
-      type: STRING
+      type: TEXT
       required: true

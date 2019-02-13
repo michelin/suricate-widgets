@@ -2,7 +2,7 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Number of job'
     required: false
   -
@@ -26,13 +26,13 @@ widgetParams:
   -
     name: 'SURI_NB_PERIOD'
     description: 'Number of "period type"'
-    type: STRING
+    type: TEXT
     defaultValue: '1'
     required: true
   -
     name: 'SURI_VIEW'
     description: 'View or sub view url'
-    type: STRING
+    type: TEXT
     usageExample: 'https://jenkins.com/jenkins/view/SC/view/PCR/ or view/SC'
     required: false
   -

@@ -8,5 +8,5 @@ widgetParams:
   -
     name: 'SURI_REGEXP'
     description: 'Filter regex on User ID (case-insensitive matching)'
-    type: STRING
+    type: TEXT
     required: false

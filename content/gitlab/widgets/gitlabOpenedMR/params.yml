@@ -8,5 +8,5 @@ widgetParams:
   -
     name: 'GITLAB_PROJECT'
     description: 'Filter for a given project'
-    type: STRING
+    type: TEXT
     required: true

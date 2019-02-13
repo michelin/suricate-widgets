@@ -2,13 +2,13 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Issues repartition'
     required: true
   -
     name: 'SURI_JQL'
     description: 'Jira JQL query'
-    type: STRING
+    type: TEXT
     usageExample: 'project=XXX and (component=jenkins or component=XXX)'
     required: true
   -

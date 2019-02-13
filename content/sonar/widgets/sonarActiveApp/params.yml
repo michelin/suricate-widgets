@@ -2,7 +2,7 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Sonar Active Apps'
     required: true
   -
