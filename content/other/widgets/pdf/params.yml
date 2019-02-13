@@ -8,6 +8,6 @@ widgetParams:
   -
     name: 'SURI_DELAI'
     description: 'Delay between two slides (in milliseconds)'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '5000'
     required: true

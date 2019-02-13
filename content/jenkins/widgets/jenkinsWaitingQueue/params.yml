@@ -8,10 +8,10 @@ widgetParams:
   -
     name: 'SURI_LIMIT'
     description: 'Max time in queue (in minutes)'
-    type: INTEGER
+    type: NUMBER
     required: true
   -
     name: 'SURI_CRITICAL_LIMIT'
     description: 'MAX authorized number of jobs in queue'
-    type: INTEGER
+    type: NUMBER
     required: true

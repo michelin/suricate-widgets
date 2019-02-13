@@ -2,7 +2,7 @@ widgetParams:
   -
     name: 'SURI_DELAI'
     description: 'Span time to compare widget data in hours'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '24'
     required: true
   -

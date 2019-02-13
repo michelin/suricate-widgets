@@ -14,7 +14,7 @@ widgetParams:
   -
     name: 'SURI_NUMBER'
     description: 'Number of issue to display'
-    type: INTEGER
+    type: NUMBER
     required: true
   -
     name: 'SURI_DISPLAY_JIRA_ID'

@@ -8,7 +8,7 @@ widgetParams:
   -
     name: 'SURI_MONTH'
     description: 'Period of activity in month'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '12'
     required: true
   -
