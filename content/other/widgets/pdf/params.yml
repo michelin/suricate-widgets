@@ -3,7 +3,7 @@ widgetParams:
     name: 'SURI_PDF'
     description: 'Choose your PDF'
     type: FILE
-    acceptFileRegex: 'data:application\/pdf;base64,'
+    acceptFileRegex: '^data:application\/pdf;base64,.+$'
     required: true
   -
     name: 'SURI_DELAI'
