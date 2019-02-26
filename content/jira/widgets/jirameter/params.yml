@@ -2,19 +2,19 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Release X.X'
     required: true
   -
     name: 'SURI_JQL_ALL'
     description: 'Jira JQL query to count all issue'
-    type: STRING
+    type: TEXT
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX'
     required: true
   -
     name: 'SURI_JQL_CLOSED'
     description: 'Jira JQL query to count all closed issue'
-    type: STRING
+    type: TEXT
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX and status in (3_Closed, Done, "Done Done")'
     required: true
   -

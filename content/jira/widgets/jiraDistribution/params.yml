@@ -2,13 +2,13 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Jira distribution'
     required: true
   -
     name: 'SURI_WEEK'
     description: 'Period of activity in month'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '12'
     required: true
   -

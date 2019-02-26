@@ -2,12 +2,12 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Burndown'
     required: true
   -
     name: 'SURI_JQL'
     description: 'Jira JQl Query'
-    type: STRING
+    type: TEXT
     usageExample: 'fixVersion = "XXX 1.1"'
     required: true

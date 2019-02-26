@@ -2,11 +2,11 @@ widgetParams:
   -
     name: 'SURI_DELAI'
     description: 'Span time to compare widget data in hours'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '24'
     required: true
   -
     name: 'GITLAB_PROJECT'
     description: 'Filter for a given project'
-    type: STRING
+    type: TEXT
     required: true

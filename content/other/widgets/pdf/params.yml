@@ -3,11 +3,11 @@ widgetParams:
     name: 'SURI_PDF'
     description: 'Choose your PDF'
     type: FILE
-    acceptFileRegex: '(\.|\/)(pdf)$'
+    acceptFileRegex: '^data:application\/pdf;base64,.+$'
     required: true
   -
     name: 'SURI_DELAI'
     description: 'Delay between two slides (in milliseconds)'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '5000'
     required: true

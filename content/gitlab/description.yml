@@ -3,7 +3,7 @@ technicalName: gitlab
 configurations:
   -
     key: 'WIDGET_CONFIG_GITLAB_TOKEN'
-    dataType: STRING
+    dataType: TEXT
   -
     key: 'WIDGET_CONFIG_GITLAB_URL'
-    dataType: STRING
+    dataType: TEXT

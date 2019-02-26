@@ -2,13 +2,13 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Sonar Metrics'
     required: true
   -
     name: 'SURI_PROJECT'
     description: 'Project group Id and artifact ID'
-    type: STRING
+    type: TEXT
     usageExample: 'group.id:artifact.id'
     required: true
   -

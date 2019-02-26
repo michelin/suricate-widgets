@@ -3,10 +3,10 @@ technicalName: jira
 configurations:
   -
     key: 'WIDGET_CONFIG_JIRA_USER'
-    dataType: STRING
+    dataType: TEXT
   -
     key: 'WIDGET_CONFIG_JIRA_PASSWORD'
     dataType: PASSWORD
   -
     key: 'WIDGET_CONFIG_JIRA_URL'
-    dataType: STRING
+    dataType: TEXT

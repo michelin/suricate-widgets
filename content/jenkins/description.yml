@@ -3,10 +3,10 @@ technicalName: jenkins
 configurations:
   -
     key: 'WIDGET_CONFIG_JENKINS_USER'
-    dataType: STRING
+    dataType: TEXT
   -
     key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
     dataType: PASSWORD
   -
     key: 'WIDGET_CONFIG_JENKINS_URL'
-    dataType: STRING
+    dataType: TEXT

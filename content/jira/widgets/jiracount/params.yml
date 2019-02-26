@@ -2,18 +2,18 @@ widgetParams:
   -
     name: 'SURI_TITLE'
     description: 'Widget Title'
-    type: STRING
+    type: TEXT
     defaultValue: 'Unassigned issue'
     required: true
   -
     name: 'SURI_JQL'
     description: 'Jira JQL query'
-    type: STRING
+    type: TEXT
     usageExample: 'project = XXXX and assignee is EMPTY and status not in (Closed,Completed,Done, "Done Done") ORDER BY createdDate DESC'
     required: true
   -
     name: 'SURI_DELAI'
     description: 'Span time to compare widget data in hours'
-    type: INTEGER
+    type: NUMBER
     defaultValue: '24'
     required: true
