@@ -4,9 +4,7 @@ This repository contains the source code of all widgets of the Suricate applicat
 
 ![Suricate dashboard developer environment](readme/dashboard.png)
 
-Check out our [website](https://suricate-io.github.io/) for more informations about :
-* [Repository architecture](https://suricate-io.github.io/repository-architecture/)
-* [How to create a category](https://suricate-io.github.io/category-creation/)
-* [How to create a widget](https://suricate-io.github.io/widget-creation/)
+## 📚 Wiki
 
-All widgets must be released as *Apache2 licence*.
+Information and instructions about the creation of new widgets are located in [the widgets wiki](https://github.com/suricate-io/widgets/wiki) 🙌
+
