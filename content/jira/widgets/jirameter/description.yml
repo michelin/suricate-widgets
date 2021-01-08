@@ -1,6 +1,6 @@
 name: Progression
-description: Widget used to display JIRA release progression
-info: To use this widget, you must first add the jira user '<b>mt_dev</b>' as viewer of your project
+description: Widget used to display the release progression from Jira. Count the number of closed Jiras against the total amount of Jiras.
+info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
 technicalName: jirameter
 delay: 500
 libraries:

@@ -1,9 +1,9 @@
 widgetParams:
   -
     name: 'SURI_TITLE'
-    description: 'Widget Title'
+    description: 'Widget title'
     type: TEXT
-    usageExample: 'My new Dashboard'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_TEXT'

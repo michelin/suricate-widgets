@@ -1,15 +1,15 @@
 widgetParams:
   -
     name: 'SURI_TITLE'
-    description: 'Widget Title'
+    description: 'Widget title'
     type: TEXT
-    defaultValue: 'Unassigned issue'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_JQL'
     description: 'Jira JQL query'
     type: TEXT
-    usageExample: 'project = XXXX and assignee is EMPTY and status not in (Closed,Completed,Done, "Done Done") ORDER BY createdDate DESC'
+    usageExample: 'project = XXXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
     required: true
   -
     name: 'SURI_DELAI'

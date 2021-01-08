@@ -3,5 +3,5 @@ widgetParams:
     name: 'SURI_URL'
     description: 'Page URL'
     type: TEXT
-    usageExample: 'http://xxxxxxxx'
+    usageExample: 'http://...'
     required: true
