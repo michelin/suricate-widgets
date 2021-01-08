@@ -7,4 +7,4 @@ Check out our [website](https://suricate-io.github.io/) for more informations ab
 * [How to create a category](https://suricate-io.github.io/category-creation/)
 * [How to create a widget](https://suricate-io.github.io/widget-creation/)
 
-All widgets must be released as *Apache2 licence*
+All widgets must be released as *Apache2 licence*.
