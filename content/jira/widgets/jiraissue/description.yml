@@ -1,5 +1,5 @@
-name: Display issue
-description: Widget used to display the jira issues specified by the JQL query
-info: To use this widget, you must first add the jira user '<b>mt_dev</b>' as viewer of your project
+name: Display issues
+description: Widget used to display the Jira issues specified by the JQL query
+info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
 technicalName: jiraissue
 delay: 200
