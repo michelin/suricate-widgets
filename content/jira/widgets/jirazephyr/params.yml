@@ -3,12 +3,13 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Zephyr status'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_PROJECT'
-    description: 'JIRA project name'
+    description: 'Jira project name'
     type: TEXT
+    usageExample: 'My Jira project'
     required: true
   -
     name: 'SURI_VERSION'
@@ -18,14 +19,15 @@ widgetParams:
     required: true
   -
     name: 'SURI_REGEX'
-    description: 'Filter Regex'
+    description: 'Filter by regular expression'
     type: TEXT
     usageExample: 'UnitTest.*'
     required: false
   -
     name: 'SURI_DISPLAY_PERCENT_EXEC'
-    description: 'Display Percentage of Execution on Progress Bar'
+    description: 'Display the percentage of execution on the progress bar'
     type: COMBO
+    defaultValue: 'YES'
     possibleValuesMap:
       -
         jsKey: 'YES'
