@@ -1,4 +1,4 @@
-name: Number of MR opened for a given project
-description: Widget used to display the current number of opened MR in gitlab for a project
+name: Number of merge requests opened for a given project
+description: Display the current number of opened merge requests on a GitLab project
 technicalName: gitlabOpenedMR
 delay: 500

@@ -1,15 +1,15 @@
 .widget.gituser {
-    background-color:#47bbb3;
+	background-color: #47bbb3;
 }
 
 .widget.gituser .title {
-    color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .widget.gituser .value {
-    color: #fff;
+	color: #fff;
 }
 
 .widget.gituser .change-rate i {
-    margin-right:4px;
+	margin-right: 4px;
 }
