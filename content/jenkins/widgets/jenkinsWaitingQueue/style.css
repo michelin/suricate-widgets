@@ -1,37 +1,42 @@
-
 .widget.jenkinswaitingqueue {
-    background-color: #86d751;
+	background-color: #86d751;
 }
 
 .widget.jenkinswaitingqueue .title {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 18px 10px 18px 10px;
+	color: rgba(255, 255, 255, 0.8);
+	margin: 18px 10px 18px 10px;
 }
 
-.widget.jenkinswaitingqueue ul{
-    margin: 0;
-    padding: 0;
+.widget.jenkinswaitingqueue ul {
+	margin: 0;
+	padding: 0;
 }
 
-.widget.jenkinswaitingqueue li{
-    font-size: 12px;
-    list-style-type: none;
+.widget.jenkinswaitingqueue li {
+	font-size: 12px;
+	list-style-type: none;
 }
 
-.widget.jenkinswaitingqueue  h2 {
-    margin: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.8);
+.widget.jenkinswaitingqueue h2 {
+	margin: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.8);
 }
+
 .widget.jenkinswaitingqueue .green {
-    background-color: #86d751;
+	background-color: #86d751;
 }
+
 .widget.jenkinswaitingqueue .red {
-    background-color: #e3394f;
-    -webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
-    -moz-animation:    status-danger-background 1s infinite; /* Fx 5+ */
-    -o-animation:      status-danger-background 1s infinite; /* Opera 12+ */
-    animation:         status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
+	background-color: #e3394f;
+	/* Safari 4+ */
+	-webkit-animation: status-danger-background 1s infinite;
+	/* Fx 5+ */
+	-moz-animation: status-danger-background 1s infinite;
+	/* Opera 12+ */
+	-o-animation: status-danger-background 1s infinite;
+	/* IE 10+, Fx 29+ */
+	animation: status-danger-background 1s infinite;
 }

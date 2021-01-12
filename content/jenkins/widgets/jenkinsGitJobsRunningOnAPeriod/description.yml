@@ -1,5 +1,5 @@
 name: Active Git jobs
-description: Widget used to display the number of active git jobs during last N "period type" on Jenkins.
+description: Display the number of Git active jobs during last N "period type" on Jenkins
 technicalName: jenkinsGitJobsRunningOnAPeriod
 delay: 720
 timeout: 600

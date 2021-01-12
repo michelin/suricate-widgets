@@ -1,58 +1,65 @@
 .widget.jenkinsslavestatus {
-    background-color: #86d751;
+	background-color: #86d751;
 }
 
 .widget.jenkinsslavestatus .title {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 18px 0 18px 0;
+	color: rgba(255, 255, 255, 0.8);
+	margin: 18px 0 18px 0;
 }
 
-.widget.jenkinsslavestatus ul{
-    margin: 0;
-    padding: 0;
+.widget.jenkinsslavestatus ul {
+	margin: 0;
+	padding: 0;
 }
 
-.widget.jenkinsslavestatus li.hostname{
-    margin-top: 8px;
+.widget.jenkinsslavestatus li.hostname {
+	margin-top: 8px;
 }
 
-.widget.jenkinsslavestatus ul.hosts{
-    margin-top: 5px;
+.widget.jenkinsslavestatus ul.hosts {
+	margin-top: 5px;
 }
 
-.widget.jenkinsslavestatus li{
-    font-size: 12px;
-    list-style-type: none;
+.widget.jenkinsslavestatus li {
+	font-size: 12px;
+	list-style-type: none;
 }
 
-.widget.jenkinsslavestatus li.service{
-    margin-left:15px;
-    margin-right:15px;
+.widget.jenkinsslavestatus li.service {
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
-.widget.jenkinsslavestatus li.service li{
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 3px;
+.widget.jenkinsslavestatus li.service li {
+	text-align: left;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	padding: 3px;
 }
 
-.widget.jenkinsslavestatus  h3 {
-    font-size: 12px;
-    font-weight: bold;
+.widget.jenkinsslavestatus h3 {
+	font-size: 12px;
+	font-weight: bold;
 }
-.widget.jenkinsslavestatus  h2 {
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
+
+.widget.jenkinsslavestatus h2 {
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.7);
 }
+
 .widget.jenkinsslavestatus .green {
-    background-color: #86d751;
+	background-color: #86d751;
 }
+
 .widget.jenkinsslavestatus .red {
-    background-color: #e3394f;
-    -webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
-    -moz-animation:    status-danger-background 1s infinite; /* Fx 5+ */
-    -o-animation:      status-danger-background 1s infinite; /* Opera 12+ */
-    animation:         status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
+	background-color: #e3394f;
+	-webkit-animation: status-danger-background 1s infinite;
+	/* Safari 4+ */
+	-moz-animation: status-danger-background 1s infinite;
+	/* Fx 5+ */
+	-o-animation: status-danger-background 1s infinite;
+	/* Opera 12+ */
+	animation: status-danger-background 1s infinite;
+	/* IE 10+, Fx 29+ */
 }

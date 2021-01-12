@@ -1,4 +1,4 @@
-name: Waiting Queue
-description: Widget used to display the number of jobs wainting on Jenkins queue.
+name: Waiting queue
+description: Display the number of jobs waiting on Jenkins queue
 technicalName: jenkinswaitingqueue
 delay: 120

@@ -1,28 +1,28 @@
 .widget.jenkinsjobbuildhistory {
-    background-color:#3c8dbc;
+	background-color: #3c8dbc;
 }
 
 .widget.jenkinsjobbuildhistory .SUCCESS {
-    color: #00ea00;
+	color: #00ea00;
 }
 
 .widget.jenkinsjobbuildhistory .UNSTABLE {
-    color: #ffb52c;
+	color: #ffb52c;
 }
 
 .widget.jenkinsjobbuildhistory .FAILURE {
-    color: #e30000;
+	color: #e30000;
 }
 
 .widget.jenkinsjobbuildhistory .ABORTED {
-    color: #514f4f;
+	color: #514f4f;
 }
 
 .widget.jenkinsjobbuildhistory .RUNNING {
-    color: blue;
-    text-decoration: blink;
+	color: blue;
+	text-decoration: blink;
 }
 
 .widget.jenkinsjobbuildhistory .title {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
