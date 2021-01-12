@@ -1,5 +1,5 @@
-name: Active sonar apps
-description: Widget used to display Sonar active applications
+name: Active sonar applications
+description: Display the Sonar active applications
 technicalName: sonaractiveapps
 delay: 500
 libraries:

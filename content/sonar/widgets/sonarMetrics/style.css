@@ -1,43 +1,43 @@
 .widget.sonar {
-    background-color:#47bbb3;
+	background-color: #47bbb3;
 }
 
 .widget.sonar .title {
-    color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
 }
 
-.widget.sonar ul{
-    margin: 0 15px;
-    text-align: left;
-    color: rgba(255, 255, 255, 0.7);
-    list-style: none;
-    padding: 0;
+.widget.sonar ul {
+	margin: 0 15px;
+	text-align: left;
+	color: rgba(255, 255, 255, 0.7);
+	list-style: none;
+	padding: 0;
 }
 
-.widget.sonar ul li{
-    margin-bottom: 5px;
-    overflow: hidden;
+.widget.sonar ul li {
+	margin-bottom: 5px;
+	overflow: hidden;
 }
 
-.widget.sonar ul li .label{
-    color: rgba(255, 255, 255, 0.7);
+.widget.sonar ul li .label {
+	color: rgba(255, 255, 255, 0.7);
 }
 
-.widget.sonar ul li .value{
-    float: right;
-    margin-left: 12px;
-    font-weight: 600;
-    color: #fff;
+.widget.sonar ul li .value {
+	float: right;
+	margin-left: 12px;
+	font-weight: 600;
+	color: #fff;
 }
 
 .widget.sonar ul li .value .red {
-    color: #e3394f;
+	color: #e3394f;
 }
 
 .widget.sonar ul li .value .green {
-    color: #86d751;
+	color: #86d751;
 }
 
 .widget.sonar ul li .value i {
-    margin-right:4px;
+	margin-right: 4px;
 }
