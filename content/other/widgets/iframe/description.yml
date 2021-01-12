@@ -1,4 +1,4 @@
-name: Iframe web content
-description: Widget used to display the content of a webpage (iframe)
+name: Iframe
+description: Display the content of a web page
 technicalName: iframe
 delay: -1

@@ -1,5 +1,5 @@
-name: Clock Widget
-description: Widget used to display current date and time
+name: Clock
+description: Display the current date and time with a clock
 technicalName: clock
 delay: -1
 libraries:

@@ -1,4 +1,4 @@
-name: Image upload
-description: Widget used to display an image
+name: Image
+description: Display an image
 technicalName: image
 delay: -1

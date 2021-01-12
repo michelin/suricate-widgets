@@ -1,5 +1,5 @@
-name: Pdf viewer Widget
-description: Widget used to display a pdf
+name: PDF viewer 
+description: Display a PDF
 technicalName: pdf
 delay: -1
 libraries:
