@@ -76,7 +76,7 @@ function run() {
 }
 
 function getContent(url) {
-  var jsonResponse_jobs = Packages.call(url);
+  var jsonResponse_jobs = Packages.get(url);
   if (jsonResponse_jobs == null) {
     return null;
   }
