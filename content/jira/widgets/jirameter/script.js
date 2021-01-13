@@ -31,7 +31,7 @@ function run() {
 
   data.valueCountSelect = jsonObjectClosed.total;
   data.valueCountAll = jsonObjectAll.total;
-  data.value = isNaN(data.value) ? 0 : value.toFixed(0);
+  data.value = isNaN(value) ? 0 : value.toFixed(0);
   data.displayCount = !(typeof SURI_DISPLAY_COUNT === 'undefined' || SURI_DISPLAY_COUNT === "false");
 
   return JSON.stringify(data);
