@@ -1,5 +1,5 @@
 name: Jenkins active users
-description: Count the number of Jenkins active users. One job will start during the period
+description: Display the number of Jenkins active users
 technicalName: jenkinsactiveusers
 delay: 10800
 timeout: 300

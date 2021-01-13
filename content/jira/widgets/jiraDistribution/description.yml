@@ -1,6 +1,6 @@
-name: JIRA Distribution activity
-description: Display the most active projects in Jira during the last given weeks
-info: You have to add the Jira user 'mt_dev' as a viewer of your project
+name: JIRA distribution activity
+description: Display the most active projects in Jira during the last weeks
+info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jiradistribution
 timeout: 360
 delay: 500

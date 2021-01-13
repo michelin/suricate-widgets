@@ -1,6 +1,6 @@
 name: Progression
 description: Display the release progression from Jira. Count the number of closed Jiras against the total amount of Jiras
-info: You have to add the Jira user 'mt_dev' as a viewer of your project
+info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jirameter
 delay: 500
 libraries:

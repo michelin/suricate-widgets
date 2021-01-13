@@ -1,4 +1,4 @@
-name: GitLab CI/CD pipeline status for a branch
+name: GitLab CI/CD pipeline status
 description: Display the current status for a GitLab CI/CD pipeline
 technicalName: gitlabPipelineStatus
 delay: 500

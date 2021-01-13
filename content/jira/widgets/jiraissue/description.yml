@@ -1,5 +1,5 @@
-name: Display issues
+name: Issues
 description: Display the Jira issues specified by the JQL query
-info: You have to add the Jira user 'mt_dev' as a viewer of your project
+info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jiraissue
 delay: 200
