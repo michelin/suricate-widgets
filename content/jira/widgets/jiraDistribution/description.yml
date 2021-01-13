@@ -1,5 +1,6 @@
 name: JIRA Distribution activity
-description: Widget used to display the most active project in a jira during the last X weeks.
+description: Display the most active projects in Jira during the last given weeks
+info: You have to add the Jira user 'mt_dev' as a viewer of your project
 technicalName: jiradistribution
 timeout: 360
 delay: 500

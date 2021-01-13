@@ -1,5 +1,5 @@
 name: Count
-description: Widget used to count the number of Jiras from the specified JQL query
-info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
+description: Count the number of Jiras from the specified JQL query
+info: You have to add the Jira user 'mt_dev' as a viewer of your project
 technicalName: jiracount
 delay: 500

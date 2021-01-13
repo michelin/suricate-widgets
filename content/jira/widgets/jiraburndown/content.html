@@ -1,97 +1,122 @@
 <a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL}}" class="link" target="_blank">
-    <div class="grid-stack-item-content-inner">
-        <h1 class="title">{{SURI_TITLE}}</h1>
-        <div class="chart-container">
-            <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
-        </div>
-    </div>
+	<div class="grid-stack-item-content-inner">
+		<h1 class="title">{{SURI_TITLE}}</h1>
+		<div class="chart-container">
+			<canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
+		</div>
+	</div>
 </a>
 
 <script>
-    $(function(){
-        $(window).on('load', loadBurnDown{{SURI_INSTANCE_ID}});
+    $(function() {
+          $(window).on('load', loadBurnDown {
+            {
+              SURI_INSTANCE_ID
+            }
+          });
 
-        function loadBurnDown{{SURI_INSTANCE_ID}}() {
-            $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
+          function loadBurnDown {
+            {
+              SURI_INSTANCE_ID
+            }
+          }() {
+            $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
             var data = '{{{data}}}';
 
 
             if (data.length !== 0) {
-                var labels = JSON.parse('{{{labels}}}');
-                var monthLabel = new Array(labels.size);
-                for (var i=0; i< labels.length; i++){
-                    monthLabel[i] = moment(new Date(labels[i])).format('DD MMM');
+              var labels = JSON.parse('{{{labels}}}');
+              var monthLabel = new Array(labels.size);
+              for (var i = 0; i < labels.length; i++) {
+                monthLabel[i] = moment(new Date(labels[i])).format('DD MMM');
+              }
+              var objectData = JSON.parse(data);
+              var second = new Array(labels.size);
+              var last = {
+                {
+                  total
                 }
-                var objectData = JSON.parse(data);
-                var second = new Array(labels.size);
-                var last = {{total}};
-                for (var i=0; i< labels.length; i++){
-                    second[i] = last;
-                    last = second[i] - ({{total}}/(labels.length-1));
+              };
+              for (var i = 0; i < labels.length; i++) {
+                second[i] = last;
+                last = second[i] - ({
+                    {
+                      total
+                    }
+                  }
+                  /(labels.length-1));
                 }
 
                 var chart = new Chart(ctx, {
-                    // The type of chart we want to create
-                    type: 'line',
-                    // The data for our dataset
-                    data: {
-                        labels: monthLabel,
-                        datasets: [{
-                            borderWidth: 1,
-                            borderColor: 'rgb(255, 99, 132)',
-                            radius: 0,
-                            data: second
-                        },{
-                            backgroundColor: 'rgba(54, 162, 235, 0.60)',
-                            borderColor: 'rgb(54, 162, 235)',
-                            lineTension: 0,
-                            borderWidth: 1,
-                            radius: 0,
-                            data: objectData
-                        }]
+                  // The type of chart we want to create
+                  type: 'line',
+                  // The data for our dataset
+                  data: {
+                    labels: monthLabel,
+                    datasets: [{
+                      borderWidth: 1,
+                      borderColor: 'rgb(255, 99, 132)',
+                      radius: 0,
+                      data: second
+                    }, {
+                      backgroundColor: 'rgba(54, 162, 235, 0.60)',
+                      borderColor: 'rgb(54, 162, 235)',
+                      lineTension: 0,
+                      borderWidth: 1,
+                      radius: 0,
+                      data: objectData
+                    }]
+                  },
+                  // Configuration options go here
+                  options: {
+                    legend: {
+                      display: false
                     },
-                    // Configuration options go here
-                    options: {
-                        legend: {
-                            display: false
+                    scales: {
+                      xAxes: [{
+                        gridLines: {
+                          display: false,
+                          color: "rgba(255, 255, 255, 0.10)"
                         },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    display: false,
-                                    color: "rgba(255, 255, 255, 0.10)"
-                                },
-                                ticks: {
-                                    fontColor: "rgba(255, 255, 255, 0.5)"
-                                }
-                            }],
-                            yAxes: [{
-                                gridLines: {
-                                    display: true,
-                                    color: "rgba(255, 255, 255, 0.10)"
-                                },
-                                ticks: {
-                                    fontColor: "rgba(255, 255, 255, 0.5)",
-                                    min: 0,
-                                    max: {{total}},
-                        beginAtZero: true
+                        ticks: {
+                          fontColor: "rgba(255, 255, 255, 0.5)"
+                        }
+                      }],
+                      yAxes: [{
+                        gridLines: {
+                          display: true,
+                          color: "rgba(255, 255, 255, 0.10)"
+                        },
+                        ticks: {
+                          fontColor: "rgba(255, 255, 255, 0.5)",
+                          min: 0,
+                          max: {
+                            {
+                              total
+                            }
+                          },
+                          beginAtZero: true
+                        }
+                      }]
+                    },
+                    onResize: function() {
+                      $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+                      $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
+                      chart.update();
                     }
-                }]
-            },
-                onResize: function () {
-                    $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-                    $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
-                    chart.update();
-                }
+                  }
+                });
+              }
             }
-            });
-            }
-        }
 
-        if (page_loaded) {
-            loadBurnDown{{SURI_INSTANCE_ID}}();
-        }
-    });
+            if (page_loaded) {
+              loadBurnDown {
+                {
+                  SURI_INSTANCE_ID
+                }
+              }();
+            }
+          });
 </script>

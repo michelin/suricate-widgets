@@ -1,5 +1,5 @@
 name: Zephyr status
-description: Widget used to display the Zephyr status of some test cycles of your project
-info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
+description: Display the Zephyr status of some test cycles of your project
+info: You have to add the Jira user 'mt_dev' as a viewer of your project
 technicalName: jirazephyr
 delay: 200

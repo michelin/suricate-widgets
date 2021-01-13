@@ -1,50 +1,51 @@
 .widget.jiraissue {
-    background-color:#0099ff;
+	background-color: #0099ff;
 }
 
 .widget.jiraissue .title {
-    color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .widget.jiraissue ul {
-    list-style: none;
-    padding-left: 10px;
-    padding-right: 10px;
+	list-style: none;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .widget.jiraissue ul li {
-    font-size: 16px;
-    text-align: left;
-    padding: 5px 0 5px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+	font-size: 16px;
+	text-align: left;
+	padding: 5px 0 5px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.32);
 }
+
 .widget.jiraissue ul li a {
-    display: block;
-    overflow: hidden;
+	display: block;
+	overflow: hidden;
 }
 
 .widget.jiraissue ul li a span {
-    text-align: right;
-    float: left;
-    color: black;
-    padding: 5px;
-    border-radius: 6px;
-    margin-right: 7px;
-    font-size: 11px;
+	text-align: right;
+	float: left;
+	color: black;
+	padding: 5px;
+	border-radius: 6px;
+	margin-right: 7px;
+	font-size: 11px;
 }
 
 .widget.jiraissue ul li a span.yellow {
-    background-color: #fbc82f;
+	background-color: #fbc82f;
 }
+
 .widget.jiraissue ul li a span.blue-gray {
-    background-color: #b5d5f5;
+	background-color: #b5d5f5;
 }
+
 .widget.jiraissue ul li a span.green {
-    background-color: #13a130;
+	background-color: #13a130;
 }
-
-
 
 .widget.jiraissue .change-rate i {
-    margin-right:4px;
+	margin-right: 4px;
 }

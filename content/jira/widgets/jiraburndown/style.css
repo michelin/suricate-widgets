@@ -1,18 +1,22 @@
 .widget.jiraBurndown {
-    background-color: #535353;
+	background-color: #535353;
 }
+
 .widget.jiraBurndown .title {
-    color: rgba(255, 255, 255, 0.7);
-    margin: 18px 0 18px 0;
+	color: rgba(255, 255, 255, 0.7);
+	margin: 18px 0 18px 0;
 }
+
 .widget.jiraBurndown .more-info {
-    color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
 }
+
 .widget.jiraBurndown .event-description {
-    fill: white;
-    font-size: 14px;
+	fill: white;
+	font-size: 14px;
 }
+
 .widget.jiraBurndown .event-description-date {
-    fill: white;
-    font-size: 12px;
+	fill: white;
+	font-size: 12px;
 }

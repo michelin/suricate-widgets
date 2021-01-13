@@ -1,70 +1,82 @@
 <a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL}}" class="link" target="_blank">
-    <div class="grid-stack-item-content-inner">
-        <h1 class="title">{{SURI_TITLE}}</h1>
-        <div class="chart-container">
-            <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
-        </div>
-    </div>
+	<div class="grid-stack-item-content-inner">
+	   <h1 class="title">{{SURI_TITLE}}</h1>
+	   <div class="chart-container">
+		  <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
+	   </div>
+	</div>
 
     <script>
-        $(function(){
-            $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
+        $(function() {
+          $(window).on('load', loadChart {
+            {
+              SURI_INSTANCE_ID
+            }
+          });
 
-            function loadChart{{SURI_INSTANCE_ID}}() {
-                $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-                $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
-                var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
-                var data = '{{{data}}}';
-                var unassigned = '{{{unassigned}}}';
-                var resolved = '{{{resolved}}}';
-                var unresolved = {{total}} - ({{unassigned}} + {{resolved}});
-                var chart = new Chart(ctx, {
-                    // The type of chart we want to create
-                    type: 'doughnut',
-                    // The data for our dataset
-                    data: {
-                        labels: [
-                            'Unassigned',
-                            'Unresolved',
-                            'Resolved   '
-                        ],
-                        datasets: [{
-                            borderColor: ['#0099ff','#0099ff','#0099ff'],
-                            backgroundColor: ['rgb(255, 99, 132)','rgb(255,140,0)','rgb(154,205,50)'],
-                            data: [unassigned,unresolved,resolved]
-                        }],
-                        borderWidth: 1
-                    },
-                    options: {
-                        legend: {
-                            display: "{{{SURI_DISPLAY_LEGEND}}}" !== "false",
-                            labels: {
-                                fontColor: "white"
-                            },
-                            position : 'bottom'
-                        },
-                        pieceLabel: {
-                            display: "{{{SURI_DISPLAY_LEGEND}}}" === "false",
-                            render: 'label',
-                            arc: true,
-                            position: 'border',
-                            fontStyle: 'bold',
-                            fontColor: 'white',
-                            fontFamily: '"Lucida Console", Monaco, monospace'
-                        },
-                        rotation : -0.5 * Math.PI,
-                        circumference : 2 * Math.PI
-                    },
-                    onResize: function () {
-                        $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-                        $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
-                        chart.update();
-                    }
+          function loadChart {
+            {
+              SURI_INSTANCE_ID
+            }
+          }() {
+            $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
+            var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
+            var data = '{{{data}}}';
+            var unassigned = '{{{unassigned}}}';
+            var resolved = '{{{resolved}}}';
+            var unresolved = {{total}} - ({{unassigned}} + {{resolved}});
+            var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: 'doughnut',
+              // The data for our dataset
+              data: {
+                labels: [
+                  'Unassigned',
+                  'Unresolved',
+                  'Resolved   '
+                ],
+                datasets: [{
+                  borderColor: ['#0099ff', '#0099ff', '#0099ff'],
+                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(255,140,0)', 'rgb(154,205,50)'],
+                  data: [unassigned, unresolved, resolved]
+                }],
+                borderWidth: 1
+              },
+              options: {
+                legend: {
+                  display: "{{{SURI_DISPLAY_LEGEND}}}" !== "false",
+                  labels: {
+                    fontColor: "white"
+                  },
+                  position: 'bottom'
+                },
+                pieceLabel: {
+                  display: "{{{SURI_DISPLAY_LEGEND}}}" === "false",
+                  render: 'label',
+                  arc: true,
+                  position: 'border',
+                  fontStyle: 'bold',
+                  fontColor: 'white',
+                  fontFamily: '"Lucida Console", Monaco, monospace'
+                },
+                rotation: -0.5 * Math.PI,
+                circumference: 2 * Math.PI
+              },
+              onResize: function() {
+                $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+                $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
+                chart.update();
+              }
             });
-            }
-            if (page_loaded) {
-                loadChart{{SURI_INSTANCE_ID}}();
-            }
+          }
+          if (page_loaded) {
+            loadChart {
+              {
+                SURI_INSTANCE_ID
+              }
+            }();
+          }
         });
     </script>
 </a>
