@@ -25,10 +25,10 @@ function run() {
     data = {};
   }
 
-  var raw = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null);
+  var raw = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN);
   data.projectName = JSON.parse(raw).name_with_namespace;
 
-  raw = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/merge_requests?state=opened", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null);
+  raw = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/merge_requests?state=opened", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN);
   var number = JSON.parse(raw).length;
 
   if (number == null) {

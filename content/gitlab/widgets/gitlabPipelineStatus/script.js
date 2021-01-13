@@ -25,11 +25,11 @@ function run() {
     data = {};
   }
 
-  var raw = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null);
+  var raw = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN);
   data.projectName = JSON.parse(raw).name_with_namespace;
   data.branchName = GITLAB_BRANCH;
 
-  raw = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/pipelines", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null);
+  raw = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/pipelines", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN);
   var rawData = JSON.parse(raw);
 
   var status;
@@ -43,7 +43,7 @@ function run() {
 
       // Add complementary elements in case of failure
       if (data.failure) {
-        raw = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/pipelines/" + rawData[i].id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null);
+        raw = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + GITLAB_PROJECT + "/pipelines/" + rawData[i].id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN);
         rawData = JSON.parse(raw);
         data.author = rawData.user.name;
       }

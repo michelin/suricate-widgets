@@ -30,7 +30,7 @@ function run() {
     var p = 0;
     var number = 0;
     var reg = new RegExp("(" + SURI_REGEXP + ")", "i");
-    var json = JSON.parse(Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page=" + p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null));
+    var json = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page=" + p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
     while (json != null && json.length > 0) {
       for (var i = 0; i < 100; i++) {
         var elm = json[i];
@@ -44,11 +44,11 @@ function run() {
         }
       }
       p++;
-      json = JSON.parse(Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page=" + p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, null));
+      json = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100&page=" + p, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
     }
     number = mat.filter(onlyUnique).length;
   } else {
-    var number = Packages.call(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "x-total");
+    var number = Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/users", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "x-total");
   }
 
   if (number == null) {

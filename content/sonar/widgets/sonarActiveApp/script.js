@@ -74,7 +74,7 @@ function run() {
   lastactiv.setMonth(lastactiv.getMonth() - SURI_MONTH);
   lastactiv = lastactiv.getUTCFullYear() + "-" + (lastactiv.getUTCMonth() + 1) + "-" + lastactiv.getUTCDate();
 
-  var json = JSON.parse(Packages.call(url, null, null, null));
+  var json = JSON.parse(Packages.get(url));
   arr = {};
   var p = 1;
   json.components.forEach(function(x) {
@@ -95,7 +95,7 @@ function run() {
   });
 
   while (json.paging.total > pagesize * p) {
-    json = JSON.parse(Packages.call(url + "&p=" + (++p), null, null, null));
+    json = JSON.parse(Packages.get(url + "&p=" + (++p)));
     json.components.forEach(function(x) {
       var tri = x.name.substring(0, 3);
       if (SURI_ORDER_BY == "DAYOFANALYSE") {
@@ -161,7 +161,7 @@ function parseProject(key, lastactiv) {
     pagesize = 500;
   }
   var projectURL = WIDGET_CONFIG_SONAR_URL + "/sonar/api/project_analyses/search?project=" + key + "&from=" + lastactiv + "&ps" + pagesize;
-  var jsonProject = JSON.parse(Packages.call(projectURL, null, null, null));
+  var jsonProject = JSON.parse(Packages.get(projectURL));
   var ct = 0;
   if (SURI_ORDER_BY == "DAYOFANALYSE") {
     ar = [];
@@ -169,7 +169,7 @@ function parseProject(key, lastactiv) {
       return value.date.substring(0, 10)
     }));
     while (jsonProject.paging.total > pagesize * p) {
-      jsonProject = JSON.parse(Packages.call(projectURL + "&p=" + (++p), null, null, null));
+      jsonProject = JSON.parse(Packages.get(projectURL + "&p=" + (++p)));
       ar = ar.concat(jsonProject.analyses.map(function(value) {
         return value.date.substring(0, 10)
       }));

@@ -17,7 +17,7 @@
 function run() {
   var data = {};
   data.jenkinsJobUrl = WIDGET_CONFIG_JENKINS_URL + '/job/' + SURI_JOB;
-  var jsonResponse = Packages.call(data.jenkinsJobUrl + "/api/json?tree=builds[url,number,status,timestamp,id,result,duration,building]", null, null, null);
+  var jsonResponse = Packages.get(data.jenkinsJobUrl + "/api/json?tree=builds[url,number,status,timestamp,id,result,duration,building]");
 
   if (jsonResponse === null) {
     return null;

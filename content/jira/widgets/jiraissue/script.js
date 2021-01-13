@@ -17,7 +17,7 @@
 function run() {
   // previous data
   var data = {};
-  var jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&maxResults=" + SURI_NUMBER + "&fields=summary,status", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD), null);
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&maxResults=" + SURI_NUMBER + "&fields=summary,status", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   if (jsonResponse == null) {
     return null;
   }

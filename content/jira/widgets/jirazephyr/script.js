@@ -32,7 +32,7 @@ function sort(a, b) {
 
 function run() {
   var data = {};
-  var jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/util/project-list", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD), null);
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/util/project-list", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   if (jsonResponse == null) {
     return null;
   }
@@ -51,7 +51,7 @@ function run() {
   }
 
   // Find version id
-  jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/util/versionBoard-list?projectId=" + projectId, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD), null);
+  jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/util/versionBoard-list?projectId=" + projectId, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   jsonObject = JSON.parse(jsonResponse);
 
   var versionArray = [];
@@ -70,7 +70,7 @@ function run() {
   }
 
   // Get cycle
-  jsonResponse = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/cycle?projectId=" + projectId + "&versionId=" + versionId + "&expand=executionSummaries", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD), null);
+  jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/zapi/latest/cycle?projectId=" + projectId + "&versionId=" + versionId + "&expand=executionSummaries", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   jsonObject = JSON.parse(jsonResponse);
 
   var regex = null;

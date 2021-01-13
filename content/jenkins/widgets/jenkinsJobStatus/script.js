@@ -16,7 +16,7 @@
 
 function run() {
   var data = {};
-  var jsonResponse = Packages.call(WIDGET_CONFIG_JENKINS_URL + "/job/" + SURI_JOB + "/lastBuild/api/json", null, null, null);
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/job/" + SURI_JOB + "/lastBuild/api/json");
 
   if (jsonResponse === null) {
     return null;

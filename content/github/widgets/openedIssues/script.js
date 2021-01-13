@@ -25,10 +25,10 @@ function run() {
     data = {};
   }
 
-  var raw = Packages.call("https://api.github.com/repos/" + GITHUB_ORG + "/" + GITHUB_PROJECT, null, null, null);
+  var raw = Packages.get("https://api.github.com/repos/" + GITHUB_ORG + "/" + GITHUB_PROJECT);
   data.projectName = JSON.parse(raw).name;
 
-  raw = Packages.call("https://api.github.com/repos/" + GITHUB_ORG + "/" + GITHUB_PROJECT + "/issues", null, null, null);
+  raw = Packages.get("https://api.github.com/repos/" + GITHUB_ORG + "/" + GITHUB_PROJECT + "/issues");
   var number = JSON.parse(raw).length;
 
   if (number == null) {

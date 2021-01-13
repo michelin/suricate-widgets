@@ -27,7 +27,7 @@ function run() {
     // without user[id] is a more quickly
     var url = WIDGET_CONFIG_JENKINS_URL + "/asynchPeople/api/json?tree=users[user[id],lastChange]"
   }
-  var json = JSON.parse(Packages.call(url, null, null, null));
+  var json = JSON.parse(Packages.get(url));
 
   var strdate = SURI_DATE.toString();
   data.date = strdate.slice(4) + "-" + strdate.slice(2, 4) + "-" + strdate.slice(0, 2);
