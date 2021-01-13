@@ -7,17 +7,9 @@
 
 <script>
     $(function() {
-      $(window).on('load', loadChart {
-        {
-          SURI_INSTANCE_ID
-        }
-      });
+      $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
 
-      function loadChart {
-        {
-          SURI_INSTANCE_ID
-        }
-      }() {
+      function loadChart{{SURI_INSTANCE_ID}}() {
         $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
         $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
         var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
@@ -109,11 +101,7 @@
       }
 
       if (page_loaded) {
-        loadChart {
-          {
-            SURI_INSTANCE_ID
-          }
-        }();
+        loadChart{{SURI_INSTANCE_ID}}();
       }
     });
 </script>

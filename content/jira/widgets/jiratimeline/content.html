@@ -4,17 +4,9 @@
 </a>
 <script>
    $(function() {
-     $(window).on('load', loadTimeline {
-       {
-         SURI_INSTANCE_ID
-       }
-     });
+     $(window).on('load', loadTimeline{{SURI_INSTANCE_ID}});
 
-     function loadTimeline {
-       {
-         SURI_INSTANCE_ID
-       }
-     }() {
+     function loadTimeline{{SURI_INSTANCE_ID}}() {
        var id = $(".widget-{{SURI_INSTANCE_ID}} .timeline");
        var data = '{{{data}}}';
        if (data.length !== 0) {
@@ -31,11 +23,7 @@
      }
 
      if (page_loaded) {
-       loadTimeline {
-         {
-           SURI_INSTANCE_ID
-         }
-       }();
+       loadTimeline{{SURI_INSTANCE_ID}}();
      }
    });
 </script>

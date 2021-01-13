@@ -7,11 +7,7 @@
        delay = "5000";
      }
 
-     $(window).on('load', loadPdf {
-       {
-         SURI_INSTANCE_ID
-       }
-     });
+     $(window).on('load', loadPdf{{SURI_INSTANCE_ID}});
 
      function renderPage(pageNumber, pdf) {
        console.log('Load page ' + pageNumber);
@@ -43,11 +39,7 @@
        });
      }
 
-     function loadPdf {
-       {
-         SURI_INSTANCE_ID
-       }
-     }() {
+     function loadPdf{{SURI_INSTANCE_ID}}() {
        // atob() is used to convert base64 encoded PDF to binary-like data.
        // (See also https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/
        // Base64_encoding_and_decoding.)
@@ -76,11 +68,7 @@
      }
 
      if (page_loaded) {
-       loadPdf {
-         {
-           SURI_INSTANCE_ID
-         }
-       }();
+       loadPdf{{SURI_INSTANCE_ID}}();
      }
    });
 </script>
