@@ -17,7 +17,7 @@
 function run() {
   var now_timestamp = Date.now();
   var data = {};
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/queue/api/json");
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/queue/api/json");
   if (jsonResponse == null) {
     return null;
   }

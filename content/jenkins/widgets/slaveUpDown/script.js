@@ -16,7 +16,7 @@
 
 function run() {
   var data = {};
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/computer/api/json");
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/computer/api/json");
   if (jsonResponse == null) {
     return null;
   }

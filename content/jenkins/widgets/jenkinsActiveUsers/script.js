@@ -22,10 +22,10 @@ function run() {
   }
   var userIsDefined = !(typeof SURI_USER == 'undefined' || SURI_USER == null || SURI_USER == "");
   if (!userIsDefined) {
-    var url = WIDGET_CONFIG_JENKINS_URL + "/asynchPeople/api/json?tree=users[lastChange]";
+    var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";
   } else {
     // without user[id] is a more quickly
-    var url = WIDGET_CONFIG_JENKINS_URL + "/asynchPeople/api/json?tree=users[user[id],lastChange]"
+    var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[user[id],lastChange]"
   }
   var json = JSON.parse(Packages.get(url));
 
