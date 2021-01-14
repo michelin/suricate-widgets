@@ -3,7 +3,7 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Issues repartition'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_JQL'
@@ -13,6 +13,6 @@ widgetParams:
     required: true
   -
     name: 'SURI_DISPLAY_LEGEND'
-    description: 'Display bottom legend'
+    description: 'Display the legend of the chart'
     type: BOOLEAN
     required: false
