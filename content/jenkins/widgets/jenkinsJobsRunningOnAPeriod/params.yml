@@ -3,12 +3,13 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Number of job'
-    required: false
+    usageExample: 'My title'
+    required: true
   -
-    name: 'SURI_PERDIOD'
-    description: '"Period type" to retrieve data (YEAR,MONTH,WEEK,DAY)'
+    name: 'SURI_PERIOD'
+    description: 'Period'
     type: COMBO
+    defaultValue: 'MONTH'
     possibleValuesMap:
       -
         jsKey: 'YEAR'
@@ -25,20 +26,21 @@ widgetParams:
     required: true
   -
     name: 'SURI_NB_PERIOD'
-    description: 'Number of "period type"'
+    description: 'Number of periods'
     type: TEXT
     defaultValue: '1'
     required: true
   -
     name: 'SURI_VIEW'
-    description: 'View or sub view url'
+    description: 'View or sub view URL'
     type: TEXT
     usageExample: 'https://jenkins.com/jenkins/view/SC/view/PCR/ or view/SC'
     required: false
   -
     name: 'SURI_JOB_TYPE'
-    description: 'Job type to filter (All, Generic)'
+    description: 'Job type to filter'
     type: COMBO
+    defaultValue: 'All'
     possibleValuesMap:
       -
         jsKey: 'All'
