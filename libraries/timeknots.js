@@ -1,6 +1,6 @@
 var TimeKnots = {
     draw: function(id, events, options) {
-        // remove any exisitng elements
+        // remove any existing elements
         d3.select(id).html("");
 
         var TODAY = Date.now();
@@ -196,6 +196,8 @@ var TimeKnots = {
                 return TimeKnots.checkAndFixCollision(svg, ".event-description", y, this);
             })
             .attr("text-anchor", "center")
+			.attr("textLength", "200")
+			.attr("lengthAdjust", "spacingAndGlyphs")
             .style("opacity", function(d) {
                 if (d.opacity != undefined) {
                     return d.opacity
