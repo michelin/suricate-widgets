@@ -1,0 +1,15 @@
+.widget.gitextensionpie {
+    background-color:#607D8B;
+}
+
+.widget.gitextensionpie .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.gitextensionpie .value {
+    color: #fff;
+}
+
+.widget.gitextensionpie .change-rate i {
+    margin-right:4px;
+}

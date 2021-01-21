@@ -1,0 +1,7 @@
+name: Files extensions repartition
+description: Display the files extensions repartition from a GitLab repository
+technicalName: gitextensionpie
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js
