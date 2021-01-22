@@ -22,8 +22,8 @@ widgetParams:
         value: Pie
       -
         jsKey: horizontalBar
-        value: Horizontal Bar
+        value: Horizontal bar
       -
         jsKey: bar
-        value: Bar
+        value: Vertical bar
     required: true
