@@ -7,7 +7,7 @@ widgetParams:
     required: true
   -
     name: 'SURI_WEEK'
-    description: 'Period of activity in month'
+    description: 'Period of activity in months'
     type: NUMBER
     defaultValue: '12'
     required: true
@@ -36,8 +36,8 @@ widgetParams:
         value: 'Pie'
       -
         jsKey: 'horizontalBar'
-        value: 'Horizontal Bar'
+        value: 'Horizontal bar'
       -
         jsKey: 'bar'
-        value: 'Bar'
+        value: 'Vertical bar'
     required: true
