@@ -1,0 +1,118 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: TEXT
+    usageExample: 'My title'
+    required: true
+  -
+    name: 'SURI_TOP'
+    description: 'Number of projects to display'
+    type: NUMBER
+    defaultValue: '5'
+    required: false
+  -
+    name: SURI_PROJECT
+    description: 'Projects IDs, separated by a comma'
+    type: TEXT
+    usageExample: '1234,4567'
+    required: false
+  -
+    name: 'SURI_DATE'
+    description: 'Retrieve events from a given date. Today by default.'
+    type: TEXT
+    usageExample: '31122020'
+    required: false
+  -
+    name: 'SURI_ACTION_TYPE'
+    description: 'Action type of the events'
+    type: COMBO
+    defaultValue: 'all'
+    possibleValuesMap:
+      -
+        jsKey: all
+        value: All
+      -
+        jsKey: approved
+        value: Approved
+      -
+        jsKey: created
+        value: Created
+      -
+        jsKey: updated
+        value: Updated
+      -
+        jsKey: closed
+        value: Closed
+      -
+        jsKey: reopened
+        value: Reopened
+      -
+        jsKey: pushed
+        value: Pushed
+      -
+        jsKey: commented
+        value: Commented
+      -
+        jsKey: merged
+        value: Merged
+      -
+        jsKey: joined
+        value: Joined
+      -
+        jsKey: left
+        value: Left
+      -
+        jsKey: destroyed
+        value: Destroyed
+      -
+        jsKey: expired
+        value: Expired
+    required: true
+  -
+    name: 'SURI_TARGET_TYPE'
+    description: 'Target type of the events'
+    type: COMBO
+    defaultValue: 'all'
+    possibleValuesMap:
+      -
+        jsKey: all
+        value: All
+      -
+        jsKey: issue
+        value: Issue
+      -
+        jsKey: milestone
+        value: Milestone
+      -
+        jsKey: merge_request
+        value: Merge request
+      -
+        jsKey: note
+        value: Note
+      -
+        jsKey: project
+        value: Project
+      -
+        jsKey: snippet
+        value: Snippet
+      -
+        jsKey: user
+        value: User
+    required: true
+  -
+    name: SURI_TYPE_GRAPH
+    description: Graph type
+    type: COMBO
+    defaultValue: 'pie'
+    possibleValuesMap:
+      -
+        jsKey: pie
+        value: Pie
+      -
+        jsKey: horizontalBar
+        value: Horizontal bar
+      -
+        jsKey: bar
+        value: Vertical bar
+    required: true

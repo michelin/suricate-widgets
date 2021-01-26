@@ -1,0 +1,7 @@
+name: Most active projects
+description: Display the activity of projects in GitLab by counting the amount of events (limited to 100)
+technicalName: gitprojectpie
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js

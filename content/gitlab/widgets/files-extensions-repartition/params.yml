@@ -13,7 +13,7 @@ widgetParams:
     required: true
   -
     name: SURI_TYPE_GRAPH
-    description: 'Graphic type'
+    description: 'Graph type'
     type: COMBO
     defaultValue: 'pie'
     possibleValuesMap:

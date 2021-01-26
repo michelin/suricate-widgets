@@ -1,0 +1,15 @@
+.widget.gitprojectpie {
+    background-color:#607D8B;
+}
+
+.widget.gitprojectpie .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.gitprojectpie .value {
+    color: #fff;
+}
+
+.widget.gitprojectpie .change-rate i {
+    margin-right:4px;
+}
