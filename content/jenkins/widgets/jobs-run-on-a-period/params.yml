@@ -13,16 +13,16 @@ widgetParams:
     possibleValuesMap:
       -
         jsKey: 'YEAR'
-        value: 'YEAR'
+        value: 'Year'
       -
         jsKey: 'MONTH'
-        value: 'MONTH'
+        value: 'Month'
       -
         jsKey: 'WEEK'
-        value: 'WEEK'
+        value: 'Week'
       -
         jsKey: 'DAY'
-        value: 'DAY'
+        value: 'Day'
     required: true
   -
     name: 'SURI_NB_PERIOD'

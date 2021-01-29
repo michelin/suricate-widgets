@@ -1,0 +1,9 @@
+name: Kubernetes
+technicalName: kubernetes
+configurations:
+  -
+    key: 'WIDGET_CONFIG_KUBERNETES_URL'
+    dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_KUBERNETES_TOKEN'
+    dataType: TEXT

@@ -1,0 +1,4 @@
+name: Pods from namespace
+description: Display the list of pods from a given namespace
+technicalName: listpods
+delay: 500

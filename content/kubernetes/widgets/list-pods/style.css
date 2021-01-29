@@ -1,0 +1,68 @@
+.widget.listpods {
+	background-color: #326CE5;
+}
+
+.widget.listpods .pods-container {
+	height: inherit;
+	margin-top: 12px;
+}
+
+.widget.listpods .title {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.listpods ul {
+	list-style: none;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.widget.listpods ul li {
+	font-size: 16px;
+	text-align: left;
+	padding: 5px 0 5px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.widget.listpods ul .no-pods {
+	text-align: center;
+	border: none;
+}
+
+.widget.listpods ul li .status {
+	text-align: right;
+	float: left;
+	color: black;
+	padding: 5px;
+	border-radius: 6px;
+	margin-right: 7px;
+	font-size: 11px;
+}
+
+.widget.listpods ul li .status.Running {
+	background-color: #00c853;
+}
+
+.widget.listpods ul li .status.Pending {
+	background-color: #f0f4c3;
+}
+
+.widget.listpods ul li .status.Succeeded {
+	background-color: #00e676;
+}
+
+.widget.listpods ul li .status.Failed {
+	background-color: #d50000;
+}
+
+.widget.listpods ul li .status.Unknown {
+	background-color: #fafafa;
+}
+
+.widget.listpods ul li .start-time {
+	display: block;
+	font-style: italic;
+	color: #cfd8dc;
+	margin-top: 5px;
+	margin-left: 57px;
+}

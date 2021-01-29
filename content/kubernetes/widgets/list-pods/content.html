@@ -1,0 +1,16 @@
+<div class="grid-stack-item-content-inner pods-container">
+	<h1 class="title">{{SURI_TITLE}}</h1>
+	<ul>
+        {{#items}}
+		<li>
+			<span class="status {{status}}">{{status}}</span> {{name}}
+			<span class="start-time"> Started at {{startTime}} </span>
+		</li>
+        {{/items}}
+		{{^items}}
+		<li class="no-pods">
+			No pods to display
+		</li>
+		{{/items}}
+	</ul>
+</div>

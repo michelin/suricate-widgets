@@ -2,6 +2,11 @@
 	background-color: #0099ff;
 }
 
+.widget.jiraissue .issues-content {
+	height: inherit;
+	margin-top: 12px;
+}
+
 .widget.jiraissue .title {
 	color: rgba(255, 255, 255, 0.7);
 }
