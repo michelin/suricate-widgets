@@ -13,131 +13,96 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+  
+function run() {
+	var data = {};
+	data.total = 0;
+	data.data = [];
+	data.labels = [];
 
-if (!Array.prototype.fill) {
-  Object.defineProperty(Array.prototype, 'fill', {
-    value: function(value) {
+	// customfield_10611 -> Greenhopper field for sprint data
+	// customfield_10382 -> Story point
+	var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&fields=customfield_10382,resolutiondate,fixVersions,updated,customfield_10611", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+	if (jsonResponse == null) {
+		return null;
+	}
 
-      // Steps 1-2.
-      if (this == null) {
-        throw new TypeError('this is null or not defined');
-      }
+	var jsonObject = JSON.parse(jsonResponse);
 
-      var O = Object(this);
+	jsonObject.issues.forEach(function(issue) {
+		if (issue.fields.customfield_10611) {
+			updateSprintDate(data, issue.fields.customfield_10611[0]);
+		} else {
+			if (!data.releaseDate) {
+				var release = new Date(issue.fields.fixVersions[0].releaseDate);
+				release.setUTCHours(0, 0, 0, 0);
+				data.releaseDate = release.getTime();
+			}
+		  
+			updateStartDate(data, issue.fields.resolutiondate);
+			updateStartDate(data, issue.fields.updated);
+		}
 
-      // Steps 3-5.
-      var len = O.length >>> 0;
+		if (issue.fields.customfield_10382) {
+			data.total += issue.fields.customfield_10382;
+		} else {
+			data.total++;
+		}
+	});
 
-      // Steps 6-7.
-      var start = arguments[1];
-      var relativeStart = start >> 0;
+	for (loopTime = data.startDate; loopTime < data.releaseDate; loopTime += 86400000) {
+		data.labels.push(loopTime);
+		data.data.push(data.total);
+	}
 
-      // Step 8.
-      var k = relativeStart < 0 ? Math.max(len + relativeStart, 0) : Math.min(relativeStart, len);
+	// calculate issue point value
+	jsonObject.issues.forEach(function(issue) {
+		if (issue.fields.resolutiondate) {
+		  var dec = 1
+		  if (issue.fields.customfield_10382 && issue.fields.customfield_10382 !== 0) {
+			dec = issue.fields.customfield_10382;
+		  }
+		  
+		  var resolutionDate = new Date(issue.fields.resolutiondate);
+		  resolutionDate.setUTCHours(0, 0, 0, 0);
+		  
+		  for (var i = (resolutionDate.getTime() - data.startDate) / 86400000; i < data.data.length; i++) {
+			data.data[i] -= dec;
+		  }
+		}
+	});
+	
+	for (var i in data.data) {
+		if (new Date().getTime() < data.labels[i]) {
+		  data.data[i] = 0;
+		}
+	}
 
-      // Steps 9-10.
-      var end = arguments[2];
-      var relativeEnd = end === undefined ? len : end >> 0;
+	return JSON.stringify(data);
+}
 
-      // Step 11.
-      var final = relativeEnd < 0 ? Math.max(len + relativeEnd, 0) : Math.min(relativeEnd, len);
-
-      // Step 12.
-      while (k < final) {
-        O[k] = value;
-        k++;
-      }
-
-      // Step 13.
-      return O;
-    }
-  });
+function updateSprintDate(data, fieldData) {
+	if (fieldData.match("startDate=([0-9-]+)")) {
+		var startdate = new Date(fieldData.match("startDate=([0-9-]+)")[1]);
+		startdate.setUTCHours(0, 0, 0, 0);
+		
+		data.startDate = startdate.getTime()
+	}
+	
+	if (fieldData.match("endDate=([0-9-]+)")) {
+		var releaseDate = new Date(fieldData.match("endDate=([0-9-]+)")[1]);
+		releaseDate.setUTCHours(0, 0, 0, 0);
+		
+		data.releaseDate = releaseDate.getTime()
+	}
 }
 
 function updateStartDate(data, date) {
-  if (date !== null) {
+  if (date) {
     var startdate = new Date(date);
     startdate.setUTCHours(0, 0, 0, 0);
     if (data.startDate === undefined || data.startDate > startdate.getTime()) {
       data.startDate = startdate.getTime()
     }
   }
-}
-
-function updateSprintDate(data, fieldData) {
-  var startdate = new Date(fieldData.match("startDate=([0-9-]+)")[1]);
-  startdate.setUTCHours(0, 0, 0, 0);
-  var releaseDate = new Date(fieldData.match("endDate=([0-9-]+)")[1]);
-  releaseDate.setUTCHours(0, 0, 0, 0);
-  data.releaseDate = releaseDate.getTime()
-  data.startDate = startdate.getTime()
-}
-
-function run() {
-  // customfield_10611 -> greenhopper field for sprint data
-  // customfield_10382 -> Story point
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&fields=customfield_10382,resolutiondate,fixVersions,updated,customfield_10611", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
-  if (jsonResponse == null) {
-    return null;
-  }
-  var jsonObject = JSON.parse(jsonResponse);
-
-  var data = {};
-  data.total = 0;
-  for (var i in jsonObject.issues) {
-    // Update start date
-    if (jsonObject.issues[i].fields.customfield_10611 === undefined) {
-      if (data.releaseDate === undefined) {
-        var release = new Date(jsonObject.issues[i].fields.fixVersions[0].releaseDate);
-        release.setUTCHours(0, 0, 0, 0);
-        data.releaseDate = release.getTime();
-      }
-      updateStartDate(data, jsonObject.issues[i].fields.resolutiondate);
-      updateStartDate(data, jsonObject.issues[i].fields.updated);
-    } else {
-      updateSprintDate(data, jsonObject.issues[i].fields.customfield_10611[0]);
-    }
-
-    if (jsonObject.issues[i].fields.customfield_10382 !== undefined) {
-      data.total += jsonObject.issues[i].fields.customfield_10382;
-    } else {
-      data.total++;
-    }
-  }
-
-  // Create list label
-  var arrayLabel = [];
-  for (loopTime = data.startDate; loopTime < data.releaseDate; loopTime += 86400000) {
-    arrayLabel.push(loopTime);
-  }
-  data.labels = arrayLabel;
-
-  // Init array
-  data.data = new Array(arrayLabel.length);
-  data.data.fill(data.total);
-
-  // calculate issue point value
-  for (var i in jsonObject.issues) {
-    if (jsonObject.issues[i].fields.resolutiondate != null) {
-      var dec = 1
-      if (jsonObject.issues[i].fields.customfield_10382 !== undefined && jsonObject.issues[i].fields.customfield_10382 !== 0) {
-        dec = jsonObject.issues[i].fields.customfield_10382;
-      }
-      var resolutionDate = new Date(jsonObject.issues[i].fields.resolutiondate);
-      resolutionDate.setUTCHours(0, 0, 0, 0);
-      for (var i = (resolutionDate.getTime() - data.startDate) / 86400000; i < data.data.length; i++) {
-        data.data[i] -= dec;
-      }
-    }
-  }
-
-  // Set to 0 all new date
-  for (var i in data.data) {
-    if (new Date().getTime() < data.labels[i]) {
-      data.data[i] = 0;
-    }
-  }
-
-
-  return JSON.stringify(data);
 }

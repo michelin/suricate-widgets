@@ -3,11 +3,11 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Burndown'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_JQL'
-    description: 'Jira JQl Query'
+    description: 'Jira JQL query'
     type: TEXT
     usageExample: 'fixVersion = "XXX 1.1"'
     required: true
