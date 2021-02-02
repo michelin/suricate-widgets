@@ -55,7 +55,8 @@ function run() {
 		data.data.push(data.total);
 	}
 
-	// calculate issue point value
+	// For all issues, check the resolution date. If set, decrease the number of issues to solve in the chronology starting from the
+	// resolution date of the current issue
 	jsonObject.issues.forEach(function(issue) {
 		if (issue.fields.resolutiondate) {
 		  var dec = 1
