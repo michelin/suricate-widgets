@@ -26,9 +26,9 @@ widgetParams:
     required: true
   -
     name: 'SURI_NB_PERIOD'
-    description: 'Number of periods'
-    type: TEXT
-    defaultValue: '1'
+    description: 'Unit of the selected period'
+    type: 'NUMBER'
+    defaultValue: 1
     required: true
   -
     name: 'SURI_VIEW'
