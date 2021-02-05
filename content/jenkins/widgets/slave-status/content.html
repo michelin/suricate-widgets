@@ -3,10 +3,10 @@
       <h1 class="title">{{SURI_TITLE}}</h1>
       <div>
          {{#ok}}
-         <h2>{{nbUp}} slaves up</h2>
+         <h2>{{nbUp}} slave(s) up</h2>
          {{/ok}}
          {{^ok}}
-         <h2>{{nbDown}} slaves offline</h2>
+         <h2>{{nbDown}} slave(s) offline</h2>
          <ul class="hosts">
             {{#slave}}
             <a href="{{WIDGET_CONFIG_JENKINS_URL}}/jenkins/computer/{{name}}/" target="_blank">
