@@ -1,5 +1,0 @@
-name: Active Git jobs
-description: Display the number of active Git jobs during the given period on Jenkins
-technicalName: jenkinsGitJobsRunningOnAPeriod
-delay: 720
-timeout: 600

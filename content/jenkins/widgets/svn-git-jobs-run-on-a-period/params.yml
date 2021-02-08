@@ -9,19 +9,19 @@ widgetParams:
     name: 'SURI_PERIOD'
     description: 'Time period used to filter the jobs by last execution date'
     type: COMBO
-    defaultValue: 'MONTH'
+    defaultValue: 'Month'
     possibleValuesMap:
       -
-        jsKey: 'YEAR'
+        jsKey: 'Year'
         value: 'Year'
       -
-        jsKey: 'MONTH'
+        jsKey: 'Month'
         value: 'Month'
       -
-        jsKey: 'WEEK'
+        jsKey: 'Week'
         value: 'Week'
       -
-        jsKey: 'DAY'
+        jsKey: 'Day'
         value: 'Day'
     required: true
   -
@@ -36,6 +36,22 @@ widgetParams:
     type: TEXT
     usageExample: 'https://jenkins.com/jenkins/view/SC/view/PCR/ or view/SC'
     required: false
+  -
+    name: 'SURI_JOB_SCM_TYPE'
+    description: 'SCM type to display'
+    type: COMBO
+    defaultValue: 'All'
+    possibleValuesMap:
+      -
+        jsKey: 'All'
+        value: 'All'
+      -
+        jsKey: 'Git'
+        value: 'Git'
+      -
+        jsKey: 'SVN'
+        value: 'SVN'
+    required: true
   -
     name: 'SURI_JOB_TYPE'
     description: 'Job type to filter'

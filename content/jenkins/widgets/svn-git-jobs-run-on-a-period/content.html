@@ -1,15 +1,22 @@
 <div class="fullwidget {{#ok}}green{{/ok}}{{^ok}}red{{/ok}}">
    <a href="{{WIDGET_CONFIG_JENKINS_URL}}/jenkins/{{view}}" class="link" target="_blank">
       <div class="grid-stack-item-content-inner">
-         {{#SURI_TITLE}}
          <h1 class="title">{{SURI_TITLE}}</h1>
-         {{/SURI_TITLE}}
-         <div>
+         <div class="infos-container">
             {{#ok}}
-            <h2 class="value">{{gitPercent}}%</h2>
-            <div class="infos">Active Git jobs during last {{SURI_NB_PERIOD }} {{SURI_PERIOD}}(s)</div>
-            <div class="infos">{{typeToFilter }} Git jobs = {{git}} &  {{typeToFilter }} SCM jobs = {{scm }}</div>
-            <div class="infos">{{viewDisplay}}</div>
+				{{#displayGit}} 
+					<h2 class="value">
+						<span class="quantity">{{git}}</span> Git jobs <span class="percentage">({{gitPercent}}%)</span>
+					</h2>
+				{{/displayGit}}
+					
+				{{#displaySVN}}
+					<h2 class="value">
+						<span class="quantity">{{svn}}</span> SVN jobs <span class="percentage">({{svnPercent}}%)</span>
+					</h2>
+				{{/displaySVN}}
+				
+				<div class="infos">Since {{SURI_NB_PERIOD }} {{period}}(s) {{#viewDisplay}}for {{viewDisplay}} {{/viewDisplay}}</div>
             {{/ok}}
             {{^ok}}
             <h2> Jenkins is busy please wait ...</h2>

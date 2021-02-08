@@ -29,23 +29,24 @@ function run() {
   data.svn = 0;
   data.git = 0;
   data.typeToFilter = "";
-  //added to make it more generic
+  
   if (SURI_PERIOD) {
-    if (SURI_PERIOD == "DAY") {
+    if (SURI_PERIOD == "Day") {
       bound.setDate(bound.getDate() - 1 * SURI_NB_PERIOD);
-    } else if (SURI_PERIOD == "WEEK") {
+    } else if (SURI_PERIOD == "Week") {
       bound.setDate(bound.getDate() - 7 * SURI_NB_PERIOD);
-    } else if (SURI_PERIOD == "MONTH") {
+    } else if (SURI_PERIOD == "Month") {
       bound.setMonth(bound.getMonth() - 1 * SURI_NB_PERIOD);
-    } else if (SURI_PERIOD == "YEAR") {
+    } else if (SURI_PERIOD == "Year") {
       bound.setFullYear(bound.getFullYear() - 1 * SURI_NB_PERIOD);
     }
   }
-  //to manage filter on job type
+  
   bound_timestamp = bound.getTime();
   if (SURI_JOB_TYPE == "All") {
     typeToFilter = null
   }
+  
   var view = "";
   if (SURI_VIEW != null) {
     view = SURI_VIEW.replace(jenkins_host, "").replace("//", "/");
@@ -56,11 +57,13 @@ function run() {
       view = view + "/"
     }
   }
+  
   data.view = view;
   data.viewDisplay = view.replace(new RegExp("view/", 'g'), "").replace(new RegExp("/$", 'g'), "");
   getContent(jenkins_host + view + api_query);
   data.ok = true;
   data.total = data.allJobs.length;
+  
   if (typeToFilter) {
     data.activeToDisplay = data.activeTypeToFilter;
     data.totalToDisplay = data.active
@@ -69,9 +72,22 @@ function run() {
     data.activeToDisplay = data.active;
     data.totalToDisplay = data.total
   }
+    
+  if (SURI_JOB_SCM_TYPE) {
+	if (SURI_JOB_SCM_TYPE === 'All' || SURI_JOB_SCM_TYPE === 'Git') {
+		data.displayGit = true;
+	}
+	
+	if (SURI_JOB_SCM_TYPE === 'All' || SURI_JOB_SCM_TYPE === 'SVN') {
+		data.displaySVN = true;
+	}
+  }
+  
   data.scm = data.git + data.svn;
-  data.gitPercent = (data.git / data.scm) * 100;
-  data.gitPercent = Math.round(data.gitPercent)
+  data.gitPercent = Math.round((data.git / data.scm) * 100);
+  data.svnPercent = Math.round((data.svn / data.scm) * 100);
+  data.period = SURI_PERIOD.toLowerCase();
+  
   return JSON.stringify(data);
 }
 
@@ -80,6 +96,7 @@ function getContent(url) {
   if (jsonResponse_jobs == null) {
     return null;
   }
+  
   var jsonObject_jobs = JSON.parse(jsonResponse_jobs);
   if (SURI_VIEW != null && jsonObject_jobs.views != undefined) {
     for (var i in jsonObject_jobs.views) {
@@ -94,7 +111,7 @@ function getContent(url) {
       if (jsonObject_jobs.jobs[j].lastBuild != null && jsonObject_jobs.jobs[j].lastBuild.timestamp > bound_timestamp) {
         data.active++;
         if (typeToFilter && jsonObject_jobs.jobs[j].name.indexOf(typeToFilter) > -1) {
-          //With filter (example : Check if git or svn is used for only generic jobs)
+          // With filter (example : Check if git or svn is used for only generic jobs)
           data.activeTypeToFilter++;
           if (jsonObject_jobs.jobs[j].scm != null && jsonObject_jobs.jobs[j].scm._class == "hudson.scm.SubversionSCM") {
             data.svn++

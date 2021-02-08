@@ -1,12 +1,21 @@
 .widget.jenkinsGitJobsRunningOnAPeriod .infos {
 	font-size: 15px;
 	padding-top: 10px;
-	text-transform: uppercase;
+}
+
+.widget.jenkinsGitJobsRunningOnAPeriod .percentage {
+	font-style: italic;
+}
+
+.widget.jenkinsGitJobsRunningOnAPeriod .quantity {
+	color: #a5d6a7;
 }
 
 .widget.jenkinsGitJobsRunningOnAPeriod .value {
 	font-weight: 700;
-	font-size: 44px;
+	font-size: 30px;
+	text-transform: none;
+	margin: 10px 0;
 }
 
 .widget.jenkinsGitJobsRunningOnAPeriod .icon-background {
