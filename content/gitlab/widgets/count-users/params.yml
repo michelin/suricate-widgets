@@ -1,0 +1,25 @@
+widgetParams:
+  -
+    name: 'SURI_SEARCH_BY_IDENTIFIER'
+    description: 'Filter users by identifier'
+    type: TEXT
+    usageExample: 'jack_smith'
+    required: false
+  -
+    name: 'SURI_SEARCH_BY_NAME'
+    description: 'Filter users by name'
+    type: TEXT
+    usageExample: 'Jack'
+    required: false
+  - 
+    name: 'SURI_STATE'
+    description: 'Filter users by state'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: active
+        value: active
+      -
+        jsKey: blocked
+        value: blocked
+    required: false

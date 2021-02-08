@@ -1,0 +1,4 @@
+name: Number of users
+description: Display the number of users in GitLab
+technicalName: gituser
+delay: 500
