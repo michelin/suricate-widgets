@@ -1,7 +1,9 @@
 <div class="grid-stack-item-content-inner">
    <h1 class="title">GitLab users</h1>
    <h2 class="value">{{countUsers}}</h2>
+   {{#evolution}}
    <p class="change-rate">
       <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}%</span>
    </p>
+   {{/evolution}}
 </div>
