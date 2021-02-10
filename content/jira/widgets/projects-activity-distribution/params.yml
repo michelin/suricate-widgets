@@ -3,11 +3,11 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Jira distribution'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_WEEK'
-    description: 'Period of activity in months'
+    description: 'Period of activity in weeks'
     type: NUMBER
     defaultValue: '12'
     required: true

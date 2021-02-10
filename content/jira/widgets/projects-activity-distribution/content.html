@@ -16,35 +16,11 @@
         var chart = new Chart(ctx, {
           type: '{{{SURI_TYPE_GRAPH}}}',
           data: {
-            labels: {
-              {
-                {
-                  labels
-                }
-              }
-            },
+            labels: {{{labels}}},
             datasets: [{
-              backgroundColor: {
-                {
-                  {
-                    colors
-                  }
-                }
-              },
-              borderColor: {
-                {
-                  {
-                    border
-                  }
-                }
-              },
-              data: {
-                {
-                  {
-                    datapie
-                  }
-                }
-              }
+              backgroundColor: {{{colors}}},
+              borderColor: {{{border}}},
+              data: {{{datapie}}}
             }],
             borderWidth: 1
           },
