@@ -33,7 +33,7 @@ function run() {
 		if (issue.fields.customfield_10611) {
 			updateSprintDate(data, issue.fields.customfield_10611[0]);
 		} else {
-			if (!data.releaseDate) {
+			if (!data.releaseDate && issue.fields.fixVersions[0]) {
 				var release = new Date(issue.fields.fixVersions[0].releaseDate);
 				release.setUTCHours(0, 0, 0, 0);
 				data.releaseDate = release.getTime();
