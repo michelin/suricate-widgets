@@ -13,7 +13,7 @@ widgetParams:
     required: false
   -
     name: 'SURI_SEARCH_BY_IDENTIFIER'
-    description: 'Filter users by identifier'
+    description: 'Filter users by identifier. Substring accepted'
     type: TEXT
     usageExample: 'jack_smith'
     required: false
