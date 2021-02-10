@@ -28,3 +28,8 @@
 	font-weight: 700;
 	font-size: 56px;
 }
+
+.widget.jenkinsactiveusers .info {
+	font-size: 15px;
+	margin-top: 35px;
+}
