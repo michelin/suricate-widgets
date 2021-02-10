@@ -62,7 +62,7 @@ function run() {
 		return user.username;
 	}).filter(onlyUnique).length;
 
-	if (SURI_PREVIOUS) {
+	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).countUsers) {
 		data.evolution = ((data.countUsers - JSON.parse(SURI_PREVIOUS).countUsers) * 100 / JSON.parse(SURI_PREVIOUS).countUsers).toFixed(1);
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
