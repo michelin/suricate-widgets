@@ -15,6 +15,7 @@ widgetParams:
     name: 'SURI_ORDERBY'
     description: 'Order extension by'
     type: COMBO
+    defaultValue: 'ISSUES'
     possibleValuesMap:
       -
         jsKey: 'ISSUES'
@@ -30,6 +31,7 @@ widgetParams:
     name: 'SURI_TYPE_GRAPH'
     description: 'Graph type'
     type: COMBO
+    defaultValue: 'horizontalBar'
     possibleValuesMap:
       -
         jsKey: 'pie'
