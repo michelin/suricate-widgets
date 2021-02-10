@@ -1,0 +1,7 @@
+widgetParams:
+  -
+    name: SURI_PROJECT
+    description: 'Project ID'
+    type: TEXT
+    usageExample: '1234'
+    required: true

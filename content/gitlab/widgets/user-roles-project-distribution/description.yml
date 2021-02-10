@@ -1,0 +1,7 @@
+name: User roles
+description: Display the distribution of roles of a GitLab project
+technicalName: gituserprofile
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js

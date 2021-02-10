@@ -1,0 +1,15 @@
+.widget.gituserprofile {
+    background-color: #607D8B;
+}
+
+.widget.gituserprofile .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget.gituserprofile .value {
+    color: #fff;
+}
+
+.widget.gituserprofile .change-rate i {
+    margin-right: 4px;
+}
