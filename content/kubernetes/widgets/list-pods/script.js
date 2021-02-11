@@ -32,7 +32,7 @@ function run() {
 	
 	if (SURI_PODS_NAME) {
 		pods.items = pods.items.filter(function(pod) {
-			if (pod.name.indexOf(SURI_PODS_NAME) > -1) {
+			if (pod.metadata.name.indexOf(SURI_PODS_NAME) > -1) {
 				return pod;
 			}
 		});
