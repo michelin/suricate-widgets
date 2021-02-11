@@ -1,7 +1,7 @@
 widgetParams:
   -
     name: 'SURI_JOB'
-    description: 'Job name to check'
+    description: 'Job name'
     type: TEXT
     usageExample: 'DeploySpringBoot-monitor_back'
     required: true
