@@ -18,9 +18,9 @@ function run() {
 	var data = {};
 	
 	var pods = JSON.parse(
-		Packages.get(WIDGET_CONFIG_KUBERNETES_URL + "/api/v1/namespaces/" + SURI_NAMESPACE + "/pods?limit=500", 
+		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + SURI_NAMESPACE + "/pods?limit=500", 
 					 "Authorization", 
-					 "Bearer " + WIDGET_CONFIG_KUBERNETES_TOKEN));
+					 "Bearer " + SURI_SERVICE_ACCOUNT_TOKEN));
 	
 	if (SURI_STATUS && SURI_STATUS != 'All') {
 		pods.items = pods.items.filter(function(pod) {
@@ -29,7 +29,15 @@ function run() {
 			}
 		});
 	}
-		
+	
+	if (SURI_PODS_NAME) {
+		pods.items = pods.items.filter(function(pod) {
+			if (pod.name.indexOf(SURI_PODS_NAME) > -1) {
+				return pod;
+			}
+		});
+	}
+	
 	if (SURI_ORDER_BY) {
 		if (SURI_ORDER_BY === 'START_DATE_ASC') {
 			pods.items.sort(orderByStartedDateAsc);

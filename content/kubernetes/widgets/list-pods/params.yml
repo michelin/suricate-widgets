@@ -12,6 +12,12 @@ widgetParams:
     usageExample: 'namespace'
     required: true
   -
+    name: 'SURI_SERVICE_ACCOUNT_TOKEN'
+    description: 'Service account token'
+    type: TEXT
+    usageExample: 'eyJhbGciOiJSU'
+    required: true
+  -
     name: 'SURI_ORDER_BY'
     description: 'Order the pods by'
     type: COMBO
@@ -28,7 +34,7 @@ widgetParams:
     name: 'SURI_TOP'
     description: 'Number of pods to display. All by default'
     type: NUMBER
-    defaultValue: 3
+    usageExample: 3
     required: false
   -
     name: 'SURI_STATUS'
@@ -55,3 +61,9 @@ widgetParams:
         jsKey: Unknown
         value: Unknown
     required: true
+  -
+    name: 'SURI_PODS_NAME'
+    description: 'Filter on the name of the pods. Substring accepted'
+    type: TEXT
+    usageExample: 'frontend'
+    required: false

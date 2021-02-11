@@ -2,8 +2,5 @@ name: Kubernetes
 technicalName: kubernetes
 configurations:
   -
-    key: 'WIDGET_CONFIG_KUBERNETES_URL'
-    dataType: TEXT
-  -
-    key: 'WIDGET_CONFIG_KUBERNETES_TOKEN'
+    key: 'WIDGET_CONFIG_KUBERNETES_API_SERVER'
     dataType: TEXT
