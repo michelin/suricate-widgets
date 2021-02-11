@@ -3,12 +3,7 @@
       <div class="grid-stack-item-content-inner">
          <h1 class="title">{{SURI_TITLE}}</h1>
          <div>
-            {{#ok}}
-            <h2>There is {{nbWaitingJobs}} jobs waiting in jenkins queue since more than {{limit}} minutes.</h2>
-            {{/ok}}
-            {{^ok}}
-            <h2>There is {{nbWaitingJobs}} jobs waiting in jenkins queue since more than {{limit}} minutes.</h2>
-            {{/ok}}
+            <h2>There is {{nbWaitingJobs}} jobs waiting in Jenkins queue since more than {{limit}} minutes.</h2>
          </div>
       </div>
       {{#ok}} <i class="fa fa-check icon-background"></i> {{/ok}}

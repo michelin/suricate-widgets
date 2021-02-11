@@ -3,15 +3,17 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Jenkins waiting queue'
+    usageExample: 'My title'
     required: true
   -
     name: 'SURI_LIMIT'
-    description: 'Max time in queue (in minutes)'
+    description: 'Maximum time in queue (in minutes)'
     type: NUMBER
+    usageExample: 60
     required: true
   -
     name: 'SURI_CRITICAL_LIMIT'
-    description: 'MAX authorized number of jobs in queue'
+    description: 'Maximum number of jobs in the queue to trigger an alarm'
     type: NUMBER
+    usageExample: 10
     required: true
