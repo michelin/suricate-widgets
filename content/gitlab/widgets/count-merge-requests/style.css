@@ -4,6 +4,7 @@
 
 .widget.gitlabOpenedMR .title {
 	color: rgba(226, 67, 41, 0.7);
+	text-transform: capitalize;
 }
 
 .widget.gitlabOpenedMR .value {
@@ -23,4 +24,9 @@
 	position: absolute;
 	bottom: 5%;
 	left: 5%;
+}
+
+.widget.gitlabOpenedMR .issues-label {
+	font-size: 40px;
+	text-transform: none;
 }
