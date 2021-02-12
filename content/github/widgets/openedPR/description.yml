@@ -1,4 +1,0 @@
-name: Number of pull requests opened for a given project
-description: Display the current number of opened pull requests on a GitHub project
-technicalName: githubOpenedPR
-delay: 500

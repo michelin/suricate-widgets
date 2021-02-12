@@ -1,0 +1,4 @@
+name: Number of pull requests
+description: Display the number of pull requests of a GitHub project
+technicalName: githubOpenedPR
+delay: 600
