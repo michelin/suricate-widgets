@@ -16,20 +16,21 @@
 
 function run() {
 	var data = {};
+	var perPage = 100;
 	var pullRequests = [];
 	var page = 1;
 	
 	var response = JSON.parse(
-					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=100&state=" + SURI_ISSUES_STATE,
+					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_PR_STATE,
 					"Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
 	
 	pullRequests = pullRequests.concat(response);
 
-	while (response && response.length > 0) {
+	while (response && response.length > 0 && response.length === perPage) {
 		page++;
 		
 		response = JSON.parse(
-					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=100&state=" + SURI_ISSUES_STATE,
+					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_PR_STATE,
 					"Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
 		
 		pullRequests = pullRequests.concat(response);
