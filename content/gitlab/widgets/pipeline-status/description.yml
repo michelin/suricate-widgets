@@ -1,0 +1,4 @@
+name: Pipeline status
+description: Display the status of the last GitLab CI/CD pipeline
+technicalName: gitlabPipelineStatus
+delay: 300
