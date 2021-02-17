@@ -1,0 +1,26 @@
+<div class="fullwidget" style=" background-color: {{hexaColor}}; color:{{textColor}}">
+    <h1 class="title">{{SURI_TITLE}}</h1>
+
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="0">
+        <filter id="myMask-{{SURI_INSTANCE_ID}}">
+            <feColorMatrix in="SourceGraphic"
+                           type="matrix"
+                           values="{{matrixColor}}" />
+        </filter>
+    </svg>
+
+    <div class="iframe-container">
+        <iframe src="" id="iframe-{{SURI_INSTANCE_ID}}" style="filter: url(#myMask-{{SURI_INSTANCE_ID}});" frameborder="0" align="top"></iframe>
+    </div>
+
+    <script>
+		$(function(){
+			var url = '{{SURI_DATA_URL}}';
+			var decoded = $('<textarea/>').html(url).text();
+
+			document.getElementById('iframe-{{SURI_INSTANCE_ID}}').src = decoded;
+		});
+    </script>
+
+    <p class="updated-at" style="color:{{textColor}}">Last update at {{timestamp}}</p>
+</div>

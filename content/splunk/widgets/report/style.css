@@ -1,0 +1,54 @@
+.widget.splunkreport {
+     background-color: rgba(255, 255, 255, 1);
+}
+
+.widget.splunkreport .title{
+    z-index: 1;
+}
+
+.widget.splunkreport .info{
+    z-index: 1;
+}
+
+.widget.splunkreport .iframe-container {
+    overflow: hidden;
+    height: 100%;
+    position: relative; 
+}
+
+.widget.splunkreport .iframe-container iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+ }
+
+.widget.splunkreport .grid-stack h1 {
+    margin-bottom: 0px;
+}
+
+.widget.splunkreport .chart-container{
+    padding:10px;
+    z-index:0;
+}
+
+.widget.splunkreport .value-container{
+    position: relative;
+    z-index:1;
+    margin-top: 10%;
+}
+
+.widget.splunkreport .value {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -5%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.widget.splunkreport .show-value {
+    margin-left: 4%;
+    margin-right: 4%
+}
+

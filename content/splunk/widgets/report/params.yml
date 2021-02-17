@@ -1,0 +1,47 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: TEXT
+    usageExample: 'My title'
+    required: true
+  -
+    name: 'SURI_DATA_URL'
+    description: 'Embedded Splunk report URL'
+    usageExample: 'https://splunk.com/en-US/embed/...'
+    type: TEXT
+    required: true
+  -
+    name: 'SURI_COLOR'
+    description: 'Background color of the report'
+    type: COMBO
+    defaultValue: 'CHOICE6'
+    possibleValuesMap:
+      -
+        jsKey: CHOICE1
+        value: Yellow
+      -
+        jsKey: CHOICE2
+        value: Orange
+      -
+        jsKey: CHOICE3
+        value: Red
+      -
+        jsKey: CHOICE4
+        value: Emerald
+      -
+        jsKey: CHOICE5
+        value: Sand
+      -
+        jsKey: CHOICE6
+        value: White
+      -
+        jsKey: CHOICE7
+        value: Green
+      -
+        jsKey: CHOICE8
+        value: Soft Grey
+      -
+        jsKey: CHOICE9
+        value: Dark Grey
+    required: false

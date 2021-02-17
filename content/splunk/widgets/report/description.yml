@@ -1,0 +1,6 @@
+name: Report
+description: Display a Splunk report
+technicalName: splunkreport
+delay: 300
+libraries:
+  - chart.js
