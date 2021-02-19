@@ -1,0 +1,20 @@
+<div class="grid-stack-item-content-inner runner-container">
+    <h1 class="title">{{SURI_TITLE}}</h1>
+    <ul>
+        {{#items}}
+        <li>
+            <i class="fa
+                {{#online}}fa-play-circle-o online{{/online}}
+                {{#paused}}fa-pause-circle-o paused{{/paused}}
+                {{#offline}}fa-stop-circle-o offline{{/offline}}"></i>
+            {{description}}
+        </li>
+        {{/items}}
+        {{^items}}
+        <li class="no-runner">
+            No runner to display
+        </li>
+        {{/items}}
+    </ul>
+    <div class="gitlab"></div>
+</div>

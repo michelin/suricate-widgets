@@ -1,0 +1,4 @@
+name: specific runner status
+description: Display the status of the GitLab specific runner
+technicalName: gitlabRunnerStatus
+delay: 300
