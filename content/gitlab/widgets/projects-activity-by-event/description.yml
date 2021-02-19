@@ -1,4 +1,4 @@
-name: Most active projects
+name: Projects activity by event
 description: Display the activity of projects in GitLab by counting the amount of events (limited to 100)
 technicalName: gitprojectpie
 delay: 500
