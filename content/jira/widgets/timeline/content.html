@@ -8,7 +8,8 @@
 
      function loadTimeline{{SURI_INSTANCE_ID}}() {
        var id = $(".widget-{{SURI_INSTANCE_ID}} .timeline");
-       var data = '{{{data}}}';
+       var data = JSON.stringify({{{data}}});
+	   
        if (data.length !== 0) {
          TimeKnots.draw(".widget-{{SURI_INSTANCE_ID}} .timeline", JSON.parse(data), {
            horizontalLayout: false,
