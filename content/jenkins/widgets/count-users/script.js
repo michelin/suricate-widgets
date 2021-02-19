@@ -15,11 +15,7 @@
 */
 
 function run() {
-	// previous data
-	var data = JSON.parse(SURI_PREVIOUS);
-	if (data == null) {
-		data = {};
-	}
+	var data = {};
 
 	if (!SURI_SEARCH_BY_IDENTIFIER) {
 		var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";

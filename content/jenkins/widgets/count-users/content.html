@@ -6,6 +6,7 @@
       <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
    </p>
    {{/evolution}}
-   <p class="info">Since {{date}}</p>
+   <p class="info">{{#date}} Since {{date}} {{/date}}</p>
+   <p class="info">{{^date}} From the beginning {{/date}}</p>
 </div>
 <div class="jenkins"></div>
