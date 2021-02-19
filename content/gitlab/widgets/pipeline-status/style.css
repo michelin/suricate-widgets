@@ -44,26 +44,42 @@
 	margin-top: 35px !important;
 }
 
-.widget.gitlabPipelineStatus .title {
+.widget.gitlabPipelineStatus .project-name {
 	font-size: 23px;
-	margin-bottom: 25px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.widget.gitlabPipelineStatus .title .project-name {
+	margin: 10px 0 10px 0;
 	text-transform: capitalize;
 }
 
 .widget.gitlabPipelineStatus .infos {
-	font-size: 15px;
-	padding-top: 10px;
+	font-size: 1.5em;
+	padding: 20px 0 20px 0;
 }
 
 .widget.gitlabPipelineStatus .builtby {
+	font-size: 0.8em;
 	text-transform: uppercase;
+}
+
+.widget.gitlabPipelineStatus .branch {
+	font-size: 0.8em;
+}
+
+.widget.gitlabPipelineStatus .calendar {
+	font-size: 0.8em;
+	margin-bottom: 20px;
 }
 
 .widget.gitlabPipelineStatus .value {
 	font-size: 22px;
+}
+
+.widget.gitlabPipelineStatus i {
+	margin-right: 5px;
+}
+
+.widget.gitlabPipelineStatus .duration {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 25px;
+	justify-content: space-around;
 }

@@ -1,15 +1,18 @@
-<div class="fullwidget {{status}}">
-   <i class="fa-fix fa 
-				{{#success}}fa-thumbs-up{{/success}} 
-				{{#failed}}fa-thumbs-down{{/failed}} 
-				{{#running}}fa-running{{/running}} 
-				{{#otherStatus}}fa-exclamation-triangle{{/otherStatus}} 
+<div class="grid-stack-item-content-inne fullwidget {{status}}">
+   <i class="fa-fix fa
+				{{#success}}fa-thumbs-up{{/success}}
+				{{#failed}}fa-thumbs-down{{/failed}}
+				{{#running}}fa-running{{/running}}
+				{{#otherStatus}}fa-exclamation-triangle{{/otherStatus}}
 				icon-background icon-background-opacity"></i>
-				
-   <div class="grid-stack-item-content-inner">
-      <h1 class="title"><span class="project-name">{{project}}</span> {{#branch}} on branch {{branch}} {{/branch}}</h1>
-      <h2 class="title">{{status}}</h2>
-      <p class="value">by {{name}} - {{username}}</p>
-   </div>
+    <h2 class="project-name">{{project}}</h2>
+    <h4 class="branch"><i class="fas fa-code-branch"></i>{{branch}}</h4>
+    <p class="infos">{{status}}</p>
+    <p class="calendar"><i class="far fa-calendar-alt"></i>{{createDate}}</p>
+    <div class="duration">
+        <div><i class="far fa-hourglass"></i>{{waitDuration}}</div>
+        {{#duration}}<div><i class="fas fa-stopwatch"></i>{{duration}}</div>{{/duration}}
+    </div>
+    <p><span class="builtby"><i class="fas fa-user-alt"></i>{{name}}</span></p>
    <div class="gitlab"></div>
 </div>

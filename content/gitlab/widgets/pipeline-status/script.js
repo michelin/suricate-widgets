@@ -15,39 +15,70 @@
   */
 
 function run() {
-	var data = {};
+    var data = {};
 
-	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
+    data.project = JSON.parse(
+        Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
 
-	var url = WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines?per_page=100&page=1";
-	
-	if (SURI_PROJECT_BRANCH) {
-		url += "&ref=" + SURI_PROJECT_BRANCH;
-	}
-	
-	var pipelines = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	
-	if (pipelines && pipelines.length > 0) {
-		data.status = pipelines[0].status;
-		
-		var pipeline = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines/" + pipelines[0].id + "?per_page=100&page=1", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	
-		data.name = pipeline.user.name;
-		data.username = pipeline.user.username;
-		data.branch = SURI_PROJECT_BRANCH;
-		
-		if (data.status === 'success') {
-			data.success = true;
-		} else if (data.status === 'failed') {
-			data.failed = true;
-		} else if (data.status === 'running') {
-			data.running = true;
-		} else {
-			data.otherStatus = true;
-		}
-	}
-		
-	return JSON.stringify(data);
+    var url = WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines?per_page=100&page=1";
+
+    if (SURI_PROJECT_BRANCH) {
+        url += "&ref=" + SURI_PROJECT_BRANCH;
+    }
+
+    var pipelines = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+
+    if (pipelines && pipelines.length > 0) {
+        var pipeline = JSON.parse(
+            Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines/" + pipelines[0].id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+
+        data.status = pipeline.status;
+        data.branch = pipeline['ref'];
+        data.name = pipeline.user.name;
+        data.username = pipeline.user.username;
+
+        if (data.status === 'success') {
+            data.success = true;
+        } else if (data.status === 'failed') {
+            data.failed = true;
+        } else if (data.status === 'running') {
+            data.running = true;
+        } else {
+            data.otherStatus = true;
+        }
+
+        if (pipeline.duration !== null) {
+            data.duration = formattedDuration(pipeline.duration);
+        }
+
+        if (pipeline.status !== 'canceled') {
+            var waitingTime = pipeline['started_at'] !== null ? new Date(pipeline['started_at']) - new Date(pipeline['created_at'])
+                : new Date.now() - new Date(pipeline['created_at']);
+            data.waitDuration = formattedDuration(Math.abs(waitingTime / 1000));
+        }
+
+        data.createDate = formattedDate(new Date(pipeline['created_at']));
+    }
+
+    return JSON.stringify(data);
+}
+
+function formattedDuration(duration) {
+    var hours = Math.floor(duration / 60 / 60);
+    var minutes = Math.floor(duration / 60 ) - (hours * 60);
+    var seconds = Math.floor(duration % 60);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ':' + minutes + ':' + seconds;
+}
+
+function formattedDate(date) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    return year + '/' + ((month < 10) ? '0' + month : month) + '/' + ((day < 10) ? '0' + day : day);
 }
