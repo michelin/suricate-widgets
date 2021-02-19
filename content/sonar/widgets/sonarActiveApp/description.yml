@@ -1,7 +1,0 @@
-name: Active sonar applications
-description: Display the Sonar active applications
-technicalName: sonaractiveapps
-delay: 500
-libraries:
-  - chart.js
-  - chart.piecelabel.js

@@ -1,0 +1,7 @@
+name: Projects activity by analyse
+description: Display the most active projects by number of analyses
+technicalName: sonaractiveapps
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js

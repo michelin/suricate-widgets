@@ -1,0 +1,51 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: TEXT
+    usageExample: 'My title'
+    required: true
+  -
+    name: 'SURI_PROJECT'
+    description: 'Projects names (substring accepted) or projects keys (full match only), separated by a comma'
+    type: TEXT
+    usageExample: 'ProjectName1,com.project2.key:ProjectName2,ProjectName3'
+    required: true
+  -
+    name: 'SURI_PERIOD'
+    description: 'Retrieve the analyses from a period'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: Year
+        value: Year
+      -
+        jsKey: Month
+        value: Month
+      -
+        jsKey: Week
+        value: Week
+      -
+        jsKey: Day
+        value: Day
+    required: false
+  -
+    name: 'SURI_NUMBER_OF_PERIOD'
+    description: 'Unit of the selected period'
+    type: NUMBER
+    usageExample: 1
+    required: false
+  -
+    name: 'SURI_TYPE_GRAPH'
+    description: 'Graph type'
+    type: 'COMBO'
+    possibleValuesMap:
+      -
+        jsKey: 'pie'
+        value: 'Pie'
+      -
+        jsKey: 'horizontalBar'
+        value: 'Horizontal bar'
+      -
+        jsKey: 'bar'
+        value: 'Vertical bar'
