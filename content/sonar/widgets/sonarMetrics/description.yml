@@ -1,4 +1,0 @@
-name: Metrics
-description: Display the Sonar application key numbers
-technicalName: sonar
-delay: 500

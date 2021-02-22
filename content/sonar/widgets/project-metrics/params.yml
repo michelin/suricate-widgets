@@ -3,41 +3,41 @@ widgetParams:
     name: 'SURI_TITLE'
     description: 'Widget title'
     type: TEXT
-    defaultValue: 'Sonar Metrics'
+    usageExample: 'My title'
     required: true
   -
-    name: 'SURI_PROJECT'
-    description: 'Project group Id and artifact ID'
+    name: 'SURI_PROJECT_KEY'
+    description: 'Project key'
     type: TEXT
-    usageExample: 'group.id:artifact.id'
+    usageExample: 'com.project.key:ProjectName'
     required: true
   -
     name: 'SURI_METRICS'
-    description: 'List of metrics to display'
+    description: 'Metrics to display'
     type: MULTIPLE
     possibleValuesMap:
       -
         jsKey: 'ncloc'
-        value: 'Line of code'
+        value: 'Lines of code'
       -
         jsKey: 'public_documented_api_density'
-        value: 'Public Documented Api'
+        value: 'Public documented API (%)'
       -
         jsKey: 'files'
-        value: 'Number Of Files'
+        value: 'Number of files'
       -
         jsKey: 'functions'
-        value: 'Functions'
+        value: 'Number of functions'
       -
         jsKey: 'sqale_index'
-        value: 'Total Effort To Fix All The Issues'
+        value: 'Technical debt (total effort (in hours) to fix all the issues)'
       -
         jsKey: 'blocker_violations'
-        value: 'Blocker Issues'
+        value: 'Number of issues with blocker severity'
       -
         jsKey: 'critical_violations'
-        value: 'Critical Issues'
+        value: 'Number of issues with critical severity'
       -
         jsKey: 'test_success_density'
-        value: 'Unit Test Success'
+        value: 'Unit test success density (%)'
     required: true

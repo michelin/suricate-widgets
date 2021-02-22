@@ -1,0 +1,4 @@
+name: Metrics
+description: Display the selected Sonar metrics of an application
+technicalName: sonar
+delay: 500
