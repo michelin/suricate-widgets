@@ -1,9 +1,9 @@
 .widget.gitextensionpie {
-    background-color:#607D8B;
+    background-color: #FCA326;
 }
 
 .widget.gitextensionpie .title {
-    color: rgba(255, 255, 255, 0.7);
+    color: #E24329;
 }
 
 .widget.gitextensionpie .value {
@@ -11,5 +11,5 @@
 }
 
 .widget.gitextensionpie .change-rate i {
-    margin-right:4px;
+    margin-right: 4px;
 }
