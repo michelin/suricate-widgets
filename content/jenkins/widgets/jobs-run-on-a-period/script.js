@@ -45,6 +45,8 @@ function run() {
     } else if (SURI_PERIOD === "YEAR") {
       bound.setFullYear(bound.getFullYear() - 1 * SURI_NB_PERIOD);
     }
+	
+	bound.setUTCHours(0, 0, 0, 0);
   }
   //to manage filter on job type
   bound_timestamp = bound.getTime();
