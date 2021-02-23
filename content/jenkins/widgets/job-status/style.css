@@ -1,3 +1,7 @@
+.widget.jenkinsjobstatus {
+	background-color: #335061;
+}
+
 .widget.jenkinsjobstatus .green {
 	background-color: #86d751;
 }
@@ -16,10 +20,6 @@
 
 .widget.jenkinsjobstatus .orange {
 	background-color: #e3ad15;
-}
-
-.widget.jenkinsjobstatus {
-	background-color: #86d751;
 }
 
 .widget.jenkinsjobstatus .jenkins {
