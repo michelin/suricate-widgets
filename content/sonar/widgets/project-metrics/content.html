@@ -1,17 +1,19 @@
-<a href="{{WIDGET_CONFIG_SONAR_URL}}/sonar/dashboard/index?id={{SURI_PROJECT_KEY}}" target="_blank">
-   <div class="fullwidget">
-      <div class="grid-stack-item-content-inner">
-         <h1 class="title">{{SURI_TITLE}}</h1>
-         <ul>
-            {{#results}}
-            <li>
-               <span class="label">{{title}}</span>
-               <span class="value">{{value}}</span>
-            </li>
-            {{/results}}
-         </ul>
-         <i class="fa fa-heartbeat icon-background"></i>
-      </div>
-   </div>
-</a>
+<div class="grid-stack-item-content-inner">
+	<a href="{{WIDGET_CONFIG_SONAR_URL}}/sonar/dashboard/index?id={{SURI_PROJECT_KEY}}" target="_blank">
+	   <div class="fullwidget">
+		  <div class="grid-stack-item-content-inner">
+			 <h1 class="title">{{SURI_TITLE}}</h1>
+			 <ul>
+				{{#results}}
+				<li>
+				   <span class="label">{{title}}</span>
+				   <span class="value">{{value}}</span>
+				</li>
+				{{/results}}
+			 </ul>
+			 <i class="fa fa-heartbeat icon-background"></i>
+		  </div>
+	   </div>
+	</a>
+</div>
 <div class="sonarqube"></div>
