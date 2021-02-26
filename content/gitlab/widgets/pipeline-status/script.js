@@ -36,7 +36,21 @@ function run() {
 	
 		data.name = pipeline.user.name;
 		data.username = pipeline.user.username;
-		data.branch = SURI_PROJECT_BRANCH;
+		data.branch = pipeline.ref;
+		data.url = pipeline.web_url;
+		data.createdAt = formatDate(pipeline.created_at);
+		
+		if (pipeline.duration) {
+            data.duration = secondsToDuration(pipeline.duration);
+        } else {
+			data.duration = 'N/A';
+		}
+		
+		if (pipeline.started_at) {
+			data.waitingTimeBeforeStarting = secondsToDuration((new Date(pipeline.started_at).getTime() - new Date(pipeline.created_at).getTime()) / 1000);
+		} else {
+			data.waitingTimeBeforeStarting = secondsToDuration((new Date().getTime() - new Date(pipeline.created_at).getTime()) / 1000) + (' (not started yet)');
+		}
 		
 		if (data.status === 'success') {
 			data.success = true;
@@ -50,4 +64,34 @@ function run() {
 	}
 		
 	return JSON.stringify(data);
+}
+
+function secondsToDuration(duration) {
+    var hours = Math.floor(duration / 3600);
+    var minutes = Math.floor(duration / 60 ) - (hours * 60);
+    var seconds = Math.floor(duration % 60);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ':' + minutes + ':' + seconds;
+}
+
+function formatDate(date) {
+    var hours = new Date(date).getHours() < 10 ? "0" + new Date(date).getHours() : new Date(date).getHours();
+    var minutes = new Date(date).getMinutes() < 10 ? "0" + new Date(date).getMinutes() : new Date(date).getMinutes();
+    var seconds = new Date(date).getSeconds() < 10 ? "0" + new Date(date).getSeconds() : new Date(date).getSeconds();
+	
+	return new Date(date).getFullYear() 
+			+ "-" 
+			+ ("0" + (new Date(date).getMonth() + 1)).slice(-2) 
+			+ "-" 
+			+ ("0" + new Date(date).getUTCDate()).slice(-2)
+			+ " "
+			+ hours
+			+ ":"
+			+ minutes
+			+ ":"
+			+ seconds;
 }

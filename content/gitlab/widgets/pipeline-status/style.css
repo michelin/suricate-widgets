@@ -55,15 +55,20 @@
 	text-transform: capitalize;
 }
 
-.widget.gitlabPipelineStatus .infos {
-	font-size: 15px;
-	padding-top: 10px;
-}
-
-.widget.gitlabPipelineStatus .builtby {
-	text-transform: uppercase;
-}
-
 .widget.gitlabPipelineStatus .value {
 	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+.widget.gitlabPipelineStatus .time-table {
+	width: 225px;
+	margin: 10px auto;
+}
+
+.widget.gitlabPipelineStatus .time-value {
+	font-size: 16px;
+}
+
+.widget.gitlabPipelineStatus .user-value {
+	margin-top: 25px;
 }
