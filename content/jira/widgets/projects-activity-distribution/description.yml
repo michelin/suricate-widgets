@@ -1,4 +1,4 @@
-name: JIRA distribution activity
+name: Projects activity distribution
 description: Display the most active projects in Jira during the last weeks
 info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jiradistribution
