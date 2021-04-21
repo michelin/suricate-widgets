@@ -36,6 +36,7 @@ function run() {
 		pullRequests = pullRequests.concat(response);
 	}
 	
+	// The response contains the issues and the pull requests. Here, we only keep the real pull requests
 	pullRequests = pullRequests.filter(function(pullRequest) {
 		if (pullRequest.pull_request) {
 			return pullRequest;
@@ -44,8 +45,13 @@ function run() {
 	
 	data.numberOfPRs = pullRequests.length;
 	
-	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfPRs) {
-		data.evolution = ((data.numberOfPRs - JSON.parse(SURI_PREVIOUS).numberOfPRs) * 100 / JSON.parse(SURI_PREVIOUS).numberOfPRs).toFixed(1);
+	if (SURI_PREVIOUS) {
+		if (JSON.parse(SURI_PREVIOUS).numberOfPRs) {
+			data.evolution = ((data.numberOfPRs - JSON.parse(SURI_PREVIOUS).numberOfPRs) * 100 / JSON.parse(SURI_PREVIOUS).numberOfPRs).toFixed(1);
+		} else {
+			data.evolution = (0).toFixed(1);
+		}
+		
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
 	

@@ -36,6 +36,7 @@ function run() {
 		issues = issues.concat(response);
 	}
 	
+	// The response contains the issues and the pull requests. Here, we only keep the real issues
 	issues = issues.filter(function(issue) {
 		if (!issue.pull_request) {
 			return issue;
@@ -44,8 +45,13 @@ function run() {
 	
 	data.numberOfIssues = issues.length;
 	
-	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfIssues) {
-		data.evolution = ((data.numberOfIssues - JSON.parse(SURI_PREVIOUS).numberOfIssues) * 100 / JSON.parse(SURI_PREVIOUS).numberOfIssues).toFixed(1);
+	if (SURI_PREVIOUS) {
+		if (JSON.parse(SURI_PREVIOUS).numberOfIssues) {
+			data.evolution = ((data.numberOfIssues - JSON.parse(SURI_PREVIOUS).numberOfIssues) * 100 / JSON.parse(SURI_PREVIOUS).numberOfIssues).toFixed(1);
+		} else {
+			data.evolution = (0).toFixed(1);
+		}
+		
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
 	
