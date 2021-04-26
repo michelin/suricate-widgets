@@ -15,8 +15,11 @@ widgetParams:
     name: 'SURI_COLOR'
     description: 'Background color of the report'
     type: COMBO
-    defaultValue: 'CHOICE6'
+    defaultValue: 'CHOICE0'
     possibleValuesMap:
+      -
+        jsKey: CHOICE0
+        value: Splunk
       -
         jsKey: CHOICE1
         value: Yellow
@@ -44,4 +47,4 @@ widgetParams:
       -
         jsKey: CHOICE9
         value: Dark Grey
-    required: false
+    required: true
