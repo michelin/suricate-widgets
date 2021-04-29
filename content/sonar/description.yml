@@ -4,3 +4,6 @@ configurations:
   -
     key: 'WIDGET_CONFIG_SONAR_URL'
     dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_SONAR_TOKEN'
+    dataType: TEXT

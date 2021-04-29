@@ -39,6 +39,7 @@ widgetParams:
     name: 'SURI_TYPE_GRAPH'
     description: 'Graph type'
     type: 'COMBO'
+    defaultValue: 'bar'
     possibleValuesMap:
       -
         jsKey: 'pie'
