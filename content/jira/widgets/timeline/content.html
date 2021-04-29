@@ -10,10 +10,14 @@
 
      function loadTimeline{{SURI_INSTANCE_ID}}() {
        var id = $(".widget-{{SURI_INSTANCE_ID}} .timeline");
-       var data = JSON.stringify({{{data}}});
+	   
+       var data;
+
+	   {{#data}}
+	   data = {{{data}}};
 	   
        if (data.length !== 0) {
-         TimeKnots.draw(".widget-{{SURI_INSTANCE_ID}} .timeline", JSON.parse(data), {
+         TimeKnots.draw(".widget-{{SURI_INSTANCE_ID}} .timeline", data, {
            horizontalLayout: false,
            width: id.width(),
            height: id.height(),
@@ -23,6 +27,7 @@
            labelFormat: "%H:%M"
          });
        }
+	   {{/data}}
      }
 
      if (page_loaded) {

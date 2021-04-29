@@ -79,6 +79,9 @@ function run() {
 		}
 	}
 
+	data.labels = JSON.stringify(data.labels);
+	data.data = JSON.stringify(data.data);
+	
 	return JSON.stringify(data);
 }
 

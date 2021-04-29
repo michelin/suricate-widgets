@@ -1,21 +1,33 @@
 <a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL_ALL}}" class="link" target="_blank">
-   <div class="grid-stack-item-content-inner">
-      <h1 class="title">{{SURI_TITLE}}</h1>
-      <input type="text" value="{{value}}" class="dial" data-min="0" data-max="100" data-displayInput=true data-angleOffset=-125 data-angleArc=250 data-inputColor="rgb(255, 255, 255)" data-readOnly=true data-bgcolor="rgba(0, 0, 0,0.55)" data-fgcolor="rgb(255, 255, 255)"/>
+	<div class="grid-stack-item-content-inner">
+		<h1 class="title">{{SURI_TITLE}}</h1>
+		{{#value}}
+		<input type="text" value="{{value}}" class="dial" data-min="0" data-max="100" data-displayInput=true data-angleOffset=-125 data-angleArc=250 data-inputColor="rgb(255, 255, 255)" data-readOnly=true data-bgcolor="rgba(0, 0, 0,0.55)" data-fgcolor="rgb(255, 255, 255)"/>
+		{{/value}}
    </div>
+   
    {{#displayCount}}
    <br>
    <p class="more-info">Jira : {{valueCountSelect}} / {{valueCountAll}}</p>
    {{/displayCount}}
+   
    <div class="jira"></div>
    
    <script>
       $(function() {
-        $(".widget-{{SURI_INSTANCE_ID}} .dial").knob({
-          'format': function(value) {
-            return value + '%';
-          }
-        });
+		$(window).on('load', formatData{{SURI_INSTANCE_ID}});
+		
+		function formatData{{SURI_INSTANCE_ID}}() {
+			$(".widget-{{SURI_INSTANCE_ID}} .dial").knob({
+				'format': function(value) {
+					return value + '%';
+				}
+			});
+		}
+		
+		if (page_loaded) {
+			formatData{{SURI_INSTANCE_ID}}();
+        }
       });
    </script>
 </a>

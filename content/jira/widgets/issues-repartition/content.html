@@ -15,10 +15,23 @@
             $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
             $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
-            var data = '{{{data}}}';
-            var unassigned = '{{{unassigned}}}';
-            var resolved = '{{{resolved}}}';
-            var unresolved = {{total}} - ({{unassigned}} + {{resolved}});
+			
+			var unassigned;
+			var resolved;
+			var unresolved;
+			
+			{{#unassigned}}
+            unassigned = {{{unassigned}}};
+			{{/unassigned}}
+			
+			{{#resolved}}
+            resolved = {{{resolved}}};
+			{{/resolved}}
+			
+			{{#total}} {{#unassigned}} {{#resolved}}
+			unresolved = {{total}} - ({{unassigned}} + {{resolved}});
+			{{/resolved}} {{/unassigned}} {{/total}}
+			
             var chart = new Chart(ctx, {
               // The type of chart we want to create
               type: 'doughnut',
