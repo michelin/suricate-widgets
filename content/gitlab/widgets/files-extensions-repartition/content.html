@@ -14,15 +14,36 @@
             $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
             $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
 
+			var labels = [];
+			var backgroundColors = [];
+			var borderColors = [];
+			var data = [];
+			
+			{{#labels}}
+			labels = {{{labels}}};
+			{{/labels}}
+			
+			{{#colors}}
+			backgroundColors = {{{colors}}};
+			{{/colors}}
+			
+			{{#border}}
+			borderColors = {{{border}}};
+			{{/border}}
+			
+			{{#datapie}}
+			data = {{{datapie}}};
+			{{/datapie}}
+						
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
             var chart = new Chart(ctx, {
                 type: '{{{SURI_TYPE_GRAPH}}}',
                 data: {
-                    labels: {{{labels}}},
+                    labels: labels,
                     datasets: [{
-                        backgroundColor: {{{colors}}},
-                        borderColor: {{{border}}},
-                        data: {{{datapie}}}
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        data: data
                     }],
                     borderWidth: 1
                 },
