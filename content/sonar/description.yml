@@ -6,4 +6,4 @@ configurations:
     dataType: TEXT
   -
     key: 'WIDGET_CONFIG_SONAR_TOKEN'
-    dataType: TEXT
+    dataType: PASSWORD
