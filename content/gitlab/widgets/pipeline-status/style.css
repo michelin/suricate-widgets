@@ -22,7 +22,7 @@
 .widget.gitlabPipelineStatus .skipped,
 .widget.gitlabPipelineStatus .manual,
 .widget.gitlabPipelineStatus .scheduled {
-	background-color: white;
+	background-color: #303030;
 }
 
 .widget.gitlabPipelineStatus {
