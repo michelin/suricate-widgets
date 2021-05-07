@@ -9,7 +9,7 @@ widgetParams:
     name: 'SURI_JQL'
     description: 'Jira JQL query'
     type: TEXT
-    exampleUsage: 'project = XXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
+    usageExample: 'project = XXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
     required: true
   -
     name: 'SURI_NUMBER'

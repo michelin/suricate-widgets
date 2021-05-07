@@ -14,7 +14,7 @@ widgetParams:
   -
     name: 'SURI_SERVICE_ACCOUNT_TOKEN'
     description: 'Service account token'
-    type: TEXT
+    type: PASSWORD
     usageExample: 'eyJhbGciOiJSU'
     required: true
   -

@@ -3,4 +3,4 @@ technicalName: github
 configurations:
   -
     key: 'WIDGET_CONFIG_GITHUB_TOKEN'
-    dataType: TEXT
+    dataType: PASSWORD
