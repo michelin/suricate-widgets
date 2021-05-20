@@ -1,0 +1,5 @@
+name: Runner details
+description: Display the details of a GitLab runner
+info: You might need to override the token defined in the GitLab category settings to access your runners
+technicalName: gitlabRunnerDetails
+delay: 180

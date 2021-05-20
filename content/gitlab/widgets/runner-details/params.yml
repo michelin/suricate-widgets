@@ -1,0 +1,13 @@
+widgetParams:
+  - 
+    name: 'SURI_RUNNER'
+    description: 'Runner ID'
+    type: TEXT
+    usageExample: '1234'
+    required: true
+  - 
+    name: 'SURI_LAST_CONTACT_DURATION'
+    description: 'Duration (in minutes) since the last contact from which to trigger an alarm'
+    type: NUMBER
+    usageExample: '30'
+    required: false

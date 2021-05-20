@@ -16,53 +16,40 @@
 
 function run() {
 	var data = {};
-
-	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
-
-	var url = WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines?per_page=100&page=1";
 	
-	if (SURI_PROJECT_BRANCH) {
-		url += "&ref=" + SURI_PROJECT_BRANCH;
-	}
+	var runner = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/runners/" + SURI_RUNNER, 
+		"PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 	
-	var pipelines = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	
-	if (pipelines && pipelines.length > 0) {
-		data.status = pipelines[0].status;
+	if (runner) {
+		data.name = runner.description;
+		data.status = runner.status;
+		data.contactedAt = formatDate(runner.contacted_at);
+		data.platform = runner.platform;
+		data.architecture = runner.architecture;
+		data.version = runner.version;
 		
-		var pipeline = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines/" + pipelines[0].id + "?per_page=100&page=1", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	
-		data.name = pipeline.user.name;
-		data.username = pipeline.user.username;
-		data.branch = pipeline.ref;
-		data.url = pipeline.web_url;
-		data.createdAt = formatDate(pipeline.created_at);
+		var durationInSecondsSinceLastContact = (new Date().getTime() - new Date(runner.contacted_at).getTime()) / 1000;
+		data.contactedAtDuration = secondsToDuration(durationInSecondsSinceLastContact);
 		
-		if (pipeline.duration) {
-            data.duration = secondsToDuration(pipeline.duration);
-        } else {
-			data.duration = 'N/A';
+		if (SURI_LAST_CONTACT_DURATION) {			
+			var lastContactDurationSeconds = SURI_LAST_CONTACT_DURATION * 60;
+			
+			if (durationInSecondsSinceLastContact > lastContactDurationSeconds) {
+				data.lastContactExceeded = true;
+			}
 		}
 		
-		if (pipeline.started_at) {
-			data.waitingTimeBeforeStarting = secondsToDuration((new Date(pipeline.started_at).getTime() - new Date(pipeline.created_at).getTime()) / 1000);
-		} else {
-			data.waitingTimeBeforeStarting = secondsToDuration((new Date().getTime() - new Date(pipeline.created_at).getTime()) / 1000) + (' (not started yet)');
-		}
-		
-		if (data.status === 'success') {
-			data.success = true;
-		} else if (data.status === 'failed') {
-			data.failed = true;
-		} else if (data.status === 'running') {
-			data.running = true;
-		} else {
-			data.otherStatus = true;
+		if (data.status === 'active') {
+			data.active = true;
+		} else if (data.status === 'paused') {
+			data.paused = true;
+		} else if (data.status === 'online') {
+			data.online = true;
+		} else if (data.status === 'offline') {
+			data.offline = true;
 		}
 	}
-		
+	
 	return JSON.stringify(data);
 }
 

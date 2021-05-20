@@ -1,0 +1,47 @@
+<div class="fullwidget 
+			{{#lastContactExceeded}} last-contact-time-exceeded {{/lastContactExceeded}}
+			{{^lastContactExceeded}} {{status}} {{/lastContactExceeded}}
+			">
+	<i class="fa-fix fa 
+	{{#lastContactExceeded}}fa-thumbs-down{{/lastContactExceeded}} 
+	{{^lastContactExceeded}}
+		{{#online}}fa-thumbs-up{{/online}} 
+		{{#offline}}fa-thumbs-down{{/offline}} 
+		{{#active}}fa-running{{/active}} 
+		{{#paused}}fa-exclamation-triangle{{/paused}} 
+	{{/lastContactExceeded}} 
+	icon-background icon-background-opacity"></i>
+
+	<div class="grid-stack-item-content-inner">
+		<h1 class="title">
+			<span class="runner-name">{{name}}</span>
+		</h1>
+		<h2 class="title">{{status}}</h2>
+		
+		<table class="table">
+			<tr>
+				<td>
+					<p class="value">
+						<i class="fa fa-{{platform}}"></i> <span class="platform"> {{platform}} </span> {{architecture}}
+					</p>
+				</td>
+				<td>
+					<p class="value">
+						<i class="fa fa-bookmark"></i> v{{version}}
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+		<p class="contacted-at-value">
+			<i class="fa fa-calendar-alt"></i> 
+			
+			Contacted <strong>{{contactedAtDuration}}</strong> ago, the <strong>{{contactedAt}}</strong>
+		</p>
+				
+		{{#lastContactExceeded}} 
+		<h4 class="last-contact-time-exceeded-title"> Last contact duration exceeded </h4>
+		{{/lastContactExceeded}}
+	</div>
+	<div class="gitlab"></div>
+</div>
