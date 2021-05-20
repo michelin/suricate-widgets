@@ -1,5 +1,5 @@
 name: Runner(s) status
 description: Display the status of GitLab runner(s)
 info: You might need to override the token defined in the GitLab category settings to access your runners
-technicalName: gitlabRunnerStatus
+technicalName: gitlabListRunnersStatus
 delay: 300
