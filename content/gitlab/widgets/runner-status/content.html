@@ -3,7 +3,9 @@
 	<ul>
         {{#items}}
         <li>
-			<span class="status {{status}}">
+			<span class="status 
+						{{status}} 	
+						{{#offline}} {{#highlightOfflineRunners}} highlight-offline-runners {{/highlightOfflineRunners}}{{/offline}}">
 				<i class="fa fa-lg
 					{{#online}}fa-play-circle-o online{{/online}}
 					{{#active}}fa-podcast active{{/active}}

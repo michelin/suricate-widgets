@@ -31,9 +31,8 @@ function run() {
 	while (response && response.length > 0 && response.length === perPage) {
 		page++;
 		
-		var response = JSON.parse(
+		response = JSON.parse(
 			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/merge_requests?per_page=" + perPage + "&page=" + page + "&state=" + SURI_MR_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-
 		
 		mergeRequests = mergeRequests.concat(response);
 	}

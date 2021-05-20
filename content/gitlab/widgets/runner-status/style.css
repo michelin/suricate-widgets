@@ -18,7 +18,7 @@
 }
 
 .widget.gitlabRunnerStatus ul li {
-	font-size: 16px;
+	font-size: 17px;
 	text-align: left;
 	padding: 5px 0 5px 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.32);
@@ -36,8 +36,8 @@
 	padding: 5px;
 	border-radius: 6px;
 	margin-right: 7px;
-	font-size: 11px;
-	width: 56px;
+	font-size: 12px;
+	width: 61px;
 	text-transform: capitalize;
 }
 
@@ -55,6 +55,13 @@
 
 .widget.gitlabRunnerStatus ul li .status.offline {
 	background-color: #ffcdd2;
+}
+
+.widget.gitlabRunnerStatus ul li .status.highlight-offline-runners {
+	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
+	-moz-animation: status-danger-background 1s infinite; /* Fx 5+ */
+	-o-animation: status-danger-background 1s infinite; /* Opera 12+ */
+	animation: status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
 }
 
 .widget.gitlabRunnerStatus ul li .status .active {

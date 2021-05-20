@@ -11,3 +11,15 @@ widgetParams:
     type: TEXT
     usageExample: 'tag1,tag2'
     required: false
+  -
+    name: 'SURI_HIGHLIGHT_OFFLINE_RUNNERS'
+    description: 'Highlight offline runners'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
+  -
+    name: 'SURI_RUNNERS_NAME'
+    description: 'Filter runners by names, separated by a comma. Substring accepted'
+    type: TEXT
+    usageExample: 'runner1,runner2,runner3'
+    required: false

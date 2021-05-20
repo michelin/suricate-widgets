@@ -16,16 +16,56 @@
 
 function run() {
 	var data = {};
+	var url;
+	var perPage = 100;
+	var page = 1;
+	var runners = [];
+	var toReturn = [];
 	
-	var url = WIDGET_CONFIG_GITLAB_URL + "/api/v4/runners";
+	var isAdmin = JSON.parse(
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/user", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).is_admin;
 	
-	if (SURI_RUNNER_TAGS && SURI_RUNNER_TAGS.split(",").length > 0) {
-		url += "?tag_list=" + SURI_RUNNER_TAGS;
+	var runnersURL = WIDGET_CONFIG_GITLAB_URL + "/api/v4/runners";
+	
+	if (isAdmin) {
+		runnersURL += "/all";
 	}
 	
-	var runners = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	runnersURL += "?per_page=" + perPage + "&page=" + page;
 	
-	var response = [];
+	if (SURI_RUNNER_TAGS && SURI_RUNNER_TAGS.split(",").length > 0) {
+		runnersURL += "&tag_list=" + SURI_RUNNER_TAGS;
+	}
+	
+	var response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	
+	runners = runners.concat(response);
+	
+	while (response && response.length > 0 && response.length === perPage) {
+		page++;
+		var previousPage = page - 1;
+		
+		runnersURL = runnersURL.replace("&page=" + previousPage, "&page=" + page);
+				
+		response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		
+		runners = runners.concat(response);
+	}
+	
+	if (SURI_RUNNERS_NAME && SURI_RUNNERS_NAME.split(",").length > 0) {
+		runners = runners.filter(function(runner) {
+			var runnerMatchingToGivenNames;
+			
+			SURI_RUNNERS_NAME.split(",").forEach(function(runnerName) {
+				if (runner.description.toLowerCase().indexOf(runnerName.toLowerCase()) > -1) {
+					runnerMatchingToGivenNames = runner;
+				}
+			});
+			
+			return runnerMatchingToGivenNames;
+		});
+	}
+	
 	runners.forEach(function(runner) {
 		var item = {};
 		
@@ -42,11 +82,15 @@ function run() {
             item.offline = true;
         } 
 		
-		response.push(item);
+		toReturn.push(item);
 	});
 	
-	if (response.length > 0) {
-		data.items = response;
+	if (toReturn.length > 0) {
+		data.items = toReturn;
+	}
+	
+	if (SURI_HIGHLIGHT_OFFLINE_RUNNERS && SURI_HIGHLIGHT_OFFLINE_RUNNERS === 'true') {
+		data.highlightOfflineRunners = true;
 	}
 	
 	return JSON.stringify(data);
