@@ -2,8 +2,8 @@ name: GitLab
 technicalName: gitlab
 configurations:
   -
-    key: 'WIDGET_CONFIG_GITLAB_TOKEN'
-    dataType: PASSWORD
-  -
     key: 'WIDGET_CONFIG_GITLAB_URL'
     dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_GITLAB_TOKEN'
+    dataType: PASSWORD

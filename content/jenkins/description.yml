@@ -2,11 +2,11 @@ name: Jenkins
 technicalName: jenkins
 configurations:
   -
+    key: 'WIDGET_CONFIG_JENKINS_URL'
+    dataType: TEXT
+  -
     key: 'WIDGET_CONFIG_JENKINS_USER'
     dataType: TEXT
   -
     key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
     dataType: PASSWORD
-  -
-    key: 'WIDGET_CONFIG_JENKINS_URL'
-    dataType: TEXT
