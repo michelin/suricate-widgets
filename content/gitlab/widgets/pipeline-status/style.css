@@ -1,3 +1,7 @@
+.widget.gitlabPipelineStatus {
+	background-color: transparent;
+}
+
 .widget.gitlabPipelineStatus .success {
 	background-color: #2e7d32;
 }
@@ -23,10 +27,6 @@
 .widget.gitlabPipelineStatus .manual,
 .widget.gitlabPipelineStatus .scheduled {
 	background-color: #303030;
-}
-
-.widget.gitlabPipelineStatus {
-	background-color: #86d751;
 }
 
 .widget.gitlabPipelineStatus .gitlab {
