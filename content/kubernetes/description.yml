@@ -3,4 +3,5 @@ technicalName: kubernetes
 configurations:
   -
     key: 'WIDGET_CONFIG_KUBERNETES_API_SERVER'
+    description: 'URL of the Kubernetes environment'
     dataType: TEXT

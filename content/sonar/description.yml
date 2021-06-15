@@ -3,7 +3,9 @@ technicalName: sonar
 configurations:
   -
     key: 'WIDGET_CONFIG_SONAR_URL'
+    description: 'URL of the Sonar environment'
     dataType: TEXT
   -
     key: 'WIDGET_CONFIG_SONAR_TOKEN'
+    description: 'Token for the Sonar API'
     dataType: PASSWORD
