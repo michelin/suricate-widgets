@@ -7,7 +7,8 @@ widgetParams:
     required: true
   -
     name: 'SURI_JQL'
-    description: 'Jira JQL query'
+    description: 'Jira JQL query used to retrieve the Sprint issues'
     type: TEXT
-    usageExample: 'fixVersion = "XXX 1.1"'
+    usageExample: 'Sprint = "Sprint Name"'
+    usageTooltip: 'The number of retrieved issues is currently limited to 1000'
     required: true
