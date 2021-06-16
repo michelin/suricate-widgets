@@ -7,13 +7,13 @@ widgetParams:
     required: true
   -
     name: 'SURI_JQL'
-    description: 'Jira JQL query'
+    description: 'Jira JQL query to count the issues'
     type: TEXT
     usageExample: 'project = XXXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
     required: true
   -
     name: 'SURI_DELAI'
-    description: 'Span time to compare widget data in hours'
+    description: 'Duration used to measure the change rate from previous executions (in hours)'
     type: NUMBER
     defaultValue: '24'
     required: true

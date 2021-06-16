@@ -7,7 +7,7 @@ widgetParams:
     required: true
   -
     name: 'SURI_WEEK'
-    description: 'Period of activity in weeks'
+    description: 'Period of activity (in weeks)'
     type: NUMBER
     defaultValue: '12'
     required: true
