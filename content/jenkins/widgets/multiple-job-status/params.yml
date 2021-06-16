@@ -7,7 +7,7 @@ widgetParams:
     required: true
   -
     name: 'SURI_JOB_LIST'
-    description: "List of jobs, separated by a comma"
+    description: "List of jobs separated by a comma"
     type: TEXT
     usageExample: '200-DeploySpringBoot-monitor_back, 200-DeployAngular-monitor_front'
     required: true

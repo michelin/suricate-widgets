@@ -19,7 +19,8 @@ widgetParams:
     required: false
   -
     name: 'SURI_DATE'
-    description: 'Retrieve events from a given date. Today by default.'
+    description: 'Retrieve events from a given date'
+    usageTooltip: 'Format required: DDMMYYYY. Today is the date set by default.
     type: TEXT
     usageExample: '31122020'
     required: false

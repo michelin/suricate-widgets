@@ -7,9 +7,10 @@ widgetParams:
     required: true
   -
     name: 'SURI_DATE'
-    description: 'Start date to count users (DDMMYYYY)'
+    description: 'Start date to count users'
     type: TEXT
     usageExample: '31122017'
+    usageTooltip: 'Format required: DDMMYYYY'
     required: false
   -
     name: 'SURI_SEARCH_BY_IDENTIFIER'
