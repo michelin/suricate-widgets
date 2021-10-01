@@ -1,0 +1,33 @@
+widgetParams:
+  -
+    name: 'SURI_JIRA_PROJECT'
+    description: 'Jira Project Key'
+    type: TEXT
+    usageExample: 'OSYS'
+    required: true
+  -
+    name: 'SURI_JIRA_START_RANGE'
+    description: 'Start range from now (in days), to include jira issues created within it'
+    type: NUMBER
+    defaultValue: '30'
+    usageTooltip: 'If you choose 30, all issues created from 30 days until now will be selected'
+    required: true
+  -
+    name: 'SURI_JIRA_VALUE_FORMAT'
+    description: 'Choose Lead Time value format'
+    type: COMBO
+    defaultValue: 'DAYS'
+    required: true
+    possibleValuesMap:
+      -
+        jsKey: 'DAYS'
+        value: Days
+      -
+        jsKey: 'HOURS'
+        value: Hours
+      -
+        jsKey: 'MINUTES'
+        value: Minutes
+      -
+        jsKey: 'SECONDS'
+        value: Seconds
