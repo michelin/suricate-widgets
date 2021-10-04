@@ -1,0 +1,4 @@
+name: Lead Time
+description: Lead Time on Jira Issues, for a specific project
+technicalName: jiraleadtime
+delay: 500

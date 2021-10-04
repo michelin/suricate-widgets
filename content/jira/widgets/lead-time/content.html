@@ -1,0 +1,18 @@
+<div class="grid-stack-item-content-inner">
+	<h3 class="title">Lead Time for {{SURI_JIRA_PROJECT}}</h3>
+	<h4 class="title">{{ startRange }} &#8594; {{ endRange }}</h4>
+	{{#inDays}}
+	<p class="value">{{ leadTime }} D</p>
+	{{/inDays}}
+	{{#inHours}}
+	<p class="value">{{ leadTime }} h</p>
+	{{/inHours}}
+	{{#inMinutes}}
+	<p class="value">{{ leadTime }} min</p>
+	{{/inMinutes}}
+	{{#inSeconds}}
+	<p class="value">{{ leadTime }} s</p>
+	{{/inSeconds}}
+	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} resolved issues <i class="fas fa-external-link-alt"></i></a></h3>
+</div>
+<div class="jira"></div>
