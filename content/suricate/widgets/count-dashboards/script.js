@@ -13,43 +13,24 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-  
+
 function run() {
 	var data = {};
-	var index = 0;
-	var images = [];
+	var perPage = 2000;
+	var page = 0;
 	
-	images.push(SURI_IMG);
+	var url = WIDGET_CONFIG_SURICATE_URL + "/api/v1/projects?page=" + page + "size=" + perPage;
 	
-	if (SURI_IMG_2) {
-		images.push(SURI_IMG_2);
+	if (SURI_SEARCH_BY_NAME) {
+		url += "&search=" + SURI_SEARCH_BY_NAME;
 	}
-	
-	if (SURI_IMG_3) {
-		images.push(SURI_IMG_3);
+
+	data.numberOfDashboards = JSON.parse(Packages.get(url, "Authorization", "Bearer " + WIDGET_CONFIG_SURICATE_TOKEN)).totalElements;
+
+	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfDashboards) {
+		data.evolution = ((data.numberOfDashboards - JSON.parse(SURI_PREVIOUS).numberOfDashboards) * 100 / JSON.parse(SURI_PREVIOUS).numberOfDashboards).toFixed(1);
+		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
-	
-	if (SURI_IMG_4) {
-		images.push(SURI_IMG_4);
-	}
-	
-	if (SURI_IMG_5) {
-		images.push(SURI_IMG_5);
-	}
-	
-	if (SURI_PREVIOUS) {
-		if (images.indexOf(JSON.parse(SURI_PREVIOUS).img) > -1) {
-			index = images.indexOf(JSON.parse(SURI_PREVIOUS).img) + 1;
-			
-			if (index >= images.length) {
-				index = 0;
-			}
-		} else {
-			index = 0;
-		}
-	}
-	
-	data.img = images[index];
-	
+
 	return JSON.stringify(data);
 }

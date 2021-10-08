@@ -1,0 +1,14 @@
+<div class="grid-stack-item-content-inner">
+   <h1 class="title">Rotation counter</h1>
+   <h2 class="value">{{numberOfRotations}}</h2>
+   {{#SURI_SEARCH_BY_NAME}}
+      <h2 class="issues-label">matching name {{SURI_SEARCH_BY_NAME}}</h2>
+   {{/SURI_SEARCH_BY_NAME}}
+
+   {{#evolution}}
+   <p class="change-rate">
+      <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
+   </p>
+   {{/evolution}}
+</div>
+<div class="suricate"></div>

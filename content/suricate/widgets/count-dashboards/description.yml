@@ -1,0 +1,4 @@
+name: Number of dashboards
+description: Display the number of dashboards in Suricate
+technicalName: suricateCountDashboards
+delay: 86400

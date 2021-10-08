@@ -1,0 +1,11 @@
+name: Suricate
+technicalName: suricate
+configurations:
+  -
+    key: 'WIDGET_CONFIG_SURICATE_URL'
+    description: 'URL of the Suricate environment'
+    dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_SURICATE_TOKEN'
+    description: 'Token for the Suricate API'
+    dataType: PASSWORD

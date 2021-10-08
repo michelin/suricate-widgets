@@ -1,0 +1,4 @@
+name: Number of rotations
+description: Display the number of rotations in Suricate
+technicalName: suricateCountRotations
+delay: 86400

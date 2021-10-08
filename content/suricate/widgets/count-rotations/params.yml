@@ -1,0 +1,7 @@
+widgetParams:
+  -
+    name: 'SURI_SEARCH_BY_NAME'
+    description: 'Filter rotations by name. Substring accepted'
+    type: TEXT
+    usageExample: 'my_rotation'
+    required: false

@@ -1,0 +1,7 @@
+widgetParams:
+  -
+    name: 'SURI_SEARCH_BY_NAME'
+    description: 'Filter dashboards by name. Substring accepted'
+    type: TEXT
+    usageExample: 'my_dashboard'
+    required: false
