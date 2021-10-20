@@ -6,10 +6,6 @@
 	color: #E24329;
 }
 
-.widget.gitlabListRunnersStatus .runner-description {
-	color: black;
-}
-
 .widget.gitlabListRunnersStatus .runners-container {
 	height: inherit;
 	margin-top: 12px;
