@@ -30,7 +30,7 @@ function run() {
 	data.job_unstable = [];
 
 	for (var i = 0; i < jobs.length; i++) {
-		var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/job/" + jobs[i] + "/lastBuild/api/json");
+		var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/job/" + jobs[i] + "/lastBuild/api/json", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
 		if (jsonResponse === null) {
 			return null;
 		}

@@ -23,7 +23,7 @@ function run() {
 		var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[user[id],lastChange]"
 	}
 
-	var json = JSON.parse(Packages.get(url));
+	var json = JSON.parse(Packages.get(url, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD)));
 
 	if (SURI_DATE) {
 		data.date = SURI_DATE.toString().slice(4) + "-" + SURI_DATE.toString().slice(2, 4) + "-" + SURI_DATE.toString().slice(0, 2);

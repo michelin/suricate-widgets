@@ -94,7 +94,7 @@ function run() {
 }
 
 function getContent(url) {
-  var jsonResponse_jobs = Packages.get(url);
+  var jsonResponse_jobs = Packages.get(url, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
   if (jsonResponse_jobs == null) {
     return null;
   }

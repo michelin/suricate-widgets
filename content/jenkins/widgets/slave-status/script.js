@@ -23,7 +23,7 @@ function run() {
 	data.total = 0;
 	data.slave = [];
 
-	var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/computer/api/json");
+	var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/computer/api/json", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
 	if (jsonResponse == null) {
 		return null;
 	}
