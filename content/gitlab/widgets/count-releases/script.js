@@ -13,13 +13,13 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+var data = {};
 
 function run() {
 	var perPage = 100;
 	var releases = [];
 	var page = 1;
 
-	var data = {};
 	data.projects = '';
 	data.numberOfReleases = 0;
 	data.countAverageTimeReleases = 0;
@@ -49,8 +49,7 @@ function run() {
 		}
 	});
 
-
-	// Keep deployments performed after the given date
+	// Keep releases performed after the given date
 	if (data.fromDate) {
 		releases = releases.filter(function(release) {
 			if (release.released_at && new Date(release.released_at) >= new Date(data.fromDate)) {
@@ -59,27 +58,49 @@ function run() {
 		});
 	}
 
-	// Sum the number of days between 2 releases
-	if (releases.length > 0 && SURI_DISPLAY_AVERAGE_TIME_RELEASES && SURI_DISPLAY_AVERAGE_TIME_RELEASES === 'true') {
+	if (releases.length > 0) {
 		releases.sort(orderReleasesByDate);
 
-		// Stored but not displayed, used for getting more information about the handled values
-		data.releasesDate.push(releases[0].released_at);
+		if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
+			var aggregations = SURI_AGGREGATE_BY.split(",");
 
-		for (var i = 1; i < releases.length; i++) {
-			data.releasesDate.push(releases[i].released_at);
-
-			var timeBetweenReleases = Math.round(
-				Math.abs(
-					new Date(releases[i].released_at).getTime() - new Date(releases[i - 1].released_at).getTime()) / 3600000);
-
-			// Stored but not displayed, used for getting more information about the handled values
-			data.timeBetweenReleases.push(Math.round(timeBetweenReleases / 24));
-
-			data.countAverageTimeReleases += timeBetweenReleases;
+			if (aggregations.length === 1) {
+				// Aggregate releases by date for the counting
+				if (aggregations.indexOf('AGGREGATE_BY_DATE') > -1) {
+					releases = filterUniqueByDate(releases);
+				} else {
+					// Aggregate releases by tag name for the counting
+					if (aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+						releases = filterUniqueByTagName(releases);
+					}
+				}
+			} else {
+				if (aggregations.length === 2 && aggregations.indexOf('AGGREGATE_BY_DATE') > -1 && aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+					releases = filterUniqueCoupleOfDateAndTagName(releases);
+				}
+			}
 		}
 
-		data.countAverageTimeReleases = Math.round((data.countAverageTimeReleases / (releases.length - 1)) / 24);
+		// Sum the number of days between 2 releases
+		if (SURI_DISPLAY_AVERAGE_TIME_RELEASES && SURI_DISPLAY_AVERAGE_TIME_RELEASES === 'true') {
+			// Stored but not displayed, used for getting more information about the handled values
+			data.releasesDate.push(releases[0].released_at);
+
+			for (var i = 1; i < releases.length; i++) {
+				data.releasesDate.push(releases[i].released_at);
+
+				var timeBetweenReleases = Math.round(
+					Math.abs(
+						new Date(releases[i].released_at).getTime() - new Date(releases[i - 1].released_at).getTime()) / 3600000);
+
+				// Stored but not displayed, used for getting more information about the handled values
+				data.timeBetweenReleases.push(Math.round(timeBetweenReleases / 24));
+
+				data.countAverageTimeReleases += timeBetweenReleases;
+			}
+
+			data.countAverageTimeReleases = Math.round((data.countAverageTimeReleases / (releases.length - 1)) / 24);
+		}
 	}
 
 	data.numberOfReleases += releases.length;
@@ -149,4 +170,115 @@ function orderReleasesByDate(release1, release2) {
 	}
 
 	return 0;
+}
+
+/**
+ * Filter releases to keep releases with unique date called to computed the case: multiple releases with same date = 1 release
+ *
+ * @param releases The releases to filter
+ * @returns {*[]}
+ */
+function filterUniqueByDate(releases) {
+	var filteredReleases = [];
+
+	// Used for debug only
+	data.dataBeforeAggregation = JSON.stringify(releases.map(function(release) {
+		return release.released_at;
+	}));
+
+	releases.forEach(function(release) {
+		var containDate = filteredReleases.filter(function(filteredRelease) {
+			if (formatDate(release.released_at) === formatDate(filteredRelease.released_at)) {
+				return filteredRelease;
+			}
+		}).length > 0;
+
+		if (!containDate) {
+			filteredReleases.push(release);
+		}
+	});
+
+	// Used for debug only
+	data.dataAfterAggregation = JSON.stringify(filteredReleases.map(function(filteredRelease) {
+		return filteredRelease.released_at;
+	}));
+
+	return filteredReleases;
+}
+
+/**
+ * Filter releases to keep releases with unique tag name, called to computed the case: multiple releases with same tag name = 1 release
+ *
+ * @param releases The releases to filter
+ * @returns {*[]}
+ */
+function filterUniqueByTagName(releases) {
+	var filteredReleases = [];
+
+	// Used for debug only
+	data.dataBeforeAggregation = JSON.stringify(releases.map(function(release) {
+		return release.tag_name;
+	}));
+
+	releases.forEach(function(release) {
+		var containTagName = filteredReleases.filter(function(filteredRelease) {
+			// Handle the case version 1.0.0 is considered equal to v1.0.0
+			if (release.tag_name.toLowerCase() === filteredRelease.tag_name.toLowerCase()
+				|| 'v' + release.tag_name.toLowerCase() === filteredRelease.tag_name.toLowerCase()
+				|| release.tag_name.toLowerCase() === 'v' + filteredRelease.tag_name.toLowerCase()) {
+				return filteredRelease;
+			}
+		}).length > 0;
+
+		if (!containTagName) {
+			filteredReleases.push(release);
+		}
+	});
+
+	// Used for debug only
+	data.dataAfterAggregation = JSON.stringify(filteredReleases.map(function(filteredRelease) {
+		return filteredRelease.tag_name;
+	}));
+
+	return filteredReleases;
+}
+
+/**
+ * Filter releases to keep releases with unique couple of date and version,
+ * called to computed the case: multiple releases with same date and tag name = 1 release
+ *
+ * @param releases
+ * @returns {*[]}
+ */
+function filterUniqueCoupleOfDateAndTagName(releases) {
+	var filteredReleases = [];
+
+	// Used for debug only
+	data.dataBeforeAggregation = JSON.stringify(releases.map(function(release) {
+		return release.released_at + '-' + release.tag_name;
+	}));
+
+	releases.forEach(function(release) {
+		var containDateAndVersion = filteredReleases.filter(function(filteredRelease) {
+			var dateAlreadyContained = formatDate(release.released_at) === formatDate(filteredRelease.released_at);
+			var tagNameAlreadyContained = release.tag_name.toLowerCase() === filteredRelease.tag_name.toLowerCase()
+				|| 'v' + release.tag_name.toLowerCase() === filteredRelease.tag_name.toLowerCase()
+				|| release.tag_name.toLowerCase() === 'v' + filteredRelease.tag_name.toLowerCase();
+
+			if (dateAlreadyContained && tagNameAlreadyContained) {
+				return filteredRelease;
+			}
+		}).length > 0;
+
+		if (!containDateAndVersion) {
+			filteredReleases.push(release);
+		}
+	});
+
+	// Used for debug only
+	data.dataAfterAggregation = JSON.stringify(filteredReleases.map(function(filteredRelease) {
+		return filteredRelease.released_at + '-' + filteredRelease.tag_name;
+	}));
+
+	return filteredReleases;
 }

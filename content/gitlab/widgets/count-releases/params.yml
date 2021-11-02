@@ -6,15 +6,28 @@ widgetParams:
     usageExample: '1234,5678'
     required: true
   -
+    name: SURI_AGGREGATE_BY
+    description: 'Aggregate the releases by criteria'
+    usageTooltip: 'Releases aggregated by date/tag name will be counted as one release if they have the same date/tag name'
+    type: MULTIPLE
+    possibleValuesMap:
+      -
+        jsKey: AGGREGATE_BY_DATE
+        value: 'Date'
+      -
+        jsKey: AGGREGATE_BY_TAG_NAME
+        value: 'Tag name'
+    required: false
+  -
     name: SURI_DATE
-    description: 'Retrieve the deployments from a precise date'
+    description: 'Retrieve the releases from a precise date'
     usageTooltip: 'Required format is DDMMYYYY. If defined, it is not necessary to select a period. The precise date takes priority over the period.'
     type: TEXT
     usageExample: '31122020'
     required: false
   -
     name: SURI_PERIOD
-    description: 'Retrieve the deployments from a period'
+    description: 'Retrieve the releases from a period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
     type: COMBO
     possibleValuesMap:
