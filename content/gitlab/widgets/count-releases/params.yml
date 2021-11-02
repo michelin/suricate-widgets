@@ -1,0 +1,44 @@
+widgetParams:
+  -
+    name: SURI_PROJECT
+    description: 'Project ID'
+    type: TEXT
+    usageExample: '1234'
+    required: true
+  -
+    name: SURI_DATE
+    description: 'Retrieve the deployments from a precise date'
+    usageTooltip: 'Required format is DDMMYYYY. If defined, it is not necessary to select a period. The precise date takes priority over the period.'
+    type: TEXT
+    usageExample: '31122020'
+    required: false
+  -
+    name: SURI_PERIOD
+    description: 'Retrieve the deployments from a period'
+    usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
+    type: COMBO
+    possibleValuesMap:
+      -
+        jsKey: Year
+        value: Year
+      -
+        jsKey: Month
+        value: Month
+      -
+        jsKey: Week
+        value: Week
+      -
+        jsKey: Day
+        value: Day
+    required: false
+  -
+    name: SURI_NUMBER_OF_PERIOD
+    description: 'Unit of the selected period'
+    type: NUMBER
+    usageExample: 1
+  -
+    name: SURI_DISPLAY_AVERAGE_TIME_RELEASES
+    description: 'Display the average time in days between all releases'
+    type: BOOLEAN
+    defaultValue: true
+    required: false
