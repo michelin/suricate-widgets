@@ -20,56 +20,35 @@ function run() {
 	var page = 1;
 
 	var data = {};
+	data.projects = '';
 	data.numberOfReleases = 0;
 	data.countAverageTimeReleases = 0;
-	// Store all the dates of all releases
-	data.releasesDate = [];
-	// Store the time in days between two releases
-	data.timeBetweenReleases = [];
+	data.releasesDate = []; // Store all the dates of all releases
+	data.timeBetweenReleases = []; // Store the time in days between two releases
 
-	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
+	data.fromDate = computeStartDate();
 
-	var response = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var projectIDs = SURI_PROJECT.split(",");
 
-	releases = releases.concat(response);
-		
-	while (response && response.length > 0 && response.length === perPage) {
-		page++;
+	projectIDs.forEach(function(id) {
+		data.projects += JSON.parse(
+			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name + ", ";
 
-		response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		var response = JSON.parse(
+			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 		releases = releases.concat(response);
-	}
 
-	if (SURI_DATE) {
-		data.fromDate = SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
-	} else {
-		if (SURI_PERIOD) {
-			var numberOfPeriods = 1;
-			if (SURI_NUMBER_OF_PERIOD) {
-				numberOfPeriods = SURI_NUMBER_OF_PERIOD;
-			}
+		while (response && response.length > 0 && response.length === perPage) {
+			page++;
 
-			var computedDate = new Date();
+			response = JSON.parse(
+				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
-			if (SURI_PERIOD === "Day") {
-				computedDate.setDate(new Date().getDate() - numberOfPeriods);
-			} else if (SURI_PERIOD === "Week") {
-				computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-			} else if (SURI_PERIOD === "Month") {
-				computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-			} else if (SURI_PERIOD === "Year") {
-				computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
-			}
-
-			computedDate.setUTCHours(0, 0, 0, 0);
-
-			data.fromDate = formatDate(computedDate);
+			releases = releases.concat(response);
 		}
-	}
+	});
+
 
 	// Keep deployments performed after the given date
 	if (data.fromDate) {
@@ -80,8 +59,10 @@ function run() {
 		});
 	}
 
-	// Sum the number of days between 2 deployments
+	// Sum the number of days between 2 releases
 	if (releases.length > 0 && SURI_DISPLAY_AVERAGE_TIME_RELEASES && SURI_DISPLAY_AVERAGE_TIME_RELEASES === 'true') {
+		releases.sort(orderReleasesByDate);
+
 		// Stored but not displayed, used for getting more information about the handled values
 		data.releasesDate.push(releases[0].released_at);
 
@@ -101,9 +82,43 @@ function run() {
 		data.countAverageTimeReleases = Math.round((data.countAverageTimeReleases / (releases.length - 1)) / 24);
 	}
 
-	data.numberOfReleases = releases.length;
+	data.numberOfReleases += releases.length;
+	data.projects = data.projects.slice(0, -2);
 
 	return JSON.stringify(data);
+}
+
+/**
+ * Compute the start date of the releases from the widget parameters
+ * @returns {string}
+ */
+function computeStartDate() {
+	if (SURI_DATE) {
+		return SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
+	}
+
+	if (SURI_PERIOD) {
+		var numberOfPeriods = 1;
+		if (SURI_NUMBER_OF_PERIOD) {
+			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		}
+
+		var computedDate = new Date();
+
+		if (SURI_PERIOD === "Day") {
+			computedDate.setDate(new Date().getDate() - numberOfPeriods);
+		} else if (SURI_PERIOD === "Week") {
+			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
+		} else if (SURI_PERIOD === "Month") {
+			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
+		} else if (SURI_PERIOD === "Year") {
+			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
+		}
+
+		computedDate.setUTCHours(0, 0, 0, 0);
+
+		return formatDate(computedDate);
+	}
 }
 
 /**
@@ -115,4 +130,23 @@ function formatDate(date) {
 		+ ("0" + (new Date(date).getMonth() + 1)).slice(-2)
 		+ "-"
 		+ ("0" + new Date(date).getUTCDate()).slice(-2);
+}
+
+/**
+ * Order the releases by date
+ *
+ * @param release1 The first release
+ * @param release2 The second release
+ * @returns {number}
+ */
+function orderReleasesByDate(release1, release2) {
+	if (new Date(release1.released_at) < new Date(release2.released_at)){
+		return -1;
+	}
+
+	if (new Date(release1.released_at) > new Date(release2.released_at)){
+		return 1;
+	}
+
+	return 0;
 }

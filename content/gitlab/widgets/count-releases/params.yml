@@ -1,9 +1,9 @@
 widgetParams:
   -
     name: SURI_PROJECT
-    description: 'Project ID'
+    description: 'Project IDs, separated by a comma'
     type: TEXT
-    usageExample: '1234'
+    usageExample: '1234,5678'
     required: true
   -
     name: SURI_DATE

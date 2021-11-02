@@ -1,4 +1,4 @@
 name: Number of releases
 description: Display the number of releases of a GitLab project
-technicalName: gitlabReleases
+technicalName: gitlabCountReleases
 delay: 86400
