@@ -19,6 +19,7 @@ function run() {
 	var page = 1;
 	var perPage = 100;
 	var releases = [];
+	var oldestReleaseDate = new Date();
 	data.datasets = [];
 	data.projectNames = '';
 
@@ -57,39 +58,47 @@ function run() {
 			});
 		}
 
-		var deploymentsDate = releases.map(function(release) {
-			return formatDate(new Date(release.released_at));
-		});
+		if (releases.length > 0) {
+			releases.sort(orderReleasesByDate);
 
-		data.datasets.push(JSON.stringify({
-			label: project.name,
-			data: deploymentsDate.filter(onlyUnique).map(function(uniqueReleaseDate) {
-				var releasesSameDate = releases.filter(function(release) {
-					if (formatDate(new Date(release.released_at)) === uniqueReleaseDate) {
-						return release;
-					}
-				});
+			if (new Date(oldestReleaseDate) > new Date(releases[0].released_at)) {
+				oldestReleaseDate = formatDate(releases[0].released_at);
+			}
 
-				var deployedReleaseNames = '';
+			var deploymentsDate = releases.map(function (release) {
+				return formatDate(new Date(release.released_at));
+			});
 
-				releasesSameDate.forEach(function(release) {
-					deployedReleaseNames += release.name + ', ';
-				});
+			data.datasets.push(JSON.stringify({
+				label: project.name,
+				data: deploymentsDate.filter(onlyUnique).map(function (uniqueReleaseDate) {
+					var releasesSameDate = releases.filter(function (release) {
+						if (formatDate(new Date(release.released_at)) === uniqueReleaseDate) {
+							return release;
+						}
+					});
 
-				deployedReleaseNames = deployedReleaseNames.slice(0, -2);
+					var deployedReleaseNames = '';
 
-				return {
-					x: new Date(uniqueReleaseDate),
-					y: releasesSameDate.length,
-					deployedReleaseNames: deployedReleaseNames
-				};
-			}),
-			backgroundColor: getColorForTrigram(index, '0.2'),
-			borderColor: getColorForTrigram(index, '0.6'),
-			pointBackgroundColor: getColorForTrigram(index, '1'),
-			pointBorderColor: getColorForTrigram(index, '0.6'),
-			pointBorderWidth: 10
-		}));
+					releasesSameDate.forEach(function (release) {
+						deployedReleaseNames += release.name + ', ';
+					});
+
+					deployedReleaseNames = deployedReleaseNames.slice(0, -2);
+
+					return {
+						x: new Date(uniqueReleaseDate),
+						y: releasesSameDate.length,
+						deployedReleaseNames: deployedReleaseNames
+					};
+				}),
+				backgroundColor: getColorForTrigram(index, '0.2'),
+				borderColor: getColorForTrigram(index, '0.6'),
+				pointBackgroundColor: getColorForTrigram(index, '1'),
+				pointBorderColor: getColorForTrigram(index, '0.6'),
+				pointBorderWidth: 10
+			}));
+		}
 	});
 
 	if (SURI_DISPLAY_TICKS_FOR_RELEASES && SURI_DISPLAY_TICKS_FOR_RELEASES === 'true') {
@@ -98,6 +107,10 @@ function run() {
 
 	if (SURI_DISPLAY_RELEASES_NAMES && SURI_DISPLAY_RELEASES_NAMES === 'true') {
 		data.displayDeployedReleasesNames = true;
+	}
+
+	if (!data.fromDate) {
+		data.fromDate = oldestReleaseDate;
 	}
 
 	data.projectNames = data.projectNames.slice(0, -2);
@@ -171,4 +184,23 @@ function onlyUnique(value, index, self) {
  */
 function getColorForTrigram(index, opacity) {
 	return 'rgba(' + ((255 - index * 12) % 256) + ',' + ((102 + index * 12) % 256) + ',' + ((255 + index * 12) % 256) + ',' + opacity + ')';
+}
+
+/**
+ * Order the releases by date
+ *
+ * @param firstRelease The first release
+ * @param secondRelease The second release
+ * @returns {number}
+ */
+function orderReleasesByDate(firstRelease, secondRelease) {
+	if (new Date(firstRelease.released_at) < new Date(secondRelease.released_at)){
+		return -1;
+	}
+
+	if (new Date(firstRelease.released_at) > new Date(secondRelease.released_at)){
+		return 1;
+	}
+
+	return 0;
 }

@@ -61,6 +61,10 @@ function run() {
 	if (releases.length > 0) {
 		releases.sort(orderReleasesByDate);
 
+		if (!data.fromDate) {
+			data.fromDate = formatDate(releases[0].released_at);
+		}
+
 		if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
 			var aggregations = SURI_AGGREGATE_BY.split(",");
 

@@ -20,6 +20,7 @@ function run() {
 	var perPage = 100;
 	var releases = [];
 	var projectsByNumberOfDeployments = [];
+	var oldestReleaseDate = new Date();
 	data.apps = {};
 	data.apps.values = [];
 
@@ -57,6 +58,12 @@ function run() {
 		}
 
 		if (releases.length > 0) {
+			releases.sort(orderReleasesByDate);
+
+			if (new Date(oldestReleaseDate) > new Date(releases[0].released_at)) {
+				oldestReleaseDate = formatDate(releases[0].released_at);
+			}
+
 			if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
 				var aggregations = SURI_AGGREGATE_BY.split(",");
 
@@ -90,6 +97,10 @@ function run() {
 		} else {
 			projectsByNumberOfDeployments.sort(orderByNumberOfReleases);
 		}
+	}
+
+	if (!data.fromDate) {
+		data.fromDate = oldestReleaseDate;
 	}
 
 	projectsByNumberOfDeployments.forEach(function(application, index) {
@@ -290,4 +301,23 @@ function filterUniqueCoupleOfDateAndTagName(releases) {
 	}));
 
 	return filteredReleases;
+}
+
+/**
+ * Order the releases by date
+ *
+ * @param firstRelease The first release
+ * @param secondRelease The second release
+ * @returns {number}
+ */
+function orderReleasesByDate(firstRelease, secondRelease) {
+	if (new Date(firstRelease.released_at) < new Date(secondRelease.released_at)){
+		return -1;
+	}
+
+	if (new Date(firstRelease.released_at) > new Date(secondRelease.released_at)){
+		return 1;
+	}
+
+	return 0;
 }
