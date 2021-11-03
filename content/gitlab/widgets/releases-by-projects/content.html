@@ -1,0 +1,110 @@
+<div class="grid-stack-item-content-inner">
+   <h1 class="title">
+      Releases per application
+   </h1>
+
+   <div class="chart-container">
+      <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
+   </div>
+   <p class="more-info">{{#fromDate}} Since {{fromDate}} {{/fromDate}} {{^fromDate}} From the beginning {{/fromDate}}</p>
+</div>
+<div class="gitlab"></div>
+
+<script>
+   $(function() {
+      $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
+
+      function loadChart{{SURI_INSTANCE_ID}}() {
+         $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+         $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
+         var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
+         var data = [];
+         var colors = [];
+         var label = [];
+         var apps = [];
+
+         {{#apps}}
+         apps = {{{values}}}
+         {{/apps}}
+
+         for (var i = 0; i < apps.length; i++) {
+            label.push(apps[i].name);
+            data.push(apps[i].nbReleases);
+            colors.push('rgb(' + ((255 - i * 12) % 256) + ',' + ((102 + i * 12) % 256) + ',' + ((255 + i * 12) % 256) + ')')
+         }
+
+         var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+            // The data for our dataset
+            data: {
+               labels: label,
+               datasets: [{
+                  data: data,
+                  backgroundColor: colors
+               }]
+            },
+            // Configuration options go here
+            options: {
+               responsive: true,
+               responsiveAnimationDuration: 0,
+               maintainAspectRatio: true,
+               legend: {
+                  display: false,
+                  position: 'bottom',
+                  labels: {
+                     fontColor: "white"
+                  }
+               },
+               scales: {
+                  xAxes: [{
+                     gridLines: {
+                        color: "rgba(255, 255, 2555, 0.1)",
+                        zeroLineColor: "rgb(2555, 255, 255)"
+                     },
+                     ticks: {
+                        autoSkip: false,
+                        fontColor: "#FFFFFF",
+                     }
+                  }],
+                  yAxes: [{
+                     gridLines: {
+                        color: "rgba(255, 255, 255, 0.1)",
+                        zeroLineColor: "rgb(255, 255, 255)"
+                     },
+                     ticks: {
+                        beginAtZero: true,
+                        autoSkip: true,
+                        fontColor: "#FFFFFF",
+                        maxTicksLimit: 35
+                     }
+                  }]
+               },
+               animation: {
+                  onComplete: function() {
+                     var chartInstance = this.chart,
+                             ctx = chartInstance.ctx;
+
+                     ctx.textAlign = 'center';
+                     ctx.textBaseline = 'bottom';
+                     ctx.fillStyle = 'white';
+                     ctx.font = Chart.helpers.fontString(11, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+                     this.data.datasets.forEach(function(dataset, i) {
+                        var meta = chartInstance.controller.getDatasetMeta(i);
+                        meta.data.forEach(function(bar, index) {
+                           var data = dataset.data[index];
+                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                        });
+                     });
+                  }
+               }
+            },
+         });
+      }
+
+      if (page_loaded) {
+         loadChart{{SURI_INSTANCE_ID}}();
+      }
+   });
+</script>

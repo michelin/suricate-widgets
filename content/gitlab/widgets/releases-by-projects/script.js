@@ -19,20 +19,19 @@ function run() {
 	var page = 1;
 	var perPage = 100;
 	var releases = [];
-
-	data.projects = '';
-	data.numberOfReleases = 0;
-	data.countAverageTimeReleases = 0;
-	data.releasesDate = []; // Store all the dates of all releases
-	data.timeBetweenReleases = []; // Store the time in days between two releases
+	var projectsByNumberOfDeployments = [];
+	data.apps = {};
+	data.apps.values = [];
 
 	data.fromDate = computeStartDate();
 
 	var projectIDs = SURI_PROJECT.split(",");
 
 	projectIDs.forEach(function(id) {
-		data.projects += JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name + ", ";
+		releases = []
+
+		var project = JSON.parse(
+			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 		var response = JSON.parse(
 			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
@@ -47,64 +46,55 @@ function run() {
 
 			releases = releases.concat(response);
 		}
-	});
 
-	// Keep releases performed after the given date
-	if (data.fromDate) {
-		releases = releases.filter(function(release) {
-			if (release.released_at && new Date(release.released_at) >= new Date(data.fromDate)) {
-				return release;
-			}
-		});
-	}
+		// Keep releases performed after the given date
+		if (data.fromDate) {
+			releases = releases.filter(function(release) {
+				if (release.released_at && new Date(release.released_at) >= new Date(data.fromDate)) {
+					return release;
+				}
+			});
+		}
 
-	if (releases.length > 0) {
-		releases.sort(orderReleasesByDate);
+		if (releases.length > 0) {
+			if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
+				var aggregations = SURI_AGGREGATE_BY.split(",");
 
-		if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
-			var aggregations = SURI_AGGREGATE_BY.split(",");
-
-			if (aggregations.length === 1) {
-				// Aggregate releases by date for the counting
-				if (aggregations.indexOf('AGGREGATE_BY_DATE') > -1) {
-					releases = filterUniqueByDate(releases);
+				if (aggregations.length === 1) {
+					// Aggregate releases by date for the counting
+					if (aggregations.indexOf('AGGREGATE_BY_DATE') > -1) {
+						releases = filterUniqueByDate(releases);
+					} else {
+						// Aggregate releases by tag name for the counting
+						if (aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+							releases = filterUniqueByTagName(releases);
+						}
+					}
 				} else {
-					// Aggregate releases by tag name for the counting
-					if (aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
-						releases = filterUniqueByTagName(releases);
+					if (aggregations.length === 2 && aggregations.indexOf('AGGREGATE_BY_DATE') > -1 && aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+						releases = filterUniqueCoupleOfDateAndTagName(releases);
 					}
 				}
-			} else {
-				if (aggregations.length === 2 && aggregations.indexOf('AGGREGATE_BY_DATE') > -1 && aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
-					releases = filterUniqueCoupleOfDateAndTagName(releases);
-				}
 			}
 		}
 
-		// Sum the number of days between 2 releases
-		if (SURI_DISPLAY_AVERAGE_TIME_RELEASES && SURI_DISPLAY_AVERAGE_TIME_RELEASES === 'true') {
-			// Stored but not displayed, used for getting more information about the handled values
-			data.releasesDate.push(releases[0].released_at);
+		projectsByNumberOfDeployments.push({
+			"name": project.name,
+			"nbReleases": releases.length
+		});
+	});
 
-			for (var i = 1; i < releases.length; i++) {
-				data.releasesDate.push(releases[i].released_at);
-
-				var timeBetweenReleases = Math.round(
-					Math.abs(
-						new Date(releases[i].released_at).getTime() - new Date(releases[i - 1].released_at).getTime()) / 3600000);
-
-				// Stored but not displayed, used for getting more information about the handled values
-				data.timeBetweenReleases.push(Math.round(timeBetweenReleases / 24));
-
-				data.countAverageTimeReleases += timeBetweenReleases;
-			}
-
-			data.countAverageTimeReleases = Math.round((data.countAverageTimeReleases / (releases.length - 1)) / 24);
+	if (SURI_ORDER_BY) {
+		if (SURI_ORDER_BY === "PROJECT_NAME") {
+			projectsByNumberOfDeployments.sort(orderByProjectName);
+		} else {
+			projectsByNumberOfDeployments.sort(orderByNumberOfReleases);
 		}
 	}
 
-	data.numberOfReleases += releases.length;
-	data.projects = data.projects.slice(0, -2);
+	projectsByNumberOfDeployments.forEach(function(application, index) {
+		data.apps.values[index] = JSON.stringify(projectsByNumberOfDeployments[index]);
+	});
 
 	return JSON.stringify(data);
 }
@@ -154,18 +144,37 @@ function formatDate(date) {
 }
 
 /**
- * Order the releases by date
+ * Order by project name
  *
- * @param release1 The first release
- * @param release2 The second release
+ * @param a The first project
+ * @param b The second project
  * @returns {number}
  */
-function orderReleasesByDate(release1, release2) {
-	if (new Date(release1.released_at) < new Date(release2.released_at)){
+function orderByProjectName(a, b) {
+	if (a.name < b.name) {
 		return -1;
 	}
 
-	if (new Date(release1.released_at) > new Date(release2.released_at)){
+	if (a.name > b.name) {
+		return 1;
+	}
+
+	return 0;
+}
+
+/**
+ * Order by number of releases
+ *
+ * @param a The first project
+ * @param b The second project
+ * @returns {number}
+ */
+function orderByNumberOfReleases(a, b) {
+	if (a.nbReleases > b.nbReleases) {
+		return -1;
+	}
+
+	if (a.nbReleases < b.nbReleases) {
 		return 1;
 	}
 

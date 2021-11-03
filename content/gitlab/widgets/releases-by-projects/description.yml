@@ -1,0 +1,6 @@
+name: New releases by application
+description: Display the number of releases filtered by project starting from a given date
+technicalName: gitlabDisplayReleases
+delay: 86400
+libraries:
+  - chart.js
