@@ -49,6 +49,7 @@ widgetParams:
     description: 'Unit of the selected period'
     type: NUMBER
     usageExample: 1
+    required: false
   -
     name: SURI_DISPLAY_AVERAGE_TIME_RELEASES
     description: 'Display the average time in days between all releases'
