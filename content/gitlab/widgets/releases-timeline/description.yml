@@ -1,0 +1,6 @@
+name: Timeline of releases
+description: Display the releases of projects on a timeline
+technicalName: releasesTimeline
+delay: 86400
+libraries:
+  - chart.js

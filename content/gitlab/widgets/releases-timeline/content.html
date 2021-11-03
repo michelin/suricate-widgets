@@ -1,0 +1,127 @@
+<div class="grid-stack-item-content-inner">
+   <h1 class="title">
+      Releases timeline for {{projectNames}}
+   </h1>
+
+   <div class="chart-container">
+      <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
+   </div>
+   <p class="more-info">{{#fromDate}} Since {{fromDate}} {{/fromDate}} {{^fromDate}} From the beginning {{/fromDate}}</p>
+</div>
+<div class="gitlab"></div>
+
+<script>
+   $(function() {
+      $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
+
+      function loadChart{{SURI_INSTANCE_ID}}() {
+         $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+         $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width() - 40);
+         var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
+
+         var datasets = [];
+         var datasetsStringified = {{{datasets}}};
+
+         datasetsStringified.forEach(function(string) {
+           datasets.push(JSON.parse(string));
+         });
+
+         var chart = new Chart(ctx, {
+           type: 'line',
+           data: {
+              datasets: datasets
+           },
+           options: {
+              responsive: true,
+              responsiveAnimationDuration: 0,
+              maintainAspectRatio: true,
+              tooltips: {
+                 callbacks: {
+                    title: function(tooltipItem, data) {
+                       var dataset = data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index];
+
+                       return new Date(dataset.x).getFullYear()
+                               + "-"
+                               + ("0" + (new Date(dataset.x).getMonth() + 1)).slice(-2)
+                               + "-"
+                               + ("0" + new Date(dataset.x).getUTCDate()).slice(-2);
+                    },
+                    beforeBody: function(tooltipItem, data) {
+                       var dataset = data.datasets[tooltipItem[0].datasetIndex].data[tooltipItem[0].index];
+
+                       return dataset.deployedReleaseNames;
+                    }
+                 }
+              },
+              legend: {
+                 position: 'top',
+                 labels: {
+                    fontColor: "white"
+                 }
+              },
+              scales: {
+                 xAxes: [{
+                    type: 'time',
+                    time: {
+                       unit: "month",
+                       displayFormats: {
+                          month: "MMM D, YYYY"
+                       }
+                    },
+                    gridLines: {
+                       color: "rgba(255, 255, 255, 0.1)",
+                       zeroLineColor: "rgb(255, 255, 255)"
+                    },
+                    ticks: {
+                    {{#displayTicksForReleases}}
+                        source: "data",
+                    {{/displayTicksForReleases}}
+                    {{^displayTicksForReleases}}
+                        source: "auto",
+                    {{/displayTicksForReleases}}
+                    fontColor: "white"
+                    }
+                 }],
+                 yAxes: [{
+                    gridLines: {
+                       color: "rgba(255, 255, 255, 0.1)",
+                       zeroLineColor: "rgb(255, 255, 255)"
+                    },
+                    ticks: {
+                       beginAtZero: true,
+                       autoSkip: true,
+                       fontColor: "white"
+                    }
+                 }]
+              },
+              {{#displayDeployedReleasesNames}}
+              animation: {
+                 onComplete: function() {
+                    var chartInstance = this.chart,
+                            ctx = chartInstance.ctx;
+
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillStyle = 'white';
+                    ctx.font = Chart.helpers.fontString(11, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+                    this.data.datasets.forEach(function(dataset, i) {
+                       var meta = chartInstance.controller.getDatasetMeta(i);
+                       meta.data.forEach(function(bar, index) {
+                          var data = dataset.data[index];
+
+                          ctx.fillText(data.deployedReleaseNames, bar._model.x, bar._model.y - 5);
+                       });
+                    });
+                 }
+              }
+              {{/displayDeployedReleasesNames}}
+           }
+         });
+      }
+
+     if (page_loaded) {
+        loadChart{{SURI_INSTANCE_ID}}();
+     }
+   });
+</script>
