@@ -20,7 +20,11 @@
          var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
 
          var datasets = [];
-         var datasetsStringified = {{{datasets}}};
+         var datasetsStringified = [];
+
+         {{#datasets}}
+         datasetsStringified = {{{datasets}}};
+         {{/datasets}}
 
          datasetsStringified.forEach(function(string) {
            datasets.push(JSON.parse(string));
