@@ -14,5 +14,8 @@
 	<p class="value">{{ leadTime }} s</p>
 	{{/inSeconds}}
 	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} resolved issues <i class="fas fa-external-link-alt"></i></a></h3>
+	{{#WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
+	<h4 class="title"><a href="{{ issuesWithSpecificStatusUrl }}" target="_blank" rel="noopener noreferrer">{{ jiraIssuesWithSpecificStatusCount }} issues containing "{{ WIDGET_CONFIG_JIRA_INITIAL_STATUS }}" status <i class="fas fa-external-link-alt"></i></a></h4>
+	{{/WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
 </div>
 <div class="jira"></div>

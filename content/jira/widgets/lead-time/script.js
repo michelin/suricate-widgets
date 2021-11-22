@@ -29,33 +29,48 @@ function run() {
   var startAt = 0;
   var totalIssues = 0;
   var jiraIssues = [];
+  var jiraIssuesWithSpecificStatus = []
 
   do {
 
-    var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000";
+    var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000&expand=changelog";
 
     var result = JSON.parse(Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
+
+    startAt+= 1000;
     
     totalIssues = result.total;
 
     data.result = result;
 
     for(var issueIndex in result.issues) {
-      var createdAt = new Date(result.issues[issueIndex].fields.created);
-      var resolvedAt = new Date(result.issues[issueIndex].fields.resolutiondate);
 
-      var localLeadTime = resolvedAt.getTime() - createdAt.getTime();
+      var issue = result.issues[issueIndex];
+      var startedAt = null;
+      var resolvedAt = new Date(issue.fields.resolutiondate);
+
+      if(WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+        // Get datetime of first transition wher target status is equal to WIDGET_CONFIG_JIRA_INITIAL_STATUS
+        startedAt = getStartDateByStatus(issue);
+      }
+      
+      // In all cases where startedAt is null, startedAt will be set to issue creattion date
+      if(startedAt == null) {
+        startedAt = new Date(issue.fields.created);
+      }
+      else {
+        jiraIssuesWithSpecificStatus.push(issue.key);
+      }
+
+      var localLeadTime = resolvedAt.getTime() - startedAt.getTime();
 
       jiraIssues.push({
-        key: result.issues[issueIndex].key,
-        createdAt : createdAt,
+        key: issue.key,
+        startedAt : startedAt,
         resolvedAt: resolvedAt,
         localLeadTime: localLeadTime
       });
     }
-
-    startAt+= 1000
-
   } while(jiraIssues.length < totalIssues)
 
   var leadTime = 0;
@@ -72,7 +87,10 @@ function run() {
 
   data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=" + jql;
 
+  data.issuesWithSpecificStatusUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=key in (" + jiraIssuesWithSpecificStatus.join(",") + ")";
+
   data.issuesCount = jiraIssues.length;
+  data.jiraIssuesWithSpecificStatusCount = jiraIssuesWithSpecificStatus.length;
 
   var now = new Date();
   var dateForDaysAgo = new Date(new Date().setDate(new Date().getDate() - SURI_JIRA_START_RANGE));
@@ -98,4 +116,18 @@ function run() {
   }
 
   return JSON.stringify(data);
+}
+
+function getStartDateByStatus(jiraIssue) {
+
+  for(var historyIndex in jiraIssue.changelog.histories) {
+    var history = jiraIssue.changelog.histories[historyIndex];
+    for(var itemIndex in history.items) {
+      var item = history.items[itemIndex];
+      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+        return new Date(history.created);
+      }
+    }
+  }
+  return null;
 }
