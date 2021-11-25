@@ -74,14 +74,22 @@ function run() {
   } while(jiraIssues.length < totalIssues)
 
   var leadTime = 0;
+  var minLeadTime = Number.MAX_VALUE;
+  var maxLeadTime = 0;
 
   for(var issueIndex in jiraIssues) {
     leadTime = leadTime + jiraIssues[issueIndex].localLeadTime;
+
+    if(jiraIssues[issueIndex].localLeadTime < minLeadTime) {
+      minLeadTime = jiraIssues[issueIndex].localLeadTime;
+    }
+    
+    if(jiraIssues[issueIndex].localLeadTime > maxLeadTime) {
+      maxLeadTime = jiraIssues[issueIndex].localLeadTime;
+    }
   }
 
   leadTime = leadTime / jiraIssues.length;
-
-  data.tt = leadTime;
 
   data.jql = jql;
 
@@ -101,18 +109,26 @@ function run() {
   if (SURI_JIRA_VALUE_FORMAT === 'HOURS') {
     data.inHours = true;
     data.leadTime = (leadTime / (1000 * 60 * 60 )).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 * 60 )).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 )).round(2);
   }
   else if(SURI_JIRA_VALUE_FORMAT === 'MINUTES') {
     data.inMinutes = true;
     data.leadTime = (leadTime / (1000 * 60 )).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 )).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 )).round(2);
   }
   else if(SURI_JIRA_VALUE_FORMAT === 'SECONDS') {
     data.inSeconds = true;
     data.leadTime = (leadTime / 1000).round(2);
+    data.minLeadTime = (minLeadTime / 1000).round(2);
+    data.maxLeadTime = (maxLeadTime / 1000).round(2);
   }
   else {
     data.inDays = true;
     data.leadTime = (leadTime / (1000 * 60 * 60 * 24)).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 * 60 * 24)).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 * 24)).round(2);
   }
 
   return JSON.stringify(data);
