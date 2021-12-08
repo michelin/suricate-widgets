@@ -38,3 +38,10 @@ widgetParams:
     usageExample: 'Started'
     usageTooltip: "By default, the lead time is based on time delta between creation date and resolution date of the jira issue. You can specify the name of a jira issue status if you need the lead time between the date of the specific jira issue status and the resolution date. Remark, if the status doesn't exist in the history of a jira issue, the creation date will be used"
     required: false
+  -
+    name: 'WIDGET_CONFIG_JIRA_TYPES'
+    description: 'Types of issues to filter, separated by commas: Bug,Complaint'
+    type: TEXT
+    usageExample: 'Bug,Complaint'
+    usageTooltip: "Issues types"
+    required: false

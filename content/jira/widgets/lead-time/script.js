@@ -24,7 +24,22 @@ function run() {
 
   var token = Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)
   var authorizationHeaderValue = "Basic " + token;
+
+  // Build jql query
   var jql = "project = " + SURI_JIRA_PROJECT + " AND statusCategory = Done AND created > startOfDay(-" + SURI_JIRA_START_RANGE + "d)";
+
+  if (WIDGET_CONFIG_JIRA_TYPES) {
+    // Add issues types to jql query
+    
+    var issuesTypes = WIDGET_CONFIG_JIRA_TYPES.split(",");
+    var formatedIssuesTypes = [];
+
+    for (var issueTypeIndex in issuesTypes) {
+      formatedIssuesTypes.push("'" + issuesTypes[issueTypeIndex] + "'");
+    }
+
+    jql = jql + " AND type in (" + formatedIssuesTypes.join() + ")";
+  }
 
   var startAt = 0;
   var totalIssues = 0;
