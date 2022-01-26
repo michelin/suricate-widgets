@@ -13,6 +13,21 @@
 	{{#inSeconds}}
 	<p class="value">{{ leadTime }} s</p>
 	{{/inSeconds}}
-	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} resolved issues <i class="fas fa-external-link-alt"></i></a></h3>
+	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} resolved issues {{#WIDGET_CONFIG_JIRA_TYPES}}({{.}}){{/WIDGET_CONFIG_JIRA_TYPES}} <i class="fas fa-external-link-alt"></i></a></h3>
+	{{#WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
+	<h4 class="title"><a href="{{ issuesWithSpecificStatusUrl }}" target="_blank" rel="noopener noreferrer">{{ jiraIssuesWithSpecificStatusCount }} issues containing "{{ WIDGET_CONFIG_JIRA_INITIAL_STATUS }}" status <i class="fas fa-external-link-alt"></i></a></h4>
+	{{/WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
+
 </div>
+
+<div class="min">
+	<h4 class="title">{{ minLeadTime }}</h4>
+	<h5 class="title">MIN</h5>
+</div>
+
+<div class="max">
+	<h4 class="title">{{ maxLeadTime }}</h4>
+	<h5 class="title">MAX</h5>
+</div>
+
 <div class="jira"></div>
