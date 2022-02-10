@@ -124,8 +124,6 @@ function run() {
 
   data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=" + jql;
 
-  //data.issuesWithSpecificStatusUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=key in (" + jiraIssuesWithSpecificStatus.join(",") + ")";
-
   data.issuesCount = jiraIssues.length;
 
   var now = new Date();
