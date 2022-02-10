@@ -22,6 +22,8 @@ function run() {
   
   var data = {};
 
+  var issuesTypes = [];
+
   var token = Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)
   var authorizationHeaderValue = "Basic " + token;
 
@@ -31,7 +33,7 @@ function run() {
   if (WIDGET_CONFIG_JIRA_TYPES) {
     // Add issues types to jql query
     
-    var issuesTypes = WIDGET_CONFIG_JIRA_TYPES.split(",");
+    issuesTypes = WIDGET_CONFIG_JIRA_TYPES.split(",");
     var formatedIssuesTypes = [];
 
     for (var issueTypeIndex in issuesTypes) {
@@ -41,10 +43,17 @@ function run() {
     jql = jql + " AND type in (" + formatedIssuesTypes.join() + ")";
   }
 
+  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_INITIAL_STATUS + "'";
+  }
+
+  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_FINAL_STATUS + "'";
+  }
+
   var startAt = 0;
   var totalIssues = 0;
   var jiraIssues = [];
-  var jiraIssuesWithSpecificStatus = []
 
   do {
 
@@ -62,27 +71,32 @@ function run() {
 
       var issue = result.issues[issueIndex];
       var startedAt = null;
-      var resolvedAt = new Date(issue.fields.resolutiondate);
+      var endAt = null;
 
       if(WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
         // Get datetime of first transition wher target status is equal to WIDGET_CONFIG_JIRA_INITIAL_STATUS
         startedAt = getStartDateByStatus(issue);
       }
-      
-      // In all cases where startedAt is null, startedAt will be set to issue creattion date
-      if(startedAt == null) {
+      else {
+        // Else, use creation date
         startedAt = new Date(issue.fields.created);
       }
+
+      if(WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+        // Get datetime of latest transition when target status is equal to WIDGET_CONFIG_JIRA_FINAL_STATUS
+        endAt = getEndDateByStatus(issue);
+      }
       else {
-        jiraIssuesWithSpecificStatus.push(issue.key);
+        // Else, use resolution date
+        endAt = new Date(issue.fields.resolutiondate);
       }
 
-      var localLeadTime = resolvedAt.getTime() - startedAt.getTime();
+      var localLeadTime = endAt.getTime() - startedAt.getTime();
 
       jiraIssues.push({
         key: issue.key,
         startedAt : startedAt,
-        resolvedAt: resolvedAt,
+        resolvedAt: endAt,
         localLeadTime: localLeadTime
       });
     }
@@ -110,10 +124,7 @@ function run() {
 
   data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=" + jql;
 
-  data.issuesWithSpecificStatusUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=key in (" + jiraIssuesWithSpecificStatus.join(",") + ")";
-
   data.issuesCount = jiraIssues.length;
-  data.jiraIssuesWithSpecificStatusCount = jiraIssuesWithSpecificStatus.length;
 
   var now = new Date();
   var dateForDaysAgo = new Date(new Date().setDate(new Date().getDate() - SURI_JIRA_START_RANGE));
@@ -146,6 +157,32 @@ function run() {
     data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 * 24)).round(2);
   }
 
+  // Process issues status
+  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+    data.startStatus = WIDGET_CONFIG_JIRA_INITIAL_STATUS;
+  }
+  else {
+    data.startStatus = "Created";
+  }
+
+  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+    data.endStatus = WIDGET_CONFIG_JIRA_FINAL_STATUS;
+  }
+  else {
+    data.endStatus = "Resolved";
+  }
+
+  // Process issues types
+  data.issuesTypes = issuesTypes.join(", ");
+
+  if (issuesTypes.length > 0) {
+    data.showIssuesTypes = true;
+  }
+  else {
+    data.showIssuesTypes = false;
+  }
+  
+
   return JSON.stringify(data);
 }
 
@@ -156,6 +193,20 @@ function getStartDateByStatus(jiraIssue) {
     for(var itemIndex in history.items) {
       var item = history.items[itemIndex];
       if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+        return new Date(history.created);
+      }
+    }
+  }
+  return null;
+}
+
+function getEndDateByStatus(jiraIssue) {
+
+  for(var historyIndex in jiraIssue.changelog.histories.reverse()) {
+    var history = jiraIssue.changelog.histories[historyIndex];
+    for(var itemIndex in history.items) {
+      var item = history.items[itemIndex];
+      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_FINAL_STATUS) {
         return new Date(history.created);
       }
     }

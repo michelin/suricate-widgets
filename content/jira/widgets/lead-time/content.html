@@ -13,10 +13,11 @@
 	{{#inSeconds}}
 	<p class="value">{{ leadTime }} s</p>
 	{{/inSeconds}}
-	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} resolved issues {{#WIDGET_CONFIG_JIRA_TYPES}}({{.}}){{/WIDGET_CONFIG_JIRA_TYPES}} <i class="fas fa-external-link-alt"></i></a></h3>
-	{{#WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
-	<h4 class="title"><a href="{{ issuesWithSpecificStatusUrl }}" target="_blank" rel="noopener noreferrer">{{ jiraIssuesWithSpecificStatusCount }} issues containing "{{ WIDGET_CONFIG_JIRA_INITIAL_STATUS }}" status <i class="fas fa-external-link-alt"></i></a></h4>
-	{{/WIDGET_CONFIG_JIRA_INITIAL_STATUS}}
+	<h3 class="title"><a href="{{ issuesUrl }}" target="_blank" rel="noopener noreferrer">{{ issuesCount }} issues <i class="fas fa-external-link-alt"></i></a></h3>
+	{{#showIssuesTypes}}
+	<h4 class="title">With status from {{ startStatus }} to {{ endStatus }}</h4>
+	<h5 class="title">With types: {{ issuesTypes }}</h5>
+	{{/showIssuesTypes}}
 
 </div>
 
