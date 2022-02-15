@@ -12,8 +12,16 @@
 	font-weight: bold;
 }
 
-.widget.jiraleadtime .change-rate i {
-	margin-right: 4px;
+.widget.jiraleadtime .min {
+	position: absolute;
+	top: 50%; left: 5%;
+	font-size: 0.8em;
+}
+
+.widget.jiraleadtime .max {
+	position: absolute;
+	top: 50%; right: 5%;
+	font-size: 0.8em;
 }
 
 .widget.jiraleadtime .jira {

@@ -22,9 +22,34 @@ function run() {
   
   var data = {};
 
+  var issuesTypes = [];
+
   var token = Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)
   var authorizationHeaderValue = "Basic " + token;
+
+  // Build jql query
   var jql = "project = " + SURI_JIRA_PROJECT + " AND statusCategory = Done AND created > startOfDay(-" + SURI_JIRA_START_RANGE + "d)";
+
+  if (WIDGET_CONFIG_JIRA_TYPES) {
+    // Add issues types to jql query
+    
+    issuesTypes = WIDGET_CONFIG_JIRA_TYPES.split(",");
+    var formatedIssuesTypes = [];
+
+    for (var issueTypeIndex in issuesTypes) {
+      formatedIssuesTypes.push("'" + issuesTypes[issueTypeIndex] + "'");
+    }
+
+    jql = jql + " AND type in (" + formatedIssuesTypes.join() + ")";
+  }
+
+  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_INITIAL_STATUS + "'";
+  }
+
+  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_FINAL_STATUS + "'";
+  }
 
   var startAt = 0;
   var totalIssues = 0;
@@ -32,41 +57,68 @@ function run() {
 
   do {
 
-    var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000";
+    var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000&expand=changelog";
 
     var result = JSON.parse(Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
+
+    startAt+= 1000;
     
     totalIssues = result.total;
 
     data.result = result;
 
     for(var issueIndex in result.issues) {
-      var createdAt = new Date(result.issues[issueIndex].fields.created);
-      var resolvedAt = new Date(result.issues[issueIndex].fields.resolutiondate);
 
-      var localLeadTime = resolvedAt.getTime() - createdAt.getTime();
+      var issue = result.issues[issueIndex];
+      var startedAt = null;
+      var endAt = null;
+
+      if(WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+        // Get datetime of first transition wher target status is equal to WIDGET_CONFIG_JIRA_INITIAL_STATUS
+        startedAt = getStartDateByStatus(issue);
+      }
+      else {
+        // Else, use creation date
+        startedAt = new Date(issue.fields.created);
+      }
+
+      if(WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+        // Get datetime of latest transition when target status is equal to WIDGET_CONFIG_JIRA_FINAL_STATUS
+        endAt = getEndDateByStatus(issue);
+      }
+      else {
+        // Else, use resolution date
+        endAt = new Date(issue.fields.resolutiondate);
+      }
+
+      var localLeadTime = endAt.getTime() - startedAt.getTime();
 
       jiraIssues.push({
-        key: result.issues[issueIndex].key,
-        createdAt : createdAt,
-        resolvedAt: resolvedAt,
+        key: issue.key,
+        startedAt : startedAt,
+        resolvedAt: endAt,
         localLeadTime: localLeadTime
       });
     }
-
-    startAt+= 1000
-
   } while(jiraIssues.length < totalIssues)
 
   var leadTime = 0;
+  var minLeadTime = Number.MAX_VALUE;
+  var maxLeadTime = 0;
 
   for(var issueIndex in jiraIssues) {
     leadTime = leadTime + jiraIssues[issueIndex].localLeadTime;
+
+    if(jiraIssues[issueIndex].localLeadTime < minLeadTime) {
+      minLeadTime = jiraIssues[issueIndex].localLeadTime;
+    }
+    
+    if(jiraIssues[issueIndex].localLeadTime > maxLeadTime) {
+      maxLeadTime = jiraIssues[issueIndex].localLeadTime;
+    }
   }
 
   leadTime = leadTime / jiraIssues.length;
-
-  data.tt = leadTime;
 
   data.jql = jql;
 
@@ -83,19 +135,81 @@ function run() {
   if (SURI_JIRA_VALUE_FORMAT === 'HOURS') {
     data.inHours = true;
     data.leadTime = (leadTime / (1000 * 60 * 60 )).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 * 60 )).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 )).round(2);
   }
   else if(SURI_JIRA_VALUE_FORMAT === 'MINUTES') {
     data.inMinutes = true;
     data.leadTime = (leadTime / (1000 * 60 )).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 )).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 )).round(2);
   }
   else if(SURI_JIRA_VALUE_FORMAT === 'SECONDS') {
     data.inSeconds = true;
     data.leadTime = (leadTime / 1000).round(2);
+    data.minLeadTime = (minLeadTime / 1000).round(2);
+    data.maxLeadTime = (maxLeadTime / 1000).round(2);
   }
   else {
     data.inDays = true;
     data.leadTime = (leadTime / (1000 * 60 * 60 * 24)).round(2);
+    data.minLeadTime = (minLeadTime / (1000 * 60 * 60 * 24)).round(2);
+    data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 * 24)).round(2);
   }
 
+  // Process issues status
+  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+    data.startStatus = WIDGET_CONFIG_JIRA_INITIAL_STATUS;
+  }
+  else {
+    data.startStatus = "Created";
+  }
+
+  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+    data.endStatus = WIDGET_CONFIG_JIRA_FINAL_STATUS;
+  }
+  else {
+    data.endStatus = "Resolved";
+  }
+
+  // Process issues types
+  data.issuesTypes = issuesTypes.join(", ");
+
+  if (issuesTypes.length > 0) {
+    data.showIssuesTypes = true;
+  }
+  else {
+    data.showIssuesTypes = false;
+  }
+  
+
   return JSON.stringify(data);
+}
+
+function getStartDateByStatus(jiraIssue) {
+
+  for(var historyIndex in jiraIssue.changelog.histories) {
+    var history = jiraIssue.changelog.histories[historyIndex];
+    for(var itemIndex in history.items) {
+      var item = history.items[itemIndex];
+      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+        return new Date(history.created);
+      }
+    }
+  }
+  return null;
+}
+
+function getEndDateByStatus(jiraIssue) {
+
+  for(var historyIndex in jiraIssue.changelog.histories.reverse()) {
+    var history = jiraIssue.changelog.histories[historyIndex];
+    for(var itemIndex in history.items) {
+      var item = history.items[itemIndex];
+      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+        return new Date(history.created);
+      }
+    }
+  }
+  return null;
 }
