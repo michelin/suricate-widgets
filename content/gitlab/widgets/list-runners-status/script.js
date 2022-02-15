@@ -57,7 +57,7 @@ function run() {
 			var runnerMatchingToGivenNames;
 			
 			SURI_RUNNERS_NAME.split(",").forEach(function(runnerName) {
-				if (runner.description.toLowerCase().indexOf(runnerName.toLowerCase()) > -1) {
+				if (runner.description && runner.description.toLowerCase().indexOf(runnerName.toLowerCase()) > -1) {
 					runnerMatchingToGivenNames = runner;
 				}
 			});
