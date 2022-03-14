@@ -38,7 +38,7 @@ function run() {
 	projectsNamesOrKeys.forEach(function(projectNameOrKey) {
 		var projects = [];
 		
-		var response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/sonar/api/components/search?" 
+		var response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/components/search?" 
 						+ "qualifiers=TRK"
 						+ "&q=" + projectNameOrKey
 						+ "&ps=" + pageSize
@@ -51,7 +51,7 @@ function run() {
 			while (response.paging.total > response.paging.pageIndex * response.paging.pageSize) {
 				projectPage++;
 				
-				response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/sonar/api/components/search?"
+				response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/components/search?"
 							+ "qualifiers=TRK"
 							+ "&q=" + projectNameOrKey
 							+ "&ps=" + pageSize 
@@ -66,7 +66,7 @@ function run() {
 					projectsAndAnalysesQuantity[projectNameOrKey] = 0;
 				}
 				
-				var projectAnalysesURL = WIDGET_CONFIG_SONAR_URL + "/sonar/api/project_analyses/search?project=" + project.key
+				var projectAnalysesURL = WIDGET_CONFIG_SONAR_URL + "/api/project_analyses/search?project=" + project.key
 											+ "&ps" + pageSize + "&p=1";
 				
 				if (data.fromDate) {
