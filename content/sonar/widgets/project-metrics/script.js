@@ -19,7 +19,7 @@ function run() {
 	data.results = [];
 	
 	var response = JSON.parse(
-					Packages.get(WIDGET_CONFIG_SONAR_URL + "/sonar/api/measures/component?componentKey=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
+					Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/measures/component?component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
 					"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
 
 	if (response && response.component && response.component.measures && response.component.measures.length > 0) {
