@@ -13,7 +13,7 @@ widgetParams:
     required: true
   -
     name: 'SURI_SERVICE_ACCOUNT_TOKEN'
-    description: 'Service account token'
+    description: 'Namespace token (e.g. service account token, Gitlab token, ...)'
     type: PASSWORD
     usageExample: 'eyJhbGciOiJSU'
     required: true
