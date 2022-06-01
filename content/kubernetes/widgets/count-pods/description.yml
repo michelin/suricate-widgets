@@ -1,0 +1,4 @@
+name: Count pods from namespace
+description: Count the number of pods from a given namespace
+technicalName: countpods
+delay: 500
