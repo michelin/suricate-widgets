@@ -25,7 +25,7 @@ function run() {
 		url += "&search=" + SURI_SEARCH_BY_NAME;
 	}
 
-	data.numberOfDashboards = JSON.parse(Packages.get(url, "Authorization", "Bearer " + WIDGET_CONFIG_SURICATE_TOKEN)).totalElements;
+	data.numberOfDashboards = JSON.parse(Packages.get(url, "Authorization", "Token " + WIDGET_CONFIG_SURICATE_TOKEN)).totalElements;
 
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfDashboards) {
 		data.evolution = ((data.numberOfDashboards - JSON.parse(SURI_PREVIOUS).numberOfDashboards) * 100 / JSON.parse(SURI_PREVIOUS).numberOfDashboards).toFixed(1);
