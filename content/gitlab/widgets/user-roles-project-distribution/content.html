@@ -15,14 +15,14 @@
             $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
             $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
-			
+
             var minimalAccess = '{{{minimalAccess}}}';
             var guest = '{{{guest}}}';
             var reporter = '{{{reporter}}}';
-            var developper = '{{{developper}}}';
+            var developer = '{{{developer}}}';
             var maintainer = '{{{maintainer}}}';
             var owner = '{{{owner}}}';
-			
+
             var chart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'pie',
@@ -32,14 +32,14 @@
                         'Minimal access',
                         'Guest',
                         'Reporter',
-                        'Developper',
+                        'Developer',
                         'Maintainer',
                         'Owner'
                     ],
                     datasets: [{
                         borderColor: ['#607D8B','#607D8B','#607D8B','#607D8B','#607D8B','#607D8B'],
                         backgroundColor: ['#599B34','#9B0120','#6ab38c','#b36da5','#929B00','#aeadb3'],
-                        data: [minimalAccess,guest,reporter,developper,maintainer,owner]
+                        data: [minimalAccess,guest,reporter,developer,maintainer,owner]
                     }],
                     borderWidth: 1
                 },
