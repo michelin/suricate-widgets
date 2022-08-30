@@ -13,38 +13,56 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-  
+
 function run() {
 	var data = {};
+	var page = 1;
 	data.minimalAccess = 0;
 	data.guest = 0;
 	data.reporter = 0;
-	data.developper = 0;
+	data.developer = 0;
 	data.maintainer = 0;
 	data.owner = 0;
-	
+	data.total = 0;
+
 	var project = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	var members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/members/all", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 	if (members && members.length > 0) {
 		data.minimalAccess = countMembersOfRole(members, 5);
 		data.guest = countMembersOfRole(members, 10);
 		data.reporter = countMembersOfRole(members, 20);
-		data.developper = countMembersOfRole(members, 30);
+		data.developer = countMembersOfRole(members, 30);
 		data.maintainer = countMembersOfRole(members, 40);
 		data.owner = countMembersOfRole(members, 50);
+		data.total = members.length;
 	}
-	
+
+	while (members && members !== null && members.length > 0) {
+		page++;
+
+		members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+
+		if (members && members.length > 0) {
+			data.minimalAccess = data.minimalAccess + countMembersOfRole(members, 5);
+			data.guest = data.guest + countMembersOfRole(members, 10);
+			data.reporter = data.reporter + countMembersOfRole(members, 20);
+			data.developer = data.developer + countMembersOfRole(members, 30);
+			data.maintainer = data.maintainer + countMembersOfRole(members, 40);
+			data.owner = data.owner + countMembersOfRole(members, 50);
+			data.total = data.total + members.length;
+		}
+	}
+
 	data.projectName = project.name;
-	data.total = members.length;
 
 	return JSON.stringify(data);
 }
 
 function countMembersOfRole(members, role) {
-	return members.filter(function(member) { 
+	return members.filter(function(member) {
 		if (member.access_level === role) {
 			return member;
 		}
-	}).length;	
+	}).length;
 }
