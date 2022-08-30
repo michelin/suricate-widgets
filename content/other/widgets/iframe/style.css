@@ -26,6 +26,8 @@
 }
 
 .widget.iframe:hover a:after {
-	font-family: 'FontAwesome';
-	content: " \f08e";
+	font-family: 'Font Awesome 5 Free';
+	content: " \f35d";
+	font-size: 18px;
+	font-weight: 900;
 }
