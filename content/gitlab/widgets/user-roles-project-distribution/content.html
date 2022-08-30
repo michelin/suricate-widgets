@@ -13,7 +13,7 @@
 
         function loadChart{{SURI_INSTANCE_ID}}() {
             $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
+            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width());
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
 
             var minimalAccess = '{{{minimalAccess}}}';
@@ -62,7 +62,7 @@
                 },
                 onResize: function () {
                     $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-                    $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
+                    $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width());
                     chart.update();
                 }
             });

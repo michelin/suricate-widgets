@@ -12,8 +12,8 @@
         $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
 
         function loadChart{{SURI_INSTANCE_ID}}() {
-            $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
+            $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+            $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width());
 			
 			var labels = [];
 			var backgroundColors = [];
@@ -88,8 +88,8 @@
                     circumference : 2 * Math.PI
                 },
                 onResize: function () {
-                    $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height()-130);
-                    $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width()-40);
+					$("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+					$("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width());
                     chart.update();
                 }
             });
