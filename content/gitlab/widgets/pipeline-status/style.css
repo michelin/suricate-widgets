@@ -6,6 +6,10 @@
 	background-color: #2e7d32;
 }
 
+.widget.gitlabPipelineStatus .success-with-warnings {
+	background-color: #daa520;
+}
+
 .widget.gitlabPipelineStatus .failed {
 	background-color: #d50000;
 	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
@@ -58,6 +62,13 @@
 .widget.gitlabPipelineStatus .value {
 	font-size: 22px;
 	margin-bottom: 10px;
+}
+
+.widget.gitlabPipelineStatus .failed-jobs {
+	font-size: 18px;
+	margin-bottom: 10px;
+	text-transform: none;
+	font-weight: 400;
 }
 
 .widget.gitlabPipelineStatus .time-table {

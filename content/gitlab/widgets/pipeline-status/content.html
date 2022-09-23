@@ -1,10 +1,13 @@
 <a href="{{url}}" class="link" target="_blank">
 	<div class="fullwidget {{status}}">
-		<i class="fa-fix fa 
-		{{#success}}fa-thumbs-up{{/success}} 
-		{{#failed}}fa-thumbs-down{{/failed}} 
-		{{#running}}fa-running{{/running}} 
-		{{#otherStatus}}fa-exclamation-triangle{{/otherStatus}} 
+		<i class="fa-fix fa
+		{{#success}}fa-thumbs-up{{/success}}
+		{{#warning}}fa-exclamation-triangle{{/warning}}
+		{{#failed}}fa-thumbs-down{{/failed}}
+		{{#running}}fa-running{{/running}}
+		{{#canceled}}fa-ban{{/canceled}}
+		{{#skipped}}fa-angle-double-right{{/skipped}}
+		{{#otherStatus}}fa-exclamation-triangle{{/otherStatus}}
 		icon-background icon-background-opacity"></i>
 
 		<div class="grid-stack-item-content-inner">
@@ -14,10 +17,18 @@
 			<p class="value">
 				<i class="fa fa-code-branch"></i> {{branch}}
 			</p>
-			<h2 class="title">{{status}}</h2>
+			<h2 class="title">
+				{{status}}
+				{{#showFailedJobs}}
+				<p class="failed-jobs">
+					Jobs {{failed_jobs}} failed
+				</p>
+				{{/showFailedJobs}}
+			</h2>
 			<p class="time-value">
 				<i class="fa fa-calendar-alt"></i> Created the {{createdAt}}
 			</p>
+			{{^hideTimeTable}}
 			<table class="time-table">
 				<tr>
 					<td>
@@ -32,6 +43,7 @@
 					</td>
 				</tr>
 			</table>
+			{{/hideTimeTable}}
 			<p class="value user-value">
 				<i class="fa fa-user-alt"></i> {{name}} ({{username}})
 			</p>

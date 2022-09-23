@@ -11,3 +11,15 @@ widgetParams:
     type: TEXT
     usageExample: 'dev'
     required: false
+  -
+    name: HIDE_TIMETABLE
+    description: 'Hide timetable (duration + queued time)'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
+  -
+    name: SHOW_FAILED_JOBS
+    description: 'Show failed jobs'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
