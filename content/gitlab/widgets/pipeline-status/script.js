@@ -54,17 +54,15 @@ function run() {
 			}
 		}
 
-		if (SHOW_FAILED_JOBS && SHOW_FAILED_JOBS === 'true') {
+		if ((SHOW_FAILED_JOBS && SHOW_FAILED_JOBS === 'true') && (data.status === 'success-with-warnings' || data.status === 'failed')) {
 			data.showFailedJobs = SHOW_FAILED_JOBS;
-			if (data.status === 'success-with-warnings' || data.status === 'failed') {
-				var failed_jobs = JSON.parse(
-					Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines/" + pipeline.id + "/jobs?scope=failed&per_page=100&page=1", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-					data.failed_jobs = "";
-				for (var i = 0; i < failed_jobs.length; i++) {
-					data.failed_jobs = data.failed_jobs + failed_jobs[i].name + ", ";
-				}
-				data.failed_jobs = data.failed_jobs.substring(0, data.failed_jobs.length - 2);
+			var failed_jobs = JSON.parse(
+				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/pipelines/" + pipeline.id + "/jobs?scope=failed&per_page=100&page=1", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				data.failed_jobs = "";
+			for (var i = 0; i < failed_jobs.length; i++) {
+				data.failed_jobs = data.failed_jobs + failed_jobs[i].name + ", ";
 			}
+			data.failed_jobs = data.failed_jobs.substring(0, data.failed_jobs.length - 2);
 		}
 
 		if (data.status === 'success') {
