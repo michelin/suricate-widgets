@@ -16,7 +16,7 @@
 
 function run() {
   var data = {};
-  data.jenkinsJobUrl = WIDGET_CONFIG_JENKINS_URL + '/jenkins/job/' + SURI_JOB;
+  data.jenkinsJobUrl = WIDGET_CONFIG_JENKINS_URL + '/job/' + SURI_JOB;
   var jsonResponse = Packages.get(data.jenkinsJobUrl + "/api/json?tree=builds[url,number,status,timestamp,id,result,duration,building]", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
 
   if (jsonResponse === null) {

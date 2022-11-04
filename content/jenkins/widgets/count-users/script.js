@@ -18,9 +18,9 @@ function run() {
 	var data = {};
 
 	if (!SURI_SEARCH_BY_IDENTIFIER) {
-		var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[lastChange]";
+		var url = WIDGET_CONFIG_JENKINS_URL + "/asynchPeople/api/json?tree=users[lastChange]";
 	} else {
-		var url = WIDGET_CONFIG_JENKINS_URL + "/jenkins/asynchPeople/api/json?tree=users[user[id],lastChange]"
+		var url = WIDGET_CONFIG_JENKINS_URL + "/asynchPeople/api/json?tree=users[user[id],lastChange]"
 	}
 
 	var json = JSON.parse(Packages.get(url, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD)));

@@ -17,7 +17,7 @@
 function run() {
   var now_timestamp = Date.now();
   var data = {};
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/jenkins/queue/api/json", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JENKINS_URL + "/queue/api/json", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JENKINS_USER + ":" + WIDGET_CONFIG_JENKINS_PASSWORD));
   if (jsonResponse == null) {
     return null;
   }
