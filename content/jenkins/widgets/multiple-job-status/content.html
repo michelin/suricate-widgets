@@ -13,7 +13,7 @@
                 <ul class="jobs">
                     {{#job_critical}}
                         <li class="jobname">
-                            <a href="{{ WIDGET_CONFIG_JENKINS_URL }}/jenkins/job/{{jobName}}" target="_blank">
+                            <a href="{{ WIDGET_CONFIG_JENKINS_URL }}/job/{{jobName}}" target="_blank">
                                 <p>{{jobName}}, built by {{builder}}, status is: </p><h3>{{jobStatus}}</h3>
                             </a>
                         </li>
@@ -25,7 +25,7 @@
                 <ul class="jobs">
                     {{#job_unstable}}
                         <li class="jobname">
-                            <a href="{{ WIDGET_CONFIG_JENKINS_URL }}/jenkins/job/{{jobName}}" target="_blank">
+                            <a href="{{ WIDGET_CONFIG_JENKINS_URL }}/job/{{jobName}}" target="_blank">
                                 <p>{{jobName}}, built by {{builder}}, status is: </p><h3>{{jobStatus}}</h3>
                             </a>
                         </li>
