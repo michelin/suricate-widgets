@@ -1,7 +1,7 @@
 {{^building}}
 <div class="fullwidget {{#success}}green{{/success}} {{#failure}}red{{/failure}} {{#unstable}}orange{{/unstable}}">
    <i class="fa-fix fa {{#success}}fa-thumbs-up{{/success}} {{#failure}}fa-thumbs-down{{/failure}} {{#unstable}}fa-exclamation-triangle{{/unstable}} icon-background"></i>
-   <a href="{{WIDGET_CONFIG_JENKINS_URL}}/jenkins/job/{{SURI_JOB}}/" class="link" target="_blank">
+   <a href="{{WIDGET_CONFIG_JENKINS_URL}}/job/{{SURI_JOB}}/" class="link" target="_blank">
       <div class="grid-stack-item-content-inner">
          <h1 class="title">{{SURI_JOB}}</h1>
          <div class="infos"><i class="fa fa-user" aria-hidden="true"></i> Last build by <span class="builtby value">{{builtBy}}</span></div>
