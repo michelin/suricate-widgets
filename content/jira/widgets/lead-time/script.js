@@ -59,7 +59,7 @@ function run() {
 
     var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000&expand=changelog";
 
-    var result = JSON.parse(Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
+    var result = JSON.parse(Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
 
     startAt+= 1000;
     

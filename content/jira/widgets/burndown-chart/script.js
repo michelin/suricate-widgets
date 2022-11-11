@@ -22,7 +22,7 @@ function run() {
 
 	// customfield_10611 is the Green Hopper field for sprint data
 	// customfield_10382 contains the story points
-	var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" 
+	var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" 
 						+ encodeURIComponent(SURI_JQL) 
 						+ "&fields=customfield_10382,resolutiondate,fixVersions,updated,customfield_10611&maxResults=1000", 
 						"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
@@ -131,7 +131,7 @@ function computeSprintDatesFromOtherFields(data, issues) {
 }
 
 /**
-Update the current start date from the given date
+Update the current start date from the given dates
 **/
 function updateStartDate(data, date) {
 	if (date) {

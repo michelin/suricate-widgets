@@ -16,11 +16,11 @@
 
 function run() {
   var data = {};
-  var jsonResponseAll = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_ALL) + "&maxResults=0", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+  var jsonResponseAll = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_ALL) + "&maxResults=0", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   if (jsonResponseAll == null) {
     return null;
   }
-  var jsonResponseClosed = Packages.get(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_CLOSED) + "&maxResults=0", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+  var jsonResponseClosed = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_CLOSED) + "&maxResults=0", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
   if (jsonResponseClosed == null) {
     return null;
   }
