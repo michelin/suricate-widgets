@@ -60,7 +60,7 @@ if (!Array.prototype.fill) {
 
 function run() {
   var data = {};
-  var baseUrl = WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2";
+  var baseUrl = WIDGET_CONFIG_JIRA_URL + "/rest/api/2";
   var json = JSON.parse(Packages.get(baseUrl + "/project", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)));
   var res = [];
 
