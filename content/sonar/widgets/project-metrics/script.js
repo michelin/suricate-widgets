@@ -17,9 +17,11 @@
 function run() {
 	var data = {};
 	data.results = [];
-	
+	// added to remove the trailing slash from the URL if present
+	data.sonarConfigUrl = (WIDGET_CONFIG_SONAR_URL) ? WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, '') : WIDGET_CONFIG_SONAR_URL;
+
 	var response = JSON.parse(
-					Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/measures/component?component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
+					Packages.get(data.sonarConfigUrl + "/api/measures/component?" + (SURI_BRANCH != null ? "branch=" + SURI_BRANCH +"&" : "") +"component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
 					"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
 
 	if (response && response.component && response.component.measures && response.component.measures.length > 0) {
