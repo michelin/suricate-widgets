@@ -8,6 +8,8 @@ function run() {
 	var projectsAndAnalysesQuantity = {};
 	var pageSize = 500;
 	var projectPage = 1;
+	// added to remove the trailing slash from the URL if present
+	data.sonarConfigUrl = (WIDGET_CONFIG_SONAR_URL) ? WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, '') : WIDGET_CONFIG_SONAR_URL;
 	
 	if (SURI_PERIOD) {
 		var numberOfPeriods = 1;
@@ -38,7 +40,7 @@ function run() {
 	projectsNamesOrKeys.forEach(function(projectNameOrKey) {
 		var projects = [];
 		
-		var response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/components/search?" 
+		var response = JSON.parse(Packages.get(data.sonarConfigUrl + "/api/components/search?" 
 						+ "qualifiers=TRK"
 						+ "&q=" + projectNameOrKey
 						+ "&ps=" + pageSize
@@ -51,8 +53,8 @@ function run() {
 			while (response.paging.total > response.paging.pageIndex * response.paging.pageSize) {
 				projectPage++;
 				
-				response = JSON.parse(Packages.get(WIDGET_CONFIG_SONAR_URL + "/api/components/search?"
-							+ "qualifiers=TRK"
+				response = JSON.parse(Packages.get(data.sonarConfigUrl + "/api/components/search?"
+							+ "qualifiers=TRK"	
 							+ "&q=" + projectNameOrKey
 							+ "&ps=" + pageSize 
 							+ "&p=" + projectPage,
@@ -66,7 +68,7 @@ function run() {
 					projectsAndAnalysesQuantity[projectNameOrKey] = 0;
 				}
 				
-				var projectAnalysesURL = WIDGET_CONFIG_SONAR_URL + "/api/project_analyses/search?project=" + project.key
+				var projectAnalysesURL = data.sonarConfigUrl + "/api/project_analyses/search?project=" + project.key
 											+ "&ps" + pageSize + "&p=1";
 				
 				if (data.fromDate) {

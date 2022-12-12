@@ -41,3 +41,9 @@ widgetParams:
         jsKey: 'test_success_density'
         value: 'Unit test success density (%)'
     required: true
+  -
+    name: 'SURI_BRANCH'
+    description: 'Branch name'
+    type: TEXT
+    usageExample: 'My branch'
+    required: false
