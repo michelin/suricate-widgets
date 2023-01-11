@@ -1,4 +1,4 @@
-# Suricate widgets
+# Suricate Widgets
 
 [![GitHub Stars](https://img.shields.io/github/stars/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
 [![GitHub Watch](https://img.shields.io/github/watchers/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
