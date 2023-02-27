@@ -4,10 +4,44 @@ widgetParams:
     description: 'Widget title'
     type: TEXT
     usageExample: 'My title'
-    required: true
   -
     name: 'SURI_TEXT'
     description: 'Widget text'
     type: TEXT
     usageExample: 'My content'
-    required: true
+  -
+    name: 'SURI_TITLE_SIZE'
+    description: 'Title size'
+    type: COMBO
+    defaultValue: 'small'
+    possibleValuesMap:
+      -
+        jsKey: small
+        value: Small
+      -
+        jsKey: medium
+        value: Medium
+      -
+        jsKey: large
+        value: Large
+      -
+        jsKey: very-large
+        value: Very large
+  -
+    name: 'SURI_TEXT_SIZE'
+    description: 'Text size'
+    type: COMBO
+    defaultValue: 'small'
+    possibleValuesMap:
+      -
+        jsKey: small
+        value: Small
+      -
+        jsKey: medium
+        value: Medium
+      -
+        jsKey: large
+        value: Large
+      -
+        jsKey: very-large
+        value: Very large

@@ -5,3 +5,19 @@
 .widget.text .title {
 	color: rgba(255, 255, 255, 0.7);
 }
+
+.widget.text .small {
+	font-size: 30px;
+}
+
+.widget.text .medium {
+	font-size: 60px;
+}
+
+.widget.text .large {
+	font-size: 90px;
+}
+
+.widget.text .very-large {
+	font-size: 120px;
+}
