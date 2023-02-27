@@ -80,6 +80,8 @@ function run() {
             item.online = true;
 		} else if (runner.status === 'offline') {
             item.offline = true;
+        } else if (runner.status === 'stale') {
+            item.stale = true;
         } 
 		
 		toReturn.push(item);

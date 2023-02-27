@@ -57,6 +57,10 @@
 	background-color: #ffcdd2;
 }
 
+.widget.gitlabListRunnersStatus ul li .status.stale {
+	background-color: #cfd8dc;
+}
+
 .widget.gitlabListRunnersStatus ul li .status.highlight-offline-runners {
 	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
 	-moz-animation: status-danger-background 1s infinite; /* Fx 5+ */
@@ -78,6 +82,10 @@
 
 .widget.gitlabListRunnersStatus ul li .status .paused {
 	color: #fbc02d;
+}
+
+.widget.gitlabListRunnersStatus ul li span i {
+	vertical-align: middle;
 }
 
 .widget.gitlabListRunnersStatus .gitlab {
