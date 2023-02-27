@@ -4,11 +4,13 @@ widgetParams:
     description: 'Widget title'
     type: TEXT
     usageExample: 'My title'
+    required: false
   -
     name: 'SURI_TEXT'
     description: 'Widget text'
     type: TEXT
     usageExample: 'My content'
+    required: false
   -
     name: 'SURI_TITLE_SIZE'
     description: 'Title size'
@@ -27,6 +29,7 @@ widgetParams:
       -
         jsKey: very-large
         value: Very large
+    required: true
   -
     name: 'SURI_TEXT_SIZE'
     description: 'Text size'
@@ -45,3 +48,4 @@ widgetParams:
       -
         jsKey: very-large
         value: Very large
+    required: true
