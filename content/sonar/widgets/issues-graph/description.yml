@@ -1,0 +1,7 @@
+name: Project issue analysis
+description: Display issues graph of projects
+technicalName: sonarProjectIssues
+delay: 500
+libraries:
+  - chart.js
+  - chart.piecelabel.js
