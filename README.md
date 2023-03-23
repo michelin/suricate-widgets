@@ -60,20 +60,12 @@ A widget **category** is a folder that contains:
 The `description.yml` file describes the category and contains associated parameters. Here is an example:
 
 ```yml
-name: Jenkins
-technicalName: jenkins
+name: GitHub
+technicalName: github
 configurations:
   -
-    key: 'WIDGET_CONFIG_JENKINS_URL'
-    description: 'URL of the Jenkins environment'
-    dataType: TEXT
-  -
-    key: 'WIDGET_CONFIG_JENKINS_USER'
-    description: 'Username of the Jenkins functional account'
-    dataType: TEXT
-  -
-    key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
-    description: 'Password of the Jenkins functional account'
+    key: 'WIDGET_CONFIG_GITHUB_TOKEN'
+    description: 'Token for the GitHub API'
     dataType: PASSWORD
 ```
 
@@ -110,24 +102,18 @@ A widget is a folder containing the following files:
 The `content.html` file is responsible for displaying the widget on Suricate dashboards and provides the tile format for the widget. It contains the HTML code of the widget.
 
 ```html
-<a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL_ALL}}" class="link" target="_blank">
-    <div class="grid-stack-item-content-inner">
-        <h1 class="title">{{SURI_TITLE}}</h1>
-        <input type="text" value="{{value}}" class="dial" data-min="0" data-max="100" data-displayInput=true data-angleOffset=-125 data-angleArc=250 data-inputColor="rgb(255, 255, 255)" data-readOnly=true data-bgcolor="rgba(0, 0, 0,0.55)" data-fgcolor="rgb(255, 255, 255)"/>
-    </div>
-    {{#displayCount}}
-	<br>
-	<p class="more-info">Jira Nb : {{valueCountSelect}} / {{valueCountAll}}</p>
-    {{/displayCount}}
+<div class="grid-stack-item-content-inner">
+	<h1 class="title">{{SURI_GITHUB_PROJECT}}</h1>
+	<h2 class="value">{{numberOfIssues}}</h2>
+	<h2 class="issues-label">{{#issuesState}} {{issuesState}} {{/issuesState}} issues</h2>
 
-    <script>
-        $(function(){
-            $(".widget-{{SURI_INSTANCE_ID}} .dial").knob({
-                'format' : function (value) {return value+'%';}
-            });
-        });
-    </script>
-</a>
+	{{#evolution}}
+	<p class="change-rate">
+	  <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
+	</p>
+	{{/evolution}}
+</div>
+<div class="github"></div>
 ```
 
 This file is a template that will be compiled with [Mustache](https://mustache.github.io/mustache.5.html), so feel free to use the provided directives to:
@@ -145,14 +131,10 @@ As in the example above, it is possible to add custom JavaScript or calls to Jav
 The `description.yml` file provides information about the widget. The following is its content:
 
 ```yml
-name: Progression
-description: Widget used to display the release progression from Jira. Count the number of closed Jiras against the total amount of Jiras.
-info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
-technicalName: jirameter
-delay: 500
-timeout: 60
-libraries:
-  - knob.js
+name: Number of issues
+description: Display the number of issues of a GitHub project
+technicalName: githubOpenedIssues
+delay: 600
 ```
 
 The table below lists all possible parameters in this file:
@@ -182,29 +164,31 @@ The `params.yml` file must adhere to the following rules:
 ```yml
 widgetParams:
   -
-    name: 'SURI_TITLE'
-    description: 'Widget title'
+    name: 'SURI_GITHUB_ORG'
+    description: 'GitHub organization'
     type: TEXT
-    usageExample: 'My title'
     required: true
   -
-    name: 'SURI_JQL_ALL'
-    description: 'Jira JQL query to count all issues'
+    name: 'SURI_GITHUB_PROJECT'
+    description: 'GitHub project'
     type: TEXT
-    usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX'
     required: true
   -
-    name: 'SURI_JQL_CLOSED'
-    description: 'Jira JQL query to count all closed issues'
-    type: TEXT
-    usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX and status in (Closed, Done, "Done Done")'
+    name: 'SURI_ISSUES_STATE'
+    description: 'Filter on the state of the issues'
+    type: COMBO
+    defaultValue: 'all'
+    possibleValuesMap:
+      -
+        jsKey: all
+        value: All
+      -
+        jsKey: open
+        value: Open
+      -
+        jsKey: closed
+        value: Closed
     required: true
-  -
-    name: 'SURI_DISPLAY_COUNT'
-    description: 'Display amount of data on the widget'
-    type: BOOLEAN
-    defaultValue: false
-    required: false
 ```
 
 The following table lists all available parameters for the `params.yml` file:
@@ -227,44 +211,24 @@ The `script.js` file is the core of the widget. It contains the business process
 How does the script work?
 - It is executed by the Spring Boot back-end with [Nashorn](https://en.wikipedia.org/wiki/Nashorn_(JavaScript_engine)).
 - It has to define a function named _run_. This is the function executed by the back-end. All the data returned by the _run_ function has to be stringified in a JSON format.
-- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods defined in Java according to the given parameters, and submit the request to the REST API with the _okhttp_ library. 
-  - The _get_ method accepts these parameters:
-    - **url** - the URL of the endpoint to call.
-    - **headerName** - the name of a header to add. It can be used, for example, to add an _Authorization_ header.
-    - **headerValue** - the value to set to the added header.
-    - **headerToReturn** - the name of the header that we want the value to be returned.
-  - The _post_ method accepts these parameters:
-    - **url** - the URL of the endpoint to call.
-    - **body** - the body of the request. 
-    - **headerName** - the name of a header to add. It can be used, for example, to add an _Authorization_ header.
-    - **headerValue** - the value to set to the added header.
-    - **mediaType** - the required media type of the response.
-- Two variables are injected in the script and can be used:
-    - **SURI_PREVIOUS** - contains the previous data computed by the last execution of the widget.
-    - **SURI_INSTANCE_ID** - contains the ID of the widget instance.
+- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate back-end](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/services/nashorn/script/NashornWidgetScript.java). 
 
 ```javascript
-function run (){
-    var data = {};
-    var jsonResponseAll = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL_ALL)+"&maxResults=0", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
-    if (jsonResponseAll == null) {
-        return null;
-    }
-    var jsonResponseClosed = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL_CLOSED)+"&maxResults=0", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
-    if (jsonResponseClosed == null) {
-        return null;
-    }
+function run() {
+	var data = {};
+	var perPage = 100;
+	var issues = [];
+	var page = 1;
+	
+	var response = JSON.parse(Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_ISSUES_STATE, "Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
+	
+	issues = issues.concat(response);
 
-    var jsonObjectClosed = JSON.parse(jsonResponseClosed);
-    var jsonObjectAll = JSON.parse(jsonResponseAll);
-    var value = (jsonObjectClosed.total * 100) / jsonObjectAll.total;
-
-    data.valueCountSelect = jsonObjectClosed.total;
-    data.valueCountAll = jsonObjectAll.total;
-    data.value = isNaN(value) ? 0 : value.toFixed(0);
-    data.displayCount = !(typeof SURI_DISPLAY_COUNT === 'undefined' || SURI_DISPLAY_COUNT === "false");
-
-    return JSON.stringify(data);
+	...
+	
+	data.numberOfIssues = issues.length;
+	
+	return JSON.stringify(data);
 }
 ```
 
@@ -277,20 +241,15 @@ Usage information:
 - All the classes have to be prefixed by `.widget.<technicalname>`. The technical name is the one defined in the _description.yml_ file of the widget.
 
 ```CSS
-.widget.jirameter {
-    background-color: #9c4274;
+.widget.githubOpenedIssues {
+	background-color: #FFFFFF;
 }
-.widget.jirameter input.meter {
-    background-color: #662b4c;
-    color: #fff;
-}
-.widget.jirameter .nbJira {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 16px;
-    padding: 5px 0 5px 0;
-}
-.widget.jirameter .title {
-    color: rgba(255, 255, 255, 0.7);
+
+...
+
+.widget.githubOpenedIssues .issues-label {
+	color: #1B1F23;
+	font-size: 40px;
 }
 ```
 
