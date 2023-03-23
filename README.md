@@ -4,11 +4,296 @@
 [![GitHub Watch](https://img.shields.io/github/watchers/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
-This repository contains the source code of all widgets of the Suricate application
+This repository contains the source code of all the widgets in the Suricate application.
 
 ![Suricate dashboard developer environment](readme/dashboard.png)
 
-## 📚 Wiki
+# Table of Contents
 
-Information and instructions about the creation of new widgets are located in [the widgets wiki](https://github.com/michelin/suricate-widgets/wiki) 🙌
+* [Repository Architecture](#repository-architecture)
+* [Getting Started](#getting-started)
+  * [Creating a Category](#creating-a-category)
+  * [Creating a Widget](#creating-a-widget)
+  * [Suricate Widget Tester](#suricate-widget-tester)
+  
+# Repository Architecture
 
+📁 **Content** - Contains all the widgets sorted by category.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Category 1** - A widget category (e.g. Gitlab, GitHub, Jenkins, etc.).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Widgets** - Contains all the widgets of the category.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Widget 1** - A widget.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **content.html** - The HTML content of the widget.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **description.yml** - The description of the widget.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ♐ **image.png** - The image of the widget.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **params.yml** - The parameters of the widget.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📜 **script.js** - The process content of the widget, defining what the widget does.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **style.css** - CSS styles to apply to the widget HTML content.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **description.yml** - The description of the category.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ♐ **icon.png** - The icon of the category.
+
+📁 **Libraries** - Contains all the JavaScript libraries used by all the widgets.
+
+# Getting Started
+
+This guide provides instructions for creating your own widget.
+
+## Creating a Category
+
+A widget **category** is a folder that contains: 
+- A `description.yml` file that describes the category
+- An `icon.png` file to associate an icon with the category in the Suricate application
+- A folder that contains all the widgets related to this category
+
+### Description
+
+The `description.yml` file describes the category and contains associated parameters. Here is an example:
+
+```yml
+name: Jenkins
+technicalName: jenkins
+configurations:
+  -
+    key: 'WIDGET_CONFIG_JENKINS_URL'
+    description: 'URL of the Jenkins environment'
+    dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_JENKINS_USER'
+    description: 'Username of the Jenkins functional account'
+    dataType: TEXT
+  -
+    key: 'WIDGET_CONFIG_JENKINS_PASSWORD'
+    description: 'Password of the Jenkins functional account'
+    dataType: PASSWORD
+```
+
+Here are the possible parameters that can be set in this file:
+
+| Param          | Required | Description |
+| -------------- | -------- | ----------- |
+| `name`           | true     | The name of the category to display in Suricate. |
+| `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category. |
+| `configurations` | false    | Parameters associated with the category. All the widgets of the category will share these parameters. Values are defined directly from the _Configuration_ tab in the Suricate application. <br/><br/> Each parameter must declare the following properties: <ul><li>**key** - _The name of the parameter used by the widget. It must start by WIDGET_CONFIG._</li> <li>**description** - _A description for the parameter._</li> <li>**dataType** - _The type of the parameter. It must be one of these types: "NUMBER", "TEXT", "PASSWORD"._</li> |
+
+### Icon
+
+The `icon.png` file contains the icon to be associated with the category. The icon will be displayed in the Suricate application.
+
+### Widgets
+
+The `Widgets` folder contains all the widgets linked to the category.
+
+For more information about creating a widget, please see [the dedicated section](#create-a-widget).
+
+## Creating a Widget
+
+A widget is a folder containing the following files:
+- A `content.html` file that displays the widget in a tile format on Suricate dashboards.
+- A `description.yml` file that provides a description of the widget.
+- A `image.png` file that is used to associate an image with the widget in the Suricate application.
+- A `params.yml` file that describes the parameters of the widget.
+- A `script.js` file that contains the business logic of the widget in JavaScript.
+- A `style.css` file that contains the CSS style of the widget to apply to the HTML.
+
+### Content.html
+
+The `content.html` file is responsible for displaying the widget on Suricate dashboards and provides the tile format for the widget. It contains the HTML code of the widget.
+
+```html
+<a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/issues/?jql={{SURI_JQL_ALL}}" class="link" target="_blank">
+    <div class="grid-stack-item-content-inner">
+        <h1 class="title">{{SURI_TITLE}}</h1>
+        <input type="text" value="{{value}}" class="dial" data-min="0" data-max="100" data-displayInput=true data-angleOffset=-125 data-angleArc=250 data-inputColor="rgb(255, 255, 255)" data-readOnly=true data-bgcolor="rgba(0, 0, 0,0.55)" data-fgcolor="rgb(255, 255, 255)"/>
+    </div>
+    {{#displayCount}}
+	<br>
+	<p class="more-info">Jira Nb : {{valueCountSelect}} / {{valueCountAll}}</p>
+    {{/displayCount}}
+
+    <script>
+        $(function(){
+            $(".widget-{{SURI_INSTANCE_ID}} .dial").knob({
+                'format' : function (value) {return value+'%';}
+            });
+        });
+    </script>
+</a>
+```
+
+This file is a template that will be compiled with [Mustache](https://mustache.github.io/mustache.5.html), so feel free to use the provided directives to:
+
+- Display data computed by the Back-End from the "script.js" file
+- Display parameters from the "params.yml" file or the "description.yml" file of the related category
+- Display conditional content
+
+Note that the variable `SURI_INSTANCE_ID` is available. This is a unique ID that identifies the widget instantiation on a dashboard. If you need to select the widget to use it in JavaScript or CSS, you can use the class selector `.widget-{{SURI_INSTANCE_ID}}`.
+
+As in the example above, it is possible to add custom JavaScript or calls to JavaScript libraries to improve the widget display.
+
+### Description
+
+The `description.yml` file provides information about the widget. The following is its content:
+
+```yml
+name: Progression
+description: Widget used to display the release progression from Jira. Count the number of closed Jiras against the total amount of Jiras.
+info: To use this widget, you must first add the jira user 'mt_dev' as viewer of your project
+technicalName: jirameter
+delay: 500
+timeout: 60
+libraries:
+  - knob.js
+```
+
+The table below lists all possible parameters in this file:
+
+| Param         | Required | Description |
+| -----         | -------- | ----------- |
+| `name`          | true     | The name of the widget to be displayed in Suricate. |
+| `technicalName` | true     | The primary key of the widget, used by the back-end to uniquely identify a widget. |
+| `description`   | true     | A short description of what the widget does. |
+| `info`          | false    | Usage information about the widget and what the user needs to do to get it to work. |
+| `delay`         | true     | The duration (in seconds) between each update of the widget. It can be set to -1 if the widget does not need to start the `script.js` file. |
+| `timeout`       | false    | The timeout duration (in seconds) for the widget execution. If it exceeds this duration, the widget will be stopped. |
+| `libraries`     | false    | A list of the names of all the external JavaScript libraries required by the widget. The libraries must be manually imported as minified files into the `libraries` folder at the root of the widget repository. The libraries will be injected into the DOM at execution so that they are available for the widget. |
+
+### Image
+
+An `image.png` file contains the image associated with the widget, which will be displayed in the Suricate application.
+
+### Params
+
+The `params.yml` file describes the parameters of the widget that are displayed in the Suricate application when the user selects the widget to add it to a dashboard. The user can set values to the parameters directly from the application, which can then be used in the `script.js` file or the `content.html` file.
+
+The `params.yml` file must adhere to the following rules:
+- The file should always start with the `widgetParams` keyword.
+- The parameters have to be described after this keyword as a YAML list format.
+
+```yml
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: TEXT
+    usageExample: 'My title'
+    required: true
+  -
+    name: 'SURI_JQL_ALL'
+    description: 'Jira JQL query to count all issues'
+    type: TEXT
+    usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX'
+    required: true
+  -
+    name: 'SURI_JQL_CLOSED'
+    description: 'Jira JQL query to count all closed issues'
+    type: TEXT
+    usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX and status in (Closed, Done, "Done Done")'
+    required: true
+  -
+    name: 'SURI_DISPLAY_COUNT'
+    description: 'Display amount of data on the widget'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
+```
+
+The following table lists all available parameters for the `params.yml` file:
+
+| Param             | Required | Description |
+| ----------------- | -------- | ----------- |
+| `name`              | true     | The name of the variable. It has to start with the keyword "_SURI__". Then the variable can be used in the _script.js_ file and the _content.html_ file. It will hold the value set by the user in the Suricate application. |
+| `description`       | true     | The description of the parameter. Describe the expected value. It will be displayed as an input label to the user. |
+| `type`              | true     | The data type of the parameter. <br /> Here is the full list of available types to define in uppercase: <ul><li>**TEXT** - display a text input</li> <li>**PASSWORD** - display a password input</li> <li>**BOOLEAN** - display a check box</li> <li>**NUMBER** - display a number input</li> <li>**COMBO** - display a combo box</li> <li>**MULTIPLE** - display a combo box with check boxes</li> <li>**FILE** - display a file upload input</li></ul> |
+| `possibleValuesMap` | false    | Contains the possible values of a combo box. This has to be set if the type of the parameter is **COMBO** or **MULTIPLE**. <br /> There are two pieces of information to set: <ul><li>**jsKey** - The key of the option, especially to use it in the _script.js_ file</li> <li>**value** - The related value displayed to the user in the Suricate application</li></ul>|
+| `defaultValue`      | false    | The default value to set for the parameter. It will be displayed in the input by default in the Suricate application. |
+| `usageExample`      | false    | An example of how to fill the parameter. |
+| `usageTooltip`      | false    | A message to display in a tooltip when configuring the widget. |
+| `required`          | true     | Defines whether the parameter is required or not. |
+
+### Script
+
+The `script.js` file is the core of the widget. It contains the business process of the widget and defines what the widget does. Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
+
+How does the script work?
+- It is executed by the Spring Boot back-end with [Nashorn](https://en.wikipedia.org/wiki/Nashorn_(JavaScript_engine)).
+- It has to define a function named _run_. This is the function executed by the back-end. All the data returned by the _run_ function has to be stringified in a JSON format.
+- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods defined in Java according to the given parameters, and submit the request to the REST API with the _okhttp_ library. 
+  - The _get_ method accepts these parameters:
+    - **url** - the URL of the endpoint to call.
+    - **headerName** - the name of a header to add. It can be used, for example, to add an _Authorization_ header.
+    - **headerValue** - the value to set to the added header.
+    - **headerToReturn** - the name of the header that we want the value to be returned.
+  - The _post_ method accepts these parameters:
+    - **url** - the URL of the endpoint to call.
+    - **body** - the body of the request. 
+    - **headerName** - the name of a header to add. It can be used, for example, to add an _Authorization_ header.
+    - **headerValue** - the value to set to the added header.
+    - **mediaType** - the required media type of the response.
+- Two variables are injected in the script and can be used:
+    - **SURI_PREVIOUS** - contains the previous data computed by the last execution of the widget.
+    - **SURI_INSTANCE_ID** - contains the ID of the widget instance.
+
+```javascript
+function run (){
+    var data = {};
+    var jsonResponseAll = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL_ALL)+"&maxResults=0", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
+    if (jsonResponseAll == null) {
+        return null;
+    }
+    var jsonResponseClosed = Packages.call(WIDGET_CONFIG_JIRA_URL + "/jra/rest/api/2/search?jql="+encodeURIComponent(SURI_JQL_CLOSED)+"&maxResults=0", "Authorization", "Basic "+Packages.btoa(WIDGET_CONFIG_JIRA_USER+":"+WIDGET_CONFIG_JIRA_PASSWORD), null);
+    if (jsonResponseClosed == null) {
+        return null;
+    }
+
+    var jsonObjectClosed = JSON.parse(jsonResponseClosed);
+    var jsonObjectAll = JSON.parse(jsonResponseAll);
+    var value = (jsonObjectClosed.total * 100) / jsonObjectAll.total;
+
+    data.valueCountSelect = jsonObjectClosed.total;
+    data.valueCountAll = jsonObjectAll.total;
+    data.value = isNaN(value) ? 0 : value.toFixed(0);
+    data.displayCount = !(typeof SURI_DISPLAY_COUNT === 'undefined' || SURI_DISPLAY_COUNT === "false");
+
+    return JSON.stringify(data);
+}
+```
+
+### Style
+
+This `style.css` file is used to add CSS style to the widget.
+
+Usage information:
+- It is a pure CSS style file.
+- All the classes have to be prefixed by `.widget.<technicalname>`. The technical name is the one defined in the _description.yml_ file of the widget.
+
+```CSS
+.widget.jirameter {
+    background-color: #9c4274;
+}
+.widget.jirameter input.meter {
+    background-color: #662b4c;
+    color: #fff;
+}
+.widget.jirameter .nbJira {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    padding: 5px 0 5px 0;
+}
+.widget.jirameter .title {
+    color: rgba(255, 255, 255, 0.7);
+}
+```
+
+## Suricate Widget Tester
+
+The Suricate Widget Tester is a tool that helps you testing your widget. It is available at https://github.com/michelin/suricate-widget-tester.
