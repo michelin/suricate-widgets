@@ -10,13 +10,17 @@ This repository contains the source code of all the widgets in the Suricate appl
 
 # Table of Contents
 
-* [Repository Architecture](#repository-architecture)
 * [Getting Started](#getting-started)
+  * [Repository Architecture](#repository-architecture)
   * [Creating a Category](#creating-a-category)
   * [Creating a Widget](#creating-a-widget)
   * [Suricate Widget Tester](#suricate-widget-tester)
   
-# Repository Architecture
+# Getting Started
+
+This guide provides instructions for creating your own widget.
+
+## Repository Architecture
 
 📁 **Content** - Contains all the widgets sorted by category.
 
@@ -43,10 +47,6 @@ This repository contains the source code of all the widgets in the Suricate appl
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ♐ **icon.png** - The icon of the category.
 
 📁 **Libraries** - Contains all the JavaScript libraries used by all the widgets.
-
-# Getting Started
-
-This guide provides instructions for creating your own widget.
 
 ## Creating a Category
 
