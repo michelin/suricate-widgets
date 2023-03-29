@@ -15,7 +15,8 @@ This repository contains the source code of all the widgets in the Suricate appl
   * [Creating a Category](#creating-a-category)
   * [Creating a Widget](#creating-a-widget)
 * [Suricate Widget Tester](#suricate-widget-tester)
-  
+* [Contribution](#contribution)
+
 ## Repository Architecture
 
 📁 **Content** - Contains all the widgets sorted by category.
@@ -256,3 +257,7 @@ Usage information:
 ## Suricate Widget Tester
 
 The Suricate Widget Tester is a tool that helps you testing your widget. It is available at https://github.com/michelin/suricate-widget-tester.
+
+## Contribution
+
+We welcome contributions from the community! Before you get started, please take a look at our [contribution guide](https://github.com/michelin/suricate-widgets/blob/master/CONTRIBUTING.md) to learn about our guidelines and best practices. We appreciate your help in making Suricate a better tool for everyone.
