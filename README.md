@@ -8,7 +8,7 @@ This repository contains the source code of all the widgets in the Suricate appl
 
 ![Suricate dashboard developer environment](readme/dashboard.png)
 
-# Table of Contents
+## Table of Contents
 
 * [Repository Architecture](#repository-architecture)
 * [Creation](#creation)
@@ -16,7 +16,7 @@ This repository contains the source code of all the widgets in the Suricate appl
   * [Creating a Widget](#creating-a-widget)
 * [Suricate Widget Tester](#suricate-widget-tester)
   
-# Repository Architecture
+## Repository Architecture
 
 📁 **Content** - Contains all the widgets sorted by category.
 
@@ -44,18 +44,18 @@ This repository contains the source code of all the widgets in the Suricate appl
 
 📁 **Libraries** - Contains all the JavaScript libraries used by all the widgets.
 
-# Creation 
+## Creation 
 
 If you want to create your own widget and category in Suricate, you can follow these steps.
 
-## Creating a Category
+### Creating a Category
 
 A widget **category** is a folder that contains: 
 - A `description.yml` file that describes the category
 - An `icon.png` file to associate an icon with the category in the Suricate application
 - A folder that contains all the widgets related to this category
 
-### Description
+#### Description
 
 The `description.yml` file describes the category and contains associated parameters. Here is an example:
 
@@ -77,17 +77,17 @@ Here are the possible parameters that can be set in this file:
 | `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category. |
 | `configurations` | false    | Parameters associated with the category. All the widgets of the category will share these parameters. Values are defined directly from the _Configuration_ tab in the Suricate application. <br/><br/> Each parameter must declare the following properties: <ul><li>**key** - _The name of the parameter used by the widget. It must start by WIDGET_CONFIG._</li> <li>**description** - _A description for the parameter._</li> <li>**dataType** - _The type of the parameter. It must be one of these types: "NUMBER", "TEXT", "PASSWORD"._</li> |
 
-### Icon
+#### Icon
 
 The `icon.png` file contains the icon to be associated with the category. The icon will be displayed in the Suricate application.
 
-### Widgets
+#### Widgets
 
 The `Widgets` folder contains all the widgets linked to the category.
 
 For more information about creating a widget, please see [the dedicated section](#create-a-widget).
 
-## Creating a Widget
+### Creating a Widget
 
 A widget is a folder containing the following files:
 - A `content.html` file that displays the widget in a tile format on Suricate dashboards.
@@ -97,7 +97,7 @@ A widget is a folder containing the following files:
 - A `script.js` file that contains the business logic of the widget in JavaScript.
 - A `style.css` file that contains the CSS style of the widget to apply to the HTML.
 
-### Content
+#### Content
 
 The `content.html` file is responsible for displaying the widget on Suricate dashboards and provides the tile format for the widget. It contains the HTML code of the widget.
 
@@ -126,7 +126,7 @@ Note that the variable `SURI_INSTANCE_ID` is available. This is a unique ID that
 
 As in the example above, it is possible to add custom JavaScript or calls to JavaScript libraries to improve the widget display.
 
-### Description
+#### Description
 
 The `description.yml` file provides information about the widget. The following is its content:
 
@@ -149,11 +149,11 @@ The table below lists all possible parameters in this file:
 | `timeout`       | false    | The timeout duration (in seconds) for the widget execution. If it exceeds this duration, the widget will be stopped. |
 | `libraries`     | false    | A list of the names of all the external JavaScript libraries required by the widget. The libraries must be manually imported as minified files into the `libraries` folder at the root of the widget repository. The libraries will be injected into the DOM at execution so that they are available for the widget. |
 
-### Image
+#### Image
 
 An `image.png` file contains the image associated with the widget, which will be displayed in the Suricate application.
 
-### Params
+#### Params
 
 The `params.yml` file describes the parameters of the widget that are displayed in the Suricate application when the user selects the widget to add it to a dashboard. The user can set values to the parameters directly from the application, which can then be used in the `script.js` file or the `content.html` file.
 
@@ -204,7 +204,7 @@ The following table lists all available parameters for the `params.yml` file:
 | `usageTooltip`      | false    | A message to display in a tooltip when configuring the widget. |
 | `required`          | true     | Defines whether the parameter is required or not. |
 
-### Script
+#### Script
 
 The `script.js` file is the core of the widget. It contains the business process of the widget and defines what the widget does. Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
 
@@ -232,7 +232,7 @@ function run() {
 }
 ```
 
-### Style
+#### Style
 
 This `style.css` file is used to add CSS style to the widget.
 
@@ -253,6 +253,6 @@ Usage information:
 }
 ```
 
-# Suricate Widget Tester
+## Suricate Widget Tester
 
 The Suricate Widget Tester is a tool that helps you testing your widget. It is available at https://github.com/michelin/suricate-widget-tester.
