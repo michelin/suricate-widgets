@@ -8,7 +8,7 @@ widgetParams:
   -
     name: 'SURI_TEXT'
     description: 'Widget text'
-    type: TEXT
+    type: TEXTAREA
     usageExample: 'My content'
     required: false
   -
