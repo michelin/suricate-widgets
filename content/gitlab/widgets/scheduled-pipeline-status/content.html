@@ -1,0 +1,66 @@
+<a href="{{url}}" class="link" target="_blank">
+  <div class="fullwidget {{status}}">
+    <i
+      class="fa-fix fa
+		{{#success}}fa-thumbs-up{{/success}}
+		{{#warning}}fa-exclamation-triangle{{/warning}}
+		{{#failed}}fa-thumbs-down{{/failed}}
+		{{#running}}fa-running{{/running}}
+		{{#canceled}}fa-ban{{/canceled}}
+		{{#skipped}}fa-angle-double-right{{/skipped}}
+		{{#otherStatus}}fa-exclamation-triangle{{/otherStatus}}
+		icon-background icon-background-opacity"
+    ></i>
+
+    <div class="grid-stack-item-content-inner">
+      <h1 class="title">
+        <span class="project-name">{{project}}</span>
+      </h1>
+      <p class="value"><i class="fa fa-code-branch"></i> {{branch}}</p>
+      <h2 class="title">
+				{{status}}
+				{{#showFailedJobs}}
+				<p class="failed-jobs">
+					Jobs {{failed_jobs}} failed
+				</p>
+				{{/showFailedJobs}}
+			</h2>
+      <h1 class="title">
+        <i class="far fa-calendar-check"></i> Schedule <b>{{name}}</b>
+      </h1>
+      {{^active}}
+       <p class="active"> <b>Inactive</b> </p>
+      {{/active}}
+      {{#lastRun}}
+      <p class="time-value">
+      <i class="fa fa-step-backward"></i> Last run on {{lastRun}}
+      </p>
+      {{/lastRun}}
+      {{^hideTimeTable}}
+			<table class="time-table">
+				<tr>
+					<td>
+						<p title="Pipeline duration" class="time-value">
+							<i class="fa fa-stopwatch"></i> {{duration}}
+						</p>
+					</td>
+					<td>
+						<p title="Queued for" class="time-value">
+							<i class="fa fa-hourglass"></i> {{waitingTimeBeforeStarting}}
+						</p>
+					</td>
+				</tr>
+			</table>
+			{{/hideTimeTable}}
+      {{#active}}
+      <p class="time-value">
+      <i class="fa fa-step-forward"></i> Next run on {{nextRun}}
+      </p>
+      {{/active}}
+      <p class="value user-value">
+        <i class="fa fa-user-alt"></i> {{ownerName}} ({{ownerUserName}})
+      </p>
+    </div>
+    <div class="gitlab"></div>
+  </div>
+</a>

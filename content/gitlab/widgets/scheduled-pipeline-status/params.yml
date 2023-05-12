@@ -1,0 +1,25 @@
+widgetParams:
+  -
+    name: GITLAB_PROJECT_ID
+    description: 'Project ID'
+    type: TEXT
+    usageExample: '1234'
+    required: true
+  -
+    name: GITLAB_SCHEDULED_PIPELINE_ID
+    description: 'Scheduled pipeline Id'
+    type: NUMBER
+    usageExample: '1231'
+    required: true
+  -
+    name: HIDE_TIMETABLE
+    description: 'Hide timetable (duration + queued time)'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
+  -
+    name: SHOW_FAILED_JOBS
+    description: 'Show failed jobs'
+    type: BOOLEAN
+    defaultValue: false
+    required: false
