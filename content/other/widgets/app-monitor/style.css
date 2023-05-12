@@ -1,0 +1,34 @@
+.widget.appMonitor {
+	background-color: transparent;
+}
+
+.widget.appMonitor .OK {
+	background-color: #2e7d32;
+}
+
+.widget.appMonitor .KO {
+	background-color: #d50000;
+	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
+	-moz-animation: status-danger-background 1s infinite; /* Fx 5+ */
+	-o-animation: status-danger-background 1s infinite; /* Opera 12+ */
+	animation: status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
+}
+
+.widget.appMonitor .app-monitor {
+	background-size: contain;
+	opacity: 0.2;
+	height: 25%;
+	width: 25%;
+	position: absolute;
+	bottom: 5%;
+	left: 5%;
+}
+
+.widget.appMonitor .title {
+	font-size: 23px;
+	margin-bottom: 25px;
+}
+
+.widget.appMonitor .code {
+	font-size: 18px;
+}

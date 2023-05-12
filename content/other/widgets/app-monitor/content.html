@@ -1,0 +1,20 @@
+<a href="{{SURI_URL}}" class="link" target="_blank">
+    <div class="fullwidget {{status}}">
+        <i class="fa-fix fa
+        {{#ok}}fa-thumbs-up{{/ok}}
+        {{^ok}}fa-thumbs-down{{/ok}}
+        icon-background icon-background-opacity"></i>
+
+        <div class="grid-stack-item-content-inner">
+            <h1 class="title">{{SURI_TITLE}}</h1>
+            <h3>Service is {{status}}</h3>
+            <br>
+            <h4 class="code">Status code: {{code}}</h4>
+            {{^ok}}<h4 class="code">(expecting {{SURI_HTTP_CODES}})</h4>{{/ok}}
+        </div>
+        <div class="app-monitor">
+            <i class="fa fa-heartbeat fa-4x"></i>
+        </div>
+        {{response}}
+    </div>
+</a>
