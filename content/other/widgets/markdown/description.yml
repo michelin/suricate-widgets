@@ -1,0 +1,7 @@
+name: Markdown
+description: Display some Markdown
+technicalName: markdown
+delay: -1
+libraries:
+  - showdown.js
+  - xss.js

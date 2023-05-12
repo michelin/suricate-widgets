@@ -1,0 +1,28 @@
+<div class="grid-stack-item-content-inner">
+    <div id="md-container-{{SURI_INSTANCE_ID}}"></div>
+</div>
+
+<script>
+    $(function(){
+        $(window).on('load', loadMd{{SURI_INSTANCE_ID}});
+
+        function loadMd{{SURI_INSTANCE_ID}}() {
+
+            var base64Data = "{{{SURI_MARKDOWN}}}";
+            var mdData = atob(base64Data.substring(base64Data.lastIndexOf('base64,') + 7));
+            var converter = new showdown.Converter();
+            var backgroundColor;
+
+            document.getElementById('md-container-{{SURI_INSTANCE_ID}}').innerHTML = filterXSS(converter.makeHtml(mdData));
+
+            {{#SURI_WIDGET_COLOR}}
+            backgroundColor = "{{SURI_WIDGET_COLOR}}";
+            document.getElementsByClassName('widget-{{SURI_INSTANCE_ID}}')[0].style.backgroundColor = backgroundColor;
+            {{/SURI_WIDGET_COLOR}}
+        }
+
+        if (page_loaded) {
+            loadMd{{SURI_INSTANCE_ID}}();
+        }
+    });
+</script>

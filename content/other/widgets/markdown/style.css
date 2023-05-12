@@ -1,0 +1,54 @@
+.widget.markdown {
+	background-color: #ec663c;
+}
+
+.grid-stack .grid-stack-item-content .grid-stack-item-content-inner {
+	height: 96%;
+	width: 96%;
+	margin: 2%;
+}
+
+.widget.markdown * {
+	text-align: left;
+	margin: 0px;
+	text-transform: inherit;
+}
+
+.widget.markdown h1 {
+	font-size: 2em;
+	font-weight: bolder
+}
+
+.widget.markdown h2 {
+	font-size: 1.5em;
+	font-weight: bolder
+}
+
+.widget.markdown h3 {
+	font-size: 1.17em;
+	font-weight: bolder
+}
+
+.widget.markdown h4 {
+	font-size: 1em;
+	font-weight: bolder
+}
+
+.widget.markdown h5 {
+	font-size: 0.83em;
+	font-weight: bolder
+}
+
+.widget.markdown h6 {
+	font-size: 0.67em;
+	font-weight: bolder
+}
+
+.widget.markdown a {
+	color: -webkit-link;
+	text-decoration: underline;
+}
+
+.widget.markdown code {
+	background-color: #535158;
+}
