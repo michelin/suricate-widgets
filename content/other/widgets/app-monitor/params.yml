@@ -1,0 +1,19 @@
+widgetParams:
+  -
+    name: 'SURI_TITLE'
+    description: 'Widget title'
+    type: TEXT
+    usageExample: 'My app'
+    required: true
+  -
+    name: 'SURI_URL'
+    description: 'Application URL'
+    type: TEXT
+    usageExample: 'https://...'
+    required: true
+  -
+    name: 'SURI_HTTP_CODES'
+    description: 'Allowed HTTP status codes, separated by a comma or space'
+    type: TEXT
+    usageExample: '200, 403'
+    required: true

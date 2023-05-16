@@ -1,0 +1,4 @@
+name: App monitor status
+description: Display the status of your application
+technicalName: appMonitor
+delay: 300
