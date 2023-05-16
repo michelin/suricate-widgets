@@ -1,0 +1,4 @@
+name: Scheduled pipeline status
+description: Monitoring the status of the scheduled pipeline
+technicalName: gitlabScheduledPipelineStatus
+delay: 300
