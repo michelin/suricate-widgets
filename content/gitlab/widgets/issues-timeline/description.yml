@@ -1,0 +1,6 @@
+name: Timeline of issues
+description: Display the issues of projects or groups on a timeline
+technicalName: issuesTimeline
+delay: 3600
+libraries:
+  - chart.js
