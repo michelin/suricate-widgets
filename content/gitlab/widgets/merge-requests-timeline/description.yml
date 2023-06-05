@@ -1,0 +1,6 @@
+name: Timeline of merge requests
+description: Display the merge requests of projects or groups on a timeline
+technicalName: mergeRequestsTimeline
+delay: 3600
+libraries:
+  - chart.js

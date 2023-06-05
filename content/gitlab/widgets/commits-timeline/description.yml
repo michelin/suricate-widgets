@@ -1,0 +1,6 @@
+name: Timeline of commits
+description: Display the commits of projects on a timeline
+technicalName: commitsTimeline
+delay: 3600
+libraries:
+  - chart.js
