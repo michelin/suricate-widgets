@@ -61,7 +61,7 @@ if (!Array.prototype.fill) {
 function run() {
   var data = {};
   var baseUrl = WIDGET_CONFIG_JIRA_URL + "/rest/api/2";
-  var json = JSON.parse(Packages.get(baseUrl + "/project", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)));
+  var json = JSON.parse(Packages.get(baseUrl + "/project", "Authorization",  "Bearer " + WIDGET_CONFIG_JIRA_TOKEN));
   var res = [];
 
   json.forEach(function(t) {
@@ -72,7 +72,7 @@ function run() {
       var totalALL = ps;
       var sa = 0;
       while (sa < totalALL) {
-        var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=" + encodeURIComponent("project = " + t.key + " AND created >= -" + SURI_WEEK + "w") + "&startAt=" + sa + "&maxResults=" + ps + "&fields=created", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)));
+        var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=" + encodeURIComponent("project = " + t.key + " AND created >= -" + SURI_WEEK + "w") + "&startAt=" + sa + "&maxResults=" + ps + "&fields=created", "Authorization",  "Bearer " + WIDGET_CONFIG_JIRA_TOKEN));
         sa += ps;
         totalALL = jsonResponse.total;
         if (totalALL > 0) {
@@ -89,7 +89,7 @@ function run() {
       var totalALL = ps;
       var sa = 0;
       while (sa < totalALL) {
-        var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=" + encodeURIComponent("project = " + t.key + " AND status = Closed AND created >= -" + SURI_WEEK + "w") + "&startAt=" + sa + "&maxResults=" + ps + "&fields=resolutiondate,created,updated", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)));
+        var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=" + encodeURIComponent("project = " + t.key + " AND status = Closed AND created >= -" + SURI_WEEK + "w") + "&startAt=" + sa + "&maxResults=" + ps + "&fields=resolutiondate,created,updated", "Authorization",  "Bearer " + WIDGET_CONFIG_JIRA_TOKEN));
         sa += ps;
         totalALL = jsonResponse.total;
         if (totalALL > 0) {
@@ -118,7 +118,7 @@ function run() {
         total = sum / total.length;
       }
     } else {
-      var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=project = " + t.key + " AND created >= -" + SURI_WEEK + "w&maxResults=1&fields=created", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)));
+      var jsonResponse = JSON.parse(Packages.get(baseUrl + "/search?jql=project = " + t.key + " AND created >= -" + SURI_WEEK + "w&maxResults=1&fields=created", "Authorization",  "Bearer " + WIDGET_CONFIG_JIRA_TOKEN));
       total = jsonResponse.total;
     }
     res.push([t.key, total]);

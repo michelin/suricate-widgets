@@ -4,12 +4,12 @@
         {{#items}}
 		<li>
            {{#displayId}}
-			<a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/browse/{{key}}" target="_blank">
+			<a href="{{WIDGET_CONFIG_JIRA_URL}}/browse/{{key}}" target="_blank">
 				<span class="status {{color}}">{{status}}</span>{{key}} - {{summary}}
 			</a>
     	   {{/displayId}}
            {{^displayId}}
-			<a href="{{WIDGET_CONFIG_JIRA_URL}}/jra/browse/{{key}}" target="_blank">
+			<a href="{{WIDGET_CONFIG_JIRA_URL}}/browse/{{key}}" target="_blank">
 				<span class="status {{color}}">{{status}}</span>{{summary}}
 			</a>
     	   {{/displayId}}

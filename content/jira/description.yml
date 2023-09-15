@@ -6,10 +6,6 @@ configurations:
     description: 'URL of the Jira environment'
     dataType: TEXT
   -
-    key: 'WIDGET_CONFIG_JIRA_USER'
-    description: 'Username of the Jira functional account'
-    dataType: TEXT
-  -
-    key: 'WIDGET_CONFIG_JIRA_PASSWORD'
-    description: 'Password of the Jira functional account'
+    key: 'WIDGET_CONFIG_JIRA_TOKEN'
+    description: 'Jira personal access token'
     dataType: PASSWORD

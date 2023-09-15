@@ -25,7 +25,7 @@ function run() {
 	var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" 
 						+ encodeURIComponent(SURI_JQL) 
 						+ "&fields=customfield_10382,resolutiondate,fixVersions,updated,customfield_10611&maxResults=1000", 
-						"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+						"Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
 						
 	if (jsonResponse == null) {
 		return null;

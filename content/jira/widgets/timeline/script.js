@@ -19,7 +19,7 @@ function compareRelease(a, b) {
 }
 
 function run() {
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/project/" + encodeURIComponent(SURI_PROJECT) + "/versions/", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/project/" + encodeURIComponent(SURI_PROJECT) + "/versions", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
   if (jsonResponse == null) {
     return null;
   }

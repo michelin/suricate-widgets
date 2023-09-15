@@ -24,8 +24,7 @@ function run() {
 
   var issuesTypes = [];
 
-  var token = Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD)
-  var authorizationHeaderValue = "Basic " + token;
+  var authorizationHeaderValue = "Bearer " + WIDGET_CONFIG_JIRA_TOKEN;
 
   // Build jql query
   var jql = "project = " + SURI_JIRA_PROJECT + " AND statusCategory = Done AND created > startOfDay(-" + SURI_JIRA_START_RANGE + "d)";
@@ -122,7 +121,7 @@ function run() {
 
   data.jql = jql;
 
-  data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/jra/issues/?jql=" + jql;
+  data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/issues/?jql=" + jql;
 
   data.issuesCount = jiraIssues.length;
 

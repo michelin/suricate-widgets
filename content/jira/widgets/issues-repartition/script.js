@@ -21,7 +21,7 @@ function run() {
   data.resolved = 0;
   data.total = 0;
 
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&fields=summary,status,assignee", "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_JIRA_USER + ":" + WIDGET_CONFIG_JIRA_PASSWORD));
+  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&fields=summary,status,assignee", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
   if (jsonResponse == null) {
     return null;
   }
