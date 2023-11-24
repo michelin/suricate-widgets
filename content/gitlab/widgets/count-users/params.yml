@@ -17,15 +17,13 @@ widgetParams:
     type: TEXT
     usageExample: 'Jack'
     required: false
-  - 
+  -
     name: 'SURI_STATE'
     description: 'Filter users by state'
     type: COMBO
     possibleValuesMap:
-      -
-        jsKey: active
+      - jsKey: active
         value: active
-      -
-        jsKey: blocked
+      - jsKey: blocked
         value: blocked
     required: false

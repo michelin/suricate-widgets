@@ -12,9 +12,9 @@ widgetParams:
         value: Project ID
   -
     name: SURI_ID
-    description: 'Project IDs or Group IDs depending upon SURI_ID_TYPE selection, separated by a comma'
+    description: 'Project IDs/paths or Group IDs/paths depending upon SURI_ID_TYPE selection, separated by a comma'
     type: TEXT
-    usageExample: '1234,5678'
+    usageExample: '1234,mygroup/myproject'
     required: true
   -
     name: SURI_PERIOD
@@ -22,14 +22,11 @@ widgetParams:
     usageTooltip: 'Select a period.'
     type: COMBO
     possibleValuesMap:
-      -
-        jsKey: Year
+      - jsKey: Year
         value: Year
-      -
-        jsKey: Month
+      - jsKey: Month
         value: Month
-      -
-        jsKey: Week
+      - jsKey: Week
         value: Week
 
     required: false
@@ -66,13 +63,10 @@ widgetParams:
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: all
+      - jsKey: all
         value: All
-      -
-        jsKey: opened
+      - jsKey: opened
         value: Opened
-      -
-        jsKey: closed
+      - jsKey: closed
         value: Closed
     required: true

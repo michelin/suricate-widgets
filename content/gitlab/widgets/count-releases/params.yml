@@ -1,9 +1,9 @@
 widgetParams:
   -
     name: SURI_PROJECT
-    description: 'Project IDs, separated by a comma'
+    description: 'Project IDs/paths, separated by a comma'
     type: TEXT
-    usageExample: '1234,5678'
+    usageExample: '1234,mygroup/myproject'
     required: true
   -
     name: SURI_AGGREGATE_BY
@@ -11,11 +11,9 @@ widgetParams:
     usageTooltip: 'Releases aggregated by date/tag name will be counted as one release if they have the same date/tag name'
     type: MULTIPLE
     possibleValuesMap:
-      -
-        jsKey: AGGREGATE_BY_DATE
+      - jsKey: AGGREGATE_BY_DATE
         value: 'Date'
-      -
-        jsKey: AGGREGATE_BY_TAG_NAME
+      - jsKey: AGGREGATE_BY_TAG_NAME
         value: 'Tag name'
     required: false
   -
@@ -31,17 +29,13 @@ widgetParams:
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
     type: COMBO
     possibleValuesMap:
-      -
-        jsKey: Year
+      - jsKey: Year
         value: Year
-      -
-        jsKey: Month
+      - jsKey: Month
         value: Month
-      -
-        jsKey: Week
+      - jsKey: Week
         value: Week
-      -
-        jsKey: Day
+      - jsKey: Day
         value: Day
     required: false
   -

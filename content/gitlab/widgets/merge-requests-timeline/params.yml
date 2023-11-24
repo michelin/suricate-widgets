@@ -11,23 +11,20 @@ widgetParams:
         value: Project ID
   -
     name: SURI_ID
-    description: 'Project IDs or Group IDs depending upon SURI_ID_TYPE selection, separated by a comma'
+    description: 'Project IDs/paths or Group IDs/paths depending upon SURI_ID_TYPE selection, separated by a comma'
     type: TEXT
-    usageExample: '1234,5678'
+    usageExample: '1234,mygroup/myproject'
     required: true
   -
     name: SURI_PERIOD
     description: 'Retrieve the merge requests from a period'
     type: COMBO
     possibleValuesMap:
-      -
-        jsKey: Year
+      - jsKey: Year
         value: Year
-      -
-        jsKey: Month
+      - jsKey: Month
         value: Month
-      -
-        jsKey: Week
+      - jsKey: Week
         value: Week
     required: false
   -

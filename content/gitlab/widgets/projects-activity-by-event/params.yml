@@ -13,9 +13,9 @@ widgetParams:
     required: false
   -
     name: SURI_PROJECT
-    description: 'Projects IDs, separated by a comma'
+    description: 'Projects IDs/paths, separated by a comma'
     type: TEXT
-    usageExample: '1234,4567'
+    usageExample: '1234,mygroup/myproject'
     required: false
   -
     name: 'SURI_DATE'
@@ -30,44 +30,31 @@ widgetParams:
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: all
+      - jsKey: all
         value: All
-      -
-        jsKey: approved
+      - jsKey: approved
         value: Approved
-      -
-        jsKey: created
+      - jsKey: created
         value: Created
-      -
-        jsKey: updated
+      - jsKey: updated
         value: Updated
-      -
-        jsKey: closed
+      - jsKey: closed
         value: Closed
-      -
-        jsKey: reopened
+      - jsKey: reopened
         value: Reopened
-      -
-        jsKey: pushed
+      - jsKey: pushed
         value: Pushed
-      -
-        jsKey: commented
+      - jsKey: commented
         value: Commented
-      -
-        jsKey: merged
+      - jsKey: merged
         value: Merged
-      -
-        jsKey: joined
+      - jsKey: joined
         value: Joined
-      -
-        jsKey: left
+      - jsKey: left
         value: Left
-      -
-        jsKey: destroyed
+      - jsKey: destroyed
         value: Destroyed
-      -
-        jsKey: expired
+      - jsKey: expired
         value: Expired
     required: true
   -
@@ -76,29 +63,21 @@ widgetParams:
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: all
+      - jsKey: all
         value: All
-      -
-        jsKey: issue
+      - jsKey: issue
         value: Issue
-      -
-        jsKey: milestone
+      - jsKey: milestone
         value: Milestone
-      -
-        jsKey: merge_request
+      - jsKey: merge_request
         value: Merge request
-      -
-        jsKey: note
+      - jsKey: note
         value: Note
-      -
-        jsKey: project
+      - jsKey: project
         value: Project
-      -
-        jsKey: snippet
+      - jsKey: snippet
         value: Snippet
-      -
-        jsKey: user
+      - jsKey: user
         value: User
     required: true
   -
@@ -107,13 +86,10 @@ widgetParams:
     type: COMBO
     defaultValue: 'pie'
     possibleValuesMap:
-      -
-        jsKey: pie
+      - jsKey: pie
         value: Pie
-      -
-        jsKey: horizontalBar
+      - jsKey: horizontalBar
         value: Horizontal bar
-      -
-        jsKey: bar
+      - jsKey: bar
         value: Vertical bar
     required: true

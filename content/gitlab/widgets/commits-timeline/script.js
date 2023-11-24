@@ -39,7 +39,7 @@ function run() {
 	data.projectNames = '';
 
 	data.fromDate = computeStartDate();
-	var projectIDs = SURI_PROJECT.split(",");
+	var projectIDs = SURI_PROJECT.split(",").replaceAll("/", "%2F");
 	var labels = [];
 
 	projectIDs.forEach(function(id, index) {
