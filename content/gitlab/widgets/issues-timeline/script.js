@@ -40,7 +40,7 @@ function run() {
 	data.fromDate = computeStartDate();
 	var projectOrGroupType = computeIDType();
 
-	var projectOrGroupIDs = SURI_ID.split(",").replaceAll("/", "%2F");
+	var projectOrGroupIDs = SURI_ID.replaceAll("/", "%2F").split(",");
 	data.issueState = SURI_ISSUES_STATE;
 	var labels = [];
 

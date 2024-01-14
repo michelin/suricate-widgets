@@ -1,7 +1,7 @@
 widgetParams:
   -
     name: GITLAB_PROJECT_ID
-    description: 'Project ID'
+    description: 'Project ID or path'
     type: TEXT
     usageExample: '1234'
     required: true

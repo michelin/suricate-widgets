@@ -13,7 +13,7 @@ widgetParams:
     required: false
   -
     name: SURI_PROJECT
-    description: 'Projects IDs/paths, separated by a comma'
+    description: 'Projects IDs or paths, separated by a comma'
     type: TEXT
     usageExample: '1234,mygroup/myproject'
     required: false

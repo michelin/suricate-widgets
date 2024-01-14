@@ -25,7 +25,7 @@ function run() {
 
 	data.fromDate = computeStartDate();
 
-	var projectIDs = SURI_PROJECT.split(",").replaceAll("/", "%2F");
+	var projectIDs = SURI_PROJECT.replaceAll("/", "%2F").split(",");
 
 	projectIDs.forEach(function(id, index) {
 		releases = [];

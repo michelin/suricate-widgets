@@ -12,7 +12,7 @@ widgetParams:
         value: Project ID
   -
     name: SURI_ID
-    description: 'Project IDs/paths or Group IDs/paths depending upon SURI_ID_TYPE selection, separated by a comma'
+    description: 'Project IDs, group IDs or paths depending upon SURI_ID_TYPE selection, separated by a comma'
     type: TEXT
     usageExample: '1234,mygroup/myproject'
     required: true

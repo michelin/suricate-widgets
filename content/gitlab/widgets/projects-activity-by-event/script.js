@@ -56,7 +56,7 @@ function run() {
 
 	var projects = [];
 	if (SURI_PROJECT && SURI_PROJECT !== null) {
-		projectIds = SURI_PROJECT.split(",").replaceAll("/", "%2F");
+		projectIds = SURI_PROJECT.replaceAll("/", "%2F").split(",");
 
 		projectIds.forEach(function(projectId) {
 			projects.push(JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectId, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)));
