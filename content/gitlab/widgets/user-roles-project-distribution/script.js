@@ -24,9 +24,10 @@ function run() {
 	data.maintainer = 0;
 	data.owner = 0;
 	data.total = 0;
+	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
 
-	var project = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-	var members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var project = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 	if (members && members.length > 0) {
 		data.minimalAccess = countMembersOfRole(members, 5);
@@ -41,7 +42,7 @@ function run() {
 	while (members && members !== null && members.length > 0) {
 		page++;
 
-		members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		members = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 		if (members && members.length > 0) {
 			data.minimalAccess = data.minimalAccess + countMembersOfRole(members, 5);

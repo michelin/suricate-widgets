@@ -43,7 +43,7 @@ function run() {
 	data.fromDate = computeStartDate();
 	var projectOrGroupType = computeIDType();
 
-	var projectOrGroupIDs = SURI_ID.split(",");
+	var projectOrGroupIDs = SURI_ID.split(",").replaceAll("/", "%2F");
 	data.mrsState = SURI_MR_STATE;
 
 	projectOrGroupIDs.forEach(function(id, index) {

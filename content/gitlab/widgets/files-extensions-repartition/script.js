@@ -13,7 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-  
+
 function run() {
 	var data = {};
 
@@ -21,24 +21,25 @@ function run() {
 	data.datapie = [];
 	data.colors = [];
 	data.border = [];
+	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
 
-	var json = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/languages", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var json = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/languages", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 	if (json) {
 		data.labels = Object.keys(json);
 		data.datapie = Object.keys(json).map(function(key){return json[key]})
-		
+
 		data.labels.forEach(function(label) {
 			data.colors.push(stringToColour("COLOR" + label));
 			data.border.push("#607D8B");
 		});
-		
+
 		data.colors = JSON.stringify(data.colors);
 		data.labels = JSON.stringify(data.labels);
 		data.datapie = JSON.stringify(data.datapie);
 		data.border = JSON.stringify(data.border);
 	}
-	
+
 	return JSON.stringify(data);
 }
 

@@ -1,7 +1,7 @@
 widgetParams:
   -
     name: SURI_PROJECT
-    description: 'Project ID'
+    description: 'Project ID or path'
     type: TEXT
     usageExample: '1234'
     required: true
@@ -11,19 +11,14 @@ widgetParams:
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: all
+      - jsKey: all
         value: All
-      -
-        jsKey: opened
+      - jsKey: opened
         value: Opened
-      -
-        jsKey: closed
+      - jsKey: closed
         value: Closed
-      -
-        jsKey: locked
+      - jsKey: locked
         value: Locked
-      -
-        jsKey: merged
+      - jsKey: merged
         value: Merged
     required: true

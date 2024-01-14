@@ -19,34 +19,35 @@ function run() {
 	var data = {};
 	var issues = [];
 	var page = 1;
-	
+	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
+
 	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
 
 	var response = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 	issues = issues.concat(response);
-		
+
 	while (response && response.length > 0 && response.length === perPage) {
 		page++;
-		
+
 		response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-		
+			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+
 		issues = issues.concat(response);
 	}
-	
+
 	data.numberOfIssues = issues.length;
-	
+
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfIssues) {
 		data.evolution = ((data.numberOfIssues - JSON.parse(SURI_PREVIOUS).numberOfIssues) * 100 / JSON.parse(SURI_PREVIOUS).numberOfIssues).toFixed(1);
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
-	
+
 	if (SURI_ISSUES_STATE != 'all') {
 		data.issuesState = SURI_ISSUES_STATE;
 	}
-	
+
 	return JSON.stringify(data);
 }

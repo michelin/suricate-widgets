@@ -19,34 +19,35 @@ function run() {
 	var data = {};
 	var mergeRequests = [];
 	var page = 1;
-	
+	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
+
 	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
 
 	var response = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/merge_requests?per_page=" + perPage + "&page=" + page + "&state=" + SURI_MR_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/merge_requests?per_page=" + perPage + "&page=" + page + "&state=" + SURI_MR_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
 
 	mergeRequests = mergeRequests.concat(response);
-		
+
 	while (response && response.length > 0 && response.length === perPage) {
 		page++;
-		
+
 		response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + SURI_PROJECT + "/merge_requests?per_page=" + perPage + "&page=" + page + "&state=" + SURI_MR_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-		
+			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/merge_requests?per_page=" + perPage + "&page=" + page + "&state=" + SURI_MR_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+
 		mergeRequests = mergeRequests.concat(response);
 	}
-	
+
 	data.numberOfMRs = mergeRequests.length;
-	
+
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfMRs) {
 		data.evolution = ((data.numberOfMRs - JSON.parse(SURI_PREVIOUS).numberOfMRs) * 100 / JSON.parse(SURI_PREVIOUS).numberOfMRs).toFixed(1);
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
-	
+
 	if (SURI_MR_STATE != 'all') {
 		data.mrsState = SURI_MR_STATE;
 	}
-	
+
 	return JSON.stringify(data);
 }
