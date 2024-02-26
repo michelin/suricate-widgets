@@ -180,7 +180,7 @@ function getLinesOfCodeFromSonarQube(
   var sonarApiUrl =
     sonarUrl +
     "/api/measures/search_history?" +
-    (SURI_BRANCH != null ? "branch=" + SURI_BRANCH + "&" : "") +
+    (SURI_BRANCH != null ? "branch=" + SURI_BRANCH + "&" : (SURI_PULL_REQUEST != null ? "pullRequest=" + SURI_PULL_REQUEST + "&" : "")) +
     "metrics=ncloc&component=" +
     projectKeys +
     "&ps=" +
