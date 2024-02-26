@@ -43,7 +43,13 @@ widgetParams:
     required: true
   -
     name: 'SURI_BRANCH'
-    description: 'Branch name'
+    description: 'Branch name, if user provides both branch and pull request, the branch takes precedence.'
     type: TEXT
     usageExample: 'My branch'
     required: false
+  -
+      name: 'SURI_PULL_REQUEST'
+      description: 'Merge/Pull Request Number'
+      type: TEXT
+      usageExample: '111'
+      required: false

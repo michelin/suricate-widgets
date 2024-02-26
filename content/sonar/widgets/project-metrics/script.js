@@ -21,8 +21,8 @@ function run() {
 	data.sonarConfigUrl = (WIDGET_CONFIG_SONAR_URL) ? WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, '') : WIDGET_CONFIG_SONAR_URL;
 
 	var response = JSON.parse(
-					Packages.get(data.sonarConfigUrl + "/api/measures/component?" + (SURI_BRANCH != null ? "branch=" + SURI_BRANCH +"&" : "") +"component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
-					"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
+    	    Packages.get(data.sonarConfigUrl + "/api/measures/component?" + (SURI_BRANCH != null ? "branch=" + SURI_BRANCH + "&" : (SURI_PULL_REQUEST != null ? "pullRequest=" + SURI_PULL_REQUEST + "&" : ""))  +"component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
+    		"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
 
 	if (response && response.component && response.component.measures && response.component.measures.length > 0) {
 		response.component.measures.forEach(function(measure) {
