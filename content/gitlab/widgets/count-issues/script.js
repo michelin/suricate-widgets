@@ -15,30 +15,17 @@
   */
 
 function run() {
-	var perPage = 100;
+
 	var data = {};
-	var issues = [];
-	var page = 1;
 	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
 
 	data.project = JSON.parse(
 		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
 
 	var response = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "X-Total"));
 
-	issues = issues.concat(response);
-
-	while (response && response.length > 0 && response.length === perPage) {
-		page++;
-
-		response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?per_page=" + perPage + "&page=" + page + "&state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
-
-		issues = issues.concat(response);
-	}
-
-	data.numberOfIssues = issues.length;
+	data.numberOfIssues = response;
 
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfIssues) {
 		data.evolution = ((data.numberOfIssues - JSON.parse(SURI_PREVIOUS).numberOfIssues) * 100 / JSON.parse(SURI_PREVIOUS).numberOfIssues).toFixed(1);
