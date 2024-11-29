@@ -1,8 +1,8 @@
-# Suricate Widgets
-
 <div align="center">
-  <img src=".readme/logo.png" height="100"  alt="suricate logo"/>
+  <img src=".readme/logo.png" height="150" alt="suricate logo"/>
 </div>
+
+# Suricate Widgets
 
 [![GitHub Stars](https://img.shields.io/github/stars/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
 [![GitHub Watch](https://img.shields.io/github/watchers/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
