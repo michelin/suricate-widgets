@@ -8,7 +8,7 @@
 [![GitHub Watch](https://img.shields.io/github/watchers/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
-[Getting Started](#creation) • [Suricate](https://github.com/michelin/suricate-widgets) • [DevTool](https://github.com/michelin/suricate-widget-tester)
+[Getting Started](#creation) • [Suricate](https://github.com/michelin/suricate) • [DevTool](https://github.com/michelin/suricate-widget-tester)
 
 Retrieve data from external sources and present it in a tile-based format on Suricate dashboards.
 
