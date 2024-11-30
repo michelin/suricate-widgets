@@ -1,6 +1,8 @@
 <div align="center">
-  <img src=".readme/logo.png" height="150" alt="suricate logo"/>
-</div>
+
+<img src=".readme/logo.png" alt="suricate logo"/>
+
+# Suricate Widgets
 
 # Suricate Widgets
 
@@ -8,9 +10,13 @@
 [![GitHub Watch](https://img.shields.io/github/watchers/michelin/suricate-widgets?logo=github&style=for-the-badge)](https://github.com/michelin/suricate)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
-This repository contains the source code of all the widgets in the Suricate application.
+[Suricate](https://github.com/michelin/suricate-widgets) • [DevTool](https://github.com/michelin/suricate-widget-tester)
+
+Suricate widgets are components that retrieve data from external sources and present it in a tile-based format on Suricate dashboards.
 
 ![Suricate dashboard developer environment](.readme/dashboard.gif)
+
+</div>
 
 ## Table of Contents
 
