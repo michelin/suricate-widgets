@@ -32,6 +32,9 @@ widgetParams:
         jsKey: 'sqale_index'
         value: 'Technical debt (total effort (in hours) to fix all the issues)'
       -
+        jsKey: 'coverage'
+        value: 'Coverage (%)'
+      -
         jsKey: 'blocker_violations'
         value: 'Number of issues with blocker severity'
       -
