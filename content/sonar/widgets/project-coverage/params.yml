@@ -17,29 +17,23 @@ widgetParams:
     type: MULTIPLE
     possibleValuesMap:
       -
-        jsKey: 'ncloc'
-        value: 'Lines of code'
+        jsKey: 'new_line_coverage'
+        value: 'Lines coverage'
       -
-        jsKey: 'public_documented_api_density'
-        value: 'Public documented API (%)'
+        jsKey: 'new_lines_to_cover'
+        value: 'Lines to cover'
       -
-        jsKey: 'files'
-        value: 'Number of files'
+        jsKey: 'new_uncovered_lines'
+        value: 'Uncovered lines'
       -
-        jsKey: 'functions'
-        value: 'Number of functions'
+        jsKey: 'new_coverage'
+        value: 'Coverage on new code(%)'
       -
-        jsKey: 'sqale_index'
-        value: 'Technical debt (total effort (in hours) to fix all the issues)'
+        jsKey: 'new_conditions_to_cover'
+        value: 'Conditions to cover'
       -
-        jsKey: 'blocker_violations'
-        value: 'Number of issues with blocker severity'
-      -
-        jsKey: 'critical_violations'
-        value: 'Number of issues with critical severity'
-      -
-        jsKey: 'test_success_density'
-        value: 'Unit test success density (%)'
+        jsKey: 'new_uncovered_conditions'
+        value: 'Unconver conditions'
     required: true
   -
     name: 'SURI_BRANCH'

@@ -263,7 +263,7 @@ Usage information:
 
 ## Suricate Widget Tester
 
-The Suricate Widget Tester is a tool that helps you testing your widget. It is available at https://github.com/michelin/suricate-widget-tester.
+The Suricate Widget Tester is a tool that helps you to test your widget. It is available at https://github.com/michelin/suricate-widget-tester.
 
 ## Contribution
 
