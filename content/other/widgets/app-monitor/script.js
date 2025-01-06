@@ -19,7 +19,7 @@ function run() {
 
     var statusCode = Packages.get(SURI_URL, true);
 
-    if (SURI_HTTP_CODES.contains(statusCode)) {
+    if (SURI_HTTP_CODES.includes(statusCode)) {
         data.status = 'OK';
         data.ok = true;
     } else {
