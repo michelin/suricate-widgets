@@ -79,10 +79,10 @@ configurations:
 
 Here are the possible parameters that can be set in this file:
 
-| Param          | Required | Description |
-| -------------- | -------- | ----------- |
-| `name`           | true     | The name of the category to display in Suricate. |
-| `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category. |
+| Param            | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`           | true     | The name of the category to display in Suricate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `configurations` | false    | Parameters associated with the category. All the widgets of the category will share these parameters. Values are defined directly from the _Configuration_ tab in the Suricate application. <br/><br/> Each parameter must declare the following properties: <ul><li>**key** - _The name of the parameter used by the widget. It must start by WIDGET_CONFIG._</li> <li>**description** - _A description for the parameter._</li> <li>**dataType** - _The type of the parameter. It must be one of these types: "NUMBER", "TEXT", "PASSWORD"._</li> |
 
 #### Icon
@@ -147,14 +147,14 @@ delay: 600
 
 The table below lists all possible parameters in this file:
 
-| Param         | Required | Description |
-| -----         | -------- | ----------- |
-| `name`          | true     | The name of the widget to be displayed in Suricate. |
-| `technicalName` | true     | The primary key of the widget, used by the back-end to uniquely identify a widget. |
-| `description`   | true     | A short description of what the widget does. |
-| `info`          | false    | Usage information about the widget and what the user needs to do to get it to work. |
-| `delay`         | true     | The duration (in seconds) between each update of the widget. It can be set to -1 if the widget does not need to start the `script.js` file. |
-| `timeout`       | false    | The timeout duration (in seconds) for the widget execution. If it exceeds this duration, the widget will be stopped. |
+| Param           | Required | Description                                                                                                                                                                                                                                                                                                          |
+|-----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`          | true     | The name of the widget to be displayed in Suricate.                                                                                                                                                                                                                                                                  |
+| `technicalName` | true     | The primary key of the widget, used by the back-end to uniquely identify a widget.                                                                                                                                                                                                                                   |
+| `description`   | true     | A short description of what the widget does.                                                                                                                                                                                                                                                                         |
+| `info`          | false    | Usage information about the widget and what the user needs to do to get it to work.                                                                                                                                                                                                                                  |
+| `delay`         | true     | The duration (in seconds) between each update of the widget. It can be set to -1 if the widget does not need to start the `script.js` file.                                                                                                                                                                          |
+| `timeout`       | false    | The timeout duration (in seconds) for the widget execution. If it exceeds this duration, the widget will be stopped.                                                                                                                                                                                                 |
 | `libraries`     | false    | A list of the names of all the external JavaScript libraries required by the widget. The libraries must be manually imported as minified files into the `libraries` folder at the root of the widget repository. The libraries will be injected into the DOM at execution so that they are available for the widget. |
 
 #### Image
@@ -217,26 +217,26 @@ The following table lists all available parameters for the `params.yml` file:
 The `script.js` file is the core of the widget. It contains the business process of the widget and defines what the widget does. Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
 
 How does the script work?
-- It is executed by the Spring Boot back-end with [Nashorn](https://en.wikipedia.org/wiki/Nashorn_(JavaScript_engine)).
-- It has to define a function named _run_. This is the function executed by the back-end. All the data returned by the _run_ function has to be stringified in a JSON format.
-- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate back-end](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/services/nashorn/script/NashornWidgetScript.java). 
+- It is executed by the Suricate Back-End with [GraalVM Polyglot](https://www.graalvm.org/latest/reference-manual/polyglot-programming/#start-language-java).
+- It has to define a function named `run`. All the data returned by the _run_ function has to be stringified in a JSON format.
+- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate Back-End](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/service/js/script/JsEndpoints.java). 
 
 ```javascript
 function run() {
-	var data = {};
-	var perPage = 100;
-	var issues = [];
-	var page = 1;
-	
-	var response = JSON.parse(Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_ISSUES_STATE, "Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
-	
-	issues = issues.concat(response);
+  var data = {};
+  var perPage = 100;
+  var issues = [];
+  var page = 1;
+  
+  var response = JSON.parse(Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_ISSUES_STATE, "Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
+  
+  issues = issues.concat(response);
 
-	...
-	
-	data.numberOfIssues = issues.length;
-	
-	return JSON.stringify(data);
+  ...
+  
+  data.numberOfIssues = issues.length;
+  
+  return JSON.stringify(data);
 }
 ```
 
