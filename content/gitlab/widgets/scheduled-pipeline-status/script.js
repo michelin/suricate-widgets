@@ -1,23 +1,15 @@
-/**
- * Below function user variables like CATEGORY_GITLAB_URL, CATEGORY_GITLAB_TOKEN defined by user at category level.
- *
- * User is supposed to enter the project Id and the scheduled pipeline Id
- *
- */
-
 function run() {
 	var data = {};
-	var projectID = GITLAB_PROJECT_ID.replaceAll("/", "%2F");
+	var projectID = WIDGET_PROJECT_ID_OR_PATH.replaceAll("/", "%2F");
 	
 	data.project = JSON.parse(
 		Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)).name;
 
-	var url = CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/pipeline_schedules/"+ GITLAB_SCHEDULED_PIPELINE_ID;
+	var url = CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/pipeline_schedules/"+ WIDGET_SCHEDULED_PIPELINE_ID;
 
 	var schedule = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 	if (schedule) {
-
 		data.active = schedule.active;
 
         var pipeline_id = schedule.last_pipeline == null ? "" : schedule.last_pipeline.id;
@@ -39,13 +31,13 @@ function run() {
 				data.lastRun = formatDate(schedule.last_pipeline.created_at);
 			}
 			else{
-				HIDE_TIMETABLE = true;
+				WIDGET_HIDE_TIMETABLE = true;
 				data.hideTimeTable = true;
-				SHOW_FAILED_JOBS = false;
+				WIDGET_SHOW_FAILED_JOBS = false;
 			}
 
-			if (HIDE_TIMETABLE && HIDE_TIMETABLE === 'true') {
-				data.hideTimeTable = HIDE_TIMETABLE;
+			if (WIDGET_HIDE_TIMETABLE && WIDGET_HIDE_TIMETABLE === 'true') {
+				data.hideTimeTable = WIDGET_HIDE_TIMETABLE;
 			} else {
 				if (pipeline.duration) {
 					data.duration = secondsToDuration(pipeline.duration);
@@ -59,8 +51,8 @@ function run() {
 				}
 			}
 
-			if ((SHOW_FAILED_JOBS && SHOW_FAILED_JOBS === 'true') && (data.status === 'success-with-warnings' || data.status === 'failed')) {
-				data.showFailedJobs = SHOW_FAILED_JOBS;
+			if ((WIDGET_SHOW_FAILED_JOBS && WIDGET_SHOW_FAILED_JOBS === 'true') && (data.status === 'success-with-warnings' || data.status === 'failed')) {
+				data.showFailedJobs = WIDGET_SHOW_FAILED_JOBS;
 				var failed_jobs = JSON.parse(
 					Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/pipelines/" + pipeline.id + "/jobs?scope=failed&per_page=100&page=1", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 					data.failed_jobs = "";

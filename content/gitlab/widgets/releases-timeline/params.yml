@@ -1,47 +1,47 @@
 widgetParams:
   -
-    name: SURI_PROJECT
-    description: 'Project IDs or paths, separated by a comma'
+    name: WIDGET_PROJECT_IDS_OR_PATHS
+    description: 'Project IDs or paths (comma-separated)'
     type: TEXT
-    usageExample: '1234,mygroup/myproject'
+    usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: SURI_DATE
-    description: 'Retrieve the releases from a precise date'
-    usageTooltip: 'Required format is DDMMYYYY. If defined, it is not necessary to select a period. The precise date takes priority over the period.'
+    name: WIDGET_DATE
+    description: 'Retrieve the releases from a precise date (format: DDMMYYYY)'
+    usageTooltip: 'If defined, it is not necessary to define a period. The precise date takes priority over the period.'
     type: TEXT
     usageExample: '31122020'
     required: false
   -
-    name: SURI_PERIOD
-    description: 'Retrieve the releases from a period'
+    name: WIDGET_PERIOD_UNIT
+    description: 'Unit of period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
     type: COMBO
     possibleValuesMap:
-      - jsKey: Year
+      - jsKey: year
         value: Year
-      - jsKey: Month
+      - jsKey: month
         value: Month
-      - jsKey: Week
+      - jsKey: week
         value: Week
-      - jsKey: Day
+      - jsKey: day
         value: Day
     required: false
   -
-    name: SURI_NUMBER_OF_PERIOD
-    description: 'Unit of the selected period'
+    name: WIDGET_PERIOD_NUMBER
+    description: 'Number of periods'
     type: NUMBER
     usageExample: 1
     required: false
   -
-    name: SURI_DISPLAY_TICKS_FOR_RELEASES
+    name: WIDGET_DISPLAY_TICKS_FOR_RELEASES
     description: 'Source ticks on release dates'
     type: BOOLEAN
     defaultValue: true
     required: false
   -
-    name: SURI_DISPLAY_RELEASES_NAMES
-    description: 'Display the releases names'
+    name: WIDGET_DISPLAY_RELEASES_NAMES
+    description: 'Display release names'
     type: BOOLEAN
     defaultValue: true
     required: false

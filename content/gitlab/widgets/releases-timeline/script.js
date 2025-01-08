@@ -25,7 +25,7 @@ function run() {
 
 	data.fromDate = computeStartDate();
 
-	var projectIDs = SURI_PROJECT.replaceAll("/", "%2F").split(",");
+	var projectIDs = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
 
 	projectIDs.forEach(function(id, index) {
 		releases = [];
@@ -101,11 +101,11 @@ function run() {
 		}
 	});
 
-	if (SURI_DISPLAY_TICKS_FOR_RELEASES && SURI_DISPLAY_TICKS_FOR_RELEASES === 'true') {
+	if (WIDGET_DISPLAY_TICKS_FOR_RELEASES && WIDGET_DISPLAY_TICKS_FOR_RELEASES === 'true') {
 		data.displayTicksForReleases = true;
 	}
 
-	if (SURI_DISPLAY_RELEASES_NAMES && SURI_DISPLAY_RELEASES_NAMES === 'true') {
+	if (WIDGET_DISPLAY_RELEASES_NAMES && WIDGET_DISPLAY_RELEASES_NAMES === 'true') {
 		data.displayDeployedReleasesNames = true;
 	}
 
@@ -124,25 +124,25 @@ function run() {
  * @returns {string}
  */
 function computeStartDate() {
-	if (SURI_DATE) {
-		return SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
+	if (WIDGET_DATE) {
+		return WIDGET_DATE.slice(4) + "-" + WIDGET_DATE.slice(2, 4) + "-" + WIDGET_DATE.slice(0, 2);
 	}
 
-	if (SURI_PERIOD) {
+	if (WIDGET_PERIOD_UNIT) {
 		var numberOfPeriods = 1;
-		if (SURI_NUMBER_OF_PERIOD) {
-			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		if (WIDGET_PERIOD_NUMBER) {
+			numberOfPeriods = WIDGET_PERIOD_NUMBER;
 		}
 
 		var computedDate = new Date();
 
-		if (SURI_PERIOD === "Day") {
+		if (WIDGET_PERIOD_UNIT === "day") {
 			computedDate.setDate(new Date().getDate() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Week") {
+		} else if (WIDGET_PERIOD_UNIT === "week") {
 			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-		} else if (SURI_PERIOD === "Month") {
+		} else if (WIDGET_PERIOD_UNIT === "month") {
 			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Year") {
+		} else if (WIDGET_PERIOD_UNIT === "year") {
 			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
 		}
 

@@ -13,6 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+
 var data = {};
 
 function run() {
@@ -26,7 +27,7 @@ function run() {
 
 	data.fromDate = computeStartDate();
 
-	var projectIDs = SURI_PROJECT.replaceAll("/", "%2F").split(",");
+	var projectIDs = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
 
 	projectIDs.forEach(function(id) {
 		releases = []
@@ -64,8 +65,8 @@ function run() {
 				oldestReleaseDate = formatDate(releases[0].released_at);
 			}
 
-			if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
-				var aggregations = SURI_AGGREGATE_BY.split(",");
+			if (WIDGET_AGGREGATE_BY && WIDGET_AGGREGATE_BY.split(",").length > 0) {
+				var aggregations = WIDGET_AGGREGATE_BY.split(",");
 
 				if (aggregations.length === 1) {
 					// Aggregate releases by date for the counting
@@ -91,8 +92,8 @@ function run() {
 		});
 	});
 
-	if (SURI_ORDER_BY) {
-		if (SURI_ORDER_BY === "PROJECT_NAME") {
+	if (WIDGET_ORDER_BY) {
+		if (WIDGET_ORDER_BY === "project_name") {
 			projectsByNumberOfDeployments.sort(orderByProjectName);
 		} else {
 			projectsByNumberOfDeployments.sort(orderByNumberOfReleases);
@@ -115,25 +116,25 @@ function run() {
  * @returns {string}
  */
 function computeStartDate() {
-	if (SURI_DATE) {
-		return SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
+	if (WIDGET_DATE) {
+		return WIDGET_DATE.slice(4) + "-" + WIDGET_DATE.slice(2, 4) + "-" + WIDGET_DATE.slice(0, 2);
 	}
 
-	if (SURI_PERIOD) {
+	if (WIDGET_PERIOD_UNIT) {
 		var numberOfPeriods = 1;
-		if (SURI_NUMBER_OF_PERIOD) {
-			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		if (WIDGET_PERIOD_NUMBER) {
+			numberOfPeriods = WIDGET_PERIOD_NUMBER;
 		}
 
 		var computedDate = new Date();
 
-		if (SURI_PERIOD === "Day") {
+		if (WIDGET_PERIOD_UNIT === "day") {
 			computedDate.setDate(new Date().getDate() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Week") {
+		} else if (WIDGET_PERIOD_UNIT === "week") {
 			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-		} else if (SURI_PERIOD === "Month") {
+		} else if (WIDGET_PERIOD_UNIT === "month") {
 			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Year") {
+		} else if (WIDGET_PERIOD_UNIT === "year") {
 			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
 		}
 

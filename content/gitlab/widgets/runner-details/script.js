@@ -17,7 +17,7 @@
 function run() {
 	var data = {};
 	
-	var runner = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/runners/" + SURI_RUNNER, 
+	var runner = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/runners/" + WIDGET_RUNNER_ID, 
 		"PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	
 	if (runner) {
@@ -31,8 +31,8 @@ function run() {
 		var durationInSecondsSinceLastContact = (new Date().getTime() - new Date(runner.contacted_at).getTime()) / 1000;
 		data.contactedAtDuration = secondsToDuration(durationInSecondsSinceLastContact);
 		
-		if (SURI_LAST_CONTACT_DURATION) {			
-			var lastContactDurationSeconds = SURI_LAST_CONTACT_DURATION * 60;
+		if (WIDGET_LAST_CONTACT_DURATION_TRIGGER) {			
+			var lastContactDurationSeconds = WIDGET_LAST_CONTACT_DURATION_TRIGGER * 60;
 			
 			if (durationInSecondsSinceLastContact > lastContactDurationSeconds) {
 				data.lastContactExceeded = true;

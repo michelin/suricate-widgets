@@ -24,7 +24,7 @@ function run() {
 	data.maintainer = 0;
 	data.owner = 0;
 	data.total = 0;
-	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
+	var projectID = WIDGET_PROJECT_ID_OR_PATH.replaceAll("/", "%2F");
 
 	var project = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	var members = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/members/all?per_page=100&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));

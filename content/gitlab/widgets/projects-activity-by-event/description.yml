@@ -1,5 +1,5 @@
 name: Projects activity by event
-description: Display a chart of the activity of a project by event type
+description: Display a chart of the activity of a project by event type.
 technicalName: gitlab-projects-activity-by-event
 delay: 300
 libraries:
