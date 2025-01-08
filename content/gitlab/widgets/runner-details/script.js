@@ -17,8 +17,8 @@
 function run() {
 	var data = {};
 	
-	var runner = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/runners/" + SURI_RUNNER, 
-		"PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var runner = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/runners/" + SURI_RUNNER, 
+		"PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	
 	if (runner) {
 		data.name = runner.description;

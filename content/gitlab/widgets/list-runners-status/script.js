@@ -23,9 +23,9 @@ function run() {
 	var toReturn = [];
 	
 	var isAdmin = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/user", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).is_admin;
+		Packages.get(CATEGORY_GITLAB_URL + "/api/v4/user", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)).is_admin;
 	
-	var runnersURL = WIDGET_CONFIG_GITLAB_URL + "/api/v4/runners";
+	var runnersURL = CATEGORY_GITLAB_URL + "/api/v4/runners";
 	
 	if (isAdmin) {
 		runnersURL += "/all";
@@ -37,7 +37,7 @@ function run() {
 		runnersURL += "&tag_list=" + SURI_RUNNER_TAGS;
 	}
 	
-	var response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	
 	runners = runners.concat(response);
 	
@@ -47,7 +47,7 @@ function run() {
 		
 		runnersURL = runnersURL.replace("&page=" + previousPage, "&page=" + page);
 				
-		response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 		
 		runners = runners.concat(response);
 	}

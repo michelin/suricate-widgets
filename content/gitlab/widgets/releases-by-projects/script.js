@@ -32,10 +32,10 @@ function run() {
 		releases = []
 
 		var project = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		var response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		releases = releases.concat(response);
 
@@ -43,7 +43,7 @@ function run() {
 			page++;
 
 			response = JSON.parse(
-				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			releases = releases.concat(response);
 		}

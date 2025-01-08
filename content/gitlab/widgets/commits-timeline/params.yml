@@ -1,47 +1,25 @@
 widgetParams:
   -
-    name: SURI_PROJECT
-    description: 'Project IDs or paths, separated by a comma'
+    name: WIDGET_PROJECT_IDS_OR_PATHS
+    description: 'Project IDs or paths (comma-separated)'
     type: TEXT
-    usageExample: '1234,group/project'
+    usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: SURI_PERIOD
-    description: 'Retrieve the releases from a period'
-    usageTooltip: 'Select a period.'
+    name: WIDGET_PERIOD_UNIT
+    description: 'Unit of period'
     type: COMBO
     possibleValuesMap:
-      - jsKey: Year
+      - jsKey: year
         value: Year
-      - jsKey: Month
+      - jsKey: month
         value: Month
-      - jsKey: Week
+      - jsKey: week
         value: Week
     required: false
   -
-    name: SURI_NUMBER_OF_PERIOD
-    description: 'Unit of the selected period'
-    type: COMBO
-    possibleValuesMap:
-      - jsKey: 1
-        value: 1
-      - jsKey: 2
-        value: 2
-      - jsKey: 3
-        value: 3
-      - jsKey: 4
-        value: 4
-      - jsKey: 5
-        value: 5
-      - jsKey: 6
-        value: 6
-      - jsKey: 7
-        value: 7
-      - jsKey: 8
-        value: 8
-      - jsKey: 9
-        value: 9
-      - jsKey: 10
-        value: 10
+    name: WIDGET_PERIOD_NUMBER
+    description: 'Number of periods'
+    type: NUMBER
     usageExample: 1
     required: false

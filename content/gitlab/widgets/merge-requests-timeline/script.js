@@ -52,12 +52,12 @@ function run() {
 	    var dataMergeRequests = [];
 
 		var projectOrGroup = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		data.projectOrGroupNames += projectOrGroup.name + ", ";
 
 		var response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		mergeRequests = mergeRequests.concat(response);
 
@@ -65,7 +65,7 @@ function run() {
 			page++;
 
 			response = JSON.parse(
-				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			mergeRequests = mergeRequests.concat(response);
 		}

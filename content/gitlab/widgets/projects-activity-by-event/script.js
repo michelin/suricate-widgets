@@ -59,7 +59,7 @@ function run() {
 		projectIds = SURI_PROJECT.replaceAll("/", "%2F").split(",");
 
 		projectIds.forEach(function(projectId) {
-			projects.push(JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectId, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)));
+			projects.push(JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectId, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)));
 		});
 	} else {
 		var urlParameters;
@@ -68,7 +68,7 @@ function run() {
 			numberOfProjects = SURI_TOP;
 		}
 
-		projects = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects?order_by=last_activity_at&per_page=" + numberOfProjects, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		projects = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects?order_by=last_activity_at&per_page=" + numberOfProjects, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	}
 
 	if (projects && projects !== null && projects.length > 0) {
@@ -76,7 +76,7 @@ function run() {
 			data.labels.push(project.name);
 			data.colors.push(stringToColour(project.name));
 
-			var events = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + project.id + "/events" + urlParameters, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			var events = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + project.id + "/events" + urlParameters, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			if (events && events !== null && events.length > 0) {
 				data.datapie.push(events.length);

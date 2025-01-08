@@ -23,7 +23,7 @@ function run() {
 	data.border = [];
 	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
 
-	var json = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/languages", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var json = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/languages", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 	if (json) {
 		data.labels = Object.keys(json);
