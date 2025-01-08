@@ -16,15 +16,15 @@
 
 function run() {
 	var data = {};
-	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
+	var projectID = WIDGET_PROJECT_ID_OR_PATH.replaceAll("/", "%2F");
 
 	data.project = JSON.parse(
 		Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)).name;
 
 	var url = CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/pipelines";
 
-	if (SURI_PROJECT_BRANCH) {
-		url += "?ref=" + SURI_PROJECT_BRANCH;
+	if (WIDGET_BRANCH) {
+		url += "?ref=" + WIDGET_BRANCH;
 	}
 
 	var pipelines = JSON.parse(Packages.get(url, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
@@ -40,8 +40,8 @@ function run() {
 		data.url = pipeline.web_url;
 		data.createdAt = formatDate(pipeline.created_at);
 
-		if (HIDE_TIMETABLE && HIDE_TIMETABLE === 'true') {
-			data.hideTimeTable = HIDE_TIMETABLE;
+		if (WIDGET_HIDE_TIMETABLE && WIDGET_HIDE_TIMETABLE === 'true') {
+			data.hideTimeTable = WIDGET_HIDE_TIMETABLE;
 		} else {
 			if (pipeline.duration) {
 				data.duration = secondsToDuration(pipeline.duration);
@@ -55,8 +55,8 @@ function run() {
 			}
 		}
 
-		if ((SHOW_FAILED_JOBS && SHOW_FAILED_JOBS === 'true') && (data.status === 'success-with-warnings' || data.status === 'failed')) {
-			data.showFailedJobs = SHOW_FAILED_JOBS;
+		if ((WIDGET_SHOW_FAILED_JOBS && WIDGET_SHOW_FAILED_JOBS === 'true') && (data.status === 'success-with-warnings' || data.status === 'failed')) {
+			data.showFailedJobs = WIDGET_SHOW_FAILED_JOBS;
 			var failed_jobs = JSON.parse(
 				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/pipelines/" + pipeline.id + "/jobs?scope=failed&per_page=100&page=1", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 				data.failed_jobs = "";

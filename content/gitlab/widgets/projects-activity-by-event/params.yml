@@ -1,32 +1,32 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: TEXT
-    usageExample: 'My title'
+    usageExample: 'Projects activity by event'
     required: true
   -
-    name: 'SURI_TOP'
+    name: 'WIDGET_NUMBER_OF_PROJECTS'
     description: 'Number of projects to display'
     type: NUMBER
     defaultValue: '5'
     required: false
   -
-    name: SURI_PROJECT
-    description: 'Projects IDs or paths, separated by a comma'
+    name: WIDGET_PROJECT_IDS_OR_PATHS
+    description: 'Project IDs or paths (comma-separated)'
     type: TEXT
-    usageExample: '1234,mygroup/myproject'
+    usageExample: '123456,my-group/my-project'
     required: false
   -
-    name: 'SURI_DATE'
-    description: 'Retrieve events from a given date'
-    usageTooltip: 'Required format is DDMMYYYY. Today is the date set by default.'
+    name: WIDGET_DATE
+    description: 'Retrieve the events from a precise date (format: DDMMYYYY)'
+    usageTooltip: 'If not defined, the events will be retrieved from today'
     type: TEXT
     usageExample: '31122020'
     required: false
   -
-    name: 'SURI_ACTION_TYPE'
-    description: 'Action type of the events'
+    name: 'WIDGET_EVENT_TYPE'
+    description: 'Event type'
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
@@ -58,8 +58,8 @@ widgetParams:
         value: Expired
     required: true
   -
-    name: 'SURI_TARGET_TYPE'
-    description: 'Target type of the events'
+    name: 'WIDGET_TARGET_TYPE'
+    description: 'Target type'
     type: COMBO
     defaultValue: 'all'
     possibleValuesMap:
@@ -81,8 +81,8 @@ widgetParams:
         value: User
     required: true
   -
-    name: SURI_TYPE_GRAPH
-    description: Graph type
+    name: WIDGET_CHART_TYPE
+    description: 'Chart type'
     type: COMBO
     defaultValue: 'pie'
     possibleValuesMap:
@@ -90,6 +90,6 @@ widgetParams:
         value: Pie
       - jsKey: horizontalBar
         value: Horizontal bar
-      - jsKey: bar
+      - jsKey: verticalBar
         value: Vertical bar
     required: true

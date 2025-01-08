@@ -1,7 +1,7 @@
 name: Projects activity by event
-description: Display the activity of projects in GitLab by counting the amount of events (limited to 100)
-technicalName: gitprojectpie
-delay: 500
+description: Display a chart of the activity of a project by event type
+technicalName: gitlab-projects-activity-by-event
+delay: 300
 libraries:
   - chart.js
   - chart.piecelabel.js

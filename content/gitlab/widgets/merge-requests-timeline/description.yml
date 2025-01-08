@@ -1,6 +1,6 @@
-name: Timeline of merge requests
-description: Display the merge requests of projects or groups on a timeline
-technicalName: mergeRequestsTimeline
-delay: 3600
+name: Merge requests timeline
+description: Displays a timeline of merge requests for a project.
+technicalName: gitlab-merge-requests-timeline
+delay: 300
 libraries:
   - chart.js

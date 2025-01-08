@@ -16,7 +16,6 @@
 
 function run() {
 	var data = {};
-	var url;
 	var perPage = 100;
 	var page = 1;
 	var runners = [];
@@ -33,8 +32,8 @@ function run() {
 	
 	runnersURL += "?per_page=" + perPage + "&page=" + page;
 	
-	if (SURI_RUNNER_TAGS && SURI_RUNNER_TAGS.split(",").length > 0) {
-		runnersURL += "&tag_list=" + SURI_RUNNER_TAGS;
+	if (WIDGET_FILTER_BY_TAG && WIDGET_FILTER_BY_TAG.split(",").length > 0) {
+		runnersURL += "&tag_list=" + WIDGET_FILTER_BY_TAG;
 	}
 	
 	var response = JSON.parse(Packages.get(runnersURL, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
@@ -52,11 +51,11 @@ function run() {
 		runners = runners.concat(response);
 	}
 	
-	if (SURI_RUNNERS_NAME && SURI_RUNNERS_NAME.split(",").length > 0) {
+	if (WIDGET_FILTER_BY_NAME && WIDGET_FILTER_BY_NAME.split(",").length > 0) {
 		runners = runners.filter(function(runner) {
 			var runnerMatchingToGivenNames;
 			
-			SURI_RUNNERS_NAME.split(",").forEach(function(runnerName) {
+			WIDGET_FILTER_BY_NAME.split(",").forEach(function(runnerName) {
 				if (runner.description && runner.description.toLowerCase().indexOf(runnerName.toLowerCase()) > -1) {
 					runnerMatchingToGivenNames = runner;
 				}
@@ -91,7 +90,7 @@ function run() {
 		data.items = toReturn;
 	}
 	
-	if (SURI_HIGHLIGHT_OFFLINE_RUNNERS && SURI_HIGHLIGHT_OFFLINE_RUNNERS === 'true') {
+	if (WIDGET_BLINK_OFFLINE_RUNNERS && WIDGET_BLINK_OFFLINE_RUNNERS === 'true') {
 		data.highlightOfflineRunners = true;
 	}
 	
