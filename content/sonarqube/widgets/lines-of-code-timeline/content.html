@@ -1,0 +1,87 @@
+<div class="grid-stack-item-content-inner">
+  <h1 class="title">
+    Lines of Code timeline
+  </h1>
+
+  <div class="chart-container">
+    <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
+  </div>
+  <p class="more-info">{{#fromDate}} Since {{fromDate}} {{/fromDate}}</p>
+</div>
+<div class="sonarqube"></div>
+
+<script>
+   $(function() {
+      $(window).on('load', loadChart{{SURI_INSTANCE_ID}});
+
+      function loadChart{{SURI_INSTANCE_ID}}() {
+         $("#chart-{{SURI_INSTANCE_ID}}").height($(".widget-{{SURI_INSTANCE_ID}}").height() - 130);
+         $("#chart-{{SURI_INSTANCE_ID}}").width($(".widget-{{SURI_INSTANCE_ID}}").width());
+         var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
+
+         var labels = [];
+         var datasets = [];
+         var datasetsStringified = [];
+
+         {{#labels}}
+    	 labels = {{{labels}}};
+    	 {{/labels}}
+
+         {{#datasets}}
+         datasetsStringified = {{{datasets}}};
+         {{/datasets}}
+
+         datasetsStringified.forEach(function(string) {
+           datasets.push(JSON.parse(string));
+         });
+
+         var chart = new Chart(ctx, {
+           type: 'line',
+           data: {
+              labels: labels,
+              datasets: datasets
+           },
+           options: {
+              responsive: true,
+              responsiveAnimationDuration: 0,
+              maintainAspectRatio: true,
+
+              legend: {
+                 position: 'top',
+                 labels: {
+                    fontColor: "white"
+                 }
+              },
+              scales: {
+                 xAxes: [{
+                    gridLines: {
+                       color: "rgba(255, 255, 255, 0.1)",
+                       zeroLineColor: "rgb(255, 255, 255)"
+                    },
+                    ticks: {
+                       fontColor: "white"
+                    }
+                 }],
+                 yAxes: [{
+                    gridLines: {
+                       color: "rgba(255, 255, 255, 0.5)",
+                       zeroLineColor: "rgb(255, 255, 255)"
+                    },
+                    ticks: {
+                       beginAtZero: true,
+                       autoSkip: true,
+                       fontColor: "white",
+                       stepSize: 5000
+                    }
+                 }]
+              }
+
+           }
+         });
+      }
+
+     if (page_loaded) {
+        loadChart{{SURI_INSTANCE_ID}}();
+     }
+   });
+</script>
