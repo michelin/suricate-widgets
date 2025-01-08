@@ -28,14 +28,14 @@ function run() {
 
 	data.fromDate = computeStartDate();
 
-	var projectIDs = SURI_PROJECT.replaceAll("/", "%2F").split(",");
+	var projectIDs = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
 
 	projectIDs.forEach(function(id) {
 		data.projects += JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name + ", ";
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)).name + ", ";
 
 		var response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		releases = releases.concat(response);
 
@@ -43,7 +43,7 @@ function run() {
 			page++;
 
 			response = JSON.parse(
-				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/releases?per_page=" + perPage + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			releases = releases.concat(response);
 		}
@@ -65,28 +65,28 @@ function run() {
 			data.fromDate = formatDate(releases[0].released_at);
 		}
 
-		if (SURI_AGGREGATE_BY && SURI_AGGREGATE_BY.split(",").length > 0) {
-			var aggregations = SURI_AGGREGATE_BY.split(",");
+		if (WIDGET_AGGREGATE_BY && WIDGET_AGGREGATE_BY.split(",").length > 0) {
+			var aggregations = WIDGET_AGGREGATE_BY.split(",");
 
 			if (aggregations.length === 1) {
 				// Aggregate releases by date for the counting
-				if (aggregations.indexOf('AGGREGATE_BY_DATE') > -1) {
+				if (aggregations.indexOf('aggregated_by_date') > -1) {
 					releases = filterUniqueByDate(releases);
 				} else {
 					// Aggregate releases by tag name for the counting
-					if (aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+					if (aggregations.indexOf('aggregated_by_tag_name') > -1) {
 						releases = filterUniqueByTagName(releases);
 					}
 				}
 			} else {
-				if (aggregations.length === 2 && aggregations.indexOf('AGGREGATE_BY_DATE') > -1 && aggregations.indexOf('AGGREGATE_BY_TAG_NAME') > -1) {
+				if (aggregations.length === 2 && aggregations.indexOf('aggregated_by_date') > -1 && aggregations.indexOf('aggregated_by_tag_name') > -1) {
 					releases = filterUniqueCoupleOfDateAndTagName(releases);
 				}
 			}
 		}
 
 		// Sum the number of days between 2 releases
-		if (SURI_DISPLAY_AVERAGE_TIME_RELEASES && SURI_DISPLAY_AVERAGE_TIME_RELEASES === 'true') {
+		if (WIDGET_DISPLAY_AVERAGE_TIME_BETWEEN_RELEASES && WIDGET_DISPLAY_AVERAGE_TIME_BETWEEN_RELEASES === 'true') {
 			// Stored but not displayed, used for getting more information about the handled values
 			data.releasesDate.push(releases[0].released_at);
 
@@ -118,25 +118,25 @@ function run() {
  * @returns {string}
  */
 function computeStartDate() {
-	if (SURI_DATE) {
-		return SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
+	if (WIDGET_DATE) {
+		return WIDGET_DATE.slice(4) + "-" + WIDGET_DATE.slice(2, 4) + "-" + WIDGET_DATE.slice(0, 2);
 	}
 
-	if (SURI_PERIOD) {
+	if (WIDGET_PERIOD_UNIT) {
 		var numberOfPeriods = 1;
-		if (SURI_NUMBER_OF_PERIOD) {
-			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		if (WIDGET_PERIOD_NUMBER) {
+			numberOfPeriods = WIDGET_PERIOD_NUMBER;
 		}
 
 		var computedDate = new Date();
 
-		if (SURI_PERIOD === "Day") {
+		if (WIDGET_PERIOD_UNIT === "day") {
 			computedDate.setDate(new Date().getDate() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Week") {
+		} else if (WIDGET_PERIOD_UNIT === "week") {
 			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-		} else if (SURI_PERIOD === "Month") {
+		} else if (WIDGET_PERIOD_UNIT === "month") {
 			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Year") {
+		} else if (WIDGET_PERIOD_UNIT === "year") {
 			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
 		}
 

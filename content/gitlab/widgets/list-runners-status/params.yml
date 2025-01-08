@@ -1,25 +1,25 @@
 widgetParams:
-  - 
-    name: 'SURI_TITLE'
+  -
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: TEXT
-    usageExample: 'My title'
+    usageExample: 'Runners status'
     required: true
   -
-    name: 'SURI_RUNNER_TAGS'
-    description: 'Filter runners by tags, separated by a comma'
+    name: 'WIDGET_FILTER_BY_TAG'
+    description: 'Filter runners by tags (comma separated)'
     type: TEXT
     usageExample: 'tag1,tag2'
     required: false
   -
-    name: 'SURI_RUNNERS_NAME'
-    description: 'Filter runners by names, separated by a comma. Substring accepted'
+    name: 'WIDGET_FILTER_BY_NAME'
+    description: 'Filter runners by name (comma separated). Substring accepted'
     type: TEXT
     usageExample: 'runner1,runner2,runner3'
     required: false
   -
-    name: 'SURI_HIGHLIGHT_OFFLINE_RUNNERS'
-    description: 'Highlight offline runners'
+    name: 'WIDGET_BLINK_OFFLINE_RUNNERS'
+    description: 'Blink offline runners'
     type: BOOLEAN
     defaultValue: false
     required: false

@@ -1,16 +1,16 @@
 widgetParams:
   -
-    name: 'SURI_GITHUB_ORG'
+    name: 'WIDGET_GITHUB_ORGANIZATION'
     description: 'GitHub organization'
     type: TEXT
     required: true
   -
-    name: 'SURI_GITHUB_PROJECT'
+    name: 'WIDGET_GITHUB_PROJECT'
     description: 'GitHub project'
     type: TEXT
     required: true
   -
-    name: 'SURI_ISSUES_STATE'
+    name: 'WIDGET_GITHUB_ISSUES_STATE'
     description: 'Filter on the state of the issues'
     type: COMBO
     defaultValue: 'all'

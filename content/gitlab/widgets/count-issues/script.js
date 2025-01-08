@@ -17,13 +17,13 @@
 function run() {
 
 	var data = {};
-	var projectID = SURI_PROJECT.replaceAll("/", "%2F");
+	var projectID = WIDGET_PROJECT_ID_OR_PATH.replaceAll("/", "%2F");
 
 	data.project = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)).name;
+		Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)).name;
 
 	var response = JSON.parse(
-		Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?state=" + SURI_ISSUES_STATE, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN, "X-Total"));
+		Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectID + "/issues?state=" + WIDGET_ISSUES_STATE, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN, "X-Total"));
 
 	data.numberOfIssues = response;
 
@@ -32,8 +32,8 @@ function run() {
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
 
-	if (SURI_ISSUES_STATE != 'all') {
-		data.issuesState = SURI_ISSUES_STATE;
+	if (WIDGET_ISSUES_STATE != 'all') {
+		data.issuesState = WIDGET_ISSUES_STATE;
 	}
 
 	return JSON.stringify(data);

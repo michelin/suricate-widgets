@@ -19,28 +19,28 @@ function run() {
 	var users = [];
 	var page = 1;
 	
-	var url = WIDGET_CONFIG_GITLAB_URL + "/api/v4/users?per_page=100";
+	var url = CATEGORY_GITLAB_URL + "/api/v4/users?per_page=100";
 	
 	// Filter on user's name
-	if (SURI_SEARCH_BY_NAME) {
-		url += "&search=" + SURI_SEARCH_BY_NAME;
+	if (WIDGET_FILTER_BY_NAME) {
+		url += "&search=" + WIDGET_FILTER_BY_NAME;
 	}
 	
-	if (SURI_STATE) {
-		if (SURI_STATE === 'active') {
+	if (WIDGET_FILTER_BY_STATE) {
+		if (WIDGET_FILTER_BY_STATE === 'active') {
 			url += "&active=true";
 		} else {
-			if (SURI_STATE === 'blocked') {
+			if (WIDGET_FILTER_BY_STATE === 'blocked') {
 				url += "&blocked=true";
 			}
 		}
 	}
 	
-	var response = JSON.parse(Packages.get(url + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+	var response = JSON.parse(Packages.get(url + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	
 	// Custom filter on identifier to handle 3 chars or less
-	if (SURI_SEARCH_BY_IDENTIFIER) {
-		users = response.filter(filterByIdentifiant);
+	if (WIDGET_FILTER_BY_ID) {
+		users = response.filter(filterById);
 	} else {
 		users = response;
 	}
@@ -48,11 +48,11 @@ function run() {
 	while (response && response !== null && response.length > 0) {
 		page++;
 
-		response = JSON.parse(Packages.get(url + "&page=" + page, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		response = JSON.parse(Packages.get(url + "&page=" + page, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 		
 		// Custom filter on identifier to handle 3 chars or less
-		if (SURI_SEARCH_BY_IDENTIFIER) {
-			users = users.concat(response.filter(filterByIdentifiant));
+		if (WIDGET_FILTER_BY_ID) {
+			users = users.concat(response.filter(filterById));
 		} else {
 			users = users.concat(response);
 		}
@@ -70,8 +70,8 @@ function run() {
 	return JSON.stringify(data);
 }
 
-function filterByIdentifiant(user) {
-	if (user.username.toLowerCase().indexOf(SURI_SEARCH_BY_IDENTIFIER.toLowerCase()) > -1) {
+function filterById(user) {
+	if (user.username.toLowerCase().indexOf(WIDGET_FILTER_BY_ID.toLowerCase()) > -1) {
 		return user;
 	}
 }

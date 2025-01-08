@@ -1,52 +1,51 @@
 widgetParams:
   -
-    name: SURI_PROJECT
-    description: 'Project IDs or paths, separated by a comma'
+    name: WIDGET_PROJECT_IDS_OR_PATHS
+    description: 'Project IDs or paths (comma-separated)'
     type: TEXT
-    usageExample: '1234,mygroup/myproject'
+    usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: SURI_AGGREGATE_BY
-    description: 'Aggregate the releases by criteria'
-    usageTooltip: 'Releases aggregated by date/tag name will be counted as one release if they have the same date/tag name'
+    name: WIDGET_AGGREGATE_BY
+    description: 'Aggregate releases by date or tag name'
     type: MULTIPLE
     possibleValuesMap:
-      - jsKey: AGGREGATE_BY_DATE
+      - jsKey: 'aggregated_by_date'
         value: 'Date'
-      - jsKey: AGGREGATE_BY_TAG_NAME
+      - jsKey: 'aggregated_by_tag_name'
         value: 'Tag name'
     required: false
   -
-    name: SURI_DATE
-    description: 'Retrieve the releases from a precise date'
-    usageTooltip: 'Required format is DDMMYYYY. If defined, it is not necessary to select a period. The precise date takes priority over the period.'
+    name: WIDGET_DATE
+    description: 'Retrieve the releases from a precise date (format: DDMMYYYY)'
+    usageTooltip: 'If defined, it is not necessary to define a period. The precise date takes priority over the period.'
     type: TEXT
     usageExample: '31122020'
     required: false
   -
-    name: SURI_PERIOD
-    description: 'Retrieve the releases from a period'
+    name: WIDGET_PERIOD_UNIT
+    description: 'Unit of period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
     type: COMBO
     possibleValuesMap:
-      - jsKey: Year
+      - jsKey: year
         value: Year
-      - jsKey: Month
+      - jsKey: month
         value: Month
-      - jsKey: Week
+      - jsKey: week
         value: Week
-      - jsKey: Day
+      - jsKey: day
         value: Day
     required: false
   -
-    name: SURI_NUMBER_OF_PERIOD
-    description: 'Unit of the selected period'
+    name: WIDGET_PERIOD_NUMBER
+    description: 'Number of periods'
     type: NUMBER
     usageExample: 1
     required: false
   -
-    name: SURI_DISPLAY_AVERAGE_TIME_RELEASES
-    description: 'Display the average time in days between all releases'
+    name: WIDGET_DISPLAY_AVERAGE_TIME_BETWEEN_RELEASES
+    description: 'Display the average time between releases in days'
     type: BOOLEAN
     defaultValue: true
     required: false

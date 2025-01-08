@@ -1,4 +1,4 @@
-name: Number of merge requests
-description: Display the number of merge requests of a GitLab project
-technicalName: gitlabOpenedMR
-delay: 500
+name: Count merge requests
+description: Count the number of merge requests in a GitLab project.
+technicalName: gitlab-count-merge-requests
+delay: 300

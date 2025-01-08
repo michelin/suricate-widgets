@@ -1,5 +1,5 @@
 <div class="grid-stack-item-content-inner">
-	<h1 class="title">{{SURI_TITLE}}</h1>
+	<h1 class="title">{{WIDGET_TITLE}}</h1>
 	<p class="info">{{action}} events to {{target}} targets since {{fromDate}}</p>
 	<div class="chart-container">
 		<canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
@@ -33,7 +33,7 @@
 			
             var ctx = document.getElementById("chart-{{SURI_INSTANCE_ID}}").getContext('2d');
 			var chart = new Chart(ctx, {
-                type: '{{{SURI_TYPE_GRAPH}}}',
+                type: '{{{WIDGET_CHART_TYPE}}}',
                 data: {
                     labels: labels,
                     datasets: [{
@@ -45,7 +45,7 @@
                 },
                 options: {
                     legend: {
-                        display: '{{{SURI_TYPE_GRAPH}}}' == 'pie' ? true : false,
+                        display: '{{{WIDGET_CHART_TYPE}}}' == 'pie' ? true : false,
                         labels: {
                             fontColor: "white"
                         },
@@ -53,7 +53,7 @@
                     },
                     scales: {
                         xAxes: [{
-                            display: '{{{SURI_TYPE_GRAPH}}}' == 'pie' ? false : true,
+                            display: '{{{WIDGET_CHART_TYPE}}}' == 'pie' ? false : true,
                             gridLines: {
                                 color: "rgba(255, 255, 2555, 0.4)",
                                 zeroLineColor: "rgb(2555, 255, 255)"
@@ -65,7 +65,7 @@
                             }
                         }],
                             yAxes: [{
-                            display: '{{{SURI_TYPE_GRAPH}}}' == 'pie' ? false : true,
+                            display: '{{{WIDGET_CHART_TYPE}}}' == 'pie' ? false : true,
                             gridLines: {
                                 color: "rgba(255, 255, 255, 0.4)",
                                 zeroLineColor: "rgb(255, 255, 255)"

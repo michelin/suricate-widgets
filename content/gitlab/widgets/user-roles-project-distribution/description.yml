@@ -1,7 +1,7 @@
-name: User roles
-description: Display the distribution of roles of a GitLab project
-technicalName: gituserprofile
-delay: 500
+name: User roles project distribution
+description: Display a chart showing the distribution of user roles in a GitLab project.
+technicalName: gitlab-user-roles-project-distribution
+delay: 300
 libraries:
   - chart.js
   - chart.piecelabel.js

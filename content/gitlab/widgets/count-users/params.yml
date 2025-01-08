@@ -1,24 +1,24 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: TEXT
-    usageExample: 'My title'
+    usageExample: 'Number of users'
     required: true
   -
-    name: 'SURI_SEARCH_BY_IDENTIFIER'
-    description: 'Filter users by identifier. Substring accepted'
+    name: 'WIDGET_FILTER_BY_ID'
+    description: 'Filter users by ID. Substring accepted'
     type: TEXT
     usageExample: 'jack_smith'
     required: false
   -
-    name: 'SURI_SEARCH_BY_NAME'
+    name: 'WIDGET_FILTER_BY_NAME'
     description: 'Filter users by name. Substring accepted'
     type: TEXT
     usageExample: 'Jack'
     required: false
   -
-    name: 'SURI_STATE'
+    name: 'WIDGET_FILTER_BY_STATE'
     description: 'Filter users by state'
     type: COMBO
     possibleValuesMap:

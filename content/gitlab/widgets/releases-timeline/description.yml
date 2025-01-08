@@ -1,6 +1,6 @@
-name: Timeline of releases
-description: Display the releases of projects on a timeline
-technicalName: releasesTimeline
-delay: 86400
+name: Releases timeline
+description: Display a timeline of releases for a project.
+technicalName: gitlab-releases-timeline
+delay: 300
 libraries:
   - chart.js
