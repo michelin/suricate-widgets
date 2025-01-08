@@ -21,8 +21,8 @@ function run() {
 	var page = 1;
 	
 	var response = JSON.parse(
-					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_PR_STATE,
-					"Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
+					Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + WIDGET_GITHUB_PULL_REQUESTS_STATE,
+					"Authorization", "token " + CATEGORY_GITHUB_TOKEN));
 	
 	pullRequests = pullRequests.concat(response);
 
@@ -30,8 +30,8 @@ function run() {
 		page++;
 		
 		response = JSON.parse(
-					Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_PR_STATE,
-					"Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
+					Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + WIDGET_GITHUB_PULL_REQUESTS_STATE,
+					"Authorization", "token " + CATEGORY_GITHUB_TOKEN));
 		
 		pullRequests = pullRequests.concat(response);
 	}
@@ -55,8 +55,8 @@ function run() {
 		data.arrow = data.evolution == 0 ? '' : (data.evolution > 0 ? "up" : "down");
 	}
 	
-	if (SURI_PR_STATE != 'all') {
-		data.prsState = SURI_PR_STATE;
+	if (WIDGET_GITHUB_PULL_REQUESTS_STATE != 'all') {
+		data.prsState = WIDGET_GITHUB_PULL_REQUESTS_STATE;
 	}
 	
 	return JSON.stringify(data);

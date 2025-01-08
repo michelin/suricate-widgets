@@ -3,7 +3,7 @@ widgetParams:
     name: SURI_PROJECT
     description: 'Project IDs or paths, separated by a comma'
     type: TEXT
-    usageExample: '1234,mygroup/myproject'
+    usageExample: '1234,group/project'
     required: true
   -
     name: SURI_PERIOD

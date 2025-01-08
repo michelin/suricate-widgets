@@ -1,4 +1,4 @@
-name: Number of pull requests
-description: Display the number of pull requests of a GitHub project
-technicalName: githubOpenedPR
-delay: 600
+name: Count pull requests
+description: Count the number of open pull requests in a GitHub repository.
+technicalName: github-pull-requests-count
+delay: 300

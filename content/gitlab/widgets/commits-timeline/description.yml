@@ -1,6 +1,6 @@
-name: Timeline of commits
-description: Display the commits of projects on a timeline
-technicalName: commitsTimeline
-delay: 3600
+name: Commits Timeline
+description: Displays a timeline of commits for a project.
+technicalName: gitlab-commits-timeline
+delay: 300
 libraries:
   - chart.js
