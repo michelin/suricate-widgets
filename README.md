@@ -54,14 +54,15 @@ Retrieve data from external sources and present it in a tile-based format on Sur
 
 ## Creation 
 
-If you want to create your own widget and category in Suricate, you can follow these steps.
+To create a repository of widgets, follow the steps below.
 
 ### Creating a Category
 
-A widget **category** is a folder that contains: 
-- A `description.yml` file that describes the category
-- An `icon.png` file to associate an icon with the category in the Suricate application
-- A folder that contains all the widgets related to this category
+A category is a folder that contains all the widgets related to a specific topic.
+It contains the following files:
+- A `description.yml` file that describes the category.
+- An `icon.png` file to associate an icon with the category in the Suricate application.
+- A folder that contains all the widgets related to this category.
 
 #### Description
 

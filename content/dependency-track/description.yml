@@ -2,10 +2,10 @@ name: Dependency-Track
 technicalName: dependency-track
 configurations:
   -
-    key: 'WIDGET_CONFIG_DT_URL'
+    key: 'WIDGET_CONFIG_DEPENDENCY_TRACK_URL'
     description: 'URL of the Dependency-Track environment'
     dataType: TEXT
   -
-    key: 'WIDGET_CONFIG_DT_API_KEY'
-    description: 'X-API-KEY for the Dependency-Track API'
+    key: 'WIDGET_CONFIG_DEPENDENCY_TRACK_API_KEY'
+    description: 'API Key for the Dependency-Track API'
     dataType: PASSWORD

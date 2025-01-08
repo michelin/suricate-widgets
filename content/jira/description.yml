@@ -7,5 +7,5 @@ configurations:
     dataType: TEXT
   -
     key: 'WIDGET_CONFIG_JIRA_TOKEN'
-    description: 'Jira personal access token'
+    description: 'Token for the Jira environment'
     dataType: PASSWORD

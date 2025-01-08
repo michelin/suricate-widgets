@@ -1,5 +1,5 @@
 name: SonarQube
-technicalName: sonar
+technicalName: sonarqube
 configurations:
   -
     key: 'WIDGET_CONFIG_SONAR_URL'
