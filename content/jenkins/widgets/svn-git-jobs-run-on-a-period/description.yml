@@ -1,5 +1,0 @@
-name: Active Git & SVN jobs
-description: Display the number of active Git & SVN jobs on Jenkins
-technicalName: jenkinsGitJobsRunningOnAPeriod
-delay: 720
-timeout: 600

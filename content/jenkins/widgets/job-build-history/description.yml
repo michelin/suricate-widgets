@@ -1,4 +1,0 @@
-name: Job build history
-description: Display the build history for a specific job
-technicalName: jenkinsjobbuildhistory
-delay: 300

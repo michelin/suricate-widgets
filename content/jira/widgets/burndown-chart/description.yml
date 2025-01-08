@@ -1,6 +1,5 @@
 name: Burndown
 description: Display the burndown chart of a Jira release for the specified project
-info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jiraBurndown
 delay: 1500
 libraries:

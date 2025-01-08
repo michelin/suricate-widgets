@@ -1,4 +1,0 @@
-name: Multiple job status
-description: Display the status of a list of Jenkins jobs
-technicalName: jenkinsmultiplejobstatus
-delay: 120

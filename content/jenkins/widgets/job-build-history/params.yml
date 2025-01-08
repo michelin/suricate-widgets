@@ -1,7 +1,0 @@
-widgetParams:
-  -
-    name: 'SURI_JOB'
-    description: 'Job name'
-    type: TEXT
-    usageExample: 'DeploySpringBoot-monitor_back'
-    required: true

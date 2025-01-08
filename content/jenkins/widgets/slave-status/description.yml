@@ -1,4 +1,0 @@
-name: Slave status
-description: Display the number of up & down slaves on Jenkins
-technicalName: jenkinsslavestatus
-delay: 120

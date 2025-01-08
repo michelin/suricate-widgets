@@ -26,37 +26,27 @@ Retrieve data from external sources and present it in a tile-based format on Sur
 
 ## Repository Architecture
 
-📁 **Content** - Contains all the widgets sorted by category.
+The repository is organized as follows:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Category 1** - A widget category (e.g. Gitlab, GitHub, Jenkins, etc.).
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Widgets** - Contains all the widgets of the category.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📁 **Widget 1** - A widget.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **content.html** - The HTML content of the widget.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **description.yml** - The description of the widget.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ♐ **image.png** - The image of the widget.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **params.yml** - The parameters of the widget.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📜 **script.js** - The process content of the widget, defining what the widget does.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **style.css** - CSS styles to apply to the widget HTML content.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📄 **description.yml** - The description of the category.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ♐ **icon.png** - The icon of the category.
-
-📁 **Libraries** - Contains all the JavaScript libraries used by all the widgets.
+- **Content**: Contains all the widgets sorted by category.
+  - **Category**: A widget category (e.g. Gitlab, GitHub, Jenkins, etc.).
+    - **Widgets**: Contains all the widgets of the category.
+      - **Widget**: A widget.
+        - **content.html**: The HTML content of the widget.
+        - **description.yml**: The description of the widget.
+        - **image.png**: The image of the widget.
+        - **params.yml**: The parameters of the widget.
+        - **script.js**: The process content of the widget, defining what the widget does.
+        - **style.css**: CSS styles to apply to the widget HTML content.
+    - **description.yml**: The description of the category.
+    - **icon.png**: The icon of the category.
+- **Libraries**: Contains all the JavaScript libraries used by all the widgets.
 
 ## Creation 
 
 To create a repository of widgets, follow the steps below.
 
-### Creating a Category
+### Category
 
 A category is a folder that contains all the widgets related to a specific topic.
 It contains the following files:
@@ -92,11 +82,11 @@ The `icon.png` file contains the icon to be associated with the category. The ic
 
 #### Widgets
 
-The `Widgets` folder contains all the widgets linked to the category.
+The widgets folder contains all the widgets linked to the category.
 
-For more information about creating a widget, please see [the dedicated section](#create-a-widget).
+For more information about creating a widget, please see [the dedicated section](#widget).
 
-### Creating a Widget
+### Widget
 
 A widget is a folder containing the following files:
 - A `content.html` file that displays the widget in a tile format on Suricate dashboards.

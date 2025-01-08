@@ -1,5 +1,4 @@
 name: Count
 description: Count the number of Jiras from the specified JQL query
-info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
 technicalName: jiracount
 delay: 500

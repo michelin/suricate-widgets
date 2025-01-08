@@ -1,4 +1,0 @@
-name: Job status
-description: Display the build status of a specific job
-technicalName: jenkinsjobstatus
-delay: 30

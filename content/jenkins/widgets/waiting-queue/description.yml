@@ -1,4 +1,0 @@
-name: Waiting queue
-description: Display the number of jobs waiting on Jenkins queue
-technicalName: jenkinswaitingqueue
-delay: 120
