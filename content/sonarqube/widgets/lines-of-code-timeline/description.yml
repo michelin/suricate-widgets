@@ -1,0 +1,6 @@
+name: Project modified lines of code analysis
+description: Display lines of code over time from sonarqube
+technicalName: sonarLocTimeline
+delay: 500
+libraries:
+  - chart.js

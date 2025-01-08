@@ -1,0 +1,36 @@
+widgetParams:
+  - name: 'SURI_PROJECT'
+    description: 'Projects names (substring accepted) or projects keys (full match only), separated by a comma'
+    type: TEXT
+    usageExample: 'ProjectName1,com.project2.key:ProjectName2,ProjectName3'
+    required: true
+  - name: 'SURI_PERIOD'
+    description: 'Retrieve the analyzes from a period'
+    type: COMBO
+    defaultValue: 'Month'
+    possibleValuesMap:
+      - jsKey: Year
+        value: Year
+      - jsKey: Month
+        value: Month
+      - jsKey: Week
+        value: Week
+      - jsKey: Day
+        value: Day
+    required: false
+  - name: 'SURI_NUMBER_OF_PERIOD'
+    description: 'Unit of the selected period'
+    type: NUMBER
+    usageExample: 1
+    defaultValue: 6
+    required: false
+  - name: 'SURI_BRANCH'
+    description: 'Branch name, if user provides both branch and pull request, the branch takes precedence.'
+    type: TEXT
+    usageExample: 'My branch'
+    required: false
+  - name: 'SURI_PULL_REQUEST'
+    description: 'Merge/Pull Request Number'
+    type: TEXT
+    usageExample: '111'
+    required: false

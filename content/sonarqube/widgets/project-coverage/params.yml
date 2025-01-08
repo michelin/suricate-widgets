@@ -18,22 +18,22 @@ widgetParams:
     possibleValuesMap:
       -
         jsKey: 'new_line_coverage'
-        value: 'Lines coverage'
+        value: 'Line coverage on new code'
       -
         jsKey: 'new_lines_to_cover'
-        value: 'Lines to cover'
+        value: 'Lines to cover on new code'
       -
         jsKey: 'new_uncovered_lines'
-        value: 'Uncovered lines'
+        value: 'Uncovered lines on new code'
       -
         jsKey: 'new_coverage'
-        value: 'Coverage on new code(%)'
+        value: 'Coverage on new code'
       -
         jsKey: 'new_conditions_to_cover'
-        value: 'Conditions to cover'
+        value: 'Conditions to cover on new code'
       -
         jsKey: 'new_uncovered_conditions'
-        value: 'Unconver conditions'
+        value: 'Uncovered conditions on new code'
     required: true
   -
     name: 'SURI_BRANCH'
