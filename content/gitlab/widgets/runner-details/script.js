@@ -19,7 +19,9 @@ function run() {
 	
 	var runner = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/runners/" + WIDGET_RUNNER_ID, 
 		"PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
-	
+
+	print(JSON.stringify(runner));
+
 	if (runner) {
 		data.name = runner.description;
 		data.status = runner.status;
@@ -47,6 +49,8 @@ function run() {
 			data.online = true;
 		} else if (data.status === 'offline') {
 			data.offline = true;
+		} else if (data.status === 'stale') {
+			data.stale = true;
 		}
 	}
 	

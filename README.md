@@ -205,11 +205,13 @@ The following table lists all available parameters for the `params.yml` file:
 
 #### Script
 
-The `script.js` file is the core of the widget. It contains the business process of the widget and defines what the widget does. Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
+The `script.js` file is the core of the widget. 
+It contains the business process of the widget and defines what the widget does. 
+Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
 
 How does the script work?
 - It is executed by the Suricate Back-End with [GraalVM Polyglot](https://www.graalvm.org/latest/reference-manual/polyglot-programming/#start-language-java).
-- It has to define a function named `run`. All the data returned by the _run_ function has to be stringified in a JSON format.
+- It has to define a function named `run`. All the data returned by the `run` function has to be stringified in a JSON format using `JSON.stringify(data)`.
 - The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate Back-End](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/service/js/script/JsEndpoints.java). 
 
 ```javascript
