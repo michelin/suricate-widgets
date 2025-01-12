@@ -6,16 +6,17 @@ widgetParams:
     usageExample: 'Projects activity by event'
     required: true
   -
-    name: 'WIDGET_NUMBER_OF_PROJECTS'
-    description: 'Number of projects to display'
-    type: NUMBER
-    defaultValue: '5'
-    required: false
-  -
     name: WIDGET_PROJECT_IDS_OR_PATHS
     description: 'Project IDs or paths (comma-separated)'
     type: TEXT
     usageExample: '123456,my-group/my-project'
+    required: false
+  -
+    name: 'WIDGET_NUMBER_OF_PROJECTS'
+    description: 'Number of projects to display'
+    usageTooltip: 'If a project ID or path is not defined, the widget will display the events of the last projects with activity'
+    type: NUMBER
+    defaultValue: '5'
     required: false
   -
     name: WIDGET_DATE

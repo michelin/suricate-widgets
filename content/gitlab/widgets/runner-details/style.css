@@ -38,6 +38,10 @@
 	background-color: #303030;
 }
 
+.widget.gitlab-runner-details .stale {
+	background-color: #212121;
+}
+
 .widget.gitlab-runner-details .fa-fix {
 	margin-top: 35px !important;
 }

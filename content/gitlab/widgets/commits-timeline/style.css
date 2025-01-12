@@ -4,6 +4,7 @@
 
 .widget.gitlab-commits-timeline .title {
 	color: rgba(255, 255, 255, 0.7);
+	font-size: 20px;
 	margin-bottom: 10px;
 }
 

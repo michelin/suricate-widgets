@@ -23,7 +23,7 @@ widgetParams:
     type: COMBO
     possibleValuesMap:
       - jsKey: active
-        value: active
+        value: Active
       - jsKey: blocked
-        value: blocked
+        value: Blocked
     required: false

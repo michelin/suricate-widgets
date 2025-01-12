@@ -21,8 +21,6 @@ function run() {
 	data.datapie = [];
 	data.colors = [];
 
-	var urlParameters;
-
 	// To retrieve the events of today, GitLab seems to require the date of yesterday
 	data.fromDate = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + ("0" + new Date().getUTCDate()).slice(-2);
 
