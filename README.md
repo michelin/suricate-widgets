@@ -102,15 +102,15 @@ The `content.html` file is responsible for displaying the widget on Suricate das
 
 ```html
 <div class="grid-stack-item-content-inner">
-	<h1 class="title">{{WIDGET_GITHUB_PROJECT}}</h1>
-	<h2 class="value">{{numberOfIssues}}</h2>
-	<h2 class="issues-label">{{#issuesState}} {{issuesState}} {{/issuesState}} issues</h2>
+  <h1 class="title">{{WIDGET_GITHUB_PROJECT}}</h1>
+  <h2 class="value">{{numberOfIssues}}</h2>
+  <h2 class="issues-label">{{#issuesState}} {{issuesState}} {{/issuesState}} issues</h2>
 
-	{{#evolution}}
-	<p class="change-rate">
-	  <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
-	</p>
-	{{/evolution}}
+  {{#evolution}}
+  <p class="change-rate">
+    <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
+  </p>
+  {{/evolution}}
 </div>
 <div class="github"></div>
 ```
@@ -130,10 +130,10 @@ As in the example above, it is possible to add custom JavaScript or calls to Jav
 The `description.yml` file provides information about the widget. The following is its content:
 
 ```yml
-name: Number of issues
-description: Display the number of issues of a GitHub project
-technicalName: githubOpenedIssues
-delay: 600
+name: Count issues
+description: Count the number of issues in a GitHub repository.
+technicalName: github-count-issues
+delay: 300
 ```
 
 The table below lists all possible parameters in this file:
@@ -173,7 +173,7 @@ widgetParams:
     type: TEXT
     required: true
   -
-    name: 'SURI_ISSUES_STATE'
+    name: 'WIDGET_GITHUB_ISSUES_STATE'
     description: 'Filter on the state of the issues'
     type: COMBO
     defaultValue: 'all'
@@ -218,15 +218,13 @@ function run() {
   var perPage = 100;
   var issues = [];
   var page = 1;
-  
-  var response = JSON.parse(Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_ISSUES_STATE, "Authorization", "token " + CATEGORY_GITHUB_TOKEN));
-  
-  issues = issues.concat(response);
 
-  ...
-  
-  data.numberOfIssues = issues.length;
-  
+  var response = JSON.parse(
+          Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + WIDGET_GITHUB_ISSUES_STATE,
+                  "Authorization", "token " + CATEGORY_GITHUB_TOKEN));
+
+  // Process the response
+
   return JSON.stringify(data);
 }
 ```
@@ -237,18 +235,18 @@ This `style.css` file is used to add CSS style to the widget.
 
 Usage information:
 - It is a pure CSS style file.
-- All the classes have to be prefixed by `.widget.<technicalname>`. The technical name is the one defined in the _description.yml_ file of the widget.
+- All the classes have to be prefixed by `.widget.<technicalname>` to be applied to the widget.
+This class is unique to the widget and is added by Suricate when the widget is displayed on the dashboard.
+The technical name is the one defined in the _description.yml_ file of the widget.
 
 ```CSS
-.widget.githubOpenedIssues {
-	background-color: #FFFFFF;
+.widget.github-count-issues {
+  background-color: #FFFFFF;
 }
 
-...
-
-.widget.githubOpenedIssues .issues-label {
-	color: #1B1F23;
-	font-size: 40px;
+.widget.github-count-issues .title {
+  color: #1B1F23;
+  text-transform: capitalize;
 }
 ```
 
