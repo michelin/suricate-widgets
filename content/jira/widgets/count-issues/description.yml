@@ -1,0 +1,4 @@
+name: Count issues
+description: Count the number of issues in a Jira project.
+technicalName: jira-count-issues
+delay: 300

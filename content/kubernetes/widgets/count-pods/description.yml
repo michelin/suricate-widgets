@@ -1,4 +1,4 @@
-name: Count pods from namespace
-description: Count the number of pods from a given namespace
-technicalName: countpods
-delay: 500
+name: Count pods
+description: Count the number of pods in a Kubernetes namespace.
+technicalName: kubernetes-count-pods
+delay: 300

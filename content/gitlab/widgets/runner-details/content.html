@@ -1,12 +1,12 @@
 <div class="fullwidget 
 			{{#lastContactExceeded}} last-contact-time-exceeded {{/lastContactExceeded}}
-			{{^lastContactExceeded}} {{status}} {{/lastContactExceeded}}
-			">
+			{{^lastContactExceeded}} {{status}} {{/lastContactExceeded}}">
 	<i class="fa-fix fa 
 	{{#lastContactExceeded}}fa-thumbs-down{{/lastContactExceeded}} 
 	{{^lastContactExceeded}}
 		{{#online}}fa-thumbs-up{{/online}} 
-		{{#offline}}fa-thumbs-down{{/offline}} 
+		{{#offline}}fa-thumbs-down{{/offline}}
+		{{#stale}}fa-skull{{/stale}}
 		{{#active}}fa-running{{/active}} 
 		{{#paused}}fa-exclamation-triangle{{/paused}} 
 	{{/lastContactExceeded}} 
@@ -20,16 +20,34 @@
 		
 		<table class="table">
 			<tr>
+				{{#platform}}
 				<td>
 					<p class="value">
 						<i class="fa-brands fa-{{platform}}"></i> <span class="platform"> {{platform}} </span> {{architecture}}
 					</p>
 				</td>
+				{{/platform}}
+				{{^platform}}
+				<td>
+					<p class="value">
+						<i class="fa-brands"></i> No platform detected
+					</p>
+				</td>
+				{{/platform}}
+				{{#version}}
 				<td>
 					<p class="value">
 						<i class="fa fa-bookmark"></i> v{{version}}
 					</p>
 				</td>
+				{{/version}}
+				{{^version}}
+				<td>
+					<p class="value">
+						<i class="fa"></i> No version detected
+					</p>
+				</td>
+				{{/version}}
 			</tr>
 		</table>
 		

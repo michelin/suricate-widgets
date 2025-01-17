@@ -13,6 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+
 var data = {};
 
 function run() {
@@ -39,7 +40,7 @@ function run() {
 	data.projectNames = '';
 
 	data.fromDate = computeStartDate();
-	var projectIDs = SURI_PROJECT.replaceAll("/", "%2F").split(",");
+	var projectIDs = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
 	var labels = [];
 
 	projectIDs.forEach(function(id, index) {
@@ -49,18 +50,18 @@ function run() {
 		var dataCommits = [];
 
 		var project = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 		data.projectNames += project.name + ", ";
 
 		var response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/repository/commits?per_page=" + perPage + "&page=" + page + "&since=" + data.fromDate, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/repository/commits?per_page=" + perPage + "&page=" + page + "&since=" + data.fromDate, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		commits = commits.concat(response);
 
 		while (response && response.length > 0 && response.length === perPage) {
 			page++;
 			response = JSON.parse(
-				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + id + "/repository/commits?per_page=" + perPage + "&page=" + page + "&since=" + data.fromDate, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + id + "/repository/commits?per_page=" + perPage + "&page=" + page + "&since=" + data.fromDate, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 			commits = commits.concat(response);
 		}
 
@@ -79,12 +80,12 @@ function run() {
                   "-" +
                   ("0" + dateExtract.getUTCDate()).slice(-2);
 
-                if (SURI_PERIOD == "Week") {
+                if (WIDGET_PERIOD_UNIT == "week") {
                   displayDate = dateFirstTen;
-                } else if (SURI_PERIOD == "Month") {
+                } else if (WIDGET_PERIOD_UNIT == "month") {
                   displayDate =
                     monthNames[dateExtract.getMonth()] + "," + dateExtract.getFullYear();
-                } else if (SURI_PERIOD == "Year") {
+                } else if (WIDGET_PERIOD_UNIT == "year") {
                   displayDate = dateExtract.getFullYear();
                 }
 
@@ -136,17 +137,17 @@ function run() {
  */
 function computeStartDate() {
     var computedDate = new Date();
-	if (SURI_PERIOD) {
+	if (WIDGET_PERIOD_UNIT) {
 		var numberOfPeriods = 1;
-		if (SURI_NUMBER_OF_PERIOD) {
-			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		if (WIDGET_PERIOD_NUMBER) {
+			numberOfPeriods = WIDGET_PERIOD_NUMBER;
 		}
 
-		if (SURI_PERIOD === "Week") {
+		if (WIDGET_PERIOD_UNIT === "week") {
 			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-		} else if (SURI_PERIOD === "Month") {
+		} else if (WIDGET_PERIOD_UNIT === "month") {
 			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Year") {
+		} else if (WIDGET_PERIOD_UNIT === "year") {
 			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
 		}
 
@@ -164,18 +165,6 @@ function formatDate(date) {
 		+ ("0" + (new Date(date).getMonth() + 1)).slice(-2)
 		+ "-"
 		+ ("0" + new Date(date).getUTCDate()).slice(-2);
-}
-
-/**
- * Keep unique value in array
- *
- * @param value The value
- * @param index The index
- * @param self The array
- * @returns {boolean}
- */
-function onlyUnique(value, index, self) {
-	return self.indexOf(value) === index;
 }
 
 /**

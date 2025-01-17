@@ -1,18 +1,18 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
   -
-    name: 'SURI_JQL'
-    description: 'Jira JQL query to retrieve the issues'
-    type: TEXT
+    name: 'WIDGET_JQL'
+    description: 'JQL query to retrieve the issues'
+    type: 'TEXT'
     usageExample: 'project=XXX and (component=jenkins or component=XXX)'
     required: true
   -
-    name: 'SURI_DISPLAY_LEGEND'
+    name: 'WIDGET_DISPLAY_LEGEND'
     description: 'Display the legend of the chart'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     required: false

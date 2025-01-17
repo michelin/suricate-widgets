@@ -17,7 +17,7 @@
 function run() {
   // previous data
   var data = JSON.parse(SURI_PREVIOUS);
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&maxResults=0", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
+  var jsonResponse = Packages.get(CATEGORY_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(WIDGET_JQL) + "&maxResults=0", "Authorization", "Bearer " + CATEGORY_JIRA_TOKEN);
   if (jsonResponse == null) {
     return null;
   }
@@ -28,7 +28,7 @@ function run() {
   }
 
   if (data.old.length !== 0) {
-    if (data.old[0].time < new Date().getTime() - SURI_DELAI * 3600000) {
+    if (data.old[0].time < new Date().getTime() - WIDGET_DELAY * 3600000) {
       data.old.shift();
     }
   }

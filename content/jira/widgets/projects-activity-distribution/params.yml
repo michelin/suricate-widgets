@@ -1,20 +1,20 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
   -
-    name: 'SURI_WEEK'
+    name: 'WIDGET_WEEK'
     description: 'Period of activity (in weeks)'
-    type: NUMBER
+    type: 'NUMBER'
     defaultValue: '12'
     required: true
   -
-    name: 'SURI_ORDERBY'
+    name: 'WIDGET_ORDER_BY'
     description: 'Order extension by'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'ISSUES'
     possibleValuesMap:
       -
@@ -28,18 +28,15 @@ widgetParams:
         value: 'Day of issues'
     required: true
   -
-    name: 'SURI_TYPE_GRAPH'
-    description: 'Graph type'
-    type: COMBO
-    defaultValue: 'horizontalBar'
+    name: 'WIDGET_CHART_TYPE'
+    description: 'Chart type'
+    type: 'COMBO'
+    defaultValue: 'pie'
     possibleValuesMap:
-      -
-        jsKey: 'pie'
+      - jsKey: 'pie'
         value: 'Pie'
-      -
-        jsKey: 'horizontalBar'
+      - jsKey: 'horizontalBar'
         value: 'Horizontal bar'
-      -
-        jsKey: 'bar'
+      - jsKey: 'verticalBar'
         value: 'Vertical bar'
     required: true

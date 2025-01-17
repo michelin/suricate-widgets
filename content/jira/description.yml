@@ -2,10 +2,10 @@ name: Jira
 technicalName: jira
 configurations:
   -
-    key: 'WIDGET_CONFIG_JIRA_URL'
+    key: 'CATEGORY_JIRA_URL'
     description: 'URL of the Jira environment'
     dataType: TEXT
   -
-    key: 'WIDGET_CONFIG_JIRA_TOKEN'
-    description: 'Token for the Jira environment'
+    key: 'CATEGORY_JIRA_TOKEN'
+    description: 'Token for the Jira API'
     dataType: PASSWORD

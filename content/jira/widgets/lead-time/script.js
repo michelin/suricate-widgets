@@ -24,15 +24,15 @@ function run() {
 
   var issuesTypes = [];
 
-  var authorizationHeaderValue = "Bearer " + WIDGET_CONFIG_JIRA_TOKEN;
+  var authorizationHeaderValue = "Bearer " + CATEGORY_JIRA_TOKEN;
 
   // Build jql query
-  var jql = "project = " + SURI_JIRA_PROJECT + " AND statusCategory = Done AND created > startOfDay(-" + SURI_JIRA_START_RANGE + "d)";
+  var jql = "project = " + WIDGET_JIRA_PROJECT + " AND statusCategory = Done AND created > startOfDay(-" + WIDGET_JIRA_START_RANGE + "d)";
 
-  if (WIDGET_CONFIG_JIRA_TYPES) {
+  if (WIDGET_JIRA_TYPES) {
     // Add issues types to jql query
     
-    issuesTypes = WIDGET_CONFIG_JIRA_TYPES.split(",");
+    issuesTypes = WIDGET_JIRA_TYPES.split(",");
     var formatedIssuesTypes = [];
 
     for (var issueTypeIndex in issuesTypes) {
@@ -42,12 +42,12 @@ function run() {
     jql = jql + " AND type in (" + formatedIssuesTypes.join() + ")";
   }
 
-  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
-    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_INITIAL_STATUS + "'";
+  if (WIDGET_JIRA_INITIAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_JIRA_INITIAL_STATUS + "'";
   }
 
-  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
-    jql = jql + " AND status was '" + WIDGET_CONFIG_JIRA_FINAL_STATUS + "'";
+  if (WIDGET_JIRA_INITIAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_JIRA_INITIAL_STATUS + "'";
   }
 
   var startAt = 0;
@@ -58,7 +58,7 @@ function run() {
 
     var query = "?jql=" + encodeURIComponent(jql) + "&startAt=" + startAt + "&maxResults=1000&expand=changelog";
 
-    var result = JSON.parse(Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
+    var result = JSON.parse(Packages.get(CATEGORY_JIRA_URL + "/rest/api/2/search" + query, "Authorization", authorizationHeaderValue));
 
     startAt+= 1000;
     
@@ -72,8 +72,8 @@ function run() {
       var startedAt = null;
       var endAt = null;
 
-      if(WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
-        // Get datetime of first transition wher target status is equal to WIDGET_CONFIG_JIRA_INITIAL_STATUS
+      if(WIDGET_JIRA_INITIAL_STATUS) {
+        // Get datetime of first transition wher target status is equal to WIDGET_JIRA_INITIAL_STATUS
         startedAt = getStartDateByStatus(issue);
       }
       else {
@@ -81,8 +81,8 @@ function run() {
         startedAt = new Date(issue.fields.created);
       }
 
-      if(WIDGET_CONFIG_JIRA_FINAL_STATUS) {
-        // Get datetime of latest transition when target status is equal to WIDGET_CONFIG_JIRA_FINAL_STATUS
+      if(WIDGET_JIRA_INITIAL_STATUS) {
+        // Get datetime of latest transition when target status is equal to WIDGET_JIRA_INITIAL_STATUS
         endAt = getEndDateByStatus(issue);
       }
       else {
@@ -121,29 +121,29 @@ function run() {
 
   data.jql = jql;
 
-  data.issuesUrl = WIDGET_CONFIG_JIRA_URL + "/issues/?jql=" + jql;
+  data.issuesUrl = CATEGORY_JIRA_URL + "/issues/?jql=" + jql;
 
   data.issuesCount = jiraIssues.length;
 
   var now = new Date();
-  var dateForDaysAgo = new Date(new Date().setDate(new Date().getDate() - SURI_JIRA_START_RANGE));
+  var dateForDaysAgo = new Date(new Date().setDate(new Date().getDate() - WIDGET_JIRA_START_RANGE));
 
   data.startRange = dateForDaysAgo.toJSON().slice(0, 10);
   data.endRange = now.toJSON().slice(0, 10);
 
-  if (SURI_JIRA_VALUE_FORMAT === 'HOURS') {
+  if (WIDGET_JIRA_VALUE_FORMAT === 'HOURS') {
     data.inHours = true;
     data.leadTime = (leadTime / (1000 * 60 * 60 )).round(2);
     data.minLeadTime = (minLeadTime / (1000 * 60 * 60 )).round(2);
     data.maxLeadTime = (maxLeadTime / (1000 * 60 * 60 )).round(2);
   }
-  else if(SURI_JIRA_VALUE_FORMAT === 'MINUTES') {
+  else if(WIDGET_JIRA_VALUE_FORMAT === 'MINUTES') {
     data.inMinutes = true;
     data.leadTime = (leadTime / (1000 * 60 )).round(2);
     data.minLeadTime = (minLeadTime / (1000 * 60 )).round(2);
     data.maxLeadTime = (maxLeadTime / (1000 * 60 )).round(2);
   }
-  else if(SURI_JIRA_VALUE_FORMAT === 'SECONDS') {
+  else if(WIDGET_JIRA_VALUE_FORMAT === 'SECONDS') {
     data.inSeconds = true;
     data.leadTime = (leadTime / 1000).round(2);
     data.minLeadTime = (minLeadTime / 1000).round(2);
@@ -157,15 +157,15 @@ function run() {
   }
 
   // Process issues status
-  if (WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
-    data.startStatus = WIDGET_CONFIG_JIRA_INITIAL_STATUS;
+  if (WIDGET_JIRA_INITIAL_STATUS) {
+    data.startStatus = WIDGET_JIRA_INITIAL_STATUS;
   }
   else {
     data.startStatus = "Created";
   }
 
-  if (WIDGET_CONFIG_JIRA_FINAL_STATUS) {
-    data.endStatus = WIDGET_CONFIG_JIRA_FINAL_STATUS;
+  if (WIDGET_JIRA_INITIAL_STATUS) {
+    data.endStatus = WIDGET_JIRA_INITIAL_STATUS;
   }
   else {
     data.endStatus = "Resolved";
@@ -191,7 +191,7 @@ function getStartDateByStatus(jiraIssue) {
     var history = jiraIssue.changelog.histories[historyIndex];
     for(var itemIndex in history.items) {
       var item = history.items[itemIndex];
-      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_INITIAL_STATUS) {
+      if(item.field === "status" && item.toString === WIDGET_JIRA_INITIAL_STATUS) {
         return new Date(history.created);
       }
     }
@@ -205,7 +205,7 @@ function getEndDateByStatus(jiraIssue) {
     var history = jiraIssue.changelog.histories[historyIndex];
     for(var itemIndex in history.items) {
       var item = history.items[itemIndex];
-      if(item.field === "status" && item.toString === WIDGET_CONFIG_JIRA_FINAL_STATUS) {
+      if(item.field === "status" && item.toString === WIDGET_JIRA_INITIAL_STATUS) {
         return new Date(history.created);
       }
     }

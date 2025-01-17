@@ -63,18 +63,18 @@ name: GitHub
 technicalName: github
 configurations:
   -
-    key: 'WIDGET_CONFIG_GITHUB_TOKEN'
+    key: 'CATEGORY_GITHUB_TOKEN'
     description: 'Token for the GitHub API'
     dataType: PASSWORD
 ```
 
 Here are the possible parameters that can be set in this file:
 
-| Param            | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`           | true     | The name of the category to display in Suricate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `configurations` | false    | Parameters associated with the category. All the widgets of the category will share these parameters. Values are defined directly from the _Configuration_ tab in the Suricate application. <br/><br/> Each parameter must declare the following properties: <ul><li>**key** - _The name of the parameter used by the widget. It must start by WIDGET_CONFIG._</li> <li>**description** - _A description for the parameter._</li> <li>**dataType** - _The type of the parameter. It must be one of these types: "NUMBER", "TEXT", "PASSWORD"._</li> |
+| Param            | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`           | true     | The name of the category to display in Suricate.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `technicalName`  | true     | The primary key of the category. This is used by the back-end to uniquely identify a category.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `configurations` | false    | Parameters associated with the category. All the widgets of the category will share these parameters. Values are defined directly from the Configuration tab in the Suricate application. <br/><br/> Each parameter must declare the following properties: <ul><li>**key** - The name of the parameter used by the widget.</li> <li>**description** - A description for the parameter.</li> <li>**dataType** - The type of the parameter. It must be one of these types: "NUMBER", "TEXT", "PASSWORD".</li> |
 
 #### Icon
 
@@ -102,15 +102,15 @@ The `content.html` file is responsible for displaying the widget on Suricate das
 
 ```html
 <div class="grid-stack-item-content-inner">
-	<h1 class="title">{{SURI_GITHUB_PROJECT}}</h1>
-	<h2 class="value">{{numberOfIssues}}</h2>
-	<h2 class="issues-label">{{#issuesState}} {{issuesState}} {{/issuesState}} issues</h2>
+  <h1 class="title">{{WIDGET_GITHUB_PROJECT}}</h1>
+  <h2 class="value">{{numberOfIssues}}</h2>
+  <h2 class="issues-label">{{#issuesState}} {{issuesState}} {{/issuesState}} issues</h2>
 
-	{{#evolution}}
-	<p class="change-rate">
-	  <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
-	</p>
-	{{/evolution}}
+  {{#evolution}}
+  <p class="change-rate">
+    <i class="fa fa-arrow-{{arrow}}"></i><span>{{evolution}}% since the last execution</span>
+  </p>
+  {{/evolution}}
 </div>
 <div class="github"></div>
 ```
@@ -130,10 +130,10 @@ As in the example above, it is possible to add custom JavaScript or calls to Jav
 The `description.yml` file provides information about the widget. The following is its content:
 
 ```yml
-name: Number of issues
-description: Display the number of issues of a GitHub project
-technicalName: githubOpenedIssues
-delay: 600
+name: Count issues
+description: Count the number of issues in a GitHub repository.
+technicalName: github-count-issues
+delay: 300
 ```
 
 The table below lists all possible parameters in this file:
@@ -163,17 +163,17 @@ The `params.yml` file must adhere to the following rules:
 ```yml
 widgetParams:
   -
-    name: 'SURI_GITHUB_ORG'
+    name: 'WIDGET_GITHUB_ORGANIZATION'
     description: 'GitHub organization'
     type: TEXT
     required: true
   -
-    name: 'SURI_GITHUB_PROJECT'
+    name: 'WIDGET_GITHUB_PROJECT'
     description: 'GitHub project'
     type: TEXT
     required: true
   -
-    name: 'SURI_ISSUES_STATE'
+    name: 'WIDGET_GITHUB_ISSUES_STATE'
     description: 'Filter on the state of the issues'
     type: COMBO
     defaultValue: 'all'
@@ -205,11 +205,13 @@ The following table lists all available parameters for the `params.yml` file:
 
 #### Script
 
-The `script.js` file is the core of the widget. It contains the business process of the widget and defines what the widget does. Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
+The `script.js` file is the core of the widget. 
+It contains the business process of the widget and defines what the widget does. 
+Most of the time, it submits requests to REST APIs and processes the retrieved data to send to the front-end.
 
 How does the script work?
 - It is executed by the Suricate Back-End with [GraalVM Polyglot](https://www.graalvm.org/latest/reference-manual/polyglot-programming/#start-language-java).
-- It has to define a function named `run`. All the data returned by the _run_ function has to be stringified in a JSON format.
+- It has to define a function named `run`. All the data returned by the `run` function has to be stringified in a JSON format using `JSON.stringify(data)`.
 - The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate Back-End](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/service/js/script/JsEndpoints.java). 
 
 ```javascript
@@ -218,15 +220,13 @@ function run() {
   var perPage = 100;
   var issues = [];
   var page = 1;
-  
-  var response = JSON.parse(Packages.get("https://api.github.com/repos/" + SURI_GITHUB_ORG + "/" + SURI_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + SURI_ISSUES_STATE, "Authorization", "token " + WIDGET_CONFIG_GITHUB_TOKEN));
-  
-  issues = issues.concat(response);
 
-  ...
-  
-  data.numberOfIssues = issues.length;
-  
+  var response = JSON.parse(
+          Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + WIDGET_GITHUB_ISSUES_STATE,
+                  "Authorization", "token " + CATEGORY_GITHUB_TOKEN));
+
+  // Process the response
+
   return JSON.stringify(data);
 }
 ```
@@ -237,18 +237,18 @@ This `style.css` file is used to add CSS style to the widget.
 
 Usage information:
 - It is a pure CSS style file.
-- All the classes have to be prefixed by `.widget.<technicalname>`. The technical name is the one defined in the _description.yml_ file of the widget.
+- All the classes have to be prefixed by `.widget.<technicalname>` to be applied to the widget.
+This class is unique to the widget and is added by Suricate when the widget is displayed on the dashboard.
+The technical name is the one defined in the _description.yml_ file of the widget.
 
 ```CSS
-.widget.githubOpenedIssues {
-	background-color: #FFFFFF;
+.widget.github-count-issues {
+  background-color: #FFFFFF;
 }
 
-...
-
-.widget.githubOpenedIssues .issues-label {
-	color: #1B1F23;
-	font-size: 40px;
+.widget.github-count-issues .title {
+  color: #1B1F23;
+  text-transform: capitalize;
 }
 ```
 

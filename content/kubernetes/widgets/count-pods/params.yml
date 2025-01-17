@@ -1,44 +1,44 @@
 widgetParams:
   -
-    name: 'SURI_NAMESPACE'
-    description: 'Namespace of the pods'
-    type: TEXT
+    name: 'WIDGET_NAMESPACE'
+    description: 'Namespace'
+    type: 'TEXT'
     usageExample: 'namespace'
     required: true
   -
-    name: 'SURI_SERVICE_ACCOUNT_TOKEN'
+    name: 'WIDGET_SERVICE_ACCOUNT_TOKEN'
     description: 'Namespace token (e.g. service account token, Gitlab token, ...)'
-    type: PASSWORD
+    type: 'PASSWORD'
     usageExample: 'eyJhbGciOiJSU'
     required: true
   -
-    name: 'SURI_STATUS'
+    name: 'WIDGET_STATUS'
     description: 'Filter by status of the pods'
-    type: COMBO
-    defaultValue: All
+    type: 'COMBO'
+    defaultValue: 'All'
     possibleValuesMap:
       -
-        jsKey: All
-        value: All
+        jsKey: 'All'
+        value: 'All'
       -
-        jsKey: Running
-        value: Running
+        jsKey: 'Running'
+        value: 'Running'
       -
-        jsKey: Pending
-        value: Pending
+        jsKey: 'Pending'
+        value: 'Pending'
       -
-        jsKey: Succeeded
-        value: Succeeded
+        jsKey: 'Succeeded'
+        value: 'Succeeded'
       -
-        jsKey: Failed
-        value: Failed
+        jsKey: 'Failed'
+        value: 'Failed'
       -
-        jsKey: Unknown
-        value: Unknown
+        jsKey: 'Unknown'
+        value: 'Unknown'
     required: true
   -
-    name: 'SURI_PODS_NAME'
+    name: 'WIDGET_PODS_NAME'
     description: 'Filter on the name of the pods. Substring accepted'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'frontend'
     required: false

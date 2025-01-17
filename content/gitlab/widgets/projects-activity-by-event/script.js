@@ -21,8 +21,6 @@ function run() {
 	data.datapie = [];
 	data.colors = [];
 
-	var urlParameters;
-
 	// To retrieve the events of today, GitLab seems to require the date of yesterday
 	data.fromDate = new Date().getFullYear() + "-" + ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + ("0" + new Date().getUTCDate()).slice(-2);
 
@@ -30,8 +28,8 @@ function run() {
 	today.setDate(today.getDate() - 1);
 	var todayForGitLabString = today.getFullYear() + "-" + ("0" + (today.getMonth() + 1)).slice(-2) + "-" + ("0" + today.getUTCDate()).slice(-2);
 
-	if (SURI_DATE && SURI_DATE !== null) {
-		data.fromDate = SURI_DATE.slice(4) + "-" + SURI_DATE.slice(2, 4) + "-" + SURI_DATE.slice(0, 2);
+	if (WIDGET_DATE && WIDGET_DATE !== null) {
+		data.fromDate = WIDGET_DATE.slice(4) + "-" + WIDGET_DATE.slice(2, 4) + "-" + WIDGET_DATE.slice(0, 2);
 		var givenDate = new Date(data.fromDate);
 		givenDate.setDate(givenDate.getDate() - 1);
 
@@ -40,35 +38,34 @@ function run() {
 
 	var urlParameters = "?per_page=100&after=" + todayForGitLabString;
 
-	if (SURI_ACTION_TYPE && SURI_ACTION_TYPE !== null) {
-		data.action = SURI_ACTION_TYPE.charAt(0).toUpperCase() + SURI_ACTION_TYPE.substring(1).toLowerCase();
-		if (SURI_ACTION_TYPE !== 'all') {
-			urlParameters += "&action=" + SURI_ACTION_TYPE;
+	if (WIDGET_EVENT_TYPE && WIDGET_EVENT_TYPE !== null) {
+		data.action = WIDGET_EVENT_TYPE.charAt(0).toUpperCase() + WIDGET_EVENT_TYPE.substring(1).toLowerCase();
+		if (WIDGET_EVENT_TYPE !== 'all') {
+			urlParameters += "&action=" + WIDGET_EVENT_TYPE;
 		}
 	}
 
-	if (SURI_TARGET_TYPE && SURI_TARGET_TYPE !== null) {
-		data.target = SURI_TARGET_TYPE.charAt(0).toUpperCase() + SURI_TARGET_TYPE.substring(1).toLowerCase();
-		if (SURI_TARGET_TYPE !== 'all') {
-			urlParameters += "&target_type=" + SURI_TARGET_TYPE;
+	if (WIDGET_TARGET_TYPE && WIDGET_TARGET_TYPE !== null) {
+		data.target = WIDGET_TARGET_TYPE.charAt(0).toUpperCase() + WIDGET_TARGET_TYPE.substring(1).toLowerCase();
+		if (WIDGET_TARGET_TYPE !== 'all') {
+			urlParameters += "&target_type=" + WIDGET_TARGET_TYPE;
 		}
 	}
 
 	var projects = [];
-	if (SURI_PROJECT && SURI_PROJECT !== null) {
-		projectIds = SURI_PROJECT.replaceAll("/", "%2F").split(",");
+	if (WIDGET_PROJECT_IDS_OR_PATHS && WIDGET_PROJECT_IDS_OR_PATHS !== null) {
+		projectIds = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
 
 		projectIds.forEach(function(projectId) {
-			projects.push(JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + projectId, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN)));
+			projects.push(JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + projectId, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN)));
 		});
 	} else {
-		var urlParameters;
 		var numberOfProjects = 5;
-		if (SURI_TOP && SURI_TOP !== null) {
-			numberOfProjects = SURI_TOP;
+		if (WIDGET_NUMBER_OF_PROJECTS && WIDGET_NUMBER_OF_PROJECTS !== null) {
+			numberOfProjects = WIDGET_NUMBER_OF_PROJECTS;
 		}
 
-		projects = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects?order_by=last_activity_at&per_page=" + numberOfProjects, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+		projects = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects?order_by=last_activity_at&per_page=" + numberOfProjects, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 	}
 
 	if (projects && projects !== null && projects.length > 0) {
@@ -76,7 +73,7 @@ function run() {
 			data.labels.push(project.name);
 			data.colors.push(stringToColour(project.name));
 
-			var events = JSON.parse(Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/projects/" + project.id + "/events" + urlParameters, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			var events = JSON.parse(Packages.get(CATEGORY_GITLAB_URL + "/api/v4/projects/" + project.id + "/events" + urlParameters, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			if (events && events !== null && events.length > 0) {
 				data.datapie.push(events.length);

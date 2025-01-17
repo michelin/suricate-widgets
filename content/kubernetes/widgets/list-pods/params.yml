@@ -1,69 +1,69 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
   -
-    name: 'SURI_NAMESPACE'
+    name: 'WIDGET_NAMESPACE'
     description: 'Namespace of the pods'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'namespace'
     required: true
   -
-    name: 'SURI_SERVICE_ACCOUNT_TOKEN'
+    name: 'WIDGET_SERVICE_ACCOUNT_TOKEN'
     description: 'Namespace token (e.g. service account token, Gitlab token, ...)'
-    type: PASSWORD
+    type: 'PASSWORD'
     usageExample: 'eyJhbGciOiJSU'
     required: true
   -
-    name: 'SURI_ORDER_BY'
+    name: 'WIDGET_ORDER_BY'
     description: 'Order the pods by'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'START_DATE_DESC'
     possibleValuesMap:
       -
-        jsKey: START_DATE_ASC
-        value: Oldest pods first
+        jsKey: 'START_DATE_ASC'
+        value: 'Oldest pods first'
       -
-        jsKey: START_DATE_DESC
-        value: Newest pods first
+        jsKey: 'START_DATE_DESC'
+        value: 'Newest pods first'
     required: true
   -
-    name: 'SURI_TOP'
+    name: 'WIDGET_TOP'
     description: 'Number of pods to display. All by default'
-    type: NUMBER
-    usageExample: 3
+    type: 'NUMBER'
+    usageExample: '3'
     required: false
   -
-    name: 'SURI_STATUS'
+    name: 'WIDGET_STATUS'
     description: 'Filter by status of the pods'
-    type: COMBO
-    defaultValue: All
+    type: 'COMBO'
+    defaultValue: 'All'
     possibleValuesMap:
       -
-        jsKey: All
-        value: All
+        jsKey: 'All'
+        value: 'All'
       -
-        jsKey: Running
-        value: Running
+        jsKey: 'Running'
+        value: 'Running'
       -
-        jsKey: Pending
-        value: Pending
+        jsKey: 'Pending'
+        value: 'Pending'
       -
-        jsKey: Succeeded
-        value: Succeeded
+        jsKey: 'Succeeded'
+        value: 'Succeeded'
       -
-        jsKey: Failed
-        value: Failed
+        jsKey: 'Failed'
+        value: 'Failed'
       -
-        jsKey: Unknown
-        value: Unknown
+        jsKey: 'Unknown'
+        value: 'Unknown'
     required: true
   -
-    name: 'SURI_PODS_NAME'
+    name: 'WIDGET_PODS_NAME'
     description: 'Filter on the name of the pods. Substring accepted'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'frontend'
     required: false

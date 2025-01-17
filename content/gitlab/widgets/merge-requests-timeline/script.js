@@ -13,6 +13,7 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+
 var data = {};
 
 function run() {
@@ -43,8 +44,8 @@ function run() {
 	data.fromDate = computeStartDate();
 	var projectOrGroupType = computeIDType();
 
-	var projectOrGroupIDs = SURI_ID.replaceAll("/", "%2F").split(",");
-	data.mrsState = SURI_MR_STATE;
+	var projectOrGroupIDs = WIDGET_PROJECT_IDS_OR_PATHS.replaceAll("/", "%2F").split(",");
+	data.mrsState = WIDGET_MERGE_REQUESTS_STATE;
 
 	projectOrGroupIDs.forEach(function(id, index) {
 	    mergeRequests = [];
@@ -52,12 +53,12 @@ function run() {
 	    var dataMergeRequests = [];
 
 		var projectOrGroup = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id, "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id, "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		data.projectOrGroupNames += projectOrGroup.name + ", ";
 
 		var response = JSON.parse(
-			Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+			Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + WIDGET_MERGE_REQUESTS_STATE + "&sort=asc", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 		mergeRequests = mergeRequests.concat(response);
 
@@ -65,7 +66,7 @@ function run() {
 			page++;
 
 			response = JSON.parse(
-				Packages.get(WIDGET_CONFIG_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + SURI_MR_STATE + "&sort=asc", "PRIVATE-TOKEN", WIDGET_CONFIG_GITLAB_TOKEN));
+				Packages.get(CATEGORY_GITLAB_URL + "/api/v4/" + projectOrGroupType + "/" + id + "/merge_requests?per_page=" + perPage + "&page=" + page + "&created_after=" + data.fromDate + "&state=" + WIDGET_MERGE_REQUESTS_STATE + "&sort=asc", "PRIVATE-TOKEN", CATEGORY_GITLAB_TOKEN));
 
 			mergeRequests = mergeRequests.concat(response);
 		}
@@ -85,12 +86,12 @@ function run() {
                   "-" +
                   ("0" + dateExtract.getUTCDate()).slice(-2);
 
-                if (SURI_PERIOD == "Week") {
+                if (WIDGET_PERIOD_UNIT == "week") {
                   displayDate = dateFirstTen;
-                } else if (SURI_PERIOD == "Month") {
+                } else if (WIDGET_PERIOD_UNIT == "month") {
                   displayDate =
                     monthNames[dateExtract.getMonth()] + "," + dateExtract.getFullYear();
-                } else if (SURI_PERIOD == "Year") {
+                } else if (WIDGET_PERIOD_UNIT == "year") {
                   displayDate = dateExtract.getFullYear();
                 }
 
@@ -141,7 +142,7 @@ function run() {
 * @return {string}
 */
 function computeIDType(){
-    if (SURI_ID_TYPE === "Group ID") {
+    if (WIDGET_GROUP_OR_PROJECT === "group") {
         return "groups";
     }else{
         return "projects";
@@ -154,17 +155,17 @@ function computeIDType(){
  */
 function computeStartDate() {
 	var computedDate = new Date();
-    if (SURI_PERIOD) {
+    if (WIDGET_PERIOD_UNIT) {
         var numberOfPeriods = 1;
-        if (SURI_NUMBER_OF_PERIOD) {
-            numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+        if (WIDGET_PERIOD_NUMBER) {
+            numberOfPeriods = WIDGET_PERIOD_NUMBER;
         }
 
-        if (SURI_PERIOD === "Week") {
+        if (WIDGET_PERIOD_UNIT === "week") {
             computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-        } else if (SURI_PERIOD === "Month") {
+        } else if (WIDGET_PERIOD_UNIT === "month") {
             computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-        } else if (SURI_PERIOD === "Year") {
+        } else if (WIDGET_PERIOD_UNIT === "year") {
             computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
         }
         computedDate.setUTCHours(0, 0, 0, 0);
@@ -180,18 +181,6 @@ function formatDate(date) {
 		+ ("0" + (new Date(date).getMonth() + 1)).slice(-2)
 		+ "-"
 		+ ("0" + new Date(date).getUTCDate()).slice(-2);
-}
-
-/**
- * Keep unique value in array
- *
- * @param value The value
- * @param index The index
- * @param self The array
- * @returns {boolean}
- */
-function onlyUnique(value, index, self) {
-	return self.indexOf(value) === index;
 }
 
 /**

@@ -1,26 +1,26 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
-    usageExample: 'My title'
+    type: 'TEXT'
+    usageExample: 'Files extensions repartition'
     required: true
   -
-    name: SURI_PROJECT
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
-    usageExample: '1234'
+    type: 'TEXT'
+    usageExample: 'my-group/my-project'
     required: true
   -
-    name: SURI_TYPE_GRAPH
-    description: 'Graph type'
-    type: COMBO
+    name: 'WIDGET_CHART_TYPE'
+    description: 'Chart type'
+    type: 'COMBO'
     defaultValue: 'pie'
     possibleValuesMap:
-      - jsKey: pie
-        value: Pie
-      - jsKey: horizontalBar
-        value: Horizontal bar
-      - jsKey: bar
-        value: Vertical bar
+      - jsKey: 'pie'
+        value: 'Pie'
+      - jsKey: 'horizontalBar'
+        value: 'Horizontal bar'
+      - jsKey: 'verticalBar'
+        value: 'Vertical bar'
     required: true

@@ -1,24 +1,24 @@
 widgetParams:
   -
-    name: SURI_PROJECT
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
-    usageExample: '1234'
+    type: 'TEXT'
+    usageExample: 'my-group/my-project'
     required: true
   -
-    name: 'SURI_MR_STATE'
+    name: 'WIDGET_MERGE_REQUESTS_STATE'
     description: 'Filter on the state of the merge requests'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      - jsKey: all
-        value: All
-      - jsKey: opened
-        value: Opened
-      - jsKey: closed
-        value: Closed
-      - jsKey: locked
-        value: Locked
-      - jsKey: merged
-        value: Merged
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'opened'
+        value: 'Opened'
+      - jsKey: 'closed'
+        value: 'Closed'
+      - jsKey: 'locked'
+        value: 'Locked'
+      - jsKey: 'merged'
+        value: 'Merged'
     required: true

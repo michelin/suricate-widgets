@@ -1,25 +1,25 @@
 widgetParams:
   -
-    name: SURI_PROJECT
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
-    usageExample: '1234'
+    type: 'TEXT'
+    usageExample: 'my-group/my-project'
     required: true
   -
-    name: SURI_PROJECT_BRANCH
-    description: 'Filter on a branch'
-    type: TEXT
-    usageExample: 'dev'
+    name: 'WIDGET_BRANCH'
+    description: 'Use a specific branch'
+    type: 'TEXT'
+    usageExample: 'master'
     required: false
   -
-    name: HIDE_TIMETABLE
-    description: 'Hide timetable (duration + queued time)'
-    type: BOOLEAN
+    name: 'WIDGET_HIDE_TIMETABLE'
+    description: 'Hide timetable (duration and queue time)'
+    type: 'BOOLEAN'
     defaultValue: false
     required: false
   -
-    name: SHOW_FAILED_JOBS
+    name: 'WIDGET_SHOW_FAILED_JOBS'
     description: 'Show failed jobs'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: false
     required: false

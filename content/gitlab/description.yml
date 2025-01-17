@@ -2,10 +2,10 @@ name: GitLab
 technicalName: gitlab
 configurations:
   -
-    key: 'WIDGET_CONFIG_GITLAB_URL'
+    key: 'CATEGORY_GITLAB_URL'
     description: 'URL of the GitLab environment'
     dataType: TEXT
   -
-    key: 'WIDGET_CONFIG_GITLAB_TOKEN'
+    key: 'CATEGORY_GITLAB_TOKEN'
     description: 'Token for the GitLab API'
     dataType: PASSWORD
