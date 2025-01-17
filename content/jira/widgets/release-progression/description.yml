@@ -1,5 +1,5 @@
 name: Release progression
-description: Display the release progression by counting the number of closed issues against the total amount of issues
+description: Display the release progression by counting the number of closed issues against the total amount of issues.
 technicalName: jira-release-progression
 delay: 300
 libraries:

@@ -18,36 +18,36 @@ function run() {
 	var data = {};
 	
 	var pods = JSON.parse(
-		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + SURI_NAMESPACE + "/pods?limit=500", 
+		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + WIDGET_NAMESPACE + "/pods?limit=500", 
 					 "Authorization", 
-					 "Bearer " + SURI_SERVICE_ACCOUNT_TOKEN));
+					 "Bearer " + WIDGET_SERVICE_ACCOUNT_TOKEN));
 	
-	if (SURI_STATUS && SURI_STATUS != 'All') {
+	if (WIDGET_STATUS && WIDGET_STATUS != 'All') {
 		pods.items = pods.items.filter(function(pod) {
-			if (pod.status.phase === SURI_STATUS) {
+			if (pod.status.phase === WIDGET_STATUS) {
 				return pod;
 			}
 		});
 	}
 	
-	if (SURI_PODS_NAME) {
+	if (WIDGET_PODS_NAME) {
 		pods.items = pods.items.filter(function(pod) {
-			if (pod.metadata.name.indexOf(SURI_PODS_NAME) > -1) {
+			if (pod.metadata.name.indexOf(WIDGET_PODS_NAME) > -1) {
 				return pod;
 			}
 		});
 	}
 	
-	if (SURI_ORDER_BY) {
-		if (SURI_ORDER_BY === 'START_DATE_ASC') {
+	if (WIDGET_ORDER_BY) {
+		if (WIDGET_ORDER_BY === 'START_DATE_ASC') {
 			pods.items.sort(orderByStartedDateAsc);
 		} else {
 			pods.items.sort(orderByStartedDateDesc);
 		}
 	}
 	
-	if (SURI_TOP) {
-		pods.items = pods.items.slice(0, SURI_TOP);
+	if (WIDGET_TOP) {
+		pods.items = pods.items.slice(0, WIDGET_TOP);
 	}
 	
 	var response = [];

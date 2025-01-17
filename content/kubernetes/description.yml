@@ -2,6 +2,6 @@ name: Kubernetes
 technicalName: kubernetes
 configurations:
   -
-    key: 'WIDGET_CONFIG_KUBERNETES_URL'
+    key: 'CATEGORY_KUBERNETES_URL'
     description: 'URL of the Kubernetes environment'
     dataType: TEXT

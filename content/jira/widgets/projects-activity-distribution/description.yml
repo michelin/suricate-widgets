@@ -1,5 +1,5 @@
 name: Projects activity distribution
-description: Display the most active projects in Jira during the last weeks
+description: Display the most active projects in Jira during the last weeks.
 technicalName: jira-projects-activity-distribution
 timeout: 360
 delay: 300

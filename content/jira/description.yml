@@ -7,5 +7,5 @@ configurations:
     dataType: TEXT
   -
     key: 'CATEGORY_JIRA_TOKEN'
-    description: 'Token for the Jira environment'
+    description: 'Token for the Jira API'
     dataType: PASSWORD

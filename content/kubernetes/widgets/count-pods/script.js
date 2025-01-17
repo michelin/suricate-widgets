@@ -18,22 +18,22 @@ function run() {
 	var data = {};
 	
 	var pods = JSON.parse(
-		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + SURI_NAMESPACE + "/pods?limit=500", 
+		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + WIDGET_NAMESPACE + "/pods?limit=500", 
 					 "Authorization", 
-					 "Bearer " + SURI_SERVICE_ACCOUNT_TOKEN));
+					 "Bearer " + WIDGET_SERVICE_ACCOUNT_TOKEN));
 	
-	if (SURI_STATUS && SURI_STATUS != 'All') {
-		data.status = SURI_STATUS;
+	if (WIDGET_STATUS && WIDGET_STATUS != 'All') {
+		data.status = WIDGET_STATUS;
 		pods.items = pods.items.filter(function(pod) {
-			if (pod.status.phase === SURI_STATUS) {
+			if (pod.status.phase === WIDGET_STATUS) {
 				return pod;
 			}
 		});
 	}
 	
-	if (SURI_PODS_NAME) {
+	if (WIDGET_PODS_NAME) {
 		pods.items = pods.items.filter(function(pod) {
-			if (pod.metadata.name.indexOf(SURI_PODS_NAME) > -1) {
+			if (pod.metadata.name.indexOf(WIDGET_PODS_NAME) > -1) {
 				return pod;
 			}
 		});
@@ -91,28 +91,4 @@ function formatDate(date) {
 			+ date.getUTCMinutes()
 			+ ":"
 			+ date.getUTCSeconds();
-}
-
-function orderByStartedDateAsc(a, b) {
-  if (new Date(a.status.startTime) < new Date(b.status.startTime)) {
-    return -1;
-  }
-  
-  if (new Date(a.status.startTime) > new Date(b.status.startTime)) {
-    return 1;
-  }
-  
-  return 0;
-}
-
-function orderByStartedDateDesc(a, b) {
-  if (new Date(a.status.startTime) > new Date(b.status.startTime)) {
-    return -1;
-  }
-  
-  if (new Date(a.status.startTime) < new Date(b.status.startTime)) {
-    return 1;
-  }
-  
-  return 0;
 }
