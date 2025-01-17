@@ -1,3 +1,6 @@
+> **Warning**
+> This branch contains old deprecated widgets and will be removed soon. Please, refer to the master branch.
+
 <div align="center">
 
 <img src=".readme/logo.png" alt="Suricate"/>
