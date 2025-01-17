@@ -1,25 +1,25 @@
 widgetParams:
   -
-    name: WIDGET_PROJECT_ID_OR_PATH
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true
   -
-    name: WIDGET_BRANCH
+    name: 'WIDGET_BRANCH'
     description: 'Use a specific branch'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'master'
     required: false
   -
-    name: WIDGET_HIDE_TIMETABLE
+    name: 'WIDGET_HIDE_TIMETABLE'
     description: 'Hide timetable (duration and queue time)'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: false
     required: false
   -
-    name: WIDGET_SHOW_FAILED_JOBS
+    name: 'WIDGET_SHOW_FAILED_JOBS'
     description: 'Show failed jobs'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: false
     required: false

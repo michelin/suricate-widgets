@@ -1,14 +1,14 @@
 widgetParams:
   -
-    name: WIDGET_PROJECT_IDS_OR_PATHS
+    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: WIDGET_AGGREGATE_BY
+    name: 'WIDGET_AGGREGATE_BY'
     description: 'Aggregate releases by date or tag name'
-    type: MULTIPLE
+    type: 'MULTIPLE'
     possibleValuesMap:
       - jsKey: 'aggregated_by_date'
         value: 'Date'
@@ -16,41 +16,41 @@ widgetParams:
         value: 'Tag name'
     required: false
   -
-    name: WIDGET_DATE
+    name: 'WIDGET_DATE'
     description: 'Retrieve the releases from a precise date (format: DDMMYYYY)'
     usageTooltip: 'If defined, it is not necessary to define a period. The precise date takes priority over the period.'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '31122020'
     required: false
   -
-    name: WIDGET_PERIOD_UNIT
+    name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
-    type: COMBO
+    type: 'COMBO'
     possibleValuesMap:
-      - jsKey: year
-        value: Year
-      - jsKey: month
-        value: Month
-      - jsKey: week
-        value: Week
-      - jsKey: day
-        value: Day
+      - jsKey: 'year'
+        value: 'Year'
+      - jsKey: 'month'
+        value: 'Month'
+      - jsKey: 'week'
+        value: 'Week'
+      - jsKey: 'day'
+        value: 'Day'
     required: false
   -
-    name: WIDGET_PERIOD_NUMBER
+    name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
-    type: NUMBER
-    usageExample: 1
+    type: 'NUMBER'
+    usageExample: '1'
     required: false
   -
-    name: WIDGET_ORDER_BY
+    name: 'WIDGET_ORDER_BY'
     description: 'Order the results by project name or number of releases'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'NUMBER_OF_RELEASES'
     possibleValuesMap:
-      - jsKey: project_name
-        value: Project name
-      - jsKey: number_of_releases
-        value: Number of releases
+      - jsKey: 'project_name'
+        value: 'Project name'
+      - jsKey: 'number_of_releases'
+        value: 'Number of releases'
     required: true

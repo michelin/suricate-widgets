@@ -1,24 +1,24 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: TEXT
     usageExample: 'My title'
     required: true
   -
-    name: 'SURI_JQL_ALL'
-    description: 'Jira JQL query to count all issues'
+    name: 'WIDGET_JQL_ALL'
+    description: 'JQL query to count all issues'
     type: TEXT
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX'
     required: true
   -
-    name: 'SURI_JQL_CLOSED'
-    description: 'Jira JQL query to count all closed issues'
+    name: 'WIDGET_JQL_CLOSED'
+    description: 'JQL query to count all closed issues'
     type: TEXT
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX and status in (Closed, Done, "Done Done")'
     required: true
   -
-    name: 'SURI_DISPLAY_COUNT'
+    name: 'WIDGET_DISPLAY_COUNT'
     description: 'Display amount of data on the widget'
     type: BOOLEAN
     defaultValue: false

@@ -1,7 +1,7 @@
 widgetParams:
   -
-    name: WIDGET_PROJECT_ID_OR_PATH
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true

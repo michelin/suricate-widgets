@@ -2,95 +2,95 @@ widgetParams:
   -
     name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'Projects activity by event'
     required: true
   -
-    name: WIDGET_PROJECT_IDS_OR_PATHS
+    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: false
   -
     name: 'WIDGET_NUMBER_OF_PROJECTS'
     description: 'Number of projects to display'
     usageTooltip: 'If a project ID or path is not defined, the widget will display the events of the last projects with activity'
-    type: NUMBER
+    type: 'NUMBER'
     defaultValue: '5'
     required: false
   -
-    name: WIDGET_DATE
+    name: 'WIDGET_DATE'
     description: 'Retrieve the events from a precise date (format: DDMMYYYY)'
     usageTooltip: 'If not defined, the events will be retrieved from today'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '31122020'
     required: false
   -
     name: 'WIDGET_EVENT_TYPE'
     description: 'Event type'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      - jsKey: all
-        value: All
-      - jsKey: approved
-        value: Approved
-      - jsKey: created
-        value: Created
-      - jsKey: updated
-        value: Updated
-      - jsKey: closed
-        value: Closed
-      - jsKey: reopened
-        value: Reopened
-      - jsKey: pushed
-        value: Pushed
-      - jsKey: commented
-        value: Commented
-      - jsKey: merged
-        value: Merged
-      - jsKey: joined
-        value: Joined
-      - jsKey: left
-        value: Left
-      - jsKey: destroyed
-        value: Destroyed
-      - jsKey: expired
-        value: Expired
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'approved'
+        value: 'Approved'
+      - jsKey: 'created'
+        value: 'Created'
+      - jsKey: 'updated'
+        value: 'Updated'
+      - jsKey: 'closed'
+        value: 'Closed'
+      - jsKey: 'reopened'
+        value: 'Reopened'
+      - jsKey: 'pushed'
+        value: 'Pushed'
+      - jsKey: 'commented'
+        value: 'Commented'
+      - jsKey: 'merged'
+        value: 'Merged'
+      - jsKey: 'joined'
+        value: 'Joined'
+      - jsKey: 'left'
+        value: 'Left'
+      - jsKey: 'destroyed'
+        value: 'Destroyed'
+      - jsKey: 'expired'
+        value: 'Expired'
     required: true
   -
     name: 'WIDGET_TARGET_TYPE'
     description: 'Target type'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      - jsKey: all
-        value: All
-      - jsKey: issue
-        value: Issue
-      - jsKey: milestone
-        value: Milestone
-      - jsKey: merge_request
-        value: Merge request
-      - jsKey: note
-        value: Note
-      - jsKey: project
-        value: Project
-      - jsKey: snippet
-        value: Snippet
-      - jsKey: user
-        value: User
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'issue'
+        value: 'Issue'
+      - jsKey: 'milestone'
+        value: 'Milestone'
+      - jsKey: 'merge_request'
+        value: 'Merge request'
+      - jsKey: 'note'
+        value: 'Note'
+      - jsKey: 'project'
+        value: 'Project'
+      - jsKey: 'snippet'
+        value: 'Snippet'
+      - jsKey: 'user'
+        value: 'User'
     required: true
   -
-    name: WIDGET_CHART_TYPE
+    name: 'WIDGET_CHART_TYPE'
     description: 'Chart type'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'pie'
     possibleValuesMap:
-      - jsKey: pie
-        value: Pie
-      - jsKey: horizontalBar
-        value: Horizontal bar
-      - jsKey: verticalBar
-        value: Vertical bar
+      - jsKey: 'pie'
+        value: 'Pie'
+      - jsKey: 'horizontalBar'
+        value: 'Horizontal bar'
+      - jsKey: 'verticalBar'
+        value: 'Vertical bar'
     required: true

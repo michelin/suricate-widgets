@@ -1,8 +1,7 @@
 name: Issues repartition
-description: Display the unassigned, unresolved and resolved issues
-info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
-technicalName: jirarepartition
-delay: 200
+description: Display the unassigned, unresolved and resolved issues repartition.
+technicalName: jira-issues-repartition
+delay: 300
 libraries:
   - chart.js
   - chart.piecelabel.js

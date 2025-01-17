@@ -1,47 +1,47 @@
 widgetParams:
   -
-    name: WIDGET_PROJECT_IDS_OR_PATHS
+    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: WIDGET_DATE
+    name: 'WIDGET_DATE'
     description: 'Retrieve the releases from a precise date (format: DDMMYYYY)'
     usageTooltip: 'If defined, it is not necessary to define a period. The precise date takes priority over the period.'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '31122020'
     required: false
   -
-    name: WIDGET_PERIOD_UNIT
+    name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
-    type: COMBO
+    type: 'COMBO'
     possibleValuesMap:
-      - jsKey: year
-        value: Year
-      - jsKey: month
-        value: Month
-      - jsKey: week
-        value: Week
-      - jsKey: day
-        value: Day
+      - jsKey: 'year'
+        value: 'Year'
+      - jsKey: 'month'
+        value: 'Month'
+      - jsKey: 'week'
+        value: 'Week'
+      - jsKey: 'day'
+        value: 'Day'
     required: false
   -
-    name: WIDGET_PERIOD_NUMBER
+    name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
-    type: NUMBER
-    usageExample: 1
+    type: 'NUMBER'
+    usageExample: '1'
     required: false
   -
-    name: WIDGET_DISPLAY_TICKS_FOR_RELEASES
+    name: 'WIDGET_DISPLAY_TICKS_FOR_RELEASES'
     description: 'Source ticks on release dates'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: true
     required: false
   -
-    name: WIDGET_DISPLAY_RELEASES_NAMES
+    name: 'WIDGET_DISPLAY_RELEASES_NAMES'
     description: 'Display release names'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: true
     required: false

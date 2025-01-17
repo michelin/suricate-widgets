@@ -17,7 +17,7 @@
 function run() {
   // previous data
   var data = {};
-  var jsonResponse = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL) + "&maxResults=" + SURI_NUMBER + "&fields=summary,status", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
+  var jsonResponse = Packages.get(CATEGORY_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(WIDGET_JQL) + "&maxResults=" + WIDGET_NUMBER + "&fields=summary,status", "Authorization", "Bearer " + CATEGORY_JIRA_TOKEN);
   if (jsonResponse == null) {
     return null;
   }
@@ -34,7 +34,7 @@ function run() {
   }
 
   data.items = array;
-  data.displayId = !(typeof SURI_DISPLAY_JIRA_ID === 'undefined' || SURI_DISPLAY_JIRA_ID === "false");
+  data.displayId = !(typeof WIDGET_DISPLAY_JIRA_ID === 'undefined' || WIDGET_DISPLAY_JIRA_ID === "false");
 
   return JSON.stringify(data);
 }

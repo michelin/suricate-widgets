@@ -2,26 +2,26 @@ widgetParams:
   -
     name: 'WIDGET_GITHUB_ORGANIZATION'
     description: 'GitHub organization'
-    type: TEXT
+    type: 'TEXT'
     required: true
   -
     name: 'WIDGET_GITHUB_PROJECT'
     description: 'GitHub project'
-    type: TEXT
+    type: 'TEXT'
     required: true
   -
     name: 'WIDGET_GITHUB_PULL_REQUESTS_STATE'
     description: 'Filter on the state of the pull requests'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
       -
-        jsKey: all
-        value: All
+        jsKey: 'all'
+        value: 'All'
       -
-        jsKey: open
-        value: Open
+        jsKey: 'open'
+        value: 'Open'
       -
-        jsKey: closed
-        value: Closed
+        jsKey: 'closed'
+        value: 'Closed'
     required: true

@@ -1,49 +1,49 @@
 widgetParams:
   -
-    name: WIDGET_GROUP_OR_PROJECT
+    name: 'WIDGET_GROUP_OR_PROJECT'
     description: 'Select the type of identifier'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'project'
     possibleValuesMap:
-      - jsKey: group
-        value: Group path
-      - jsKey: project
-        value: Project ID or path
+      - jsKey: 'group'
+        value: 'Group path'
+      - jsKey: 'project'
+        value: 'Project ID or path'
   -
-    name: WIDGET_PROJECT_IDS_OR_PATHS
+    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Group paths or project IDs/paths (comma-separated)'
     usageTooltip: 'Fill in the project IDs/paths or group paths according to the selected choice in the previous parameter'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
   -
-    name: WIDGET_PERIOD_UNIT
+    name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
-    type: COMBO
+    type: 'COMBO'
     possibleValuesMap:
-      - jsKey: year
-        value: Year
-      - jsKey: month
-        value: Month
-      - jsKey: week
-        value: Week
+      - jsKey: 'year'
+        value: 'Year'
+      - jsKey: 'month'
+        value: 'Month'
+      - jsKey: 'week'
+        value: 'Week'
     required: false
   -
-    name: WIDGET_PERIOD_NUMBER
+    name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
-    type: NUMBER
-    usageExample: 1
+    type: 'NUMBER'
+    usageExample: '1'
     required: false
   -
     name: 'WIDGET_ISSUES_STATE'
     description: 'Filter on the state of the issues'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      - jsKey: all
-        value: All
-      - jsKey: opened
-        value: Opened
-      - jsKey: closed
-        value: Closed
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'opened'
+        value: 'Opened'
+      - jsKey: 'closed'
+        value: 'Closed'
     required: true

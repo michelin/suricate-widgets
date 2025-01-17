@@ -1,24 +1,24 @@
 widgetParams:
   -
-    name: WIDGET_PROJECT_ID_OR_PATH
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true
   -
     name: 'WIDGET_MERGE_REQUESTS_STATE'
     description: 'Filter on the state of the merge requests'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      - jsKey: all
-        value: All
-      - jsKey: opened
-        value: Opened
-      - jsKey: closed
-        value: Closed
-      - jsKey: locked
-        value: Locked
-      - jsKey: merged
-        value: Merged
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'opened'
+        value: 'Opened'
+      - jsKey: 'closed'
+        value: 'Closed'
+      - jsKey: 'locked'
+        value: 'Locked'
+      - jsKey: 'merged'
+        value: 'Merged'
     required: true

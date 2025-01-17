@@ -1,4 +1,4 @@
-name: Commits Timeline
+name: Commits timeline
 description: Displays a timeline of commits for a project.
 technicalName: gitlab-commits-timeline
 delay: 300

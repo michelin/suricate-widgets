@@ -1,9 +1,8 @@
 name: Projects activity distribution
 description: Display the most active projects in Jira during the last weeks
-info: You have to add the Jira user 'mt_dev' as a viewer of the specified project
-technicalName: jiradistribution
+technicalName: jira-projects-activity-distribution
 timeout: 360
-delay: 500
+delay: 300
 libraries:
   - chart.js
   - chart.piecelabel.js

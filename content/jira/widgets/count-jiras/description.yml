@@ -1,4 +1,4 @@
-name: Count
-description: Count the number of Jiras from the specified JQL query
-technicalName: jiracount
-delay: 500
+name: Count issues
+description: Count the number of issues in a Jira project.
+technicalName: jira-count-issues
+delay: 300

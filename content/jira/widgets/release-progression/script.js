@@ -16,11 +16,11 @@
 
 function run() {
   var data = {};
-  var jsonResponseAll = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_ALL) + "&maxResults=0", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
+  var jsonResponseAll = Packages.get(CATEGORY_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(WIDGET_JQL_ALL) + "&maxResults=0", "Authorization", "Bearer " + CATEGORY_JIRA_TOKEN);
   if (jsonResponseAll == null) {
     return null;
   }
-  var jsonResponseClosed = Packages.get(WIDGET_CONFIG_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(SURI_JQL_CLOSED) + "&maxResults=0", "Authorization", "Bearer " + WIDGET_CONFIG_JIRA_TOKEN);
+  var jsonResponseClosed = Packages.get(CATEGORY_JIRA_URL + "/rest/api/2/search?jql=" + encodeURIComponent(WIDGET_JQL_CLOSED) + "&maxResults=0", "Authorization", "Bearer " + CATEGORY_JIRA_TOKEN);
   if (jsonResponseClosed == null) {
     return null;
   }
@@ -32,7 +32,7 @@ function run() {
   data.valueCountSelect = jsonObjectClosed.total;
   data.valueCountAll = jsonObjectAll.total;
   data.value = isNaN(value) ? 0 : value.toFixed(0);
-  data.displayCount = !(typeof SURI_DISPLAY_COUNT === 'undefined' || SURI_DISPLAY_COUNT === "false");
+  data.displayCount = !(typeof WIDGET_DISPLAY_COUNT === 'undefined' || WIDGET_DISPLAY_COUNT === "false");
 
   return JSON.stringify(data);
 }

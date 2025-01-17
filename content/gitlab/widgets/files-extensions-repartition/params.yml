@@ -1,26 +1,26 @@
 widgetParams:
   -
-    name: WIDGET_TITLE
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'Files extensions repartition'
     required: true
   -
-    name: WIDGET_PROJECT_ID_OR_PATH
+    name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true
   -
-    name: WIDGET_CHART_TYPE
+    name: 'WIDGET_CHART_TYPE'
     description: 'Chart type'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'pie'
     possibleValuesMap:
-      - jsKey: pie
-        value: Pie
-      - jsKey: horizontalBar
-        value: Horizontal bar
-      - jsKey: verticalBar
-        value: Vertical bar
+      - jsKey: 'pie'
+        value: 'Pie'
+      - jsKey: 'horizontalBar'
+        value: 'Horizontal bar'
+      - jsKey: 'verticalBar'
+        value: 'Vertical bar'
     required: true

@@ -1,36 +1,36 @@
 widgetParams:
   -
-    name: 'SURI_JIRA_PROJECT'
-    description: 'Jira Project Key'
-    type: TEXT
-    usageExample: 'OSYS'
+    name: 'WIDGET_JIRA_PROJECT'
+    description: 'Jira project key'
+    type: 'TEXT'
+    usageExample: 'MYPROJECT'
     required: true
   -
-    name: 'SURI_JIRA_START_RANGE'
+    name: 'WIDGET_JIRA_START_RANGE'
     description: 'Start range from now (in days), to include jira issues created within it'
-    type: NUMBER
+    type: 'NUMBER'
     defaultValue: '30'
     usageTooltip: 'If you choose 30, all issues created from 30 days until now will be selected'
     required: true
   -
-    name: 'SURI_JIRA_VALUE_FORMAT'
+    name: 'WIDGET_JIRA_VALUE_FORMAT'
     description: 'Choose Lead Time value format'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'DAYS'
     required: true
     possibleValuesMap:
       -
         jsKey: 'DAYS'
-        value: Days
+        value: 'Days'
       -
         jsKey: 'HOURS'
-        value: Hours
+        value: 'Hours'
       -
         jsKey: 'MINUTES'
-        value: Minutes
+        value: 'Minutes'
       -
         jsKey: 'SECONDS'
-        value: Seconds
+        value: 'Seconds'
   -
     name: 'WIDGET_CONFIG_JIRA_INITIAL_STATUS'
     description: 'Name of a jira issue status where the calculation of lead time must start'
