@@ -46,8 +46,8 @@ function run() {
     jql = jql + " AND status was '" + WIDGET_JIRA_INITIAL_STATUS + "'";
   }
 
-  if (WIDGET_JIRA_INITIAL_STATUS) {
-    jql = jql + " AND status was '" + WIDGET_JIRA_INITIAL_STATUS + "'";
+  if (WIDGET_JIRA_FINAL_STATUS) {
+    jql = jql + " AND status was '" + WIDGET_JIRA_FINAL_STATUS + "'";
   }
 
   var startAt = 0;
@@ -81,8 +81,8 @@ function run() {
         startedAt = new Date(issue.fields.created);
       }
 
-      if(WIDGET_JIRA_INITIAL_STATUS) {
-        // Get datetime of latest transition when target status is equal to WIDGET_JIRA_INITIAL_STATUS
+      if(WIDGET_JIRA_FINAL_STATUS) {
+        // Get datetime of latest transition when target status is equal to WIDGET_JIRA_FINAL_STATUS
         endAt = getEndDateByStatus(issue);
       }
       else {
@@ -164,8 +164,8 @@ function run() {
     data.startStatus = "Created";
   }
 
-  if (WIDGET_JIRA_INITIAL_STATUS) {
-    data.endStatus = WIDGET_JIRA_INITIAL_STATUS;
+  if (WIDGET_JIRA_FINAL_STATUS) {
+    data.endStatus = WIDGET_JIRA_FINAL_STATUS;
   }
   else {
     data.endStatus = "Resolved";
@@ -205,7 +205,7 @@ function getEndDateByStatus(jiraIssue) {
     var history = jiraIssue.changelog.histories[historyIndex];
     for(var itemIndex in history.items) {
       var item = history.items[itemIndex];
-      if(item.field === "status" && item.toString === WIDGET_JIRA_INITIAL_STATUS) {
+      if(item.field === "status" && item.toString === WIDGET_JIRA_FINAL_STATUS) {
         return new Date(history.created);
       }
     }

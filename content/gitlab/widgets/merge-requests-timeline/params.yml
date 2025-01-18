@@ -7,7 +7,7 @@ widgetParams:
       - jsKey: 'group'
         value: 'Group path'
       - jsKey: 'project'
-        value: 'Project ID'
+        value: 'Project ID or path'
   - name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Group paths or project IDs/paths (comma-separated)'
     usageTooltip: 'Fill in the project IDs/paths or group paths according to the selected choice in the previous parameter'
