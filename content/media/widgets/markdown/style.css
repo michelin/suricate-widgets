@@ -1,4 +1,4 @@
-.widget.markdown {
+.widget.media-markdown {
 	background-color: #ec663c;
 }
 
@@ -8,47 +8,47 @@
 	margin: 2%;
 }
 
-.widget.markdown * {
+.widget.media-markdown * {
 	text-align: left;
-	margin: 0px;
+	margin: 0;
 	text-transform: inherit;
 }
 
-.widget.markdown h1 {
+.widget.media-markdown h1 {
 	font-size: 2em;
 	font-weight: bolder
 }
 
-.widget.markdown h2 {
+.widget.media-markdown h2 {
 	font-size: 1.5em;
 	font-weight: bolder
 }
 
-.widget.markdown h3 {
+.widget.media-markdown h3 {
 	font-size: 1.17em;
 	font-weight: bolder
 }
 
-.widget.markdown h4 {
+.widget.media-markdown h4 {
 	font-size: 1em;
 	font-weight: bolder
 }
 
-.widget.markdown h5 {
+.widget.media-markdown h5 {
 	font-size: 0.83em;
 	font-weight: bolder
 }
 
-.widget.markdown h6 {
+.widget.media-markdown h6 {
 	font-size: 0.67em;
 	font-weight: bolder
 }
 
-.widget.markdown a {
+.widget.media-markdown a {
 	color: -webkit-link;
 	text-decoration: underline;
 }
 
-.widget.markdown code {
+.widget.media-markdown code {
 	background-color: #535158;
 }

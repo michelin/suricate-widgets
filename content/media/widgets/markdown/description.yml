@@ -1,6 +1,6 @@
 name: Markdown
 description: Display Markdown content.
-technicalName: markdown
+technicalName: media-markdown
 delay: -1
 libraries:
   - showdown.js

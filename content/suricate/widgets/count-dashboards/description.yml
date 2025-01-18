@@ -1,4 +1,4 @@
-name: Number of dashboards
-description: Display the number of dashboards in Suricate
-technicalName: suricateCountDashboards
-delay: 86400
+name: Count dashboards
+description: Count the number of dashboards
+technicalName: suricate-count-dashboards
+delay: 300

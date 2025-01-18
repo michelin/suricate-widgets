@@ -1,8 +1,8 @@
-.widget.image-url {
+.widget.media-image-url {
 	background-color: white;
 }
 
-.widget.image-url img {
+.widget.media-image-url img {
 	max-height: 100%;
 	max-width: 100%;
 	width: auto;

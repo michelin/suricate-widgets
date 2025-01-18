@@ -1,27 +1,27 @@
-.widget.text {
+.widget.media-text {
 	background-color: #ec663c;
 }
 
-.widget.text .title {
+.widget.media-text .title {
 	color: rgba(255, 255, 255, 0.7);
 }
 
-.widget.text h3 {
+.widget.media-text h3 {
 	white-space: pre-wrap;
 }
 
-.widget.text .small {
+.widget.media-text .small {
 	font-size: 30px;
 }
 
-.widget.text .medium {
+.widget.media-text .medium {
 	font-size: 60px;
 }
 
-.widget.text .large {
+.widget.media-text .large {
 	font-size: 90px;
 }
 
-.widget.text .very-large {
+.widget.media-text .very-large {
 	font-size: 120px;
 }

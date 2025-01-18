@@ -1,6 +1,6 @@
 name: Clock
 description: Display a clock.
-technicalName: clock
+technicalName: media-clock
 delay: -1
 libraries:
   - moment-with-locales.js

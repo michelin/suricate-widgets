@@ -49,6 +49,6 @@ widgetParams:
     name: 'WIDGET_JIRA_TYPES'
     description: 'Types of issues to filter (e.g. Bug,Complaint). Comma-separated'
     type: TEXT
-    usageExample: 'Bug,Complaint'
+    usageExample: 'Bug,complaint'
     usageTooltip: "Issues types"
     required: false

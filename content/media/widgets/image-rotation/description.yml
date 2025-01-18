@@ -1,5 +1,5 @@
 name: Image rotation
 description: Display a series of images in rotation.
 info: Do not exceed 3 Mo to avoid crashes
-technicalName: image-rotation
+technicalName: media-image-rotation
 delay: 300

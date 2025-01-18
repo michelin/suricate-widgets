@@ -1,4 +1,4 @@
-name: Number of connected screens
-description: Display the number of connected screens in Suricate
-technicalName: suricateCountConnectedScreens
-delay: 3600
+name: Count connected screens
+description: Count the number of connected screens
+technicalName: suricate-count-connected-screens
+delay: 300

@@ -1,12 +1,12 @@
-.widget.ping {
+.widget.network-ping {
 	background-color: transparent;
 }
 
-.widget.ping .OK {
+.widget.network-ping .OK {
 	background-color: #2e7d32;
 }
 
-.widget.ping .KO {
+.widget.network-ping .KO {
 	background-color: #d50000;
 	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
 	-moz-animation: status-danger-background 1s infinite; /* Fx 5+ */
@@ -14,7 +14,7 @@
 	animation: status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
 }
 
-.widget.ping .app-monitor {
+.widget.network-ping .app-monitor {
 	background-size: contain;
 	opacity: 0.2;
 	height: 25%;
@@ -24,11 +24,11 @@
 	left: 5%;
 }
 
-.widget.ping .title {
+.widget.network-ping .title {
 	font-size: 23px;
 	margin-bottom: 25px;
 }
 
-.widget.ping .code {
+.widget.network-ping .code {
 	font-size: 18px;
 }

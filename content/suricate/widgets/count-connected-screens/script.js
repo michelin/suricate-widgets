@@ -17,9 +17,9 @@
 function run() {
 	var data = {};
 
-	var url = WIDGET_CONFIG_SURICATE_URL + "/api/v1/screens/count";
+	var url = CATEGORY_SURICATE_URL + "/api/v1/screens/count";
 	
-	data.numberOfConnectedScreens = Packages.get(url, "Authorization", "Token " + WIDGET_CONFIG_SURICATE_TOKEN);
+	data.numberOfConnectedScreens = Packages.get(url, "Authorization", "Token " + CATEGORY_SURICATE_TOKEN);
 
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfConnectedScreens) {
 		data.evolution = ((data.numberOfConnectedScreens - JSON.parse(SURI_PREVIOUS).numberOfConnectedScreens) * 100 / JSON.parse(SURI_PREVIOUS).numberOfConnectedScreens).toFixed(1);

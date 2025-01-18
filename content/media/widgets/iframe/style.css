@@ -1,18 +1,18 @@
-.widget.iframe {
+.widget.media-iframe {
 	background-color: #e8e8e8;
 }
 
-.widget.iframe iframe {
+.widget.media-iframe iframe {
 	width: 100%;
 	height: 100%;
 	border: 0;
 }
 
-.widget.iframe a {
+.widget.media-iframe a {
 	display: none;
 }
 
-.widget.iframe:hover a {
+.widget.media-iframe:hover a {
 	position: absolute;
 	background-color: #0077ba;
 	display: inline;
@@ -21,11 +21,11 @@
 	margin-left: calc(50% - 44px)
 }
 
-.widget.iframe:hover a:hover {
+.widget.media-iframe:hover a:hover {
 	text-decoration: underline;
 }
 
-.widget.iframe:hover a:after {
+.widget.media-iframe:hover a:after {
 	font-family: 'Font Awesome 5 Free';
 	content: " \f35d";
 	font-size: 18px;

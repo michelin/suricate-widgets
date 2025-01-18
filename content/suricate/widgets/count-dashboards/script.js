@@ -19,13 +19,13 @@ function run() {
 	var perPage = 2000;
 	var page = 0;
 	
-	var url = WIDGET_CONFIG_SURICATE_URL + "/api/v1/projects?page=" + page + "size=" + perPage;
+	var url = CATEGORY_SURICATE_URL + "/api/v1/projects?page=" + page + "size=" + perPage;
 	
-	if (SURI_SEARCH_BY_NAME) {
-		url += "&search=" + SURI_SEARCH_BY_NAME;
+	if (WIDGET_SEARCH_BY_NAME) {
+		url += "&search=" + WIDGET_SEARCH_BY_NAME;
 	}
 
-	data.numberOfDashboards = JSON.parse(Packages.get(url, "Authorization", "Token " + WIDGET_CONFIG_SURICATE_TOKEN)).totalElements;
+	data.numberOfDashboards = JSON.parse(Packages.get(url, "Authorization", "Token " + CATEGORY_SURICATE_TOKEN)).totalElements;
 
 	if (SURI_PREVIOUS && JSON.parse(SURI_PREVIOUS).numberOfDashboards) {
 		data.evolution = ((data.numberOfDashboards - JSON.parse(SURI_PREVIOUS).numberOfDashboards) * 100 / JSON.parse(SURI_PREVIOUS).numberOfDashboards).toFixed(1);
