@@ -8,7 +8,7 @@ widgetParams:
     description: 'Start range from now (in days), to include jira issues created within it'
     type: 'NUMBER'
     defaultValue: '30'
-    usageTooltip: 'If you choose 30, all issues created from 30 days until now will be selected'
+    usageTooltip: 'If you choose 30, all issues created from 30 days until now will be selected.'
     required: true
   - name: 'WIDGET_JIRA_VALUE_FORMAT'
     description: 'Choose Lead Time value format'
@@ -28,17 +28,17 @@ widgetParams:
     description: 'Name of a jira issue status where the calculation of lead time must start'
     type: 'TEXT'
     usageExample: 'Started'
-    usageTooltip: 'By default, the lead time is based on time delta between creation date and resolution date of the jira issue. You can specify the name of a jira issue status if you need the lead time from the date of the specific jira issue status. Remark, jira issues that do not have the status in their history, they will be ignored'
+    usageTooltip: 'By default, the lead time is based on time delta between creation date and resolution date of the jira issue. You can specify the name of a jira issue status if you need the lead time from the date of the specific jira issue status. Remark, jira issues that do not have the status in their history, they will be ignored.'
     required: false
   - name: 'WIDGET_JIRA_FINAL_STATUS'
     description: 'Name of a jira issue status where the calculation of lead time must end'
     type: 'TEXT'
     usageExample: 'Verified'
-    usageTooltip: 'By default, the lead time is based on time delta between creation date and resolution date of the jira issue. You can specify the name of a jira issue status if you need the lead time to the date of the specific jira issue status. Remark, jira issues that do not have the status in their history, they will be ignored'
+    usageTooltip: 'By default, the lead time is based on time delta between creation date and resolution date of the jira issue. You can specify the name of a jira issue status if you need the lead time to the date of the specific jira issue status. Remark, jira issues that do not have the status in their history, they will be ignored.'
     required: false
   - name: 'WIDGET_JIRA_TYPES'
     description: 'Types of issues to filter (e.g. Bug,Complaint). Comma-separated'
     type: 'TEXT'
     usageExample: 'Bug,complaint'
-    usageTooltip: 'Issues types'
+    usageTooltip: 'Issues types.'
     required: false

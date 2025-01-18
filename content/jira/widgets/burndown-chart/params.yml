@@ -8,5 +8,5 @@ widgetParams:
     description: 'JQL query to retrieve the sprint issues'
     type: 'TEXT'
     usageExample: 'Sprint = "Sprint Name"'
-    usageTooltip: 'The number of retrieved issues is currently limited to 1000'
+    usageTooltip: 'The number of retrieved issues is currently limited to 1000.'
     required: true

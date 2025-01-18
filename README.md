@@ -19,8 +19,18 @@ Retrieve data from external sources and present it in a tile-based format on Sur
 
 * [Repository Architecture](#repository-architecture)
 * [Creation](#creation)
-  * [Creating a Category](#creating-a-category)
-  * [Creating a Widget](#creating-a-widget)
+  * [Category](#category)
+    * [Description](#description)
+    * [Icon](#icon)
+    * [Widgets](#widgets)
+  * [Widget](#widget)
+    * [Content](#content)
+    * [Description](#description-1)
+    * [Image](#image)
+    * [Parameters](#parameters)
+    * [Script](#script)
+      * [Execution Logs](#execution-logs)
+    * [Style](#style)
 * [Suricate Widget Tester](#suricate-widget-tester)
 * [Contribution](#contribution)
 
@@ -117,22 +127,20 @@ The `content.html` file is responsible for displaying the widget on Suricate das
 
 This file is a template that will be compiled with [Mustache](https://mustache.github.io/mustache.5.html), so feel free to use the provided directives to:
 
-- Display data computed by the Back-End from the "script.js" file
-- Display parameters from the "params.yml" file or the "description.yml" file of the related category
-- Display conditional content
+- Display data computed by the Back-End from the "script.js" file.
+- Display parameters from the "params.yml" file or the "description.yml" file of the related category.
+- Display conditional content.
 
-Note that the variable `SURI_INSTANCE_ID` is available. This is a unique ID that identifies the widget instantiation on a dashboard. If you need to select the widget to use it in JavaScript or CSS, you can use the class selector `.widget-{{SURI_INSTANCE_ID}}`.
-
-As in the example above, it is possible to add custom JavaScript or calls to JavaScript libraries to improve the widget display.
+The variable `SURI_INSTANCE_ID` is available. This is a unique ID that identifies the widget instantiation on a dashboard. If you need to select the widget to use it in JavaScript or CSS, you can use the class selector `.widget-{{SURI_INSTANCE_ID}}`.
 
 #### Description
 
-The `description.yml` file provides information about the widget. The following is its content:
+The `description.yml` file provides information about the widget.
 
 ```yml
-name: Count issues
-description: Count the number of issues in a GitHub repository.
-technicalName: github-count-issues
+name: 'Count issues'
+description: 'Count the number of issues in a GitHub repository.'
+technicalName: 'github-count-issues'
 delay: 300
 ```
 
@@ -152,9 +160,10 @@ The table below lists all possible parameters in this file:
 
 An `image.png` file contains the image associated with the widget, which will be displayed in the Suricate application.
 
-#### Params
+#### Parameters
 
-The `params.yml` file describes the parameters of the widget that are displayed in the Suricate application when the user selects the widget to add it to a dashboard. The user can set values to the parameters directly from the application, which can then be used in the `script.js` file or the `content.html` file.
+The `params.yml` file describes the parameters of the widget that are displayed in the Suricate application when the user selects the widget to add it to a dashboard. 
+The user can set values to the parameters directly from the application, which can then be used in the `script.js` file or the `content.html` file.
 
 The `params.yml` file must adhere to the following rules:
 - The file should always start with the `widgetParams` keyword.
@@ -162,31 +171,25 @@ The `params.yml` file must adhere to the following rules:
 
 ```yml
 widgetParams:
-  -
-    name: 'WIDGET_GITHUB_ORGANIZATION'
+  - name: 'WIDGET_GITHUB_ORGANIZATION'
     description: 'GitHub organization'
-    type: TEXT
+    type: 'TEXT'
     required: true
-  -
-    name: 'WIDGET_GITHUB_PROJECT'
+  - name: 'WIDGET_GITHUB_PROJECT'
     description: 'GitHub project'
-    type: TEXT
+    type: 'TEXT'
     required: true
-  -
-    name: 'WIDGET_GITHUB_ISSUES_STATE'
+  - name: 'WIDGET_GITHUB_ISSUES_STATE'
     description: 'Filter on the state of the issues'
-    type: COMBO
+    type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: all
-        value: All
-      -
-        jsKey: open
-        value: Open
-      -
-        jsKey: closed
-        value: Closed
+      - jsKey: 'all'
+        value: 'All'
+      - jsKey: 'open'
+        value: 'Open'
+      - jsKey: 'closed'
+        value: 'Closed'
     required: true
 ```
 
@@ -201,6 +204,7 @@ The following table lists all available parameters for the `params.yml` file:
 | `defaultValue`      | false    | The default value to set for the parameter. It will be displayed in the input by default in the Suricate application.                                                                                                                                                                                                                                                                                                                                                                                      |
 | `usageExample`      | false    | An example of how to fill the parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `usageTooltip`      | false    | A message to display in a tooltip when configuring the widget.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `acceptFileRegex`   | false    | A regular expression to validate the file name when the parameter type is **FILE**.                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `required`          | true     | Defines whether the parameter is required or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 #### Script
@@ -212,7 +216,7 @@ Most of the time, it submits requests to REST APIs and processes the retrieved d
 How does the script work?
 - It is executed by the Suricate Back-End with [GraalVM Polyglot](https://www.graalvm.org/latest/reference-manual/polyglot-programming/#start-language-java).
 - It has to define a function named `run`. All the data returned by the `run` function has to be stringified in a JSON format using `JSON.stringify(data)`.
-- The calls to the REST APIs have to be done by invoking **Packages.get()** or **Packages.post()**. It will invoke one of the _get_ or _post_ methods in the [Suricate Back-End](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/service/js/script/JsEndpoints.java). 
+- The calls to the REST APIs have to be done by invoking `Packages.get()` or `Packages.post()`. It will invoke one of the `get` or `post` methods in the [Suricate Back-End](https://github.com/michelin/suricate/blob/master/src/main/java/com/michelin/suricate/service/js/script/JsEndpoints.java). 
 
 ```javascript
 function run() {
@@ -224,9 +228,39 @@ function run() {
   var response = JSON.parse(
           Packages.get("https://api.github.com/repos/" + WIDGET_GITHUB_ORGANIZATION + "/" + WIDGET_GITHUB_PROJECT + "/issues?page=" + page + "&per_page=" + perPage + "&state=" + WIDGET_GITHUB_ISSUES_STATE,
                   "Authorization", "token " + CATEGORY_GITHUB_TOKEN));
+  
+  return JSON.stringify(data);
+}
+```
 
-  // Process the response
+##### Execution Logs
 
+To display execution logs in the Suricate application, use the `print()` method.
+
+```javascript
+function run() {
+  var data = {};
+  var perPage = 100;
+  var issues = [];
+  var page = 1;
+
+  var response = JSON.parse(Packages.get('...'));
+
+  print(response);
+
+  return JSON.stringify(data);
+}
+```
+
+##### Previous Execution Data
+
+The previous execution data is accessible as a JSON object in the `SURI_PREVIOUS` variable.
+
+```javascript
+function run() {
+  var data = {};
+  var previousData = JSON.parse(SURI_PREVIOUS);
+  
   return JSON.stringify(data);
 }
 ```

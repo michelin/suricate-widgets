@@ -29,8 +29,7 @@ function run() {
 		+ "&additionalFields=metrics&metricKeys=" 
 		+ WIDGET_METRICS,
     	"Authorization", "Basic " + Packages.btoa(CATEGORY_SONAR_TOKEN + ":")));
-	
-	print(JSON.stringify(response));
+
 	if (response && response.component && response.component.measures && response.component.measures.length > 0) {
 		response.component.measures.forEach(function(measure) {
 			data.results.push({

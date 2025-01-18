@@ -5,7 +5,7 @@ widgetParams:
     usageExample: 'ProjectName1,com.project2.key:ProjectName2,ProjectName3'
     required: true
   - name: 'WIDGET_PERIOD_UNIT'
-    description: 'Retrieve the analyzes from a period'
+    description: 'Unit of period'
     type: 'COMBO'
     defaultValue: 'Month'
     possibleValuesMap:
@@ -19,18 +19,20 @@ widgetParams:
         value: 'Day'
     required: false
   - name: 'WIDGET_PERIOD_NUMBER'
-    description: 'Unit of the selected period'
+    description: 'Number of periods'
     type: 'NUMBER'
     usageExample: '1'
     defaultValue: '6'
     required: false
   - name: 'WIDGET_BRANCH'
-    description: 'Branch name, if user provides both branch and pull request, the branch takes precedence.'
+    description: 'Branch name'
+    usageTooltip: 'If user provides both branch and pull request, the branch takes precedence.'
     type: 'TEXT'
     usageExample: 'My branch'
     required: false
   - name: 'WIDGET_PULL_REQUEST'
-    description: 'Merge/Pull Request Number'
+    description: 'Merge or pull request number'
+    usageTooltip: 'If user provides both branch and pull request, the branch takes precedence.'
     type: 'TEXT'
     usageExample: '111'
     required: false

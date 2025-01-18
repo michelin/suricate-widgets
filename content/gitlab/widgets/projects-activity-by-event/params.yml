@@ -11,13 +11,13 @@ widgetParams:
     required: false
   - name: 'WIDGET_NUMBER_OF_PROJECTS'
     description: 'Number of projects to display'
-    usageTooltip: 'If a project ID or path is not defined, the widget will display the events of the last projects with activity'
+    usageTooltip: 'If a project ID or path is not defined, the widget will display the events of the last projects with activity.'
     type: 'NUMBER'
     defaultValue: '5'
     required: false
   - name: 'WIDGET_DATE'
     description: 'Retrieve the events from a precise date (format: DDMMYYYY)'
-    usageTooltip: 'If not defined, the events will be retrieved from today'
+    usageTooltip: 'If not defined, the events will be retrieved from today.'
     type: 'TEXT'
     usageExample: '31122020'
     required: false
