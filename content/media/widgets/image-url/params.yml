@@ -1,4 +1,3 @@
----
 widgetParams:
   - name: 'WIDGET_IMG'
     description: 'Image URL'
