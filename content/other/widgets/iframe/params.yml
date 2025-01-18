@@ -1,7 +1,0 @@
-widgetParams:
-  -
-    name: 'SURI_URL'
-    description: 'Page URL'
-    type: TEXT
-    usageExample: 'http://...'
-    required: true

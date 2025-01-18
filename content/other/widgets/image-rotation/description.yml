@@ -1,5 +1,0 @@
-name: Images rotation
-description: Display multiple images by performing a rotation
-info: Do not exceed 3 Mo to avoid crashes
-technicalName: imagesRotation
-delay: 3600

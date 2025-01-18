@@ -1,0 +1,4 @@
+name: Image from URL
+description: Display an image from an URL.
+technicalName: image-url
+delay: -1

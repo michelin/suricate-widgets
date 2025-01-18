@@ -1,0 +1,13 @@
+widgetParams:
+  -
+    name: 'WIDGET_PDF'
+    description: 'Select your PDF'
+    type: FILE
+    acceptFileRegex: '^data:application\/pdf;base64,.+$'
+    required: true
+  -
+    name: 'WIDGET_DELAY'
+    description: 'Delay between slides (in milliseconds)'
+    type: NUMBER
+    usageExample: '5000'
+    required: true

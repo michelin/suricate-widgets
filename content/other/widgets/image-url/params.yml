@@ -1,7 +1,0 @@
-widgetParams:
-  -
-    name: 'SURI_IMG'
-    description: 'Image URL'
-    type: TEXT
-    usageExample: 'https://xxx.suricate.io/xxxx'
-    required: true

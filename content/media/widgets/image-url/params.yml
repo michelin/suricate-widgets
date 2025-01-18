@@ -1,0 +1,7 @@
+widgetParams:
+  -
+    name: 'WIDGET_IMG'
+    description: 'Image URL'
+    type: TEXT
+    usageExample: 'https://example.com/image.jpg'
+    required: true

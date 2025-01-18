@@ -1,0 +1,4 @@
+name: Iframe
+description: Display the content of a web page in an iframe.
+technicalName: iframe
+delay: -1

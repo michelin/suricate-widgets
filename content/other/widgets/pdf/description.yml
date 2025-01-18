@@ -1,7 +1,0 @@
-name: PDF viewer 
-description: Display a PDF
-technicalName: pdf
-delay: -1
-libraries:
-  - pdf.js
-  - pdf.worker.js
