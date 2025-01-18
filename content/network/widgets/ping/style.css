@@ -1,12 +1,12 @@
-.widget.appMonitor {
+.widget.ping {
 	background-color: transparent;
 }
 
-.widget.appMonitor .OK {
+.widget.ping .OK {
 	background-color: #2e7d32;
 }
 
-.widget.appMonitor .KO {
+.widget.ping .KO {
 	background-color: #d50000;
 	-webkit-animation: status-danger-background 1s infinite; /* Safari 4+ */
 	-moz-animation: status-danger-background 1s infinite; /* Fx 5+ */
@@ -14,7 +14,7 @@
 	animation: status-danger-background 1s infinite; /* IE 10+, Fx 29+ */
 }
 
-.widget.appMonitor .app-monitor {
+.widget.ping .app-monitor {
 	background-size: contain;
 	opacity: 0.2;
 	height: 25%;
@@ -24,11 +24,11 @@
 	left: 5%;
 }
 
-.widget.appMonitor .title {
+.widget.ping .title {
 	font-size: 23px;
 	margin-bottom: 25px;
 }
 
-.widget.appMonitor .code {
+.widget.ping .code {
 	font-size: 18px;
 }

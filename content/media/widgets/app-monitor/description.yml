@@ -1,4 +1,0 @@
-name: App monitor status
-description: Display the status of a service
-technicalName: appMonitor
-delay: 300

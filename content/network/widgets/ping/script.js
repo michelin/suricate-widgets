@@ -17,9 +17,9 @@
 function run() {
     var data = {};
 
-    var statusCode = Packages.get(SURI_URL, true);
+    var statusCode = Packages.get(WIDGET_URL, true);
 
-    if (SURI_HTTP_CODES.includes(statusCode)) {
+    if (WIDGET_HTTP_CODES.includes(statusCode)) {
         data.status = 'OK';
         data.ok = true;
     } else {

@@ -1,0 +1,4 @@
+name: Ping
+description: Ping an URL and display the status.
+technicalName: ping
+delay: 300

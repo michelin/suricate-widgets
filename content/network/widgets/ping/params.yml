@@ -1,0 +1,19 @@
+widgetParams:
+  -
+    name: 'WIDGET_TITLE'
+    description: 'Widget title'
+    type: 'TEXT'
+    usageExample: 'My title'
+    required: true
+  -
+    name: 'WIDGET_URL'
+    description: 'The service URL to ping'
+    type: 'TEXT'
+    usageExample: 'https://www.example.com'
+    required: true
+  -
+    name: 'WIDGET_HTTP_CODES'
+    description: 'Allowed HTTP status codes (comma-separated)'
+    type: 'TEXT'
+    usageExample: '200, 403'
+    required: true
