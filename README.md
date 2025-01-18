@@ -30,6 +30,7 @@ Retrieve data from external sources and present it in a tile-based format on Sur
     * [Parameters](#parameters)
     * [Script](#script)
       * [Execution Logs](#execution-logs)
+      * [Previous Execution Data](#previous-execution-data)
     * [Style](#style)
 * [Suricate Widget Tester](#suricate-widget-tester)
 * [Contribution](#contribution)
