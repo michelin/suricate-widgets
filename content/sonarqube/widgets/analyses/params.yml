@@ -1,52 +1,40 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_PROJECT_KEY'
+  - name: 'WIDGET_PROJECT_KEY'
     description: 'Projects names (substring accepted) or projects keys (full match only), separated by a comma'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'ProjectName1,com.project2.key:ProjectName2,ProjectName3'
     required: true
-  -
-    name: 'WIDGET_PERIOD_UNIT'
+  - name: 'WIDGET_PERIOD_UNIT'
     description: 'Retrieve the analyses from a period'
-    type: COMBO
+    type: 'COMBO'
     possibleValuesMap:
-      -
-        jsKey: Year
-        value: Year
-      -
-        jsKey: Month
-        value: Month
-      -
-        jsKey: Week
-        value: Week
-      -
-        jsKey: Day
-        value: Day
+      - jsKey: 'Year'
+        value: 'Year'
+      - jsKey: 'Month'
+        value: 'Month'
+      - jsKey: 'Week'
+        value: 'Week'
+      - jsKey: 'Day'
+        value: 'Day'
     required: false
-  -
-    name: 'WIDGET_PERIOD_NUMBER'
+  - name: 'WIDGET_PERIOD_NUMBER'
     description: 'Unit of the selected period'
-    type: NUMBER
-    usageExample: 1
+    type: 'NUMBER'
+    usageExample: '1'
     required: false
-  -
-    name: 'WIDGET_CHART_TYPE'
+  - name: 'WIDGET_CHART_TYPE'
     description: 'Chart type'
     type: 'COMBO'
     defaultValue: 'bar'
     possibleValuesMap:
-      -
-        jsKey: 'pie'
+      - jsKey: 'pie'
         value: 'Pie'
-      -
-        jsKey: 'horizontalBar'
+      - jsKey: 'horizontalBar'
         value: 'Horizontal bar'
-      -
-        jsKey: 'bar'
+      - jsKey: 'bar'
         value: 'Vertical bar'

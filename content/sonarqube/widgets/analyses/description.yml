@@ -1,0 +1,7 @@
+name: 'Analyses'
+description: 'Display the most active projects by number of analyses.'
+technicalName: 'sonarqube-analyses'
+delay: 300
+libraries:
+  - 'chart.js'
+  - 'chart.piecelabel.js'
