@@ -1,7 +1,7 @@
-name: Timeline
-description: Display the timeline of all Jira releases for the specified project.
-technicalName: jira-timeline
+name: 'Timeline'
+description: 'Display the timeline of all Jira releases for the specified project.'
+technicalName: 'jira-timeline'
 delay: 300
 libraries:
-  - d3.js
-  - timeknots.js
+  - 'd3.js'
+  - 'timeknots.js'

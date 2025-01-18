@@ -1,18 +1,15 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_JQL'
+  - name: 'WIDGET_JQL'
     description: 'JQL query to retrieve the issues'
     type: 'TEXT'
     usageExample: 'project=XXX and (component=jenkins or component=XXX)'
     required: true
-  -
-    name: 'WIDGET_DISPLAY_LEGEND'
+  - name: 'WIDGET_DISPLAY_LEGEND'
     description: 'Display the legend of the chart'
     type: 'BOOLEAN'
     required: false

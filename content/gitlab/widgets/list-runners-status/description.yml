@@ -1,5 +1,5 @@
-name: Runners status
-description: Display the status of GitLab runners.
-info: Accessing the runners status might require admin permissions.
-technicalName: gitlab-list-runners-status
+name: 'Runners status'
+description: 'Display the status of GitLab runners.'
+info: 'Accessing the runners status might require admin permissions.'
+technicalName: 'gitlab-list-runners-status'
 delay: 300

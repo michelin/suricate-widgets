@@ -1,0 +1,4 @@
+name: 'Metrics'
+description: 'Display the metrics of a project.'
+technicalName: 'sonarqube-metrics'
+delay: 300

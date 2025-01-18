@@ -1,8 +1,8 @@
-name: Projects activity distribution
-description: Display the most active projects in Jira during the last weeks.
-technicalName: jira-projects-activity-distribution
+name: 'Projects activity distribution'
+description: 'Display the most active projects in Jira during the last weeks.'
+technicalName: 'jira-projects-activity-distribution'
 timeout: 360
 delay: 300
 libraries:
-  - chart.js
-  - chart.piecelabel.js
+  - 'chart.js'
+  - 'chart.piecelabel.js'

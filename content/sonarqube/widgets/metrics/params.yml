@@ -1,55 +1,42 @@
 widgetParams:
-  -
-    name: 'SURI_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'SURI_PROJECT_KEY'
+  - name: 'WIDGET_PROJECT_KEY'
     description: 'Project key'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'com.project.key:ProjectName'
     required: true
-  -
-    name: 'SURI_METRICS'
+  - name: 'WIDGET_METRICS'
     description: 'Metrics to display'
-    type: MULTIPLE
+    type: 'MULTIPLE'
     possibleValuesMap:
-      -
-        jsKey: 'ncloc'
+      - jsKey: 'ncloc'
         value: 'Lines of code'
-      -
-        jsKey: 'public_documented_api_density'
+      - jsKey: 'public_documented_api_density'
         value: 'Public documented API (%)'
-      -
-        jsKey: 'files'
+      - jsKey: 'files'
         value: 'Number of files'
-      -
-        jsKey: 'functions'
+      - jsKey: 'functions'
         value: 'Number of functions'
-      -
-        jsKey: 'sqale_index'
+      - jsKey: 'sqale_index'
         value: 'Technical debt (total effort (in hours) to fix all the issues)'
-      -
-        jsKey: 'blocker_violations'
+      - jsKey: 'blocker_violations'
         value: 'Number of issues with blocker severity'
-      -
-        jsKey: 'critical_violations'
+      - jsKey: 'critical_violations'
         value: 'Number of issues with critical severity'
-      -
-        jsKey: 'test_success_density'
+      - jsKey: 'test_success_density'
         value: 'Unit test success density (%)'
     required: true
-  -
-    name: 'SURI_BRANCH'
+  - name: 'WIDGET_BRANCH'
     description: 'Branch name, if user provides both branch and pull request, the branch takes precedence.'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My branch'
     required: false
-  -
-    name: 'SURI_PULL_REQUEST'
+  - name: 'WIDGET_PULL_REQUEST'
     description: 'Merge/Pull Request Number'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '111'
     required: false

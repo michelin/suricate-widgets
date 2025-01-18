@@ -1,7 +1,7 @@
-name: PDF
-description: Display a PDF.
-technicalName: media-pdf
+name: 'PDF'
+description: 'Display a PDF.'
+technicalName: 'media-pdf'
 delay: -1
 libraries:
-  - pdf.js
-  - pdf.worker.js
+  - 'pdf.js'
+  - 'pdf.worker.js'

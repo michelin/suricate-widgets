@@ -1,4 +1,0 @@
-name: Metrics
-description: Display the coverage of an application
-technicalName: sonarProjectCoverage
-delay: 500

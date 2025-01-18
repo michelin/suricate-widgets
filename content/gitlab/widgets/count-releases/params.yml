@@ -1,12 +1,10 @@
 widgetParams:
-  -
-    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
+  - name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
     type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
-  -
-    name: 'WIDGET_AGGREGATE_BY'
+  - name: 'WIDGET_AGGREGATE_BY'
     description: 'Aggregate releases by date or tag name'
     type: 'MULTIPLE'
     possibleValuesMap:
@@ -15,15 +13,13 @@ widgetParams:
       - jsKey: 'aggregated_by_tag_name'
         value: 'Tag name'
     required: false
-  -
-    name: 'WIDGET_DATE'
+  - name: 'WIDGET_DATE'
     description: 'Retrieve the releases from a precise date (format: DDMMYYYY)'
     usageTooltip: 'If defined, it is not necessary to define a period. The precise date takes priority over the period.'
     type: 'TEXT'
     usageExample: '31122020'
     required: false
-  -
-    name: 'WIDGET_PERIOD_UNIT'
+  - name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
     usageTooltip: 'If defined, it is not necessary to define a precise date. The precise date takes priority over the period.'
     type: 'COMBO'
@@ -37,14 +33,12 @@ widgetParams:
       - jsKey: 'day'
         value: 'Day'
     required: false
-  -
-    name: 'WIDGET_PERIOD_NUMBER'
+  - name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
     type: 'NUMBER'
     usageExample: '1'
     required: false
-  -
-    name: 'WIDGET_DISPLAY_AVERAGE_TIME_BETWEEN_RELEASES'
+  - name: 'WIDGET_DISPLAY_AVERAGE_TIME_BETWEEN_RELEASES'
     description: 'Display the average time between releases in days'
     type: 'BOOLEAN'
     defaultValue: true

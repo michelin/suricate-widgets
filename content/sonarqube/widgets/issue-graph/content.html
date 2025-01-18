@@ -1,5 +1,5 @@
 <div class="grid-stack-item-content-inner">
-  <p class="title">{{SURI_TITLE}}</p>
+  <p class="title">{{WIDGET_TITLE}}</p>
   <div class="chart-container">
     <canvas id="chart-{{SURI_INSTANCE_ID}}"></canvas>
   </div>
@@ -40,7 +40,7 @@
   		{{/dataVulnerability}}
 
   		var chart = new Chart(ctx, {
-  			type: '{{{SURI_TYPE_GRAPH}}}',
+  			type: '{{{WIDGET_CHART_TYPE}}}',
   			data: {
   				labels: labels,
   				datasets: [{

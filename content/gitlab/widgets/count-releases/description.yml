@@ -1,4 +1,4 @@
-name: Count releases
-description: Count the number of releases in a GitLab project.
-technicalName: gitlab-count-releases
+name: 'Count releases'
+description: 'Count the number of releases in a GitLab project.'
+technicalName: 'gitlab-count-releases'
 delay: 300

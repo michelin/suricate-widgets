@@ -1,0 +1,7 @@
+name: 'Issue graph'
+description: 'Display the issue graph of a project.'
+technicalName: 'sonarqube-issue-graph'
+delay: 300
+libraries:
+  - 'chart.js'
+  - 'chart.piecelabel.js'

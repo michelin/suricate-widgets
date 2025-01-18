@@ -1,25 +1,21 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_JQL_ALL'
+  - name: 'WIDGET_JQL_ALL'
     description: 'JQL query to count all issues'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX'
     required: true
-  -
-    name: 'WIDGET_JQL_CLOSED'
+  - name: 'WIDGET_JQL_CLOSED'
     description: 'JQL query to count all closed issues'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'fixVersion = "XXX 1.1" AND project = XXXX and status in (Closed, Done, "Done Done")'
     required: true
-  -
-    name: 'WIDGET_DISPLAY_COUNT'
+  - name: 'WIDGET_DISPLAY_COUNT'
     description: 'Display amount of data on the widget'
-    type: BOOLEAN
+    type: 'BOOLEAN'
     defaultValue: false
     required: false

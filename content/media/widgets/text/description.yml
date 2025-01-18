@@ -1,4 +1,4 @@
-name: Text
-description: Display text content.
-technicalName: media-text
+name: 'Text'
+description: 'Display text content.'
+technicalName: 'media-text'
 delay: -1

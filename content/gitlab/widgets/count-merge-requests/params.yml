@@ -1,12 +1,10 @@
 widgetParams:
-  -
-    name: 'WIDGET_PROJECT_ID_OR_PATH'
+  - name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
     type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true
-  -
-    name: 'WIDGET_MERGE_REQUESTS_STATE'
+  - name: 'WIDGET_MERGE_REQUESTS_STATE'
     description: 'Filter on the state of the merge requests'
     type: 'COMBO'
     defaultValue: 'all'

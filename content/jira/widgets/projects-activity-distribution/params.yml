@@ -1,34 +1,27 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_WEEK'
+  - name: 'WIDGET_WEEK'
     description: 'Period of activity (in weeks)'
     type: 'NUMBER'
     defaultValue: '12'
     required: true
-  -
-    name: 'WIDGET_ORDER_BY'
+  - name: 'WIDGET_ORDER_BY'
     description: 'Order extension by'
     type: 'COMBO'
     defaultValue: 'ISSUES'
     possibleValuesMap:
-      -
-        jsKey: 'ISSUES'
+      - jsKey: 'ISSUES'
         value: 'Issues'
-      -
-        jsKey: 'TIMETOCLOSE'
+      - jsKey: 'TIMETOCLOSE'
         value: 'Average time to close issues'
-      -
-        jsKey: 'DAYOFISSUES'
+      - jsKey: 'DAYOFISSUES'
         value: 'Day of issues'
     required: true
-  -
-    name: 'WIDGET_CHART_TYPE'
+  - name: 'WIDGET_CHART_TYPE'
     description: 'Chart type'
     type: 'COMBO'
     defaultValue: 'pie'

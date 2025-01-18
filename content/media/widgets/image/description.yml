@@ -1,4 +1,4 @@
-name: Image
-description: Display an image.
-technicalName: media-image
+name: 'Image'
+description: 'Display an image.'
+technicalName: 'media-image'
 delay: -1

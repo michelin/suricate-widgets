@@ -1,9 +1,9 @@
 function run() {
   var data = {};
   var projectIssues = [];
-  var sonarUrl = WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, "");
-  var sonarToken = WIDGET_CONFIG_SONAR_TOKEN;
-  var projectKeys = SURI_PROJECT;
+  var sonarUrl = CATEGORY_SONAR_URL.replace(/\/+$/, "");
+  var sonarToken = CATEGORY_SONAR_TOKEN;
+  var projectKeys = WIDGET_PROJECT_KEY;
   var labels = [];
   var dataCodeSmell = [];
   var dataBug = [];
@@ -38,22 +38,22 @@ function run() {
     return element === 0;
   }
 
-  if (SURI_PERIOD) {
+  if (WIDGET_PERIOD_UNIT) {
     var numberOfPeriods = 1;
 
-    if (SURI_NUMBER_OF_PERIOD) {
-      numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+    if (WIDGET_PERIOD_NUMBER) {
+      numberOfPeriods = WIDGET_PERIOD_NUMBER;
     }
 
     var computedDate = new Date();
 
-    if (SURI_PERIOD === "Day") {
+    if (WIDGET_PERIOD_UNIT === "Day") {
       computedDate.setDate(new Date().getDate() - numberOfPeriods);
-    } else if (SURI_PERIOD === "Week") {
+    } else if (WIDGET_PERIOD_UNIT === "Week") {
       computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-    } else if (SURI_PERIOD === "Month") {
+    } else if (WIDGET_PERIOD_UNIT === "Month") {
       computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-    } else if (SURI_PERIOD === "Year") {
+    } else if (WIDGET_PERIOD_UNIT === "Year") {
       computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
     }
 
@@ -120,14 +120,14 @@ function run() {
         "-" +
         ("0" + dateExtract.getUTCDate()).slice(-2);
 
-      if (SURI_PERIOD == "Day") {
+      if (WIDGET_PERIOD_UNIT == "Day") {
         displayDate = dateFirstTen;
-      } else if (SURI_PERIOD == "Week") {
+      } else if (WIDGET_PERIOD_UNIT == "Week") {
         displayDate = dateFirstTen;
-      } else if (SURI_PERIOD == "Month") {
+      } else if (WIDGET_PERIOD_UNIT == "Month") {
         displayDate =
           monthNames[dateExtract.getMonth()] + "," + dateExtract.getFullYear();
-      } else if (SURI_PERIOD == "Year") {
+      } else if (WIDGET_PERIOD_UNIT == "Year") {
         displayDate = dateExtract.getFullYear();
       }
 
@@ -191,7 +191,7 @@ function getIssuesFromSonarqube(
   var sonarApiUrl =
     sonarUrl +
     "/api/measures/search_history?" +
-    (SURI_BRANCH != null ? "branch=" + SURI_BRANCH + "&" : (SURI_PULL_REQUEST != null ? "pullRequest=" + SURI_PULL_REQUEST + "&" : "")) +
+    (WIDGET_BRANCH != null ? "branch=" + WIDGET_BRANCH + "&" : (WIDGET_PULL_REQUEST != null ? "pullRequest=" + WIDGET_PULL_REQUEST + "&" : "")) +
     "metrics=bugs,vulnerabilities,code_smells&component=" +
     projectKeys +
     "&ps=" +

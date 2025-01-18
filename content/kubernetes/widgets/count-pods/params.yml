@@ -1,43 +1,33 @@
 widgetParams:
-  -
-    name: 'WIDGET_NAMESPACE'
+  - name: 'WIDGET_NAMESPACE'
     description: 'Namespace'
     type: 'TEXT'
     usageExample: 'namespace'
     required: true
-  -
-    name: 'WIDGET_SERVICE_ACCOUNT_TOKEN'
+  - name: 'WIDGET_SERVICE_ACCOUNT_TOKEN'
     description: 'Namespace token (e.g. service account token, Gitlab token, ...)'
     type: 'PASSWORD'
     usageExample: 'eyJhbGciOiJSU'
     required: true
-  -
-    name: 'WIDGET_STATUS'
+  - name: 'WIDGET_STATUS'
     description: 'Filter by status of the pods'
     type: 'COMBO'
     defaultValue: 'All'
     possibleValuesMap:
-      -
-        jsKey: 'All'
+      - jsKey: 'All'
         value: 'All'
-      -
-        jsKey: 'Running'
+      - jsKey: 'Running'
         value: 'Running'
-      -
-        jsKey: 'Pending'
+      - jsKey: 'Pending'
         value: 'Pending'
-      -
-        jsKey: 'Succeeded'
+      - jsKey: 'Succeeded'
         value: 'Succeeded'
-      -
-        jsKey: 'Failed'
+      - jsKey: 'Failed'
         value: 'Failed'
-      -
-        jsKey: 'Unknown'
+      - jsKey: 'Unknown'
         value: 'Unknown'
     required: true
-  -
-    name: 'WIDGET_PODS_NAME'
+  - name: 'WIDGET_PODS_NAME'
     description: 'Filter on the name of the pods. Substring accepted'
     type: 'TEXT'
     usageExample: 'frontend'

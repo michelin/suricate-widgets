@@ -1,7 +1,6 @@
-name: GitHub
-technicalName: github
+name: 'GitHub'
+technicalName: 'github'
 configurations:
-  -
-    key: 'CATEGORY_GITHUB_TOKEN'
+  - key: 'CATEGORY_GITHUB_TOKEN'
     description: 'Token for the GitHub API'
-    dataType: PASSWORD
+    dataType: 'PASSWORD'

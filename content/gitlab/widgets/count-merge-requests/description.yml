@@ -1,4 +1,5 @@
-name: Count merge requests
-description: Count the number of merge requests in a GitLab project.
-technicalName: gitlab-count-merge-requests
+---
+name: 'Count merge requests'
+description: 'Count the number of merge requests in a GitLab project.'
+technicalName: 'gitlab-count-merge-requests'
 delay: 300

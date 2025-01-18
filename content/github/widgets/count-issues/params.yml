@@ -1,27 +1,21 @@
 widgetParams:
-  -
-    name: 'WIDGET_GITHUB_ORGANIZATION'
+  - name: 'WIDGET_GITHUB_ORGANIZATION'
     description: 'GitHub organization'
     type: 'TEXT'
     required: true
-  -
-    name: 'WIDGET_GITHUB_PROJECT'
+  - name: 'WIDGET_GITHUB_PROJECT'
     description: 'GitHub project'
     type: 'TEXT'
     required: true
-  -
-    name: 'WIDGET_GITHUB_ISSUES_STATE'
+  - name: 'WIDGET_GITHUB_ISSUES_STATE'
     description: 'Filter on the state of the issues'
     type: 'COMBO'
     defaultValue: 'all'
     possibleValuesMap:
-      -
-        jsKey: 'all'
+      - jsKey: 'all'
         value: 'All'
-      -
-        jsKey: 'open'
+      - jsKey: 'open'
         value: 'Open'
-      -
-        jsKey: 'closed'
+      - jsKey: 'closed'
         value: 'Closed'
     required: true

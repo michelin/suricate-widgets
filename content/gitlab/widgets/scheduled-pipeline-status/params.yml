@@ -1,24 +1,20 @@
 widgetParams:
-  -
-    name: 'WIDGET_PROJECT_ID_OR_PATH'
+  - name: 'WIDGET_PROJECT_ID_OR_PATH'
     description: 'Project ID or path'
     type: 'TEXT'
     usageExample: 'my-group/my-project'
     required: true
-  -
-    name: 'WIDGET_SCHEDULED_PIPELINE_ID'
+  - name: 'WIDGET_SCHEDULED_PIPELINE_ID'
     description: 'Scheduled pipeline ID'
     type: 'NUMBER'
     usageExample: '1231'
     required: true
-  -
-    name: 'WIDGET_HIDE_TIMETABLE'
+  - name: 'WIDGET_HIDE_TIMETABLE'
     description: 'Hide timetable (duration and queue time)'
     type: 'BOOLEAN'
     defaultValue: false
     required: false
-  -
-    name: 'WIDGET_SHOW_FAILED_JOBS'
+  - name: 'WIDGET_SHOW_FAILED_JOBS'
     description: 'Show failed jobs'
     type: 'BOOLEAN'
     defaultValue: false

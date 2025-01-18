@@ -1,13 +1,11 @@
 widgetParams:
-  -
-    name: 'WIDGET_MARKDOWN'
+  - name: 'WIDGET_MARKDOWN'
     description: 'Upload a markdown file'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:application\/octet-stream;base64,.+$'
     required: true
-  -
-    name: 'WIDGET_WIDGET_COLOR'
+  - name: 'WIDGET_WIDGET_COLOR'
     description: 'Background color'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '#AB4040'
     required: false

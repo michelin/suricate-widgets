@@ -1,4 +1,4 @@
-name: Lead time
-description: Lead time on Jira issues for a specific project.
-technicalName: jira-lead-time
+name: 'Lead time'
+description: 'Lead time on Jira issues for a specific project.'
+technicalName: 'jira-lead-time'
 delay: 300

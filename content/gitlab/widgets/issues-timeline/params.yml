@@ -1,6 +1,5 @@
 widgetParams:
-  -
-    name: 'WIDGET_GROUP_OR_PROJECT'
+  - name: 'WIDGET_GROUP_OR_PROJECT'
     description: 'Select the type of identifier'
     type: 'COMBO'
     defaultValue: 'project'
@@ -9,15 +8,13 @@ widgetParams:
         value: 'Group path'
       - jsKey: 'project'
         value: 'Project ID or path'
-  -
-    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
+  - name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Group paths or project IDs/paths (comma-separated)'
     usageTooltip: 'Fill in the project IDs/paths or group paths according to the selected choice in the previous parameter'
     type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
-  -
-    name: 'WIDGET_PERIOD_UNIT'
+  - name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
     type: 'COMBO'
     possibleValuesMap:
@@ -28,14 +25,12 @@ widgetParams:
       - jsKey: 'week'
         value: 'Week'
     required: false
-  -
-    name: 'WIDGET_PERIOD_NUMBER'
+  - name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
     type: 'NUMBER'
     usageExample: '1'
     required: false
-  -
-    name: 'WIDGET_ISSUES_STATE'
+  - name: 'WIDGET_ISSUES_STATE'
     description: 'Filter on the state of the issues'
     type: 'COMBO'
     defaultValue: 'all'

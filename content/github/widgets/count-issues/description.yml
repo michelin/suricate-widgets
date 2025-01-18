@@ -1,4 +1,4 @@
-name: Count issues
-description: Count the number of issues in a GitHub repository.
-technicalName: github-count-issues
+name: 'Count issues'
+description: 'Count the number of issues in a GitHub repository.'
+technicalName: 'github-count-issues'
 delay: 300

@@ -1,7 +1,6 @@
-name: Kubernetes
-technicalName: kubernetes
+name: 'Kubernetes'
+technicalName: 'kubernetes'
 configurations:
-  -
-    key: 'CATEGORY_KUBERNETES_URL'
+  - key: 'CATEGORY_KUBERNETES_URL'
     description: 'URL of the Kubernetes environment'
-    dataType: TEXT
+    dataType: 'TEXT'

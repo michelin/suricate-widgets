@@ -9,24 +9,24 @@ function run() {
 	var pageSize = 500;
 	var projectPage = 1;
 	// added to remove the trailing slash from the URL if present
-	data.sonarConfigUrl = (WIDGET_CONFIG_SONAR_URL) ? WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, '') : WIDGET_CONFIG_SONAR_URL;
+	data.sonarConfigUrl = (CATEGORY_SONAR_URL) ? CATEGORY_SONAR_URL.replace(/\/+$/, '') : CATEGORY_SONAR_URL;
 	
-	if (SURI_PERIOD) {
+	if (WIDGET_PERIOD_UNIT) {
 		var numberOfPeriods = 1;
 		
-		if (SURI_NUMBER_OF_PERIOD) {
-			numberOfPeriods = SURI_NUMBER_OF_PERIOD;
+		if (WIDGET_PERIOD_NUMBER) {
+			numberOfPeriods = WIDGET_PERIOD_NUMBER;
 		}
 		
 		var computedDate = new Date();
 		
-		if (SURI_PERIOD === "Day") {
+		if (WIDGET_PERIOD_UNIT === "Day") {
 			computedDate.setDate(new Date().getDate() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Week") {
+		} else if (WIDGET_PERIOD_UNIT === "Week") {
 			computedDate.setDate(new Date().getDate() - 7 * numberOfPeriods);
-		} else if (SURI_PERIOD === "Month") {
+		} else if (WIDGET_PERIOD_UNIT === "Month") {
 			computedDate.setMonth(new Date().getMonth() - numberOfPeriods);
-		} else if (SURI_PERIOD === "Year") {
+		} else if (WIDGET_PERIOD_UNIT === "Year") {
 			computedDate.setFullYear(new Date().getFullYear() - numberOfPeriods);
 		}
 		
@@ -35,7 +35,7 @@ function run() {
 		data.fromDate = computedDate.getFullYear() + "-" + ("0" + (computedDate.getMonth() + 1)).slice(-2) + "-" + ("0" + computedDate.getUTCDate()).slice(-2);
 	}
 	
-	var projectsNamesOrKeys = SURI_PROJECT.split(",");
+	var projectsNamesOrKeys = WIDGET_PROJECT_KEY.split(",");
 	
 	projectsNamesOrKeys.forEach(function(projectNameOrKey) {
 		var projects = [];
@@ -45,7 +45,7 @@ function run() {
 						+ "&q=" + projectNameOrKey
 						+ "&ps=" + pageSize
 						+ "&p=" + projectPage,
-				"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
+				"Authorization", "Basic " + Packages.btoa(CATEGORY_SONAR_TOKEN + ":")));
 	
 		if (response && response.components && response.components.length > 0) {
 			projects = projects.concat(response.components);
@@ -58,7 +58,7 @@ function run() {
 							+ "&q=" + projectNameOrKey
 							+ "&ps=" + pageSize 
 							+ "&p=" + projectPage,
-					"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
+					"Authorization", "Basic " + Packages.btoa(CATEGORY_SONAR_TOKEN + ":")));
 					
 				projects = projects.concat(response.components);
 			}
@@ -75,7 +75,7 @@ function run() {
 					projectAnalysesURL += "&from=" + data.fromDate;
 				}
 				
-				var analysesResponse = JSON.parse(Packages.get(projectAnalysesURL, "Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
+				var analysesResponse = JSON.parse(Packages.get(projectAnalysesURL, "Authorization", "Basic " + Packages.btoa(CATEGORY_SONAR_TOKEN + ":")));
 							
 				projectsAndAnalysesQuantity[projectNameOrKey] += analysesResponse.paging.total;
 			});

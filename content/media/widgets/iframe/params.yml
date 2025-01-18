@@ -1,7 +1,6 @@
 widgetParams:
-  -
-    name: 'WIDGET_URL'
+  - name: 'WIDGET_URL'
     description: 'The URL of the web page to display in the iframe'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'https://www.example.com'
     required: true

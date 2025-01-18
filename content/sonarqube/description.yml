@@ -1,11 +1,9 @@
-name: SonarQube
-technicalName: sonarqube
+name: 'SonarQube'
+technicalName: 'sonarqube'
 configurations:
-  -
-    key: 'WIDGET_CONFIG_SONAR_URL'
+  - key: 'CATEGORY_SONAR_URL'
     description: 'URL of the Sonar environment'
-    dataType: TEXT
-  -
-    key: 'WIDGET_CONFIG_SONAR_TOKEN'
+    dataType: 'TEXT'
+  - key: 'CATEGORY_SONAR_TOKEN'
     description: 'Token for the Sonar API'
-    dataType: PASSWORD
+    dataType: 'PASSWORD'

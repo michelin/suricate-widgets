@@ -1,0 +1,4 @@
+name: 'Coverage'
+description: 'Display the coverage of a project.'
+technicalName: 'sonarqube-coverage'
+delay: 300

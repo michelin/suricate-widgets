@@ -1,4 +1,4 @@
-name: Scheduled pipeline status
-description: Displays the status of a scheduled GitLab pipeline.
-technicalName: gitlab-scheduled-pipeline-status
+name: 'Scheduled pipeline status'
+description: 'Displays the status of a scheduled GitLab pipeline.'
+technicalName: 'gitlab-scheduled-pipeline-status'
 delay: 300

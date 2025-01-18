@@ -1,32 +1,27 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'Projects activity by event'
     required: true
-  -
-    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
+  - name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
     type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: false
-  -
-    name: 'WIDGET_NUMBER_OF_PROJECTS'
+  - name: 'WIDGET_NUMBER_OF_PROJECTS'
     description: 'Number of projects to display'
     usageTooltip: 'If a project ID or path is not defined, the widget will display the events of the last projects with activity'
     type: 'NUMBER'
     defaultValue: '5'
     required: false
-  -
-    name: 'WIDGET_DATE'
+  - name: 'WIDGET_DATE'
     description: 'Retrieve the events from a precise date (format: DDMMYYYY)'
     usageTooltip: 'If not defined, the events will be retrieved from today'
     type: 'TEXT'
     usageExample: '31122020'
     required: false
-  -
-    name: 'WIDGET_EVENT_TYPE'
+  - name: 'WIDGET_EVENT_TYPE'
     description: 'Event type'
     type: 'COMBO'
     defaultValue: 'all'
@@ -58,8 +53,7 @@ widgetParams:
       - jsKey: 'expired'
         value: 'Expired'
     required: true
-  -
-    name: 'WIDGET_TARGET_TYPE'
+  - name: 'WIDGET_TARGET_TYPE'
     description: 'Target type'
     type: 'COMBO'
     defaultValue: 'all'
@@ -81,8 +75,7 @@ widgetParams:
       - jsKey: 'user'
         value: 'User'
     required: true
-  -
-    name: 'WIDGET_CHART_TYPE'
+  - name: 'WIDGET_CHART_TYPE'
     description: 'Chart type'
     type: 'COMBO'
     defaultValue: 'pie'

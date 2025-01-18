@@ -1,26 +1,21 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'Runners status'
     required: true
-  -
-    name: 'WIDGET_FILTER_BY_TAG'
+  - name: 'WIDGET_FILTER_BY_TAG'
     description: 'Filter runners by tags (comma separated)'
     type: 'TEXT'
     usageExample: 'tag1,tag2'
     required: false
-  -
-    name: 'WIDGET_FILTER_BY_NAME'
+  - name: 'WIDGET_FILTER_BY_NAME'
     description: 'Filter runners by name (comma separated). Substring accepted'
     type: 'TEXT'
     usageExample: 'runner1,runner2,runner3'
     required: false
-  -
-    name: 'WIDGET_BLINK_OFFLINE_RUNNERS'
+  - name: 'WIDGET_BLINK_OFFLINE_RUNNERS'
     description: 'Blink offline runners'
     type: 'BOOLEAN'
     defaultValue: false
     required: false
-

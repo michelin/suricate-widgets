@@ -1,12 +1,10 @@
 widgetParams:
-  -
-    name: 'WIDGET_PROJECT_IDS_OR_PATHS'
+  - name: 'WIDGET_PROJECT_IDS_OR_PATHS'
     description: 'Project IDs or paths (comma-separated)'
     type: 'TEXT'
     usageExample: '123456,my-group/my-project'
     required: true
-  -
-    name: 'WIDGET_PERIOD_UNIT'
+  - name: 'WIDGET_PERIOD_UNIT'
     description: 'Unit of period'
     type: 'COMBO'
     possibleValuesMap:
@@ -17,8 +15,7 @@ widgetParams:
       - jsKey: 'week'
         value: 'Week'
     required: false
-  -
-    name: 'WIDGET_PERIOD_NUMBER'
+  - name: 'WIDGET_PERIOD_NUMBER'
     description: 'Number of periods'
     type: 'NUMBER'
     usageExample: '1'

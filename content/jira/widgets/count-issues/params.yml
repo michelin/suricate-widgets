@@ -1,18 +1,15 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_JQL'
+  - name: 'WIDGET_JQL'
     description: 'JQL query to count the issues'
     type: 'TEXT'
     usageExample: 'project = XXXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
     required: true
-  -
-    name: 'WIDGET_DELAY'
+  - name: 'WIDGET_DELAY'
     description: 'Duration used to measure the change rate from previous executions (in hours)'
     type: 'NUMBER'
     defaultValue: '24'

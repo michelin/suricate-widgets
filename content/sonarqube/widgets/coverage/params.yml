@@ -1,49 +1,38 @@
 widgetParams:
-  -
-    name: 'SURI_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'SURI_PROJECT_KEY'
+  - name: 'WIDGET_PROJECT_KEY'
     description: 'Project key'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'com.project.key:ProjectName'
     required: true
-  -
-    name: 'SURI_METRICS'
+  - name: 'WIDGET_METRICS'
     description: 'Metrics to display'
-    type: MULTIPLE
+    type: 'MULTIPLE'
     possibleValuesMap:
-      -
-        jsKey: 'new_line_coverage'
+      - jsKey: 'new_line_coverage'
         value: 'Line coverage on new code'
-      -
-        jsKey: 'new_lines_to_cover'
+      - jsKey: 'new_lines_to_cover'
         value: 'Lines to cover on new code'
-      -
-        jsKey: 'new_uncovered_lines'
+      - jsKey: 'new_uncovered_lines'
         value: 'Uncovered lines on new code'
-      -
-        jsKey: 'new_coverage'
+      - jsKey: 'new_coverage'
         value: 'Coverage on new code'
-      -
-        jsKey: 'new_conditions_to_cover'
+      - jsKey: 'new_conditions_to_cover'
         value: 'Conditions to cover on new code'
-      -
-        jsKey: 'new_uncovered_conditions'
+      - jsKey: 'new_uncovered_conditions'
         value: 'Uncovered conditions on new code'
     required: true
-  -
-    name: 'SURI_BRANCH'
+  - name: 'WIDGET_BRANCH'
     description: 'Branch name, if user provides both branch and pull request, the branch takes precedence.'
-    type: TEXT
+    type: 'TEXT'
     usageExample: 'My branch'
     required: false
-  -
-    name: 'SURI_PULL_REQUEST'
+  - name: 'WIDGET_PULL_REQUEST'
     description: 'Merge/Pull Request Number'
-    type: TEXT
+    type: 'TEXT'
     usageExample: '111'
     required: false

@@ -1,12 +1,10 @@
 widgetParams:
-  - 
-    name: 'WIDGET_RUNNER_ID'
+  - name: 'WIDGET_RUNNER_ID'
     description: 'Runner ID'
     type: 'TEXT'
     usageExample: '1234'
     required: true
-  - 
-    name: 'WIDGET_LAST_CONTACT_DURATION_TRIGGER'
+  - name: 'WIDGET_LAST_CONTACT_DURATION_TRIGGER'
     description: 'Trigger alert when the last contact duration is greater than the specified value (in minutes)'
     type: 'NUMBER'
     usageExample: '30'

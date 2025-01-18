@@ -1,4 +1,4 @@
-name: List pods
-description: List all pods in a Kubernetes namespace.
-technicalName: list-pods
+name: 'List pods'
+description: 'List all pods in a Kubernetes namespace.'
+technicalName: 'list-pods'
 delay: 300

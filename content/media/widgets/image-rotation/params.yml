@@ -1,31 +1,26 @@
 widgetParams:
-  -
-    name: 'WIDGET_IMG'
+  - name: 'WIDGET_IMG'
     description: 'Image #1'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:image\/(gif|jpe?g|png);base64,.+$'
     required: true
-  -
-    name: 'WIDGET_IMG_2'
+  - name: 'WIDGET_IMG_2'
     description: 'Image #2'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:image\/(gif|jpe?g|png);base64,.+$'
     required: false
-  -
-    name: 'WIDGET_IMG_3'
+  - name: 'WIDGET_IMG_3'
     description: 'Image #3'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:image\/(gif|jpe?g|png);base64,.+$'
     required: false
-  -
-    name: 'WIDGET_IMG_4'
+  - name: 'WIDGET_IMG_4'
     description: 'Image #4'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:image\/(gif|jpe?g|png);base64,.+$'
     required: false
-  -
-    name: 'WIDGET_IMG_5'
+  - name: 'WIDGET_IMG_5'
     description: 'Image #5'
-    type: FILE
+    type: 'FILE'
     acceptFileRegex: '^data:image\/(gif|jpe?g|png);base64,.+$'
     required: false

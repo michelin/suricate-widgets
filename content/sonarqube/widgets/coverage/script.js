@@ -16,25 +16,34 @@
 
 function run() {
 	var data = {};
+	var branch = (WIDGET_BRANCH != null ? "branch=" + WIDGET_BRANCH + "&" : (WIDGET_PULL_REQUEST != null ? "pullRequest=" + WIDGET_PULL_REQUEST + "&" : ""));
 	data.results = [];
-	// added to remove the trailing slash from the URL if present
-	data.sonarConfigUrl = (WIDGET_CONFIG_SONAR_URL) ? WIDGET_CONFIG_SONAR_URL.replace(/\/+$/, '') : WIDGET_CONFIG_SONAR_URL;
 
-	var response = JSON.parse(
-    	    Packages.get(data.sonarConfigUrl + "/api/measures/component?" + (SURI_BRANCH != null ? "branch=" + SURI_BRANCH + "&" : (SURI_PULL_REQUEST != null ? "pullRequest=" + SURI_PULL_REQUEST + "&" : ""))  +"component=" + SURI_PROJECT_KEY + "&additionalFields=metrics&metricKeys=" + SURI_METRICS,
-    		"Authorization", "Basic " + Packages.btoa(WIDGET_CONFIG_SONAR_TOKEN + ":")));
+	// Added to remove the trailing slash from the URL if present
+	data.sonarConfigUrl = (CATEGORY_SONAR_URL) ? CATEGORY_SONAR_URL.replace(/\/+$/, '') : CATEGORY_SONAR_URL;
 
+	var response = JSON.parse(Packages.get(data.sonarConfigUrl 
+		+ "/api/measures/component?" + branch
+		+ "component=" 
+		+ WIDGET_PROJECT_KEY 
+		+ "&additionalFields=metrics&metricKeys=" 
+		+ WIDGET_METRICS,
+    	"Authorization", "Basic " + Packages.btoa(CATEGORY_SONAR_TOKEN + ":")));
+	
+	print(JSON.stringify(response));
 	if (response && response.component && response.component.measures && response.component.measures.length > 0) {
 		response.component.measures.forEach(function(measure) {
 			data.results.push({
 				title: response.metrics.filter(function(metric) {
 							if (metric.key == measure.metric) {
 								return metric;
-							}
+							} 
 						})[0].name,
-				value: measure.value
+				value: measure.periods[0].value,
+
 			});
 		});
+
 	}
 
   return JSON.stringify(data);

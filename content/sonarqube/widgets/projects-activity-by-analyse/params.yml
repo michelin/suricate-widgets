@@ -1,18 +1,18 @@
 widgetParams:
   -
-    name: 'SURI_TITLE'
+    name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: TEXT
     usageExample: 'My title'
     required: true
   -
-    name: 'SURI_PROJECT'
+    name: 'WIDGET_PROJECT_KEY'
     description: 'Projects names (substring accepted) or projects keys (full match only), separated by a comma'
     type: TEXT
     usageExample: 'ProjectName1,com.project2.key:ProjectName2,ProjectName3'
     required: true
   -
-    name: 'SURI_PERIOD'
+    name: 'WIDGET_PERIOD_UNIT'
     description: 'Retrieve the analyses from a period'
     type: COMBO
     possibleValuesMap:
@@ -30,14 +30,14 @@ widgetParams:
         value: Day
     required: false
   -
-    name: 'SURI_NUMBER_OF_PERIOD'
+    name: 'WIDGET_PERIOD_NUMBER'
     description: 'Unit of the selected period'
     type: NUMBER
     usageExample: 1
     required: false
   -
-    name: 'SURI_TYPE_GRAPH'
-    description: 'Graph type'
+    name: 'WIDGET_CHART_TYPE'
+    description: 'Chart type'
     type: 'COMBO'
     defaultValue: 'bar'
     possibleValuesMap:

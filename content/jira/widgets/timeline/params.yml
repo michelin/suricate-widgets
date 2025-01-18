@@ -1,12 +1,10 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_PROJECT'
+  - name: 'WIDGET_PROJECT'
     description: 'Jira project name'
     type: 'TEXT'
     usageExample: 'My project'

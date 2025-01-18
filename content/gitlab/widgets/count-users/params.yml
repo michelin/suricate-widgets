@@ -1,29 +1,25 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'Number of users'
     required: true
-  -
-    name: 'WIDGET_FILTER_BY_ID'
+  - name: 'WIDGET_FILTER_BY_ID'
     description: 'Filter users by ID. Substring accepted'
     type: 'TEXT'
     usageExample: 'jack_smith'
     required: false
-  -
-    name: 'WIDGET_FILTER_BY_NAME'
+  - name: 'WIDGET_FILTER_BY_NAME'
     description: 'Filter users by name. Substring accepted'
     type: 'TEXT'
     usageExample: 'Jack'
     required: false
-  -
-    name: 'WIDGET_FILTER_BY_STATE'
+  - name: 'WIDGET_FILTER_BY_STATE'
     description: 'Filter users by state'
     type: 'COMBO'
     possibleValuesMap:
-      - jsKey: active
-        value: Active
-      - jsKey: blocked
-        value: Blocked
+      - jsKey: 'active'
+        value: 'Active'
+      - jsKey: 'blocked'
+        value: 'Blocked'
     required: false

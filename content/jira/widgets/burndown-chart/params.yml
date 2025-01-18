@@ -1,12 +1,10 @@
 widgetParams:
-  -
-    name: 'WIDGET_TITLE'
+  - name: 'WIDGET_TITLE'
     description: 'Widget title'
     type: 'TEXT'
     usageExample: 'My title'
     required: true
-  -
-    name: 'WIDGET_JQL'
+  - name: 'WIDGET_JQL'
     description: 'JQL query to retrieve the sprint issues'
     type: 'TEXT'
     usageExample: 'Sprint = "Sprint Name"'

@@ -1,4 +1,4 @@
-name: Count users
-description: Count the number of users in a GitLab instance.
-technicalName: gitlab-count-users
+name: 'Count users'
+description: 'Count the number of users in a GitLab instance.'
+technicalName: 'gitlab-count-users'
 delay: 300

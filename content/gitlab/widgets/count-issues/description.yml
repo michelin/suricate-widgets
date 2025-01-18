@@ -1,4 +1,4 @@
-name: Count issues
-description: Count the number of issues in a GitLab project.
-technicalName: gitlab-count-issues
+name: 'Count issues'
+description: 'Count the number of issues in a GitLab project.'
+technicalName: 'gitlab-count-issues'
 delay: 300

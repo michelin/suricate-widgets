@@ -1,6 +1,6 @@
-name: Burndown
-description: Display the burndown chart of a Jira release for the specified project.
-technicalName: jira-burndown-chart
+name: 'Burndown'
+description: 'Display the burndown chart of a Jira release for the specified project.'
+technicalName: 'jira-burndown-chart'
 delay: 300
 libraries:
-  - chart.js
+  - 'chart.js'

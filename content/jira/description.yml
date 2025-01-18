@@ -1,11 +1,9 @@
-name: Jira
-technicalName: jira
+name: 'Jira'
+technicalName: 'jira'
 configurations:
-  -
-    key: 'CATEGORY_JIRA_URL'
+  - key: 'CATEGORY_JIRA_URL'
     description: 'URL of the Jira environment'
-    dataType: TEXT
-  -
-    key: 'CATEGORY_JIRA_TOKEN'
+    dataType: 'TEXT'
+  - key: 'CATEGORY_JIRA_TOKEN'
     description: 'Token for the Jira API'
-    dataType: PASSWORD
+    dataType: 'PASSWORD'
