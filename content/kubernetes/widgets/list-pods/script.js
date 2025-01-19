@@ -18,7 +18,7 @@ function run() {
 	var data = {};
 	
 	var pods = JSON.parse(
-		Packages.get(WIDGET_CONFIG_KUBERNETES_API_SERVER + "/api/v1/namespaces/" + WIDGET_NAMESPACE + "/pods?limit=500", 
+		Packages.get(CATEGORY_KUBERNETES_URL + "/api/v1/namespaces/" + WIDGET_NAMESPACE + "/pods?limit=500", 
 					 "Authorization", 
 					 "Bearer " + WIDGET_SERVICE_ACCOUNT_TOKEN));
 	
