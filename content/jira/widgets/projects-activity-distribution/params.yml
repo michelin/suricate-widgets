@@ -30,6 +30,6 @@ widgetParams:
         value: 'Pie'
       - jsKey: 'horizontalBar'
         value: 'Horizontal bar'
-      - jsKey: 'verticalBar'
+      - jsKey: 'bar'
         value: 'Vertical bar'
     required: true

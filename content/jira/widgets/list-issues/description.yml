@@ -1,0 +1,4 @@
+name: 'List issues'
+description: 'List Jira issues.'
+technicalName: 'jira-list-issues'
+delay: 300

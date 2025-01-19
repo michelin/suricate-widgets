@@ -7,7 +7,7 @@ widgetParams:
   - name: 'WIDGET_JQL'
     description: 'JQL query to list the issues'
     type: 'TEXT'
-    usageExample: 'project = XXX and assignee is EMPTY and status not in (Closed, Completed, Done, "Done Done") ORDER BY createdDate DESC'
+    usageExample: 'project = XXX'
     required: true
   - name: 'WIDGET_NUMBER'
     description: 'Number of issues to display'

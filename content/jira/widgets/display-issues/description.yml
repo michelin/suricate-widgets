@@ -1,4 +1,0 @@
-name: 'Display issues'
-description: 'Display Jira issues.'
-technicalName: 'jira-display-issues'
-delay: 300
