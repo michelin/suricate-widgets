@@ -1,5 +1,5 @@
 name: 'Timeline'
-description: 'Display the timeline of all Jira releases for the specified project.'
+description: 'Display a timeline of upcoming releases from the current date to 5 months.'
 technicalName: 'jira-timeline'
 delay: 300
 libraries:
