@@ -44,7 +44,7 @@ the repository has been reorganized to follow consistent conventions across all 
 
 This reorganization is fully compatible with all versions of Suricate.
 However, the widget repository itself introduces some breaking changes.
-To avoid these breaking changes, it is recommended to use the [`old-master` branch](https://github.com/michelin/suricate-widgets/tree/old-master).
+To avoid these breaking changes, it is recommended to fork and use the [`old-master` branch](https://github.com/michelin/suricate-widgets/tree/old-master).
 
 The changes are:
 - Parameters for categories have been renamed to follow the `CATEGORY_` convention.  
