@@ -17,6 +17,7 @@ Retrieve data from external sources and present it in a tile-based format on Sur
 
 ## Table of Contents
 
+* [Repository Harmonization](#repository-harmonization)
 * [Repository Architecture](#repository-architecture)
 * [Creation](#creation)
   * [Category](#category)
@@ -34,6 +35,23 @@ Retrieve data from external sources and present it in a tile-based format on Sur
     * [Style](#style)
 * [Suricate Widget Tester](#suricate-widget-tester)
 * [Contribution](#contribution)
+
+## Repository Harmonization
+
+Since 
+[this recent update](https://github.com/michelin/suricate-widgets/commit/82c2f2cc64e521352a8fd1398b957bac661776d9),
+the repository has been reorganized to follow consistent conventions across all widgets.
+
+This reorganization is fully compatible with all versions of Suricate.
+However, the widget repository itself introduces some breaking changes.
+To avoid these breaking changes, it is recommended to use the [`old-master` branch](https://github.com/michelin/suricate-widgets/tree/old-master).
+
+The changes are:
+- Parameters for categories have been renamed to follow the `CATEGORY_` convention.  
+- The SonarQube category's technical name has changed from `sonar` to `sonarqube`, creating a new category with new widgets.
+- Widget technical names have been renamed to follow the kebab-case convention, resulting in new widgets.
+- Parameters for widgets have been renamed to follow the `WIDGET_` convention.
+- The `other` category has been split into `media` and `network` categories, creating new categories.
 
 ## Repository Architecture
 
