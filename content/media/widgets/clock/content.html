@@ -6,7 +6,7 @@
 <script>
    $(function() {
      function updateDate() {
-       $(".media-clock.widget-{{SURI_INSTANCE_ID}} .date").html(moment().locale(navigator.language || navigator.userLanguage).format('DD MMMM YYYY'));
+       $(".media-clock.widget-{{SURI_INSTANCE_ID}} .date").html(moment().locale(navigator.language).format('DD MMMM YYYY'));
        $(".media-clock.widget-{{SURI_INSTANCE_ID}} .time").html(moment().format('HH:mm:ss'));
        setTimeout(updateDate, 500);
      }
