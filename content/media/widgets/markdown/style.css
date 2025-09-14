@@ -2,10 +2,8 @@
 	background-color: #ec663c;
 }
 
-.grid-stack .grid-stack-item-content .grid-stack-item-content-inner {
-	height: 96%;
-	width: 96%;
-	margin: 2%;
+.widget.media-markdown .markdown-container {
+	margin: 10px;
 }
 
 .widget.media-markdown * {
